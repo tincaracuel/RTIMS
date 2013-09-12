@@ -27,6 +27,8 @@
         $(function(){   $( "#rw_start" ).datepicker();    });
         $(function(){   $( "#rw_end" ).datepicker();    });
     </script>
+
+    <?php echo $map['js']; ?>
     
   </head>
   <body>
@@ -39,7 +41,9 @@
         <a href='<?php echo base_url() ?>'> Log out </a>
     </div>
 
-    <div id="map-canvas" style="width: 75%;"></div>
+
+
+    <div id="map" style="width: 75%;" ><?php echo $map['html']; ?></div>
 
     <div id="adminFunctions">
 
@@ -92,8 +96,8 @@
           </select><br /><br />
 
         <a href="<?php echo base_url() ?>index.php/mapsManager" id="addMarkerBtn"><small>Add Marker</small></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        ( <input type="text" id="longitude" value="longitude" style="width: 80px; height: 20px; font-size: 14px;" /> , 
-        <input type="text" id="latitude" value="latitude" style="width: 80px; height: 20px; font-size: 14px;" /> )
+        ( <input type="text" id="longitude" value="latitude" style="width: 80px; height: 20px; font-size: 14px;" disabled="true" /> , 
+        <input type="text" id="latitude" value="longitude" style="width: 80px; height: 20px; font-size: 14px;" disabled="true" /> )
         <br /><br />
 
          Progress / Status: &nbsp;<input type="number" id="status" min="0" max="100"/><br /><br /><br />
@@ -114,7 +118,7 @@
           </select><br /><br />
 
         Duration: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="text" id="rw_start" style="width: 80px; font-size: 14px;" autofocus required/> to
+        <input type="text" id="rw_start" style="width: 80px; font-size: 14px;" autofocus required /> to
         <input type="text" id="rw_end" style="width: 80px; font-size: 14px;" /><br /><br />
 
         Description: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea> </textarea><br /><br />
@@ -137,8 +141,8 @@
           </select><br /><br />
 
         <a href="<?php echo base_url() ?>index.php/mapsManager" id="addMarkerBtn"><small>Add Marker</small></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        ( <input type="text" id="longitude" value="longitude" style="width: 80px; height: 20px; font-size: 14px;" /> , 
-        <input type="text" id="latitude" value="latitude" style="width: 80px; height: 20px; font-size: 14px;" /> )
+        ( <input type="text" id="longitude" value="latitude" style="width: 80px; height: 20px; font-size: 14px;" disabled="true" /> , 
+        <input type="text" id="latitude" value="longitude" style="width: 80px; height: 20px; font-size: 14px;" disabled="true" /> )
         <br /><br /><br />
          
         <input type="submit" value="Add Incident" id="addIncidentBtn" />

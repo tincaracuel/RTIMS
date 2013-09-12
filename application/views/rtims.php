@@ -17,7 +17,7 @@
     <script src="styles/js/subFunctions.js"></script>
     <script src="styles/js/mainFunctions.js"></script>
     <script src="styles/js/gmaps.js"></script>
-
+    <?php echo $map['js']; ?>
 
 
     
@@ -40,7 +40,7 @@
 
    
 
-     <div id="map-canvas"></div>
+      <div id="map"><?php echo $map['html']; ?></div>
 
     
   </body>

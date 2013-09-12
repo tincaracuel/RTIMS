@@ -4,13 +4,13 @@ $(document).ready(function(){
 	$("#addincidentDiv").hide();
 
 	$("#road").click(function(){ //add food
-		$("#addroadworkDiv").show();
 		$("#addincidentDiv").hide();
+		$("#addroadworkDiv").fadeIn(900);
 		});
 
 	$("#incident").click(function(){ //add food
 		$("#addroadworkDiv").hide();
-		$("#addincidentDiv").show();
+		$("#addincidentDiv").fadeIn(900);
 		});
 
 });

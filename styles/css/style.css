@@ -1,4 +1,4 @@
-html, body, #map-canvas{
+html, body, #map{
         margin: 0;
         font-family: 'Open Sans';
         font-weight:  300;
@@ -42,6 +42,7 @@ html, body, #map-canvas{
 	font-size: 15px; 
 	outline: none;
 	transition: all 0.3s ease-out;
+	border: 0px solid;
 }
 
 #loginDiv input[type=submit],
@@ -55,6 +56,7 @@ html, body, #map-canvas{
     border: 1px solid #DE2121;
     text-shadow: 0 -1px rgba(0,0,0,0.3);
     text-decoration: none;
+    color: white;
 }
 
 #adminFunctions{
@@ -81,9 +83,10 @@ html, body, #map-canvas{
 #adminFunctions input[type=text], select, textarea{
 	width: 180px;
 	height: 30px;
+	border: 0px solid;
 }
 
-#adminFunctions input[type=number] {height: 20px;}
+#adminFunctions input[type=number] {height: 20px; border: 0px solid;}
 
 #addRoadworkBtn, #addMarkerBtn, #addIncidentBtn{
 	width: 100%;
