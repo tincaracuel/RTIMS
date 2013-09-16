@@ -47,19 +47,19 @@
 
     <div id="adminFunctions">
 
-    <a href='<?php echo base_url() ?>index.php/mapsManager/#' id="road"> Roadwork </a> <br />
-    <a href='<?php echo base_url() ?>index.php/mapsManager/#' id="incident"> Incident </a> <br />
+    <a href='<?php echo base_url() ?>index.php/mapsManager#' id="road"> Roadwork </a> <br />
+    <a href='<?php echo base_url() ?>index.php/mapsManager#' id="incident"> Incident </a> <br />
 
     <div id="addroadworkDiv">
-      <form class="addroadwork">
+      <form class="addRoadwork" action='<?php echo base_url() ?>index.php/mapsManager/addRoadwork' method='post'>
 
         <p style="font-size: 20px;">ROADWORK</p> 
-        Contract number: &nbsp;<input type="text" id="contract_number" autofocus required /><br /><br />
+        Contract number: &nbsp;<input type="text" name="contract_number" autofocus required /><br /><br />
 
-        Roadwork name: &nbsp;&nbsp;&nbsp;<input type="text" id="rwork_name" autofocus required  /><br /><br />
+        Roadwork name: &nbsp;&nbsp;&nbsp;<input type="text" name="rwork_name" /><br /><br />
 
         Classification: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <select id="classification" autofocus required ><br /><br />
+          <select name="classification" autofocus required ><br /><br />
             <option value="construction">Construction</option>
             <option value="rehabilitation">Rehabilitation</option>
             <option value="renovation">Renovation</option>
@@ -73,41 +73,86 @@
           </select><br /><br />
 
         Duration: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="text" id="rw_start" style="width: 80px; font-size: 14px;" autofocus required/> to
-        <input type="text" id="rw_end" style="width: 80px; font-size: 14px;" /><br /><br />
+        <input type="text" name="rw_start" id="rw_start" style="width: 80px; font-size: 14px;"/> to
+        <input type="text" name="rw_end" id="rw_end" style="width: 80px; font-size: 14px;" /><br /><br />
 
         Description: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea> </textarea><br /><br />
 
         Street: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" id="street" /><br /><br />
+            <input type="text" name="street" /><br /><br />
         
         Barangay: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <select id="barangay" autofocus required ><br /><br />
-            <option value="brgy1">Barangay 1</option>
-            <option value="brgy2">Barangay 2</option>
-            <option value="brgy3">Barangay 3</option>
-            <option value="brgy4">Barangay 4</option>
-            <option value="brgy5">Barangay 5</option>
-            <option value="brgy6">Barangay 6</option>
-            <option value="brgy7">Barangay 7</option>
-            <option value="brgy8">Barangay 8</option>
-            <option value="lawa">Lawa</option>
-            <option value="">Parian</option>
+          <select name="barangay" autofocus required ><br /><br />
+            <option value="bagongkalsada" >Bagong Kalsada </option>
+            <option value="banadero" >Bańadero </option>
+            <option value="banlic" >Banlic </option>
+            <option value="barandal" >Barandal </option>
+            <option value="brgy1" >Barangay 1 </option>
+            <option value="brgy2">Barangay 2 </option>
+            <option value="brgy3" >Barangay 3 </option>
+            <option value="brgy4" >Barangay 4 </option>
+            <option value="brgy5" >Barangay 5 </option>
+            <option value="brgy6" >Barangay 6 </option>
+            <option value="brgy7" >Barangay 7 </option>
+            <option value="batino" >Batino </option>
+            <option value="bubuyan" >Bubuyan </option>
+            <option value="bucal" >Bucal </option>
+            <option value="bungo" >Bunggo </option>
+            <option value="burol" >Burol </option>
+            <option value="camaligan" >Camaligan </option>
+            <option value="canlubang" >Canlubang </option>
+            <option value="halang" >Halang </option>
+            <option value="hornalan" >Hornalan </option>
+            <option value="kayanlog" >Kay-Anlog </option>
+            <option value="lamesa" >La Mesa </option>
+            <option value="laguerta" >Laguerta </option>
+            <option value="lawa" >Lawa </option>
+            <option value="lecheria" >Lecheria </option>
+            <option value="lingga" >Lingga </option>
+            <option value="looc" >Looc </option>
+            <option value="mabato" >Mabato </option>
+            <option value="majada" >Majada Labas </option>
+            <option value="makiling" >Makiling </option>
+            <option value="mapagong" >Mapagong </option>
+            <option value="masili" >Masili </option>
+            <option value="maunong" >Maunong </option>
+            <option value="mayapa" >Mayapa </option>
+            <option value="paciano" >Paciano Rizal </option>
+            <option value="palingon" >Palingon </option>
+            <option value="paloalto" >Palo-Alto </option>
+            <option value="pansol" >Pansol </option>
+            <option value="parian" >Parian </option>
+            <option value="prinza" >Prinza </option>
+            <option value="punta" >Punta </option>
+            <option value="putinglupa" >Puting Lupa </option>
+            <option value="real" >Real </option>
+            <option value="saimsim" >Saimsim </option>
+            <option value="sampiruhan" >Sampiruhan </option>
+            <option value="sancristobal" >San Cristobal </option>
+            <option value="sanjose" >San Jose </option>
+            <option value="sanjuan" >San Juan </option>
+            <option value="siranglupa" >Sirang Lupa </option>
+            <option value="sucol" >Sucol </option>
+            <option value="milagrosa" >Milagrosa (former Tulo) </option>
+            <option value="turbina" >Turbina </option>
+            <option value="ulango" >Ulango </option>
+            <option value="uwisan" >Uwisan </option>
+
           </select><br /><br />
 
-        <a href="<?php echo base_url() ?>index.php/mapsManager" id="addMarkerBtn"><small>Add Marker</small></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        ( <input type="text" id="longitude" value="latitude" style="width: 80px; height: 20px; font-size: 14px;" disabled="true" /> , 
-        <input type="text" id="latitude" value="longitude" style="width: 80px; height: 20px; font-size: 14px;" disabled="true" /> )
+        <a href="<?php echo base_url() ?>index.php/mapsManager#" id="addMarkerBtn" onclick='addMarker();' ><small>Add Marker</small></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        ( <input type="text" name="latitude" id="rw_lat" style="width: 80px; height: 20px; font-size: 10px;" disabled="true" /> , 
+        <input type="text" name="longitude" id="rw_long" style="width: 80px; height: 20px; font-size: 10px;" disabled="true" /> )
         <br /><br />
 
-         Progress / Status: &nbsp;<input type="number" id="status" min="0" max="100"/><br /><br /><br />
+         Progress / Status: &nbsp;<input type="number" name="status" min="0" max="100"/><br /><br /><br />
 
         <input type="submit" value="Add Roadwork" id="addRoadworkBtn" />
-      </form>
-      </div>
+        </form>
+    </div>
 
-      <div id="addincidentDiv">
-      <form class="addincident">
+    <div id="addincidentDiv">
+        <form class="addincident">
 
         <p style="font-size: 20px;">TRAFFIC INCIDENT</p> 
         Classification: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -118,31 +163,76 @@
           </select><br /><br />
 
         Duration: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="text" id="rw_start" style="width: 80px; font-size: 14px;" autofocus required /> to
-        <input type="text" id="rw_end" style="width: 80px; font-size: 14px;" /><br /><br />
+        <input type="text" id="rw_start" name="rw_start" style="width: 80px; font-size: 14px;" autofocus required /> to
+        <input type="text" id="rw_end" name="rw_start" style="width: 80px; font-size: 14px;" /><br /><br />
 
         Description: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea> </textarea><br /><br />
 
         Street: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" id="street" /><br /><br />
+            <input type="text" name="street" /><br /><br />
         
         Barangay: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <select id="barangay" autofocus required ><br /><br />
-            <option value="brgy1">Barangay 1</option>
-            <option value="brgy2">Barangay 2</option>
-            <option value="brgy3">Barangay 3</option>
-            <option value="brgy4">Barangay 4</option>
-            <option value="brgy5">Barangay 5</option>
-            <option value="brgy6">Barangay 6</option>
-            <option value="brgy7">Barangay 7</option>
-            <option value="brgy8">Barangay 8</option>
-            <option value="lawa">Lawa</option>
-            <option value="">Parian</option>
+          <select name="barangay" autofocus required ><br /><br />
+            <option value="bagongkalsada" >Bagong Kalsada </option>
+            <option value="banadero" >Bańadero </option>
+            <option value="banlic" >Banlic </option>
+            <option value="barandal" >Barandal </option>
+            <option value="brgy1" >Barangay 1 </option>
+            <option value="brgy2">Barangay 2 </option>
+            <option value="brgy3" >Barangay 3 </option>
+            <option value="brgy4" >Barangay 4 </option>
+            <option value="brgy5" >Barangay 5 </option>
+            <option value="brgy6" >Barangay 6 </option>
+            <option value="brgy7" >Barangay 7 </option>
+            <option value="batino" >Batino </option>
+            <option value="bubuyan" >Bubuyan </option>
+            <option value="bucal" >Bucal </option>
+            <option value="bungo" >Bunggo </option>
+            <option value="burol" >Burol </option>
+            <option value="camaligan" >Camaligan </option>
+            <option value="canlubang" >Canlubang </option>
+            <option value="halang" >Halang </option>
+            <option value="hornalan" >Hornalan </option>
+            <option value="kayanlog" >Kay-Anlog </option>
+            <option value="lamesa" >La Mesa </option>
+            <option value="laguerta" >Laguerta </option>
+            <option value="lawa" >Lawa </option>
+            <option value="lecheria" >Lecheria </option>
+            <option value="lingga" >Lingga </option>
+            <option value="looc" >Looc </option>
+            <option value="mabato" >Mabato </option>
+            <option value="majada" >Majada Labas </option>
+            <option value="makiling" >Makiling </option>
+            <option value="mapagong" >Mapagong </option>
+            <option value="masili" >Masili </option>
+            <option value="maunong" >Maunong </option>
+            <option value="mayapa" >Mayapa </option>
+            <option value="paciano" >Paciano Rizal </option>
+            <option value="palingon" >Palingon </option>
+            <option value="paloalto" >Palo-Alto </option>
+            <option value="pansol" >Pansol </option>
+            <option value="parian" >Parian </option>
+            <option value="prinza" >Prinza </option>
+            <option value="punta" >Punta </option>
+            <option value="putinglupa" >Puting Lupa </option>
+            <option value="real" >Real </option>
+            <option value="saimsim" >Saimsim </option>
+            <option value="sampiruhan" >Sampiruhan </option>
+            <option value="sancristobal" >San Cristobal </option>
+            <option value="sanjose" >San Jose </option>
+            <option value="sanjuan" >San Juan </option>
+            <option value="siranglupa" >Sirang Lupa </option>
+            <option value="sucol" >Sucol </option>
+            <option value="milagrosa" >Milagrosa (former Tulo) </option>
+            <option value="turbina" >Turbina </option>
+            <option value="ulango" >Ulango </option>
+            <option value="uwisan" >Uwisan </option>
+
           </select><br /><br />
 
-        <a href="<?php echo base_url() ?>index.php/mapsManager" id="addMarkerBtn"><small>Add Marker</small></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        ( <input type="text" id="longitude" value="latitude" style="width: 80px; height: 20px; font-size: 14px;" disabled="true" /> , 
-        <input type="text" id="latitude" value="longitude" style="width: 80px; height: 20px; font-size: 14px;" disabled="true" /> )
+        <a href="<?php echo base_url() ?>index.php/mapsManager#" id="addMarkerBtn"><small>Add Marker</small></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        ( <input type="text" name="latitude" id="inc_lat" style="width: 80px; height: 20px; font-size: 10px;" disabled="true" /> , 
+        <input type="text" name="longitude" id="inc_long" style="width: 80px; height: 20px; font-size: 10px;" disabled="true" /> )
         <br /><br /><br />
          
         <input type="submit" value="Add Incident" id="addIncidentBtn" />

@@ -13,11 +13,7 @@ class logManager extends CI_Controller {
 		$config['mapTypeControlStyle'] = "DROPDOWN_MENU";
 		$config['map_types_available'] = array("HYBRID", "ROADMAP");
 
-		$config['onclick'] = 'alert(\'You just clicked at: \' + event.latLng.lat() + \', \' + event.latLng.lng());';
 		$polygon = array();
-
-
-
 
 		$polygon['points'] = array(
 			'14.232854,121.189964', 
