@@ -119,6 +119,8 @@ class logManager extends CI_Controller {
         	'14.232937,121.19005');
 		$this->googlemaps->add_polygon($polygon);
 
+		//$this->roadworkAccess->getLatLng();
+
 
 		$this->googlemaps->initialize($config);
 		$data['map'] = $this->googlemaps->create_map();

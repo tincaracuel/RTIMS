@@ -24,8 +24,10 @@
 
 
     <script>
-        $(function(){   $( "#rw_start" ).datepicker();    });
-        $(function(){   $( "#rw_end" ).datepicker();    });
+        $(function(){   $( "#rwork_start" ).datepicker();    });
+        $(function(){   $( "#rwork_end" ).datepicker();    });
+        $(function(){   $( "#inc_start" ).datepicker();    });
+        $(function(){   $( "#inc_end" ).datepicker();    });
     </script>
 
     <?php echo $map['js']; ?>
@@ -59,7 +61,7 @@
         Roadwork name: &nbsp;&nbsp;&nbsp;<input type="text" name="rwork_name" /><br /><br />
 
         Classification: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <select name="classification" autofocus required ><br /><br />
+          <select name="rwork_classification" id="rwork_classification" autofocus required ><br /><br />
             <option value="construction">Construction</option>
             <option value="rehabilitation">Rehabilitation</option>
             <option value="renovation">Renovation</option>
@@ -73,16 +75,16 @@
           </select><br /><br />
 
         Duration: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="text" name="rw_start" id="rw_start" style="width: 80px; font-size: 14px;"/> to
-        <input type="text" name="rw_end" id="rw_end" style="width: 80px; font-size: 14px;" /><br /><br />
+        <input type="text" name="rwork_start" id="rwork_start" style="width: 80px; font-size: 14px;"/> to
+        <input type="text" name="rwork_end" id="rwork_end" style="width: 80px; font-size: 14px;" /><br /><br />
 
-        Description: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea> </textarea><br /><br />
+        Description: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea name="rwork_desc" id="rwork_desc"> </textarea><br /><br />
 
         Street: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" name="street" /><br /><br />
+            <input type="text" name="rwork_street" /><br /><br />
         
         Barangay: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <select name="barangay" autofocus required ><br /><br />
+          <select name="rwork_barangay" id="rwork_barangay" autofocus required ><br /><br />
             <option value="bagongkalsada" >Bagong Kalsada </option>
             <option value="banadero" >Bańadero </option>
             <option value="banlic" >Banlic </option>
@@ -141,38 +143,38 @@
           </select><br /><br />
 
         <a href="<?php echo base_url() ?>index.php/mapsManager#" id="addMarkerBtn" onclick='addMarker();' ><small>Add Marker</small></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        ( <input type="text" name="latitude" id="rw_lat" style="width: 80px; height: 20px; font-size: 10px;" disabled="true" /> , 
-        <input type="text" name="longitude" id="rw_long" style="width: 80px; height: 20px; font-size: 10px;" disabled="true" /> )
+        ( <input type="text" name="rwork_lat" id="rwork_lat" style="width: 80px; height: 20px; font-size: 10px;" /> , 
+        <input type="text" name="rwork_long" id="rwork_long" style="width: 80px; height: 20px; font-size: 10px;" /> )
         <br /><br />
 
-         Progress / Status: &nbsp;<input type="number" name="status" min="0" max="100"/><br /><br /><br />
+         Progress / Status: &nbsp;<input type="number" name="rwork_status" min="0" max="100"/><br /><br /><br />
 
         <input type="submit" value="Add Roadwork" id="addRoadworkBtn" />
         </form>
     </div>
 
     <div id="addincidentDiv">
-        <form class="addincident">
+        <form class="addIncident" action='<?php echo base_url() ?>index.php/mapsManager/addIncident' method='post'>
 
         <p style="font-size: 20px;">TRAFFIC INCIDENT</p> 
         Classification: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <select id="classification" autofocus required ><br /><br />
+          <select id="inc_classification" name="inc_classification" autofocus required ><br /><br />
             <option value="accident">Accident</option>
             <option value="obstruction">Obstruction</option>
             <option value="publicEvent">Public Event</option>
           </select><br /><br />
 
         Duration: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="text" id="rw_start" name="rw_start" style="width: 80px; font-size: 14px;" autofocus required /> to
-        <input type="text" id="rw_end" name="rw_start" style="width: 80px; font-size: 14px;" /><br /><br />
+        <input type="text" id="inc_start" name="inc_start" style="width: 80px; font-size: 14px;" autofocus required /> to
+        <input type="text" id="inc_end" name="inc_end" style="width: 80px; font-size: 14px;" /><br /><br />
 
-        Description: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea> </textarea><br /><br />
+         Description: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea name="inc_desc" id="inc_desc"> </textarea><br /><br />
 
         Street: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" name="street" /><br /><br />
+            <input type="text" name="inc_street" /><br /><br />
         
         Barangay: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <select name="barangay" autofocus required ><br /><br />
+          <select name="inc_barangay" id="inc_barangay" autofocus required ><br /><br />
             <option value="bagongkalsada" >Bagong Kalsada </option>
             <option value="banadero" >Bańadero </option>
             <option value="banlic" >Banlic </option>
@@ -231,8 +233,8 @@
           </select><br /><br />
 
         <a href="<?php echo base_url() ?>index.php/mapsManager#" id="addMarkerBtn"><small>Add Marker</small></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        ( <input type="text" name="latitude" id="inc_lat" style="width: 80px; height: 20px; font-size: 10px;" disabled="true" /> , 
-        <input type="text" name="longitude" id="inc_long" style="width: 80px; height: 20px; font-size: 10px;" disabled="true" /> )
+        ( <input type="text" name="inc_lat" id="inc_lat" style="width: 80px; height: 20px; font-size: 10px;" /> , 
+        <input type="text" name="inc_long" id="inc_long" style="width: 80px; height: 20px; font-size: 10px;" /> )
         <br /><br /><br />
          
         <input type="submit" value="Add Incident" id="addIncidentBtn" />

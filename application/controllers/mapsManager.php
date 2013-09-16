@@ -13,18 +13,36 @@ class mapsManager extends CI_Controller {
 		$config['mapTypeControlStyle'] = "DROPDOWN_MENU";
 		$config['map_types_available'] = array("HYBRID", "ROADMAP");
 
-		$config['onclick'] =   'var rw_lat = document.getElementById("rw_lat");
+		
+		$config['onclick'] =   '
+								var rw_lat = document.getElementById("rwork_lat");
 								rw_lat.value = event.latLng.lat();
-								var rw_long = document.getElementById("rw_long");
+								var rw_long = document.getElementById("rwork_long");
 								rw_long.value = event.latLng.lng();
 
 								var inc_lat = document.getElementById("inc_lat");
 								inc_lat.value = event.latLng.lat();
 								var inc_long = document.getElementById("inc_long");
-								inc_long.value = event.latLng.lng();';
+								inc_long.value = event.latLng.lng();
+
+								createMarker({ map: map, position:event.latLng });
+								$marker = array();
+								$marker[\'draggable\'] = true;
+
+								alert(\'You\');
+								';
+
+
+
+		$marker = array();
+		$marker['draggable'] = true;
+		$this->googlemaps->add_marker($marker);
+
+
+		$data['map'] = $this->googlemaps->create_map();
+
+
 		$polygon = array();
-
-
 
 		$polygon['points'] = array(
 			'14.232854,121.189964', '14.232854,121.189921', '14.237887,121.175673', '14.224909,121.134947', 
@@ -86,25 +104,44 @@ class mapsManager extends CI_Controller {
 	/*gets the necessary information from the submitted form*/
 	$contract_number = $_POST['contract_number'];
 	$rwork_name = $_POST['rwork_name'];
-	$classification = $_POST['classification'];
-	$rw_start = $_POST['rw_start'];
-	$rw_end = $_POST['rw_end'];
-	$street = $_POST['street'];
-	$barangay = $_POST['barangay'];
-	$latitude = $_POST['latitude'];
-	$longitude = $_POST['longitude'];
-	$status = $_POST['status'];
+	$classification = $_POST['rwork_classification'];
+	$desc = $_POST['rwork_desc'];
+	$start = $_POST['rwork_start'];
+	$end = $_POST['rwork_end'];
+	$street = $_POST['rwork_street'];
+	$brgy = $_POST['rwork_barangay'];
+	$latitude = $_POST['rwork_lat'];
+	$longitude = $_POST['rwork_long'];
+	$status = $_POST['rwork_status'];
 
-
+	echo "<script type=text/javascipt>";
+	echo "alert (".$_POST['rwork_lat'].");";
+	echo "</script>";
 
 	/*	calls the addNewCashier function in cashierAccess.php (in models) to add the new account
 	and it will return a status which will determine if the new account was successfully added */
-	$this->roadworkAccess->addNewRoadwork($contract_number, $rwork_name, $classification, $rw_start, $rw_end, $street, $barangay, $latitude, $longitude, $status);
-	if($status == ''){
+	$this->roadworkAccess->addNewRoadwork($contract_number, $rwork_name, $classification, $desc, $status, $street, $brgy, $latitude, $longitude, $start, $end);
+	/*if($status == ''){
 		header("Location: ".base_url()."");
-	}else{
+	}else{*/
 		header("Location: ".base_url()."index.php/mapsManager");
+	//}
+
 	}
+
+	public function addIncident(){
+	/*gets the necessary information from the submitted form*/
+	$classification = $_POST['inc_classification'];
+	$desc = $_POST['inc_desc'];
+	$start = $_POST['inc_start'];
+	$end = $_POST['inc_end'];
+	$street = $_POST['inc_street'];
+	$brgy = $_POST['inc_barangay'];
+	$latitude = $_POST['inc_lat'];
+	$longitude = $_POST['inc_long'];
+
+	$this->incidentAccess->addNewIncident($classification, $desc, $start, $end, $street, $brgy, $latitude, $longitude);
+		header("Location: ".base_url()."index.php/mapsManager");
 
 	}
 }

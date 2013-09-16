@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 10, 2013 at 12:42 PM
+-- Generation Time: Sep 16, 2013 at 08:22 AM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -39,7 +39,8 @@ CREATE TABLE IF NOT EXISTS `admin` (
 --
 
 INSERT INTO `admin` (`admin_username`, `admin_password`) VALUES
-('admin', 'admin');
+('admin', 'admin'),
+('tin', 'tin');
 
 -- --------------------------------------------------------
 
@@ -65,8 +66,8 @@ CREATE TABLE IF NOT EXISTS `incident` (
 
 CREATE TABLE IF NOT EXISTS `map_coordinates` (
   `map_id` varchar(20) NOT NULL,
-  `longitude` float NOT NULL,
-  `latitude` float NOT NULL,
+  `latitude` double NOT NULL,
+  `longitude` double NOT NULL,
   `street` varchar(20) NOT NULL,
   `barangay` varchar(20) NOT NULL,
   PRIMARY KEY (`map_id`)
@@ -95,15 +96,15 @@ CREATE TABLE IF NOT EXISTS `report` (
 --
 
 CREATE TABLE IF NOT EXISTS `roadwork` (
-  `contract_number` varchar(20) NOT NULL,
+  `contract_no` varchar(20) NOT NULL,
   `rwork_name` varchar(20) NOT NULL,
-  `classificication` varchar(20) NOT NULL,
-  `startDate` date NOT NULL,
-  `endDate` date NOT NULL,
-  `description` varchar(50) NOT NULL,
+  `rwork_type` varchar(20) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
   `status` int(3) NOT NULL,
-  PRIMARY KEY (`contract_number`),
-  UNIQUE KEY `contract_number` (`contract_number`)
+  PRIMARY KEY (`contract_no`),
+  UNIQUE KEY `contract_number` (`contract_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -109,7 +109,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array('logAccess', 'roadworkAccess');
+$autoload['model'] = array('logAccess', 'roadworkAccess', 'incidentAccess');
 
 
 /* End of file autoload.php */
