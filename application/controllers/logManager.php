@@ -5,6 +5,7 @@ class logManager extends CI_Controller {
 
 	public function index(){
 		$this->load->library('googlemaps');
+		$this->load->model('map_model', '', TRUE);
 		$config['center'] = '14.1876, 121.12508';
 		$config['zoom'] = '13';
 		$config['map_type'] = 'ROADMAP';
@@ -12,6 +13,16 @@ class logManager extends CI_Controller {
 		$config['minzoom'] = 13;
 		$config['mapTypeControlStyle'] = "DROPDOWN_MENU";
 		$config['map_types_available'] = array("HYBRID", "ROADMAP");
+
+		// Get the co-ordinates from the database using our model
+		$coords = $this->map_model->get_coordinates();
+		// Loop through the coordinates we obtained above and add them to the map
+		foreach ($coords as $coordinate) {
+			$marker = array();
+			$marker['position'] = $coordinate->latitude.','.$coordinate->longitude;
+			$this->googlemaps->add_marker($marker);
+		}
+
 
 		$polygon = array();
 
