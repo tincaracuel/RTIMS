@@ -13,6 +13,8 @@ class mapsManager extends CI_Controller {
 		$config['mapTypeControlStyle'] = "DROPDOWN_MENU";
 		$config['map_types_available'] = array("HYBRID", "ROADMAP");
 
+		
+
 		$marker = array();
 		$this->googlemaps->add_marker($marker);
 

@@ -8,7 +8,6 @@
     <title>Roadworks and Traffic Incidents Monitoring System in Calamba City</title>
     <link rel="shortcut icon" href="styles/img/calamba_seal.png" />
     <link href="/maps/documentation/javascript/examples/default.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
     
     <link href="styles/css/style.css" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
