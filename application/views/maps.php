@@ -75,10 +75,10 @@
           </select><br /><br />
 
         Duration: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="text" name="rwork_start" id="rwork_start" style="width: 80px; font-size: 14px;"/> to
+        <input type="text" name="rwork_start" id="rwork_start" style="width: 80px; font-size: 14px;" autofocus required /> to
         <input type="text" name="rwork_end" id="rwork_end" style="width: 80px; font-size: 14px;" /><br /><br />
 
-        Description: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea name="rwork_desc" id="rwork_desc"> </textarea><br /><br />
+        Description: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea name="rwork_desc" id="rwork_desc" required > </textarea><br /><br />
 
         Street: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="text" name="rwork_street" /><br /><br />
@@ -143,11 +143,11 @@
           </select><br /><br />
 
         <a href="<?php echo base_url() ?>index.php/mapsManager#" id="addMarkerBtn" onclick='addMarker();' ><small>Add Marker</small></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        ( <input type="text" name="rwork_lat" id="rwork_lat" style="width: 80px; height: 20px; font-size: 10px;" /> , 
-        <input type="text" name="rwork_long" id="rwork_long" style="width: 80px; height: 20px; font-size: 10px;" /> )
+        ( <input type="text" name="rwork_lat" id="rwork_lat" style="width: 80px; height: 20px; font-size: 10px;" autofocus required /> , 
+        <input type="text" name="rwork_long" id="rwork_long" style="width: 80px; height: 20px; font-size: 10px;" autofocus required /> )
         <br /><br />
 
-         Progress / Status: &nbsp;<input type="number" name="rwork_status" min="0" max="100"/><br /><br /><br />
+         Progress / Status: &nbsp;<input type="number" name="rwork_status" min="0" max="100" autofocus required /><br /><br /><br />
 
         <input type="submit" value="Add Roadwork" id="addRoadworkBtn" />
         </form>

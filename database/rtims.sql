@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 16, 2013 at 08:22 AM
+-- Generation Time: Sep 19, 2013 at 11:23 AM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -50,10 +50,10 @@ INSERT INTO `admin` (`admin_username`, `admin_password`) VALUES
 
 CREATE TABLE IF NOT EXISTS `incident` (
   `inc_id` varchar(20) NOT NULL,
-  `classification` varchar(20) NOT NULL,
-  `startDate` date NOT NULL,
-  `endDate` date NOT NULL,
-  `description` varchar(50) NOT NULL,
+  `inc_type` varchar(20) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
   PRIMARY KEY (`inc_id`),
   UNIQUE KEY `inc_id` (`inc_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -70,7 +70,10 @@ CREATE TABLE IF NOT EXISTS `map_coordinates` (
   `longitude` double NOT NULL,
   `street` varchar(20) NOT NULL,
   `barangay` varchar(20) NOT NULL,
-  PRIMARY KEY (`map_id`)
+  `rw_id` varchar(20) DEFAULT NULL,
+  `inc_id` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`map_id`),
+  KEY `rw_map` (`rw_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -99,13 +102,23 @@ CREATE TABLE IF NOT EXISTS `roadwork` (
   `contract_no` varchar(20) NOT NULL,
   `rwork_name` varchar(20) NOT NULL,
   `rwork_type` varchar(20) NOT NULL,
-  `description` varchar(100) NOT NULL,
+  `description` varchar(100) DEFAULT NULL,
   `start_date` date NOT NULL,
-  `end_date` date NOT NULL,
+  `end_date` date DEFAULT NULL,
   `status` int(3) NOT NULL,
   PRIMARY KEY (`contract_no`),
   UNIQUE KEY `contract_number` (`contract_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `map_coordinates`
+--
+ALTER TABLE `map_coordinates`
+  ADD CONSTRAINT `rw_map` FOREIGN KEY (`rw_id`) REFERENCES `roadwork` (`contract_no`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

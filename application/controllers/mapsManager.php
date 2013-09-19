@@ -13,9 +13,11 @@ class mapsManager extends CI_Controller {
 		$config['mapTypeControlStyle'] = "DROPDOWN_MENU";
 		$config['map_types_available'] = array("HYBRID", "ROADMAP");
 
-		
-		$config['onclick'] =   '
-								var rw_lat = document.getElementById("rwork_lat");
+		$marker = array();
+		$this->googlemaps->add_marker($marker);
+
+
+		$config['onclick'] =   'var rw_lat = document.getElementById("rwork_lat");
 								rw_lat.value = event.latLng.lat();
 								var rw_long = document.getElementById("rwork_long");
 								rw_long.value = event.latLng.lng();
@@ -25,18 +27,11 @@ class mapsManager extends CI_Controller {
 								var inc_long = document.getElementById("inc_long");
 								inc_long.value = event.latLng.lng();
 
-								createMarker({ map: map, position:event.latLng });
-								$marker = array();
-								$marker[\'draggable\'] = true;
-
-								alert(\'You\');
-								';
+								createMarker({ map: map, position:event.latLng , draggable: true});';
 
 
 
-		$marker = array();
-		$marker['draggable'] = true;
-		$this->googlemaps->add_marker($marker);
+		
 
 
 		$data['map'] = $this->googlemaps->create_map();
