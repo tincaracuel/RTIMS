@@ -118,25 +118,28 @@ textarea[name=rwork_desc], textarea[name=inc_desc] {
     font-size: 11px;
 }
 
-#menu_rw, #menu_inc, #menu_report{
+#menu_rw_btn, #menu_inc_btn, #menu_report_btn, #menu_add_rw_btn,
+#menu_edit_rw_btn, #menu_delete_rw_btn, #menu_view_rw_btn,
+#menu_add_inc_btn, #menu_edit_inc_btn, #menu_delete_inc_btn, #menu_view_inc_btn{
 	opacity: 0.8;
 	font-family: 'Open Sans';
 	font-weight: 300;
     cursor: pointer;
 }
 
-#menu_rw:hover, #menu_inc:hover, #menu_report:hover{
+#menu_rw_btn:hover, #menu_inc_btn:hover, #menu_report_btn:hover, #menu_add_rw_btn:hover,
+#menu_edit_rw_btn:hover, #menu_delete_rw_btn:hover, #menu_view_rw_btn:hover,
+#menu_add_inc_btn:hover, #menu_edit_inc_btn:hover, #menu_delete_inc_btn:hover, #menu_view_inc_btn:hover{
 	opacity: 1;
 }	
 
-#admin_menu{
+#admin_menu, #admin_roadwork, #admin_incident{
 	position: absolute;
 	padding: 50px;
 }
 
-#menu_back1, #menu_back2,
-#menu_back1:active, #menu_back2:active,
-#menu_back1:visited #menu_back2:visited {
+/*BASICALLY THE BACK BUTTONS*/
+#adminFunctions a, #adminFunctions a:visited, #adminFunctions a:hover{
 	font-size: 15px;
 	float: right;
 	color: white;
