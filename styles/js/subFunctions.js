@@ -2,9 +2,21 @@ $(document).ready(function(){
 //default
 	$("#addroadworkDiv").hide();
 	$("#addincidentDiv").hide();
-	$("#admin_roadwork").hide();
-	$("#admin_incident").hide();
+	//$("#admin_roadwork").hide();
+	//$("#admin_incident").hide();
 	$("#admin_menu").show();
+
+
+	$("body").css("display", "none");
+    $("body").fadeIn(800); 
+    // to fade out before redirect
+    $('a').click(function(e){
+        redirect = $(this).attr('href');
+        e.preventDefault();
+        $('body').fadeOut(800, function(){
+            document.location.href = redirect
+        });
+    });
 
 
 	$("#menu_back_rw_btn").click(function(){ //BACK TO MAIN MENU
@@ -13,10 +25,6 @@ $(document).ready(function(){
 		$("#menu_rw").show();
 		});
 
-	$("#menu_rw_btn").click(function(){ // SHOW ADD EDIT DELETE VIEW ROADWORKS
-		$("#admin_menu").hide();
-		$("#admin_roadwork").fadeIn(900);
-		});
 
 	$("#menu_add_rw_btn").click(function(){ // SHOW ROADWORK FORM FIELDS
 		$("#menu_rw").hide();
@@ -55,11 +63,6 @@ $(document).ready(function(){
 		$("#admin_incident").hide();
 		$("#admin_menu").fadeIn(900);
 		$("#menu_inc").show();
-		});
-
-	$("#menu_inc_btn").click(function(){ // SHOW ADD EDIT DELETE VIEW INCIDENTS
-		$("#admin_menu").hide();
-		$("#admin_incident").fadeIn(900);
 		});
 
 	$("#menu_add_inc_btn").click(function(){ // SHOW INCIDENT FORM FIELDS

@@ -7,7 +7,6 @@ src:
 html, body, #map{
         margin: 0;
         font-family: 'Open Sans';
-        font: url('');
         font-weight:  300;
         padding: 0;
         height: 100%;
@@ -69,7 +68,7 @@ html, body, #map{
 
 #adminFunctions{
 	background-color: black;
-	opacity: 0.8;
+	//opacity: 0.8;
 	position: absolute;
 	right:0;
 	top:74px;
@@ -103,11 +102,11 @@ html, body, #map{
 	color: white;
 	margin-left: auto;
 	margin-right: auto;
-	opacity: 0.8
+	//opacity: 0.8
 }
 
 #addRoadworkBtn:hover, #addMarkerBtn:hover, #addIncidentBtn:hover{
-	opacity: 1;
+	//opacity: 1;
 }
 
 textarea[name=rwork_desc], textarea[name=inc_desc] {
@@ -121,7 +120,7 @@ textarea[name=rwork_desc], textarea[name=inc_desc] {
 #menu_rw_btn, #menu_inc_btn, #menu_report_btn, #menu_add_rw_btn,
 #menu_edit_rw_btn, #menu_delete_rw_btn, #menu_view_rw_btn,
 #menu_add_inc_btn, #menu_edit_inc_btn, #menu_delete_inc_btn, #menu_view_inc_btn{
-	opacity: 0.8;
+	//opacity: 0.8;
 	font-family: 'Open Sans';
 	font-weight: 300;
     cursor: pointer;
@@ -130,12 +129,13 @@ textarea[name=rwork_desc], textarea[name=inc_desc] {
 #menu_rw_btn:hover, #menu_inc_btn:hover, #menu_report_btn:hover, #menu_add_rw_btn:hover,
 #menu_edit_rw_btn:hover, #menu_delete_rw_btn:hover, #menu_view_rw_btn:hover,
 #menu_add_inc_btn:hover, #menu_edit_inc_btn:hover, #menu_delete_inc_btn:hover, #menu_view_inc_btn:hover{
-	opacity: 1;
+	//opacity: 1;
 }	
 
 #admin_menu, #admin_roadwork, #admin_incident{
 	position: absolute;
-	padding: 50px;
+	padding: 40px;
+	width: 250px;
 }
 
 /*BASICALLY THE BACK BUTTONS*/
@@ -144,4 +144,14 @@ textarea[name=rwork_desc], textarea[name=inc_desc] {
 	float: right;
 	color: white;
 	cursor: pointer;
+}
+
+#queryMessage{
+	position: fixed;
+	margin-top: auto;
+	z-index: 1;
+	background-color: white;
+	-webkit-border-radius:10px;
+	width:250px;
+	
 }

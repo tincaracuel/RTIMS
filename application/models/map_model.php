@@ -24,7 +24,7 @@ class map_model extends CI_Model {
 				$interval = date_diff(date_create($res[$i]->end_date), date_create((date("Y-m-d"))));
 
 				//IF THE ROADWORK IS NOT YET DUE, THE ROADWORK WILL BE DISPLAYED
-				if ($interval->format('%d') >= 0) 
+				if (($interval->format('%R') == '-' && $interval->format('%y') >= 0 && $interval->format('%m') >= 0 && $interval->format('%d') >= 0) || ($res[$i]->end_date == '0000-00-00'))
 				array_push($return, $array_res);
 			}
 		}

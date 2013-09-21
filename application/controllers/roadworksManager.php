@@ -1,35 +1,23 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class mapsManager extends CI_Controller {
+class roadworksManager extends CI_Controller {
 
 	public function index(){
 		$this->load->library('googlemaps');
 		$this->load->model('map_model', '', TRUE);
 		$config['center'] = '14.1876, 121.12508';
-		$config['zoom'] = '13';
+		$config['zoom'] = '15';
 		$config['map_type'] = 'HYBRID';
 		$config['maxzoom'] = 0;
 		$config['minzoom'] = 13;
 		$config['mapTypeControlStyle'] = "DROPDOWN_MENU";
 		$config['map_types_available'] = array("HYBRID", "ROADMAP");
 
-		
-
-		$marker = array();
-		$this->googlemaps->add_marker($marker);
-
-
 		$config['onclick'] =   'var rw_lat = document.getElementById("rwork_lat");
 								rw_lat.value = event.latLng.lat();
 								var rw_long = document.getElementById("rwork_long");
 								rw_long.value = event.latLng.lng();
-
-								var inc_lat = document.getElementById("inc_lat");
-								inc_lat.value = event.latLng.lat();
-								var inc_long = document.getElementById("inc_long");
-								inc_long.value = event.latLng.lng();
-
 								createMarker({ map: map, position:event.latLng , draggable: true});';
 
 		$coords = $this->map_model->get_coordinates_rw();
@@ -38,6 +26,9 @@ class mapsManager extends CI_Controller {
 			$marker = array();
 			$marker['draggable'] = FALSE;
 			$marker['clickable'] = TRUE;
+			$interval = date_diff(date_create($coordinate[0]->end_date), date_create((date("Y-m-d"))));
+
+
 			$marker['title'] = $coordinate[0]->map_id.','.$coordinate[0]->rwork_name.' at '.$coordinate[0]->barangay.'end date: '.$coordinate[0]->end_date;
 			if ($coordinate[0]->rwork_type == 'construction'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/construction.png';
@@ -61,26 +52,6 @@ class mapsManager extends CI_Controller {
 				$marker['icon'] = base_url().'styles/img/markers/rw/lighting.png';
 			}
 
-			$marker['position'] = $coordinate[0]->latitude.','.$coordinate[0]->longitude;
-			$this->googlemaps->add_marker($marker);
-		}
-
-		$coords_inc = $this->map_model->get_coordinates_inc();
-		// Loop through the coordinates we obtained above and add them to the map
-		foreach ($coords_inc as $coordinate) {
-			$marker = array();
-			$marker['draggable'] = FALSE;
-			$marker['clickable'] = TRUE;
-			$marker['title'] = $coordinate[0]->map_id.','.$coordinate[0]->rwork_name.' at '.$coordinate[0]->barangay;
-			if ($coordinate[0]->inc_type == 'accident'){
-				$marker['icon'] = base_url().'styles/img/markers/inc/accident.png';
-			}else if ($coordinate[0]->inc_type == 'obstruction'){
-				$marker['icon'] = base_url().'styles/img/markers/inc/obstruction.png';
-			}else if ($coordinate[0]->inc_type == 'publicevent'){
-				$marker['icon'] = base_url().'styles/img/markers/inc/publicevent.png';
-			}
-
-			
 			$marker['position'] = $coordinate[0]->latitude.','.$coordinate[0]->longitude;
 			$this->googlemaps->add_marker($marker);
 		}
@@ -114,18 +85,46 @@ class mapsManager extends CI_Controller {
 	        '14.197202,121.1849', '14.203234,121.183398', '14.207977,121.183784', '14.211804,121.184857', 
 	        '14.213843,121.188462',' 14.215757,121.190007', '14.225907,121.189063', '14.230067,121.18902', 
         	'14.232937,121.19005');
-
-	
-		$this->googlemaps->add_polygon($polygon);
-
-
-
+		//$this->googlemaps->add_polygon($polygon);
 
 		$this->googlemaps->initialize($config);
-
-
 		$data['map'] = $this->googlemaps->create_map();
-		$this->load->view('maps', $data);	
+		$this->load->view('roadwork', $data);
 	}
 
+
+	public function addRoadwork(){
+		/*gets the necessary information from the submitted form*/
+		$contract_number = $_POST['contract_number'];
+		$rwork_name = $_POST['rwork_name'];
+		$classification = $_POST['rwork_classification'];
+		$desc = $_POST['rwork_desc'];
+		$start = $_POST['rwork_start'];
+		$end = $_POST['rwork_end'];
+		$street = $_POST['rwork_street'];
+		$brgy = $_POST['rwork_barangay'];
+		$latitude = $_POST['rwork_lat'];
+		$longitude = $_POST['rwork_long'];
+		$status = $_POST['rwork_status'];
+
+		
+		$status = $this->roadworkAccess->addNewRoadwork($contract_number, $rwork_name, $classification, $desc, $status, $street, $brgy, $latitude, $longitude, $start, $end);
+		if($status == ''){
+			header("Location: ".base_url()."index.php/roadworksManager");
+		}else{
+			$this->load->view("message", array('message'=> 'Error.'));
+		}
+
+	}
+
+	public function duplicateRWcontractNumberCheck(){
+		$cn = $_POST['contract_number'];
+		$count = 0;
+
+		$res = $this->roadworkAccess->checkExistingContractNumber($cn);
+		foreach ($res as $res) {
+			$count += 1;
+		}
+			echo $count;
+	}
 }

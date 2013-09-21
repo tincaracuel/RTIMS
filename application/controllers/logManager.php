@@ -14,7 +14,6 @@ class logManager extends CI_Controller {
 		$config['mapTypeControlStyle'] = "DROPDOWN_MENU";
 		$config['map_types_available'] = array("HYBRID", "ROADMAP");
 
-		// Get the co-ordinates from the database using our model
 		$coords_rw = $this->map_model->get_coordinates_rw();
 		// Loop through the coordinates we obtained above and add them to the map
 		foreach ($coords_rw as $coordinate) {
@@ -48,7 +47,6 @@ class logManager extends CI_Controller {
 			$this->googlemaps->add_marker($marker);
 		}
 
-
 		$coords_inc = $this->map_model->get_coordinates_inc();
 		// Loop through the coordinates we obtained above and add them to the map
 		foreach ($coords_inc as $coordinate) {
@@ -63,15 +61,6 @@ class logManager extends CI_Controller {
 			}else if ($coordinate[0]->inc_type == 'publicevent'){
 				$marker['icon'] = 'styles/img/markers/inc/publicevent.png';
 			}*/
-
-			/*if ($coordinate[0]->inc_type == 'accident'){
-				$marker['icon'] = 'styles/img/markers/inc/accident.png';
-			}else if ($coordinate[0]->inc_type == 'obstruction'){
-				$marker['icon'] = 'styles/img/markers/inc/obstruction.png';
-			}else if ($coordinate[0]->inc_type == 'publicevent'){
-				$marker['icon'] = 'styles/img/markers/inc/publicevent.png';
-			}*/
-
 			
 			$marker['position'] = $coordinate[0]->latitude.','.$coordinate[0]->longitude;
 			$this->googlemaps->add_marker($marker);

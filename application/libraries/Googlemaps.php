@@ -585,8 +585,8 @@ class Googlemaps {
 		$polygon['strokeColor'] = '#FF0000';					// The hex value of the polygons border color
 		$polygon['strokeOpacity'] = '0.8';						// The opacity of the polygon border. 0 to 1.0
 		$polygon['strokeWeight'] = '2';							// The thickness of the polygon border
-		$polygon['fillColor'] = '#FF0000';						// The hex value of the polygons fill color
-		$polygon['fillOpacity'] = '0.3';						// The opacity of the polygons fill
+		$polygon['fillColor'] = '';								// The hex value of the polygons fill color
+		$polygon['fillOpacity'] = '0';							// The opacity of the polygons fill
 		$polygon['onclick'] = '';								// JavaScript performed when a polygon is clicked
 		$polygon['ondblclick'] = '';							// JavaScript performed when a polygon is double-clicked
 		$polygon['onmousedown'] = '';							// JavaScript performed when a mousedown event occurs on a polygon
@@ -595,7 +595,7 @@ class Googlemaps {
 		$polygon['onmouseover'] = '';							// JavaScript performed when the mouse enters the area of the polygon
 		$polygon['onmouseup'] = '';								// JavaScript performed when a mouseup event occurs on a polygon
 		$polygon['onrightclick'] = '';							// JavaScript performed when a right-click occurs on a polygon
-		$polygon['zIndex'] = '';								// The zIndex of the polygon. If two polygons overlap, the polygon with the higher zIndex will appear on top
+		$polygon['zIndex'] = '0';								// The zIndex of the polygon. If two polygons overlap, the polygon with the higher zIndex will appear on top
 		
 		$polygon_output = '';
 		

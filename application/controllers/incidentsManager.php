@@ -1,85 +1,39 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class mapsManager extends CI_Controller {
+class incidentsManager extends CI_Controller {
 
 	public function index(){
 		$this->load->library('googlemaps');
 		$this->load->model('map_model', '', TRUE);
 		$config['center'] = '14.1876, 121.12508';
-		$config['zoom'] = '13';
+		$config['zoom'] = '15';
 		$config['map_type'] = 'HYBRID';
 		$config['maxzoom'] = 0;
 		$config['minzoom'] = 13;
 		$config['mapTypeControlStyle'] = "DROPDOWN_MENU";
 		$config['map_types_available'] = array("HYBRID", "ROADMAP");
 
-		
-
-		$marker = array();
-		$this->googlemaps->add_marker($marker);
-
-
-		$config['onclick'] =   'var rw_lat = document.getElementById("rwork_lat");
-								rw_lat.value = event.latLng.lat();
-								var rw_long = document.getElementById("rwork_long");
-								rw_long.value = event.latLng.lng();
-
-								var inc_lat = document.getElementById("inc_lat");
+		$config['onclick'] =   'var inc_lat = document.getElementById("inc_lat");
 								inc_lat.value = event.latLng.lat();
 								var inc_long = document.getElementById("inc_long");
 								inc_long.value = event.latLng.lng();
-
 								createMarker({ map: map, position:event.latLng , draggable: true});';
 
-		$coords = $this->map_model->get_coordinates_rw();
+		$coords = $this->map_model->get_coordinates_inc();
 		// Loop through the coordinates we obtained above and add them to the map
 		foreach ($coords as $coordinate) {
 			$marker = array();
 			$marker['draggable'] = FALSE;
 			$marker['clickable'] = TRUE;
-			$marker['title'] = $coordinate[0]->map_id.','.$coordinate[0]->rwork_name.' at '.$coordinate[0]->barangay.'end date: '.$coordinate[0]->end_date;
-			if ($coordinate[0]->rwork_type == 'construction'){
-				$marker['icon'] = base_url().'styles/img/markers/rw/construction.png';
-			}else if ($coordinate[0]->rwork_type == 'rehabilitation'){
-				$marker['icon'] = base_url().'styles/img/markers/rw/rehabilitation.png';
-			}else if ($coordinate[0]->rwork_type == 'renovation'){
-				$marker['icon'] = base_url().'styles/img/markers/rw/renovation.png';
-			}else if ($coordinate[0]->rwork_type == 'riprapping'){
-				$marker['icon'] = base_url().'styles/img/markers/rw/riprapping.png';
-			}else if ($coordinate[0]->rwork_type == 'application'){
-				$marker['icon'] = base_url().'styles/img/markers/rw/application.png';
-			}else if ($coordinate[0]->rwork_type == 'installation'){
-				$marker['icon'] = base_url().'styles/img/markers/rw/installation.png';
-			}else if ($coordinate[0]->rwork_type == 'reconstruction'){
-				$marker['icon'] = base_url().'styles/img/markers/rw/reconstruction.png';
-			}else if ($coordinate[0]->rwork_type == 'concreting'){
-				$marker['icon'] = base_url().'styles/img/markers/rw/concreting.png';
-			}else if ($coordinate[0]->rwork_type == 'electrification'){
-				$marker['icon'] = base_url().'styles/img/markers/rw/electrification.png';
-			}else if ($coordinate[0]->rwork_type == 'lighting'){
-				$marker['icon'] = base_url().'styles/img/markers/rw/lighting.png';
-			}
-
-			$marker['position'] = $coordinate[0]->latitude.','.$coordinate[0]->longitude;
-			$this->googlemaps->add_marker($marker);
-		}
-
-		$coords_inc = $this->map_model->get_coordinates_inc();
-		// Loop through the coordinates we obtained above and add them to the map
-		foreach ($coords_inc as $coordinate) {
-			$marker = array();
-			$marker['draggable'] = FALSE;
-			$marker['clickable'] = TRUE;
 			$marker['title'] = $coordinate[0]->map_id.','.$coordinate[0]->rwork_name.' at '.$coordinate[0]->barangay;
-			if ($coordinate[0]->inc_type == 'accident'){
-				$marker['icon'] = base_url().'styles/img/markers/inc/accident.png';
+			/*if ($coordinate[0]->inc_type == 'accident'){
+				$marker['icon'] = 'styles/img/markers/inc/accident.png';
 			}else if ($coordinate[0]->inc_type == 'obstruction'){
-				$marker['icon'] = base_url().'styles/img/markers/inc/obstruction.png';
+				$marker['icon'] = 'styles/img/markers/inc/obstruction.png';
 			}else if ($coordinate[0]->inc_type == 'publicevent'){
-				$marker['icon'] = base_url().'styles/img/markers/inc/publicevent.png';
-			}
-
+				$marker['icon'] = 'styles/img/markers/inc/publicevent.png';
+			}*/
 			
 			$marker['position'] = $coordinate[0]->latitude.','.$coordinate[0]->longitude;
 			$this->googlemaps->add_marker($marker);
@@ -114,18 +68,32 @@ class mapsManager extends CI_Controller {
 	        '14.197202,121.1849', '14.203234,121.183398', '14.207977,121.183784', '14.211804,121.184857', 
 	        '14.213843,121.188462',' 14.215757,121.190007', '14.225907,121.189063', '14.230067,121.18902', 
         	'14.232937,121.19005');
-
-	
-		$this->googlemaps->add_polygon($polygon);
-
-
-
+		//$this->googlemaps->add_polygon($polygon);
 
 		$this->googlemaps->initialize($config);
-
-
 		$data['map'] = $this->googlemaps->create_map();
-		$this->load->view('maps', $data);	
+		$this->load->view('incident', $data);
+	}
+
+
+	public function addIncident(){
+		/*gets the necessary information from the submitted form*/
+		$classification = $_POST['inc_classification'];
+		$desc = $_POST['inc_desc'];
+		$start = $_POST['inc_start'];
+		$end = $_POST['inc_end'];
+		$street = $_POST['inc_street'];
+		$brgy = $_POST['inc_barangay'];
+		$latitude = $_POST['inc_lat'];
+		$longitude = $_POST['inc_long'];
+		
+		$status = $this->incidentAccess->addNewIncident($classification, $desc, $start, $end, $street, $brgy, $latitude, $longitude);
+		if($status == ''){
+			header("Location: ".base_url()."index.php/incidentsManager");
+		}else{
+			$this->load->view("message", array('message'=> 'Error.'));
+		}
+
 	}
 
 }
