@@ -26,6 +26,23 @@ class roadworksManager extends CI_Controller {
 			$marker = array();
 			$marker['draggable'] = FALSE;
 			$marker['clickable'] = TRUE;
+
+			$a1 = $coordinate[0]->contract_no;
+			$a2 = $coordinate[0]->rwork_name;
+			$a3 = $coordinate[0]->street;
+			$a4 = $coordinate[0]->barangay;
+			$a5 = $coordinate[0]->start_date;
+			$a6 = $coordinate[0]->end_date;
+			$a7 = $coordinate[0]->status;
+			$a8 = $coordinate[0]->latitude;
+			$a9 = $coordinate[0]->longitude;
+			$a10 = $coordinate[0]->rwork_type;
+			$a11 = $coordinate[0]->description;
+
+			$htmlstring =  $this->setInfowindow_rw($a1, $a2, $a3, $a4, $a5, $a6, $a7, $a8, $a9, $a10, $a11);
+			$marker['infowindow_content'] = $htmlstring;
+
+
 			$interval = date_diff(date_create($coordinate[0]->end_date), date_create((date("Y-m-d"))));
 
 
@@ -127,4 +144,31 @@ class roadworksManager extends CI_Controller {
 		}
 			echo $count;
 	}
+
+	public function setInfowindow_rw($contract_no, $rwork_name, $street, $barangay, $start_date, $end_date, $status, $lat, $long, $type, $desc) {
+		$infowindow_string = 	'<html><body>'.
+								'Contract # '.$contract_no.'<br />'.
+								'Roadwork name: '.$rwork_name.'<br />'.
+								'Classification: '.$type.'<br />';
+
+		if($desc != '')
+			$infowindow_string = $infowindow_string.'Description: '.$desc.'<br />';
+
+		$infowindow_string = $infowindow_string.'Location: '.$barangay.'<br />'.
+								'Duration: '.$start_date;
+
+		if($end_date != '0000-00-00')
+			$infowindow_string = $infowindow_string.' to '.$end_date;
+
+		$infowindow_string = $infowindow_string.'<br /></body></html>';
+
+
+
+								'</body></html>';
+
+		return $infowindow_string;
+
+	}
+
+
 }

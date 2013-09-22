@@ -146,7 +146,7 @@ textarea[name=rwork_desc], textarea[name=inc_desc] {
 	cursor: pointer;
 }
 
-#queryMessage{
+#queryMessage, #lower_div{
 	position: fixed;
 	margin-top: auto;
 	z-index: 1;

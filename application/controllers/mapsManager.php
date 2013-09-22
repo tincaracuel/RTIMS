@@ -38,6 +38,22 @@ class mapsManager extends CI_Controller {
 			$marker = array();
 			$marker['draggable'] = FALSE;
 			$marker['clickable'] = TRUE;
+
+			$a1 = $coordinate[0]->contract_no;
+			$a2 = $coordinate[0]->rwork_name;
+			$a3 = $coordinate[0]->street;
+			$a4 = $coordinate[0]->barangay;
+			$a5 = $coordinate[0]->start_date;
+			$a6 = $coordinate[0]->end_date;
+			$a7 = $coordinate[0]->status;
+			$a8 = $coordinate[0]->latitude;
+			$a9 = $coordinate[0]->longitude;
+			$a10 = $coordinate[0]->rwork_type;
+			$a11 = $coordinate[0]->description;
+
+			$htmlstring =  $this->setInfowindow_rw($a1, $a2, $a3, $a4, $a5, $a6, $a7, $a8, $a9, $a10, $a11);
+			$marker['infowindow_content'] = $htmlstring;
+
 			$marker['title'] = $coordinate[0]->map_id.','.$coordinate[0]->rwork_name.' at '.$coordinate[0]->barangay.'end date: '.$coordinate[0]->end_date;
 			if ($coordinate[0]->rwork_type == 'construction'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/construction.png';
@@ -71,13 +87,28 @@ class mapsManager extends CI_Controller {
 			$marker = array();
 			$marker['draggable'] = FALSE;
 			$marker['clickable'] = TRUE;
-			$marker['title'] = $coordinate[0]->map_id.','.$coordinate[0]->rwork_name.' at '.$coordinate[0]->barangay;
+
+			$a1 = $coordinate[0]->inc_id;
+			$a2 = $coordinate[0]->inc_type;
+			$a3 = $coordinate[0]->street;
+			$a4 = $coordinate[0]->barangay;
+			$a5 = $coordinate[0]->description;
+			$a6 = $coordinate[0]->start_date;
+			$a7 = $coordinate[0]->end_date;
+			$a8 = $coordinate[0]->latitude;
+			$a9 = $coordinate[0]->longitude;
+
+			$htmlstring =  $this->setInfowindow_inc($a1, $a2, $a3, $a4, $a5, $a6, $a7, $a8, $a9);
+			$marker['infowindow_content'] = $htmlstring;
+
+
+			$marker['title'] = $coordinate[0]->inc_id.','.$coordinate[0]->inc_type.' at '.$coordinate[0]->barangay;
 			if ($coordinate[0]->inc_type == 'accident'){
 				$marker['icon'] = base_url().'styles/img/markers/inc/accident.png';
 			}else if ($coordinate[0]->inc_type == 'obstruction'){
 				$marker['icon'] = base_url().'styles/img/markers/inc/obstruction.png';
-			}else if ($coordinate[0]->inc_type == 'publicevent'){
-				$marker['icon'] = base_url().'styles/img/markers/inc/publicevent.png';
+			}else if ($coordinate[0]->inc_type == 'publicEvent'){
+				$marker['icon'] = base_url().'styles/img/markers/inc/event.png';
 			}
 
 			
@@ -126,6 +157,55 @@ class mapsManager extends CI_Controller {
 
 		$data['map'] = $this->googlemaps->create_map();
 		$this->load->view('maps', $data);	
+	}
+
+	public function setInfowindow_rw($contract_no, $rwork_name, $street, $barangay, $start_date, $end_date, $status, $lat, $long, $type, $desc) {
+		$infowindow_string = 	'<html><body>'.
+								'Contract # '.$contract_no.'<br />'.
+								'Roadwork name: '.$rwork_name.'<br />'.
+								'Classification: '.$type.'<br />';
+
+		if($desc != '')
+			$infowindow_string = $infowindow_string.'Description: '.$desc.'<br />';
+
+		$infowindow_string = $infowindow_string.'Location: '.$barangay.'<br />'.
+								'Duration: '.$start_date;
+
+		if($end_date != '0000-00-00')
+			$infowindow_string = $infowindow_string.' to '.$end_date;
+
+		$infowindow_string = $infowindow_string.'<br /></body></html>';
+
+
+
+								'</body></html>';
+
+		return $infowindow_string;
+
+	}
+
+	public function setInfowindow_inc($inc_id, $inc_type, $street, $barangay, $description, $start_date, $end_date, $latitude, $longitude) {
+		$infowindow_string = 	'<html><body>'.
+								'Incident #: '.$inc_id.'<br />'.
+								'Classification: '.$inc_type.'<br />';
+		if($description != '')
+			$infowindow_string = $infowindow_string.'Description: '.$description.'<br />';
+
+
+		$infowindow_string = $infowindow_string.'Location: '.$barangay.'<br />'.
+								'Duration: '.$start_date;
+
+		if($end_date != '0000-00-00')
+			$infowindow_string = $infowindow_string.' to '.$end_date;
+
+		$infowindow_string = $infowindow_string.'<br /></body></html>';
+
+
+
+								'</body></html>';
+
+		return $infowindow_string;
+
 	}
 
 }
