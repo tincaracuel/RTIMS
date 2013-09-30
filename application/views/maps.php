@@ -33,49 +33,54 @@
     
   </head>
   <body>
+    <div id="loading-image"><img src="<?php echo base_url() ?>styles/img/floatingCircles.gif" alt="Loading..." /></div>
+
     <div id="header">
       <img src="<?php echo base_url() ?>styles/img/calamba_seal.png"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       Calamba City Roadworks and Traffic Incidents Monitoring System    
     </div>
 
-    <div id="loginDiv">
-        <a href='<?php echo base_url() ?>'> Log out </a>
-    </div>
 
-    <div id="map" style="width: 75%;" ><?php echo $map['html']; ?></div>
+    <div id="lowerbox">
+        <div id="map" style="width: 75%;" ><?php echo $map['html']; ?></div>
 
-    <div id="adminFunctions">
+        <div id="adminFunctions">
 
-        <div id="admin_menu">
-            <a href='<?php echo base_url() ?>index.php/roadworksManager'><img src='<?php echo base_url() ?>styles/img/bg/menu_roadwork.png' id="menu_rw_btn" /></a> <br /> <br /> <br />
-            <a href='<?php echo base_url() ?>index.php/incidentsManager'><img src='<?php echo base_url() ?>styles/img/bg/menu_incident.png' id="menu_inc_btn" /></a> <br /> <br /> <br />
-            <img src='<?php echo base_url() ?>styles/img/bg/menu_reports.png' href='<?php echo base_url() ?>index.php/mapsManager#' id="menu_report_btn" /> <br /> <br />
+            <div id="admin_menu">
+                <ul id="buttons">
+                    <!--<li><a class="bopha" href="http://nigs.org">Bopha Updates</a></li>-->
+                    <li style="display: list-item;"><a href='<?php echo base_url() ?>index.php/roadworksManager' id="menu_rw_btn">Roadworks</a></li><br />
+                    <li style="display: list-item;"><a href='<?php echo base_url() ?>index.php/incidentsManager' id="menu_inc_btn">Traffic Incidents</a></li><br />
+                    <li style="display: list-item;"><a href='<?php echo base_url() ?>index.php/mapsManager#' id="menu_report_btn">Reports</a></li><br />
+                    <li style="display: list-item;"><a href='<?php echo base_url() ?>'>Log Out</a></li>
+                </ul>
+            </div>
+
+
+            <!--<div id="admin_roadwork">
+                <img src='<?php echo base_url() ?>styles/img/bg/roadwork_add.png' href='<?php echo base_url() ?>index.php/mapsManager#' id="menu_add_rw_btn" /> <br /> <br /> <br />
+                <img src='<?php echo base_url() ?>styles/img/bg/roadwork_edit.png' href='<?php echo base_url() ?>index.php/mapsManager#' id="menu_edit_rw_btn" /> <br /> <br /> <br />
+                <img src='<?php echo base_url() ?>styles/img/bg/roadwork_delete.png' href='<?php echo base_url() ?>index.php/mapsManager#' id="menu_delete_rw_btn" /> <br /> <br /> <br />
+                <img src='<?php echo base_url() ?>styles/img/bg/roadwork_view.png' href='<?php echo base_url() ?>index.php/mapsManager#' id="menu_view_rw_btn" /> <br /> <br />
+                <a  href='<?php echo base_url() ?>index.php/mapsManager#' id="menu_back_rw_btn" /> BACK &rarr; </a><br />
+            </div>
+
+
+            <div id="admin_incident">
+                <img src='<?php echo base_url() ?>styles/img/bg/incident_add.png' href='<?php echo base_url() ?>index.php/mapsManager#' id="menu_add_inc_btn" /> <br /> <br /> <br />
+                <img src='<?php echo base_url() ?>styles/img/bg/incident_edit.png' href='<?php echo base_url() ?>index.php/mapsManager#' id="menu_edit_inc_btn" /> <br /> <br /> <br />
+                <img src='<?php echo base_url() ?>styles/img/bg/incident_delete.png' href='<?php echo base_url() ?>index.php/mapsManager#' id="menu_delete_inc_btn" /> <br /> <br /> <br />
+                <img src='<?php echo base_url() ?>styles/img/bg/incident_view.png' href='<?php echo base_url() ?>index.php/mapsManager#' id="menu_view_inc_btn" /> <br /> <br />
+                <a  href='<?php echo base_url() ?>index.php/mapsManager#' id="menu_back_inc_btn" /> BACK &rarr; </a><br />
+            </div>-->
+
+
+            
+
+
+            <!-- ---------- VIEW REPORTS ---------- -->
+
         </div>
-
-
-        <!--<div id="admin_roadwork">
-            <img src='<?php echo base_url() ?>styles/img/bg/roadwork_add.png' href='<?php echo base_url() ?>index.php/mapsManager#' id="menu_add_rw_btn" /> <br /> <br /> <br />
-            <img src='<?php echo base_url() ?>styles/img/bg/roadwork_edit.png' href='<?php echo base_url() ?>index.php/mapsManager#' id="menu_edit_rw_btn" /> <br /> <br /> <br />
-            <img src='<?php echo base_url() ?>styles/img/bg/roadwork_delete.png' href='<?php echo base_url() ?>index.php/mapsManager#' id="menu_delete_rw_btn" /> <br /> <br /> <br />
-            <img src='<?php echo base_url() ?>styles/img/bg/roadwork_view.png' href='<?php echo base_url() ?>index.php/mapsManager#' id="menu_view_rw_btn" /> <br /> <br />
-            <a  href='<?php echo base_url() ?>index.php/mapsManager#' id="menu_back_rw_btn" /> BACK &rarr; </a><br />
-        </div>
-
-
-        <div id="admin_incident">
-            <img src='<?php echo base_url() ?>styles/img/bg/incident_add.png' href='<?php echo base_url() ?>index.php/mapsManager#' id="menu_add_inc_btn" /> <br /> <br /> <br />
-            <img src='<?php echo base_url() ?>styles/img/bg/incident_edit.png' href='<?php echo base_url() ?>index.php/mapsManager#' id="menu_edit_inc_btn" /> <br /> <br /> <br />
-            <img src='<?php echo base_url() ?>styles/img/bg/incident_delete.png' href='<?php echo base_url() ?>index.php/mapsManager#' id="menu_delete_inc_btn" /> <br /> <br /> <br />
-            <img src='<?php echo base_url() ?>styles/img/bg/incident_view.png' href='<?php echo base_url() ?>index.php/mapsManager#' id="menu_view_inc_btn" /> <br /> <br />
-            <a  href='<?php echo base_url() ?>index.php/mapsManager#' id="menu_back_inc_btn" /> BACK &rarr; </a><br />
-        </div>-->
-
-
-        
-
-
-        <!-- ---------- VIEW REPORTS ---------- -->
-
     </div>
      
 

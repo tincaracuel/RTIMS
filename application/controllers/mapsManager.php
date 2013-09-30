@@ -8,7 +8,7 @@ class mapsManager extends CI_Controller {
 		$this->load->model('map_model', '', TRUE);
 		$config['center'] = '14.1876, 121.12508';
 		$config['zoom'] = '13';
-		$config['map_type'] = 'HYBRID';
+		$config['map_type'] = 'ROADMAP';
 		$config['maxzoom'] = 0;
 		$config['minzoom'] = 13;
 		$config['mapTypeControlStyle'] = "DROPDOWN_MENU";
@@ -159,6 +159,8 @@ class mapsManager extends CI_Controller {
 		$this->load->view('maps', $data);	
 	}
 
+
+	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 	public function setInfowindow_rw($contract_no, $rwork_name, $street, $barangay, $start_date, $end_date, $status, $lat, $long, $type, $desc) {
 		$infowindow_string = 	'<html><body>'.
 								'Contract # '.$contract_no.'<br />'.
@@ -184,6 +186,8 @@ class mapsManager extends CI_Controller {
 
 	}
 
+
+	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 	public function setInfowindow_inc($inc_id, $inc_type, $street, $barangay, $description, $start_date, $end_date, $latitude, $longitude) {
 		$infowindow_string = 	'<html><body>'.
 								'Incident #: '.$inc_id.'<br />'.
@@ -207,5 +211,7 @@ class mapsManager extends CI_Controller {
 		return $infowindow_string;
 
 	}
+	
+	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 }

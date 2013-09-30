@@ -38,8 +38,9 @@
         </div>
 
    
-
-      <div id="map"><?php echo $map['html']; ?></div>
+      <div id="lowerbox">
+        <div id="map"><?php echo $map['html']; ?></div>
+      </div>
 
     
   </body>

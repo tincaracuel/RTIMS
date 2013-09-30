@@ -1,36 +1,37 @@
+$(window).load(function() {
+		$("#loading-image").fadeOut(300, function() {
+		});
+	});
+
 $(document).ready(function(){
 //default
+	
 	$("#addroadworkDiv").hide();
 	$("#addincidentDiv").hide();
-	//$("#admin_roadwork").hide();
-	//$("#admin_incident").hide();
+	$("#menu_back_rw_btn2").hide();
+	$("#menu_back_inc_btn2").hide();
+	$("#table_view").css("display", "none");
 	$("#admin_menu").show();
 
-
 	$("body").css("display", "none");
-    $("body").fadeIn(800); 
+    $("body").fadeIn(1000); 
     // to fade out before redirect
     $('a').click(function(e){
         redirect = $(this).attr('href');
         e.preventDefault();
-        $('body').fadeOut(800, function(){
+        $('body').show(1000, function(){
             document.location.href = redirect
         });
     });
 
-
-	$("#menu_back_rw_btn").click(function(){ //BACK TO MAIN MENU
-		$("#admin_roadwork").hide();
-		$("#admin_menu").fadeIn(900);
-		$("#menu_rw").show();
-		});
-
+    
 
 	$("#menu_add_rw_btn").click(function(){ // SHOW ROADWORK FORM FIELDS
 		$("#menu_rw").hide();
 		$("#admin_roadwork").hide();
 		$("#addroadworkDiv").fadeIn(900);
 		});
+	
 
 	$("#menu_back1_btn").click(function(){ //BACK TO ROADWORKS MENU
 		$("#addroadworkDiv").hide();
@@ -49,21 +50,70 @@ $(document).ready(function(){
 		$("#menu_rw").hide();
 		$("#admin_roadwork").hide();
 		$("#addroadworkDiv").fadeIn(900);
-		});
-
-	$("#menu_view_rw").click(function(){ // 
-		$("#menu_rw").hide();
-		$("#admin_roadwork").hide();
-		$("#addroadworkDiv").fadeIn(900);
 		});*/
 
+	$("#menu_view_rw_btn").click(function(){ // 
+		$("#menu_rw").hide(1000);
+		$("#menu_add_rw_btn").hide(300);
+		$("#menu_edit_rw_btn").hide(300);
+		$("#menu_delete_rw_btn").hide(300);
+		$("#menu_back_rw_btn").hide();
+		$("#menu_back_rw_btn2").fadeIn(1000);
+		//SHOW TABLE IN RIGHT
+		//HIDE MAP
+		$("#table_view").show();
+		$("#map").css("display", "none");
 
 
-	$("#menu_back_inc_btn").click(function(){ //BACK TO MAIN MENU
+		});
+
+	$("#menu_view_inc_btn").click(function(){ // 
+		$("#menu_inc").hide(1000);
+		$("#menu_add_inc_btn").hide(300);
+		$("#menu_edit_inc_btn").hide(300);
+		$("#menu_delete_inc_btn").hide(300);
+		$("#menu_back_inc_btn").hide();
+		$("#menu_back_inc_btn2").fadeIn(1000);
+		//SHOW TABLE IN RIGHT
+		//HIDE MAP
+		$("#table_view").show();
+		$("#map").css("display", "none");
+
+		});
+
+	$("#menu_back_rw_btn2").click(function(){ //
+		$("#menu_rw").show(1000);
+		$("#menu_add_rw_btn").show(300);
+		$("#menu_edit_rw_btn").show(300);
+		$("#menu_delete_rw_btn").show(300);
+		$("#menu_back_rw_btn2").hide();
+		$("#menu_back_rw_btn").show();
+		//HIDE TABLE IN RIGHT
+		//SHOW MAP
+		$("#table_view").css("display", "none");
+		$("#map").show();
+		});
+
+	$("#menu_back_inc_btn2").click(function(){ //
+		$("#menu_inc").show(1000);
+		$("#menu_add_inc_btn").show(300);
+		$("#menu_edit_inc_btn").show(300);
+		$("#menu_delete_inc_btn").show(300);
+		$("#menu_back_inc_btn2").hide();
+		$("#menu_back_inc_btn").show();
+		//HIDE TABLE IN RIGHT
+		//SHOW MAP
+		$("#table_view").css("display", "none");
+
+		$("#map").show();
+		});
+
+
+	/*$("#menu_back_inc_btn").click(function(){ //BACK TO MAIN MENU
 		$("#admin_incident").hide();
 		$("#admin_menu").fadeIn(900);
 		$("#menu_inc").show();
-		});
+		});*/
 
 	$("#menu_add_inc_btn").click(function(){ // SHOW INCIDENT FORM FIELDS
 		$("#menu_inc").hide();
@@ -94,14 +144,7 @@ $(document).ready(function(){
 		$("#menu_inc").hide();
 		$("#admin_incident").hide();
 		$("#addincidentDiv").fadeIn(900);
-		});*/
-
-	
-
-	
-
-	
-
-	
+		});*/	
 	
 });
+

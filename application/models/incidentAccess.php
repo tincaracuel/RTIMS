@@ -14,7 +14,6 @@ class incidentAccess extends CI_Model {
 		$inc_id = $this->db->get();*/
 
 		$inc_id = $this->db->query("SELECT * from incident where inc_type='$classification' and description='$desc' and start_date='$start' and end_date='$end' order by inc_id desc");
-		var_dump($inc_id);
 		
 		if ($inc_id->num_rows() > 0){
 			  $row = $inc_id->row(); 
@@ -22,7 +21,7 @@ class incidentAccess extends CI_Model {
 			   $id = $row->inc_id;
 		}
 
-		var_dump($inc_id);
+
 		$status2 = $this->db->query("INSERT into map_coordinates (map_id, latitude, longitude, street, barangay, inc_id) values ('$id', '$latitude', '$longitude', '$street', '$brgy', '$id')");
 
 		/*if(!$status || !$status2){

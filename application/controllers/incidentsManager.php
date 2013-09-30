@@ -8,7 +8,7 @@ class incidentsManager extends CI_Controller {
 		$this->load->model('map_model', '', TRUE);
 		$config['center'] = '14.1876, 121.12508';
 		$config['zoom'] = '15';
-		$config['map_type'] = 'HYBRID';
+		$config['map_type'] = 'ROADMAP';
 		$config['maxzoom'] = 0;
 		$config['minzoom'] = 13;
 		$config['mapTypeControlStyle'] = "DROPDOWN_MENU";

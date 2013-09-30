@@ -8,7 +8,7 @@ class roadworksManager extends CI_Controller {
 		$this->load->model('map_model', '', TRUE);
 		$config['center'] = '14.1876, 121.12508';
 		$config['zoom'] = '15';
-		$config['map_type'] = 'HYBRID';
+		$config['map_type'] = 'ROADMAP';
 		$config['maxzoom'] = 0;
 		$config['minzoom'] = 13;
 		$config['mapTypeControlStyle'] = "DROPDOWN_MENU";
@@ -110,6 +110,7 @@ class roadworksManager extends CI_Controller {
 	}
 
 
+	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 	public function addRoadwork(){
 		/*gets the necessary information from the submitted form*/
 		$contract_number = $_POST['contract_number'];
@@ -134,6 +135,8 @@ class roadworksManager extends CI_Controller {
 
 	}
 
+
+	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 	public function duplicateRWcontractNumberCheck(){
 		$cn = $_POST['contract_number'];
 		$count = 0;
@@ -145,6 +148,8 @@ class roadworksManager extends CI_Controller {
 			echo $count;
 	}
 
+
+	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 	public function setInfowindow_rw($contract_no, $rwork_name, $street, $barangay, $start_date, $end_date, $status, $lat, $long, $type, $desc) {
 		$infowindow_string = 	'<html><body>'.
 								'Contract # '.$contract_no.'<br />'.
@@ -169,6 +174,8 @@ class roadworksManager extends CI_Controller {
 		return $infowindow_string;
 
 	}
+	
+	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
 }
