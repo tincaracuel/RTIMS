@@ -41,16 +41,22 @@ class incidentsManager extends CI_Controller {
 			$marker['infowindow_content'] = $htmlstring;
 
 			$marker['title'] = $coordinate[0]->inc_id.','.$coordinate[0]->inc_type.' at '.$coordinate[0]->barangay;
-			if ($coordinate[0]->inc_type == 'accident'){
+			if ($coordinate[0]->inc_type == 'Accident'){
 				$marker['icon'] = base_url().'styles/img/markers/inc/accident.png';
-			}else if ($coordinate[0]->inc_type == 'obstruction'){
+			}else if ($coordinate[0]->inc_type == 'Obstruction'){
 				$marker['icon'] = base_url().'styles/img/markers/inc/obstruction.png';
-			}else if ($coordinate[0]->inc_type == 'publicEvent'){
+			}else if ($coordinate[0]->inc_type == 'Public Event'){
 				$marker['icon'] = base_url().'styles/img/markers/inc/event.png';
-			}
+			}else if ($coordinate[0]->inc_type == 'Flood'){
+				$marker['icon'] = base_url().'styles/img/markers/inc/flood.png';
+			}else if ($coordinate[0]->inc_type == 'Strike'){
+				$marker['icon'] = base_url().'styles/img/markers/inc/strike.png';
+			}else if ($coordinate[0]->inc_type == 'Funeral'){
+				$marker['icon'] = base_url().'styles/img/markers/inc/funeral.png';
 			
 			$marker['position'] = $coordinate[0]->latitude.','.$coordinate[0]->longitude;
 			$this->googlemaps->add_marker($marker);
+			}
 		}
 
 		$polygon = array();
@@ -86,6 +92,10 @@ class incidentsManager extends CI_Controller {
 
 		$this->googlemaps->initialize($config);
 		$data['map'] = $this->googlemaps->create_map();
+
+		$this->load->model('incidentAccess');
+		$data['query'] = $this->incidentAccess->incident_getAll();
+
 		$this->load->view('incident', $data);
 	}
 
@@ -132,6 +142,12 @@ class incidentsManager extends CI_Controller {
 
 		return $infowindow_string;
 
+	}
+
+	public function GetAllIncidents(){
+		$this->load->model('incidentAccess');
+		$data['query_inc'] = $this->incidentAccess->incident_getAll();
+		$this->load->view('incident', $data);
 	}
 
 }

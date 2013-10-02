@@ -33,6 +33,28 @@ class incidentAccess extends CI_Model {
 		return '';
 	}
 
+	function incident_getAll(){
+		$return = array();
+
+		$this->db->select("*");
+		$this->db->from("map_coordinates");
+		$this->db->join("incident"," incident.inc_id = map_coordinates.inc_id");
+		$queryIncident = $this->db->get();
+
+
+		if ($queryIncident->num_rows() > 0 ){
+			$res = $queryIncident->result();
+
+			//PUSH THE ROADWORK INFO INTO THE ARRAY TO BE DISPLAYED IN THE VIEW
+			for ( $i = 0 ; $i < $queryIncident->num_rows(); $i++){			
+				$array_res[0] = $res[$i];
+				array_push($return, $array_res);
+			}
+		}
+
+		return $return;
+	}
+
 	
 }
 

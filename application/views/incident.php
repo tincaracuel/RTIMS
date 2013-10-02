@@ -19,12 +19,14 @@
     <script src="<?php echo base_url() ?>styles/js/subFunctions.js"></script>
     <script src="<?php echo base_url() ?>styles/js/mainFunctions.js"></script>
     <script src="<?php echo base_url() ?>styles/js/gmaps.js"></script>
+    <script src="<?php echo base_url() ?>styles/js/jquery.autosize.js"></script>
 
 
 
     <script>
         $(function(){   $( "#inc_start" ).datepicker();    });
         $(function(){   $( "#inc_end" ).datepicker();    });
+        $(function(){   $('textarea').autosize();            }); 
     </script>
 
     <?php echo $map['js']; ?>
@@ -43,7 +45,37 @@
 
     <div id="lowerbox">
         <div id="map" style="width: 75%;" ><?php echo $map['html']; ?></div>
-        <div id="table_view" style="width: 75%;" ><h1>SDASDASDASDSDASDSADA</h1></div>
+        <div id="table_view" style="width: 75%;" ><br /><br />
+            <?php
+                ?><table>
+                <th style="max-width: 95px;">Incident #</th>
+                <th style="min-width: 110px;">Classification</th>
+                <th style="max-width: 200px;">Description</th>
+                <th style="min-width: 75px;">Start</th>
+                <th style="min-width: 75px;">End</th>
+                <th style="min-width: 75px;">Street</th>
+                <th style="min-width: 75px;">Barangay</th>
+                <th></th>
+
+                <?php
+                foreach($query as $row){
+
+                    ?><tr>
+                    <td> <?php echo $row['0']->inc_id ?> </td>
+                    <td> <?php echo $row['0']->inc_type ?> </td>
+                    <td> <?php echo $row['0']->description ?> </td>
+                    <td> <?php echo $row['0']->start_date ?> </td>
+                    <td> <?php echo $row['0']->end_date ?> </td>
+                    <td> <?php echo $row['0']->street ?> </td>
+                    <td> <?php echo $row['0']->barangay ?> </td>
+                   
+                    <td> <?php echo '<a>EDIT</a>&nbsp;&nbsp;&nbsp;<a>DELETE</a>'?> </td>
+
+                    </tr><?php
+                }
+                ?></table><?php
+            ?>
+        </div>
 
         <div id="adminFunctions">
 
@@ -64,9 +96,12 @@
                 <p style="font-size: 20px;">TRAFFIC INCIDENT</p> 
                 Classification: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <select id="inc_classification" name="inc_classification" autofocus required ><br /><br />
-                    <option value="accident">Accident</option>
-                    <option value="obstruction">Obstruction</option>
-                    <option value="publicEvent">Public Event</option>
+                    <option value="Accident">Accident</option>
+                    <option value="Obstruction">Obstruction</option>
+                    <option value="Public Event">Public Event</option>
+                    <option value="Funeral">Funeral</option>
+                    <option value="Flood">Flood</option>
+                    <option value="Strike">Strike</option>
                   </select><br /><br />
 
                 Duration: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

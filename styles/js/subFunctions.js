@@ -91,7 +91,7 @@ $(document).ready(function(){
 		//HIDE TABLE IN RIGHT
 		//SHOW MAP
 		$("#table_view").css("display", "none");
-		$("#map").show();
+		$("#map").css("display", "inline");
 		});
 
 	$("#menu_back_inc_btn2").click(function(){ //
@@ -104,8 +104,7 @@ $(document).ready(function(){
 		//HIDE TABLE IN RIGHT
 		//SHOW MAP
 		$("#table_view").css("display", "none");
-
-		$("#map").show();
+		$("#map").css("display", "inline");
 		});
 
 

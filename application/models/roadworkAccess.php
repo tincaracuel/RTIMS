@@ -23,6 +23,28 @@ class roadworkAccess extends CI_Model {
 	function checkExistingContractNumber($cn){
 		return  $this->db->query("SELECT contract_no from roadwork where contract_no='$cn'")->result_array();
 	}
+
+
+	function roadwork_getAll(){
+		$return = array();
+
+		$this->db->select("*");
+		$this->db->from("roadwork");
+		$this->db->join("map_coordinates"," roadwork.contract_no = map_coordinates.rw_id");
+		$queryRoadwork = $this->db->get();
+
+		if ($queryRoadwork->num_rows() > 0 ){
+			$res = $queryRoadwork->result();
+
+			//PUSH THE ROADWORK INFO INTO THE ARRAY TO BE DISPLAYED IN THE VIEW
+			for ( $i = 0 ; $i < $queryRoadwork->num_rows(); $i++){			
+				$array_res[0] = $res[$i];
+				array_push($return, $array_res);
+			}
+		}
+
+		return $return;
+	}
 }
 
 ?>

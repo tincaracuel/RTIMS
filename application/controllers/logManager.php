@@ -36,25 +36,25 @@ class logManager extends CI_Controller {
 			$htmlstring =  $this->setInfowindow_rw($a1, $a2, $a3, $a4, $a5, $a6, $a7, $a8, $a9, $a10, $a11);
 			$marker['infowindow_content'] = $htmlstring;
 			$marker['title'] = $coordinate[0]->map_id.','.$coordinate[0]->rwork_name.' at '.$coordinate[0]->barangay.'end date: '.$coordinate[0]->end_date;
-			if ($coordinate[0]->rwork_type == 'construction'){
+			if ($coordinate[0]->rwork_type == 'Construction'){
 				$marker['icon'] = 'styles/img/markers/rw/construction.png';
-			}else if ($coordinate[0]->rwork_type == 'rehabilitation'){
+			}else if ($coordinate[0]->rwork_type == 'Rehabilitation'){
 				$marker['icon'] = 'styles/img/markers/rw/rehabilitation.png';
-			}else if ($coordinate[0]->rwork_type == 'renovation'){
+			}else if ($coordinate[0]->rwork_type == 'Renovation'){
 				$marker['icon'] = 'styles/img/markers/rw/renovation.png';
-			}else if ($coordinate[0]->rwork_type == 'riprapping'){
+			}else if ($coordinate[0]->rwork_type == 'Riprapping'){
 				$marker['icon'] = 'styles/img/markers/rw/riprapping.png';
-			}else if ($coordinate[0]->rwork_type == 'application'){
+			}else if ($coordinate[0]->rwork_type == 'Application'){
 				$marker['icon'] = 'styles/img/markers/rw/application.png';
-			}else if ($coordinate[0]->rwork_type == 'installation'){
+			}else if ($coordinate[0]->rwork_type == 'Installation'){
 				$marker['icon'] = 'styles/img/markers/rw/installation.png';
-			}else if ($coordinate[0]->rwork_type == 'reconstruction'){
+			}else if ($coordinate[0]->rwork_type == 'Reconstruction'){
 				$marker['icon'] = 'styles/img/markers/rw/reconstruction.png';
-			}else if ($coordinate[0]->rwork_type == 'concreting'){
+			}else if ($coordinate[0]->rwork_type == 'Concreting'){
 				$marker['icon'] = 'styles/img/markers/rw/concreting.png';
-			}else if ($coordinate[0]->rwork_type == 'electrification'){
+			}else if ($coordinate[0]->rwork_type == 'Electrification'){
 				$marker['icon'] = 'styles/img/markers/rw/electrification.png';
-			}else if ($coordinate[0]->rwork_type == 'lighting'){
+			}else if ($coordinate[0]->rwork_type == 'Roadway Lighting'){
 				$marker['icon'] = 'styles/img/markers/rw/lighting.png';
 			}
 			
@@ -83,12 +83,18 @@ class logManager extends CI_Controller {
 			$htmlstring =  $this->setInfowindow_inc($a1, $a2, $a3, $a4, $a5, $a6, $a7, $a8, $a9);
 			$marker['infowindow_content'] = $htmlstring;
 			$marker['title'] = $coordinate[0]->inc_id.','.$coordinate[0]->inc_type.' at '.$coordinate[0]->barangay;
-			if ($coordinate[0]->inc_type == 'accident'){
+			if ($coordinate[0]->inc_type == 'Accident'){
 				$marker['icon'] = 'styles/img/markers/inc/accident.png';
-			}else if ($coordinate[0]->inc_type == 'obstruction'){
+			}else if ($coordinate[0]->inc_type == 'Obstruction'){
 				$marker['icon'] = 'styles/img/markers/inc/obstruction.png';
-			}else if ($coordinate[0]->inc_type == 'publicEvent'){
+			}else if ($coordinate[0]->inc_type == 'Public Event'){
 				$marker['icon'] = 'styles/img/markers/inc/event.png';
+			}else if ($coordinate[0]->inc_type == 'Flood'){
+				$marker['icon'] = 'styles/img/markers/inc/flood.png';
+			}else if ($coordinate[0]->inc_type == 'Strike'){
+				$marker['icon'] = 'styles/img/markers/inc/strike.png';
+			}else if ($coordinate[0]->inc_type == 'Funeral'){
+				$marker['icon'] = 'styles/img/markers/inc/funeral.png';
 			}
 			
 			$marker['position'] = $coordinate[0]->latitude.','.$coordinate[0]->longitude;

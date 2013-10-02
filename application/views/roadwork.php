@@ -19,18 +19,14 @@
     <script src="<?php echo base_url() ?>styles/js/subFunctions.js"></script>
     <script src="<?php echo base_url() ?>styles/js/mainFunctions.js"></script>
     <script src="<?php echo base_url() ?>styles/js/gmaps.js"></script>
-
-
+    <script src="<?php echo base_url() ?>styles/js/jquery.autosize.js"></script>
 
     <script>
         $(function(){   $( "#rwork_start" ).datepicker();    });
         $(function(){   $( "#rwork_end" ).datepicker();    });
-       
-
-   });       
-</script>
-
+        $(function(){   $('textarea').autosize();            }); 
     </script>
+
 
     <?php echo $map['js']; ?>
     
@@ -48,7 +44,41 @@
 
     <div id="lowerbox">
         <div id="map" style="width: 75%;" ><?php echo $map['html']; ?></div>
-        <div id="table_view" style="width: 75%;" ><h1>SDASDASDASDSDASDSADA</h1></div>
+        <div id="table_view" style="width: 75%;" ><br /><br />
+            <?php
+                ?><table>
+                <th style="min-width: 100px;">Contract #</th>
+                <th style="min-width: 150px;">Roadwork</th>
+                <th style="min-width: 110px;">Classification</th>
+                <th style="min-width: 75px;">Start</th>
+                <th style="min-width: 75px;">End</th>
+                <th style="min-width: 75px;">Street</th>
+                <th style="min-width: 75px;">Barangay</th>
+                <th style="min-width: 50px;">Status</th>
+                <th></th>
+
+                <?php
+                foreach($query as $row){
+
+                    ?><tr>
+                    <td> <?php echo $row['0']->contract_no ?> </td>
+                    <td> <?php echo $row['0']->rwork_name ?> </td>
+                    <td> <?php echo $row['0']->rwork_type ?> </td>
+                    <td> <?php echo $row['0']->start_date ?> </td>
+                    <td> <?php echo $row['0']->end_date ?> </td>
+                    <td> <?php echo $row['0']->street ?> </td>
+                    <td> <?php echo $row['0']->barangay ?> </td>
+                    <td> <?php if ($row['0']->status == 100) echo 'Finished';
+                            else echo $row['0']->status.'%'?> </td>
+
+                   
+                    <td> <?php echo '<a>EDIT</a>&nbsp;&nbsp;&nbsp;<a>DELETE</a>'?> </td>
+
+                    </tr><?php
+                }
+                ?></table><?php
+            ?>
+        </div>
 
         <div id="adminFunctions">
 
@@ -74,16 +104,16 @@
 
                 Classification: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <select name="rwork_classification" id="rwork_classification" autofocus required ><br /><br />
-                    <option value="construction">Construction</option>
-                    <option value="rehabilitation">Rehabilitation</option>
-                    <option value="renovation">Renovation</option>
-                    <option value="riprapping">Riprapping</option>
-                    <option value="application">Application</option>
-                    <option value="installation">Installation</option>
-                    <option value="reconstruction">Reconstruction</option>
-                    <option value="concreting">Concreting/Asphalting</option>
-                    <option value="electrification">Electrification</option>
-                    <option value="lighting">Roadway Lighting</option>
+                    <option value="Construction">Construction</option>
+                    <option value="Rehabilitation">Rehabilitation</option>
+                    <option value="Renovation">Renovation</option>
+                    <option value="Riprapping">Riprapping</option>
+                    <option value="Application">Application</option>
+                    <option value="Installation">Installation</option>
+                    <option value="Reconstruction">Reconstruction</option>
+                    <option value="Concreting">Concreting/Asphalting</option>
+                    <option value="Electrification">Electrification</option>
+                    <option value="Roadway Lighting">Roadway Lighting</option>
                   </select><br /><br />
 
                 Duration: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -161,7 +191,7 @@
                  Progress / Status: &nbsp;<input type="number" name="rwork_status" min="0" max="100" autofocus required /><br /><br /><br />
 
                 <input type="submit" value="Add Roadwork" id="addRoadworkBtn" onclick='javascript:addRoadwork();'/><br /><br />
-                <a  href='<?php echo base_url() ?>index.php/roadworksManager' id="menu_back1_btn" /> BACK TO ROADWORKS MENU&rarr;</a><br />
+                <a  href='<?php echo base_url() ?>index.php/roadworksManager' /><img src='<?php echo base_url() ?>styles/img/bg/roadwork_back.png' id="menu_back1_btn" /></a><br />
                 </form>
             </div>
             

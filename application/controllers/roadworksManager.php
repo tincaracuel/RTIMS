@@ -6,6 +6,7 @@ class roadworksManager extends CI_Controller {
 	public function index(){
 		$this->load->library('googlemaps');
 		$this->load->model('map_model', '', TRUE);
+		$this->load->model('roadworkAccess', '', TRUE);
 		$config['center'] = '14.1876, 121.12508';
 		$config['zoom'] = '15';
 		$config['map_type'] = 'ROADMAP';
@@ -47,25 +48,25 @@ class roadworksManager extends CI_Controller {
 
 
 			$marker['title'] = $coordinate[0]->map_id.','.$coordinate[0]->rwork_name.' at '.$coordinate[0]->barangay.'end date: '.$coordinate[0]->end_date;
-			if ($coordinate[0]->rwork_type == 'construction'){
+			if ($coordinate[0]->rwork_type == 'Construction'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/construction.png';
-			}else if ($coordinate[0]->rwork_type == 'rehabilitation'){
+			}else if ($coordinate[0]->rwork_type == 'Rehabilitation'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/rehabilitation.png';
-			}else if ($coordinate[0]->rwork_type == 'renovation'){
+			}else if ($coordinate[0]->rwork_type == 'Renovation'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/renovation.png';
-			}else if ($coordinate[0]->rwork_type == 'riprapping'){
+			}else if ($coordinate[0]->rwork_type == 'Riprapping'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/riprapping.png';
-			}else if ($coordinate[0]->rwork_type == 'application'){
+			}else if ($coordinate[0]->rwork_type == 'Application'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/application.png';
-			}else if ($coordinate[0]->rwork_type == 'installation'){
+			}else if ($coordinate[0]->rwork_type == 'Installation'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/installation.png';
-			}else if ($coordinate[0]->rwork_type == 'reconstruction'){
+			}else if ($coordinate[0]->rwork_type == 'Reconstruction'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/reconstruction.png';
-			}else if ($coordinate[0]->rwork_type == 'concreting'){
+			}else if ($coordinate[0]->rwork_type == 'Concreting'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/concreting.png';
-			}else if ($coordinate[0]->rwork_type == 'electrification'){
+			}else if ($coordinate[0]->rwork_type == 'Electrification'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/electrification.png';
-			}else if ($coordinate[0]->rwork_type == 'lighting'){
+			}else if ($coordinate[0]->rwork_type == 'Roadway Lighting'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/lighting.png';
 			}
 
@@ -106,6 +107,11 @@ class roadworksManager extends CI_Controller {
 
 		$this->googlemaps->initialize($config);
 		$data['map'] = $this->googlemaps->create_map();
+
+		$this->load->model('roadworkAccess');
+		$data['query'] = $this->roadworkAccess->roadwork_getAll();
+
+
 		$this->load->view('roadwork', $data);
 	}
 
@@ -174,8 +180,13 @@ class roadworksManager extends CI_Controller {
 		return $infowindow_string;
 
 	}
-	
+
 	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
+	public function GetAllRoadworks(){
+		$this->load->model('roadworkAccess');
+		$data['query'] = $this->roadworkAccess->roadwork_getAll();
+		$this->load->view('roadwork', $data);
+	}
 
 }
