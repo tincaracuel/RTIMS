@@ -10,7 +10,6 @@ $(document).ready(function(){
 	$("#addincidentDiv").hide();
 	$("#menu_back_rw_btn2").hide();
 	$("#menu_back_inc_btn2").hide();
-	$("#table_view").css("display", "none");
 	$("#admin_menu").show();
 
 	$("body").css("display", "none");
@@ -61,8 +60,6 @@ $(document).ready(function(){
 		$("#menu_back_rw_btn2").fadeIn(1000);
 		//SHOW TABLE IN RIGHT
 		//HIDE MAP
-		$("#table_view").show();
-		$("#map").css("display", "none");
 
 
 		});
@@ -76,8 +73,6 @@ $(document).ready(function(){
 		$("#menu_back_inc_btn2").fadeIn(1000);
 		//SHOW TABLE IN RIGHT
 		//HIDE MAP
-		$("#table_view").show();
-		$("#map").css("display", "none");
 
 		});
 
@@ -90,8 +85,6 @@ $(document).ready(function(){
 		$("#menu_back_rw_btn").show();
 		//HIDE TABLE IN RIGHT
 		//SHOW MAP
-		$("#table_view").css("display", "none");
-		$("#map").css("display", "inline");
 		});
 
 	$("#menu_back_inc_btn2").click(function(){ //
@@ -103,8 +96,6 @@ $(document).ready(function(){
 		$("#menu_back_inc_btn").show();
 		//HIDE TABLE IN RIGHT
 		//SHOW MAP
-		$("#table_view").css("display", "none");
-		$("#map").css("display", "inline");
 		});
 
 

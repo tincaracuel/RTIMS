@@ -32,21 +32,21 @@ html, body{
 }
 
 #table_view table{
-	
+	font-family: 'Open Sans';
 	margin-left: auto;
 	margin-right: auto;
+	margin-top: 1%;
 	padding: 10px;
 	border-bottom: 1px solid grey;
 	background-color: white;
+	overflow: auto;
 }
 
 #table_view th{
 	text-align: center;
-	font-family: 'Open Sans';
 	font-size: 20px;
 	font-weight: normal;
 	padding: 5px 10px;
-	height: 22px;
 
 }
 
@@ -54,7 +54,6 @@ html, body{
 	width: auto;
 	padding: 5px 10px;
 	font-size: 14px;
-
 }
 
 
@@ -68,9 +67,15 @@ html, body{
 	color: white;
 }
 
-#table_view a{
+
+
+#table_view a, .edit_delete_input_btn{
+	margin-left: auto;
+	margin-right: auto;
+	font-family: 'Open Sans';
 	color: white;
-	padding: 0 10px;
+	cursor: pointer;
+	padding: 5px 8px;
 	background-image: -webkit-linear-gradient(top,#4D90FE,#4787ED);
     background-image: -moz-linear-gradient(top,#4D90FE,#4787ED);
     background-image: -ms-linear-gradient(top,#4D90FE,#4787ED);
@@ -83,10 +88,16 @@ html, body{
         -ms-border-radius: 2px;
          -o-border-radius: 2px;
             border-radius: 2px;
-	text-align: center;
 }
 
-#table_view a:hover{
+.edit_delete{
+	position: absolute;
+	padding: 10px 12px;
+	margin-top: -20px;
+	
+}
+
+#table_view a:hover, .edit_delete_input_btn:hover{
 	background-image: -webkit-linear-gradient(top,#4D90FE,#0066CC);
     background-image: -moz-linear-gradient(top,#4D90FE,#0066CC);
     background-image: -ms-linear-gradient(top,#4D90FE,#0066CC);
@@ -106,7 +117,7 @@ html, body{
 #header img{
 	height: 50px;
 	position: absolute;
-	top: 10px;
+	top: 1%;
 }
 
 #header a{
@@ -114,6 +125,7 @@ html, body{
 	font-size: 18px;
 	float:right;
 }
+
 #loginDiv{
 	width: 350px;
 	height: 50px;
@@ -147,7 +159,8 @@ html, body{
 	height: 25px;
     cursor: pointer;
     margin-right: 1%;
-    background: -webkit-gradient(linear, left top, left bottom, from(#F24141), to(#DE2121));
+    background-image: -webkit-linear-gradient(top,#F24141,#DE2121);
+    background-image: -moz-linear-gradient(top,#F24141,#DE2121);
     border: 1px solid #DE2121;
     text-shadow: 0 -1px rgba(0,0,0,0.3);
     text-decoration: none;
@@ -178,29 +191,24 @@ html, body{
 	height: 50px;
 	left:15px;
     text-decoration: none;
-    border: 1px solid red;
 }
 #adminFunctions input[type=text], select, textarea{
-	width: 180px;
+	width: 170px;
 	height: 30px;
 	border: 0px solid;
 }
 
 #adminFunctions input[type=number] {height: 20px; border: 0px solid;}
 
-#addRoadworkBtn, #addMarkerBtn, #addIncidentBtn{
+#addRoadworkBtn, #addIncidentBtn{
 	width: 100%;
 	height: 35px;
 	font-size: 18px;
 	color: white;
 	margin-left: auto;
 	margin-right: auto;
-	//opacity: 0.8
 }
 
-#addRoadworkBtn:hover, #addMarkerBtn:hover, #addIncidentBtn:hover{
-	//opacity: 1;
-}
 
 textarea[name=rwork_desc], textarea[name=inc_desc] {
     min-width: 175px;
@@ -210,20 +218,12 @@ textarea[name=rwork_desc], textarea[name=inc_desc] {
     font-size: 11px;
 }
 
-#menu_rw_btn, #menu_inc_btn, #menu_report_btn, #menu_add_rw_btn,
-#menu_edit_rw_btn, #menu_delete_rw_btn, #menu_view_rw_btn, #menu_back_rw_btn,
-#menu_add_inc_btn, #menu_edit_inc_btn, #menu_delete_inc_btn, #menu_view_inc_btn{
-	//opacity: 0.8;
+.menu_buttons{
 	font-family: 'Open Sans';
 	font-weight: 300;
     cursor: pointer;
 }
 
-#menu_rw_btn:hover, #menu_inc_btn:hover, #menu_report_btn:hover, #menu_add_rw_btn:hover,
-#menu_edit_rw_btn:hover, #menu_delete_rw_btn:hover, #menu_view_rw_btn:hover, #menu_back_rw_btn:hover,
-#menu_add_inc_btn:hover, #menu_edit_inc_btn:hover, #menu_delete_inc_btn:hover, #menu_view_inc_btn:hover{
-	//opacity: 1;
-}	
 
 #admin_menu, #admin_roadwork, #admin_incident{
 	position: absolute;
@@ -251,6 +251,7 @@ textarea[name=rwork_desc], textarea[name=inc_desc] {
 	z-index: 1;
 	background-color: white;
 	-webkit-border-radius:10px;
+	-moz-webkit-border-radius:10px;
 	width:250px;
 	
 }
@@ -334,3 +335,61 @@ a{
 	border-radius: 10px; /* future proofing */
 	-khtml-border-radius: 10px;
 }
+
+/*-----------------------------------------------------*/
+#edit_roadwork, #edit_incident{
+	opacity: 0.8;
+	height: 370px;
+	padding: 15px 20px 55px;
+	font-family: 'Open Sans';
+	font-size: 16px;
+	overflow: hidden;
+}
+
+.edit_delete_input_btn{width: 175px; font-size: 16px;}
+
+#edit_roadwork input, #edit_incident input{font-family: 'Open Sans'; font-size: 15px;}
+
+#edit_roadwork select, #edit_incident select{font-family: 'Open Sans'; font-size: 15px; border: 1px solid grey; width: 180px;}
+
+div [name="left"]{
+	height: 110px;
+	width: 190px;
+	font-family: 'Open Sans';
+}
+
+.editRoadwork{
+	
+}
+div [name="right"]{
+	position: relative;
+	float: right;
+	width: 410px;
+	padding-left: 15px;
+	border-left: 1px solid grey;
+	font-family: 'Open Sans';
+	top: -100px;
+	left: 30px;
+	overflow-y: auto;
+	overflow-x: none;
+	margin-bottom: -60px;
+}
+
+div [name="right"] textarea{
+	overflow-y: auto;
+	overflow-x: none;
+	max-width: 365px;
+	border: 1px solid grey;
+	width:365px;
+	max-height:50px;
+	height: 50px;
+	margin: 6 6 6 0px;
+
+}
+
+div [name="right"] input[type=text], div [name="right"] select {
+	width: 220px;
+	margin: 6px;
+}
+
+div [name="right"] input[type=submit]{ margin-left: auto; margin-right: auto;}

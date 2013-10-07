@@ -11,6 +11,7 @@
 
     <link href="<?php echo base_url() ?>styles/css/jquery-ui.css"  rel="stylesheet"></link>
     <link href="<?php echo base_url() ?>styles/css/style.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>styles/css/colorbox.css" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
 
     <script src="<?php echo base_url() ?>styles/js/jquery-1.8.3.js"></script>
@@ -20,11 +21,16 @@
     <script src="<?php echo base_url() ?>styles/js/mainFunctions.js"></script>
     <script src="<?php echo base_url() ?>styles/js/gmaps.js"></script>
     <script src="<?php echo base_url() ?>styles/js/jquery.autosize.js"></script>
+    <script src="<?php echo base_url() ?>styles/js/jquery.colorbox.js"></script>
 
     <script>
+        $(document).ready(function(){
+            $(".inline").colorbox({inline:true, width:"50%"});
+        });
         $(function(){   $( "#rwork_start" ).datepicker();    });
         $(function(){   $( "#rwork_end" ).datepicker();    });
         $(function(){   $('textarea').autosize();            }); 
+
     </script>
 
 
@@ -44,51 +50,17 @@
 
     <div id="lowerbox">
         <div id="map" style="width: 75%;" ><?php echo $map['html']; ?></div>
-        <div id="table_view" style="width: 75%;" ><br /><br />
-            <?php
-                ?><table>
-                <th style="min-width: 100px;">Contract #</th>
-                <th style="min-width: 150px;">Roadwork</th>
-                <th style="min-width: 110px;">Classification</th>
-                <th style="min-width: 75px;">Start</th>
-                <th style="min-width: 75px;">End</th>
-                <th style="min-width: 75px;">Street</th>
-                <th style="min-width: 75px;">Barangay</th>
-                <th style="min-width: 50px;">Status</th>
-                <th></th>
-
-                <?php
-                foreach($query as $row){
-
-                    ?><tr>
-                    <td> <?php echo $row['0']->contract_no ?> </td>
-                    <td> <?php echo $row['0']->rwork_name ?> </td>
-                    <td> <?php echo $row['0']->rwork_type ?> </td>
-                    <td> <?php echo $row['0']->start_date ?> </td>
-                    <td> <?php echo $row['0']->end_date ?> </td>
-                    <td> <?php echo $row['0']->street ?> </td>
-                    <td> <?php echo $row['0']->barangay ?> </td>
-                    <td> <?php if ($row['0']->status == 100) echo 'Finished';
-                            else echo $row['0']->status.'%'?> </td>
-
-                   
-                    <td> <?php echo '<a>EDIT</a>&nbsp;&nbsp;&nbsp;<a>DELETE</a>'?> </td>
-
-                    </tr><?php
-                }
-                ?></table><?php
-            ?>
-        </div>
+        
 
         <div id="adminFunctions">
 
             <div id="admin_roadwork">
-                <img src='<?php echo base_url() ?>styles/img/bg/roadwork_add.png' id="menu_add_rw_btn" /> <br /> <br />
-                <img src='<?php echo base_url() ?>styles/img/bg/roadwork_edit.png' id="menu_edit_rw_btn" /> <br /> <br />
-                <img src='<?php echo base_url() ?>styles/img/bg/roadwork_delete.png' id="menu_delete_rw_btn" /> <br /> <br />
-                <img src='<?php echo base_url() ?>styles/img/bg/roadwork_view.png' id="menu_view_rw_btn" /> <br /><br />
-                <img src='<?php echo base_url() ?>styles/img/bg/roadwork_back.png' id="menu_back_rw_btn2" /> <br />
-                <a href='<?php echo base_url() ?>index.php/mapsManager'><img src='<?php echo base_url() ?>styles/img/bg/menu_back.png' id="menu_back_rw_btn" /></a><br /><br /><br />
+                <img src='<?php echo base_url() ?>styles/img/bg/roadwork_add.png' class="menu_buttons" id="menu_add_rw_btn" /> <br /> <br />
+                <img src='<?php echo base_url() ?>styles/img/bg/roadwork_edit.png' class="menu_buttons" id="menu_edit_rw_btn" /> <br /> <br />
+                <img src='<?php echo base_url() ?>styles/img/bg/roadwork_delete.png' class="menu_buttons" id="menu_delete_rw_btn" /> <br /> <br />
+                <a href='<?php echo base_url() ?>index.php/roadworksTableManager'><img src='<?php echo base_url() ?>styles/img/bg/roadwork_view.png' class="menu_buttons" id="menu_view_rw_btn" /></a><br /><br />
+                <img src='<?php echo base_url() ?>styles/img/bg/roadwork_back.png' class="menu_buttons" id="menu_back_rw_btn2" /> <br />
+                <a href='<?php echo base_url() ?>index.php/mapsManager'><img src='<?php echo base_url() ?>styles/img/bg/menu_back.png' class="menu_buttons" id="menu_back_rw_btn" /></a><br /><br /><br />
                
             </div>
 
@@ -117,8 +89,8 @@
                   </select><br /><br />
 
                 Duration: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="text" name="rwork_start" id="rwork_start" style="width: 80px; font-size: 14px;" autofocus required /> to
-                <input type="text" name="rwork_end" id="rwork_end" style="width: 80px; font-size: 14px;" /><br /><br />
+                <input type="text" name="rwork_start" id="rwork_start" style="width: 78px; font-size: 14px;" autofocus required /> to
+                <input type="text" name="rwork_end" id="rwork_end" style="width:78px; font-size: 14px;" /><br /><br />
 
                 Description: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea name="rwork_desc" id="rwork_desc" required > </textarea><br /><br />
 
@@ -198,6 +170,7 @@
 
         </div>
     </div>
+
 
    
      

@@ -24,9 +24,9 @@
 
 
     <script>
-        $(function(){   $( "#inc_start" ).datepicker();    });
-        $(function(){   $( "#inc_end" ).datepicker();    });
-        $(function(){   $('textarea').autosize();            }); 
+        $(function(){ $( "#inc_start" ).datepicker(); });
+        $(function(){ $( "#inc_end" ).datepicker(); });
+        $(function(){ $('textarea').autosize(); }); 
     </script>
 
     <?php echo $map['js']; ?>
@@ -45,47 +45,17 @@
 
     <div id="lowerbox">
         <div id="map" style="width: 75%;" ><?php echo $map['html']; ?></div>
-        <div id="table_view" style="width: 75%;" ><br /><br />
-            <?php
-                ?><table>
-                <th style="max-width: 95px;">Incident #</th>
-                <th style="min-width: 110px;">Classification</th>
-                <th style="max-width: 200px;">Description</th>
-                <th style="min-width: 75px;">Start</th>
-                <th style="min-width: 75px;">End</th>
-                <th style="min-width: 75px;">Street</th>
-                <th style="min-width: 75px;">Barangay</th>
-                <th></th>
-
-                <?php
-                foreach($query as $row){
-
-                    ?><tr>
-                    <td> <?php echo $row['0']->inc_id ?> </td>
-                    <td> <?php echo $row['0']->inc_type ?> </td>
-                    <td> <?php echo $row['0']->description ?> </td>
-                    <td> <?php echo $row['0']->start_date ?> </td>
-                    <td> <?php echo $row['0']->end_date ?> </td>
-                    <td> <?php echo $row['0']->street ?> </td>
-                    <td> <?php echo $row['0']->barangay ?> </td>
-                   
-                    <td> <?php echo '<a>EDIT</a>&nbsp;&nbsp;&nbsp;<a>DELETE</a>'?> </td>
-
-                    </tr><?php
-                }
-                ?></table><?php
-            ?>
-        </div>
+       
 
         <div id="adminFunctions">
 
             <div id="admin_incident">
-                <img src='<?php echo base_url() ?>styles/img/bg/incident_add.png' id="menu_add_inc_btn" /> <br /> <br />
-                <img src='<?php echo base_url() ?>styles/img/bg/incident_edit.png' id="menu_edit_inc_btn" /> <br /> <br />
-                <img src='<?php echo base_url() ?>styles/img/bg/incident_delete.png' id="menu_delete_inc_btn" /> <br /> <br />
-                <img src='<?php echo base_url() ?>styles/img/bg/incident_view.png' id="menu_view_inc_btn" /> <br /><br />
-                <img src='<?php echo base_url() ?>styles/img/bg/incident_back.png' id="menu_back_inc_btn2" /> <br />
-                <a href='<?php echo base_url() ?>index.php/mapsManager'><img src='<?php echo base_url() ?>styles/img/bg/menu_back.png' id="menu_back_inc_btn" /></a><br /><br /><br />
+                <img src='<?php echo base_url() ?>styles/img/bg/incident_add.png' class="menu_buttons" id="menu_add_inc_btn" /> <br /> <br />
+                <img src='<?php echo base_url() ?>styles/img/bg/incident_edit.png' class="menu_buttons" id="menu_edit_inc_btn" /> <br /> <br />
+                <img src='<?php echo base_url() ?>styles/img/bg/incident_delete.png' class="menu_buttons" id="menu_delete_inc_btn" /> <br /> <br />
+                <a href='<?php echo base_url() ?>index.php/incidentsTableManager'><img src='<?php echo base_url() ?>styles/img/bg/incident_view.png' class="menu_buttons" id="menu_view_inc_btn" /></a><br /><br />
+                <img src='<?php echo base_url() ?>styles/img/bg/incident_back.png' class="menu_buttons" id="menu_back_inc_btn2" /> <br />
+                <a href='<?php echo base_url() ?>index.php/mapsManager'><img src='<?php echo base_url() ?>styles/img/bg/menu_back.png' class="menu_buttons" id="menu_back_inc_btn" /></a><br /><br /><br />
             </div>
 
 

@@ -49,10 +49,10 @@
             <div id="admin_menu">
                 <ul id="buttons">
                     <!--<li><a class="bopha" href="http://nigs.org">Bopha Updates</a></li>-->
-                    <li style="display: list-item;"><a href='<?php echo base_url() ?>index.php/roadworksManager' id="menu_rw_btn">Roadworks</a></li><br />
-                    <li style="display: list-item;"><a href='<?php echo base_url() ?>index.php/incidentsManager' id="menu_inc_btn">Traffic Incidents</a></li><br />
-                    <li style="display: list-item;"><a href='<?php echo base_url() ?>index.php/mapsManager#' id="menu_report_btn">Reports</a></li><br />
-                    <li style="display: list-item;"><a href='<?php echo base_url() ?>'>Log Out</a></li>
+                    <li style="display: list-item;"><a href='<?php echo base_url() ?>index.php/roadworksManager' class="menu_buttons" id="menu_rw_btn">Roadworks</a></li><br />
+                    <li style="display: list-item;"><a href='<?php echo base_url() ?>index.php/incidentsManager' class="menu_buttons" id="menu_inc_btn">Traffic Incidents</a></li><br />
+                    <li style="display: list-item;"><a href='<?php echo base_url() ?>index.php/mapsManager#' class="menu_buttons" id="menu_report_btn">Reports</a></li><br />
+                    <li style="display: list-item;"><a href='<?php echo base_url() ?>' class="menu_buttons">Log Out</a></li>
                 </ul>
             </div>
 

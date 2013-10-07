@@ -141,7 +141,7 @@ class roadworksManager extends CI_Controller {
 
 	}
 
-
+	
 	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 	public function duplicateRWcontractNumberCheck(){
 		$cn = $_POST['contract_number'];

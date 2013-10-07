@@ -45,6 +45,29 @@ class roadworkAccess extends CI_Model {
 
 		return $return;
 	}
+
+	function getAllRoadworks(){
+		/* simply displays the names of all cashier for selection (drop down menu) */
+		return $this->db->query("SELECT contract_no from roadwork order by contract_no asc")->result_array();
+	}
+
+	function getRoadworkDetails($cn){
+		/* 	given the variable name, this function will select all the details whose cashier_name
+			matches the variable $name */
+		return $this->db->query("SELECT * from roadwork join map_coordinates where contract_no='$cn' and roadwork.contract_no = map_coordinates.rw_id")->result_array();
+	}
+
+	function editExistingRoadwork($cn2, $rwork_name2, $type2, $start2, $end2, $desc2, $status2){
+		//given the name, username and password, this function will update/edit all the details	whose cashier_name matches the variable $name 
+		$status = $this->db->query("UPDATE roadwork set rwork_name='$rwork_name2', rwork_type='$type2', start_date='$start2', end_date='$end2', description='$desc2', status='$status2' where contract_no='$cn2'");
+		if(!$status){
+			$this->error = $this->db->_error_message();
+    		$this->errorno = $this->db->_error_number();
+
+    		return $this->error;
+		}
+		return '';
+	}
 }
 
 ?>

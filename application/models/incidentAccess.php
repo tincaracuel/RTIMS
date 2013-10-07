@@ -55,7 +55,17 @@ class incidentAccess extends CI_Model {
 		return $return;
 	}
 
-	
+	function getAllIncidents(){
+		/* simply displays the names of all cashier for selection (drop down menu) */
+		return $this->db->query("SELECT inc_id from incident order by inc_id asc")->result_array();
+	}
+
+	function getIncidentDetails($in){
+		/* 	given the variable name, this function will select all the details whose cashier_name
+			matches the variable $name */
+		$arr = $this->db->query("SELECT * from incident join map_coordinates where map_coordinates.inc_id=incident.inc_id and incident.inc_id='$in'")->result_array();
+		return $arr;
+	}
 }
 
 ?>

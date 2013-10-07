@@ -41,6 +41,7 @@
 $route['default_controller'] = 'logManager';
 $route['index.php/maps'] = "mapsManager";
 $route['index.php/roadwork'] = "roadworksManager";
+$route['index.php/roadwork_table'] = "roadworksTableManager";
 $route['index.php/incident'] = "incidentsManager";
 
 
