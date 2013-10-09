@@ -11,6 +11,8 @@ $(document).ready(function(){
 	$("#menu_back_rw_btn2").hide();
 	$("#menu_back_inc_btn2").hide();
 	$("#admin_menu").show();
+	$("#allRoadworks").show();
+	$("#allIncidents").show();
 
 	$("body").css("display", "none");
     $("body").fadeIn(1000); 
@@ -24,7 +26,6 @@ $(document).ready(function(){
     });
 
     
-
 	$("#menu_add_rw_btn").click(function(){ // SHOW ROADWORK FORM FIELDS
 		$("#menu_rw").hide();
 		$("#admin_roadwork").hide();
@@ -39,42 +40,6 @@ $(document).ready(function(){
 		$("#admin_roadwork").fadeIn(900);
 		});
 
-	/*$("#menu_edit_rw").click(function(){ // 
-		$("#menu_rw").hide();
-		$("#admin_roadwork").hide();
-		$("#addroadworkDiv").fadeIn(900);
-		});
-
-	$("#menu_delete_rw").click(function(){ // 
-		$("#menu_rw").hide();
-		$("#admin_roadwork").hide();
-		$("#addroadworkDiv").fadeIn(900);
-		});*/
-
-	$("#menu_view_rw_btn").click(function(){ // 
-		$("#menu_rw").hide(1000);
-		$("#menu_add_rw_btn").hide(300);
-		$("#menu_edit_rw_btn").hide(300);
-		$("#menu_delete_rw_btn").hide(300);
-		$("#menu_back_rw_btn").hide();
-		$("#menu_back_rw_btn2").fadeIn(1000);
-		//SHOW TABLE IN RIGHT
-		//HIDE MAP
-
-
-		});
-
-	$("#menu_view_inc_btn").click(function(){ // 
-		$("#menu_inc").hide(1000);
-		$("#menu_add_inc_btn").hide(300);
-		$("#menu_edit_inc_btn").hide(300);
-		$("#menu_delete_inc_btn").hide(300);
-		$("#menu_back_inc_btn").hide();
-		$("#menu_back_inc_btn2").fadeIn(1000);
-		//SHOW TABLE IN RIGHT
-		//HIDE MAP
-
-		});
 
 	$("#menu_back_rw_btn2").click(function(){ //
 		$("#menu_rw").show(1000);
@@ -99,11 +64,75 @@ $(document).ready(function(){
 		});
 
 
-	/*$("#menu_back_inc_btn").click(function(){ //BACK TO MAIN MENU
-		$("#admin_incident").hide();
-		$("#admin_menu").fadeIn(900);
-		$("#menu_inc").show();
-		});*/
+	/* DISPLAY ROADWORK TABLES */
+	$("#rw_all").click(function(){ //
+		$("#completedRoadworks").hide();
+		$("#plannedRoadworks").hide();
+		$("#ongoingRoadworks").hide();
+		$("#allRoadworks").fadeIn();
+	});
+
+	$("#rw_ongoing").click(function(){ //
+		$("#completedRoadworks").hide();
+		$("#plannedRoadworks").hide();
+		$("#allRoadworks").hide();
+		$("#ongoingRoadworks").fadeIn();
+	});
+
+	$("#rw_completed").click(function(){ //
+		$("#ongoingRoadworks").hide();
+		$("#plannedRoadworks").hide();
+		$("#allRoadworks").hide();
+		$("#completedRoadworks").fadeIn();
+	});
+
+	$("#rw_planned").click(function(){ //
+		$("#ongoingRoadworks").hide();
+		$("#completedRoadworks").hide();
+		$("#allRoadworks").hide();
+		$("#plannedRoadworks").fadeIn();
+	});
+
+
+	$("#inc_all").click(function(){ //
+		$("#completedIncidents").hide();
+		$("#plannedIncidents").hide();
+		$("#ongoingIncidents").hide();
+		$("#allIncidents").fadeIn();
+	});
+
+	$("#inc_ongoing").click(function(){ //
+		$("#completedIncidents").hide();
+		$("#plannedIncidents").hide();
+		$("#allIncidents").hide();
+		$("#ongoingIncidents").fadeIn();
+	});
+
+	$("#inc_completed").click(function(){ //
+		$("#ongoingIncidents").hide();
+		$("#plannedIncidents").hide();
+		$("#allIncidents").hide();
+		$("#completedIncidents").fadeIn();
+	});
+
+	$("#inc_planned").click(function(){ //
+		$("#ongoingIncidents").hide();
+		$("#completedIncidents").hide();
+		$("#allIncidents").hide();
+		$("#plannedIncidents").fadeIn();
+	});
+
+
+
+
+
+	$("#show_map_btn").click(function(){ //
+		alert('assda');
+		$("#show_map").show();
+	});
+
+
+
 
 	$("#menu_add_inc_btn").click(function(){ // SHOW INCIDENT FORM FIELDS
 		$("#menu_inc").hide();
@@ -118,23 +147,7 @@ $(document).ready(function(){
 		$("#admin_incident").fadeIn(900);
 		});
 
-	/*$("#menu_edit_inc").click(function(){ // 
-		$("#menu_inc").hide();
-		$("#admin_incident").hide();
-		$("#addincidentDiv").fadeIn(900);
-		});
-
-	$("#menu_delete_inc").click(function(){ // 
-		$("#menu_inc").hide();
-		$("#admin_incident").hide();
-		$("#addincidentDiv").fadeIn(900);
-		});
-
-	$("#menu_view_inc").click(function(){ // 
-		$("#menu_inc").hide();
-		$("#admin_incident").hide();
-		$("#addincidentDiv").fadeIn(900);
-		});*/	
+	
 	
 });
 

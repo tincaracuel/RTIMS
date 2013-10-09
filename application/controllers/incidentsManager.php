@@ -7,7 +7,7 @@ class incidentsManager extends CI_Controller {
 		$this->load->library('googlemaps');
 		$this->load->model('map_model', '', TRUE);
 		$config['center'] = '14.1876, 121.12508';
-		$config['zoom'] = '15';
+		$config['zoom'] = '13';
 		$config['map_type'] = 'ROADMAP';
 		$config['maxzoom'] = 0;
 		$config['minzoom'] = 13;
@@ -20,9 +20,10 @@ class incidentsManager extends CI_Controller {
 								inc_long.value = event.latLng.lng();
 								createMarker({ map: map, position:event.latLng , draggable: true});';
 
-		$coords = $this->map_model->get_coordinates_inc();
+
+		$coords_inc = $this->map_model->get_coordinates_inc();
 		// Loop through the coordinates we obtained above and add them to the map
-		foreach ($coords as $coordinate) {
+		foreach ($coords_inc as $coordinate) {
 			$marker = array();
 			$marker['draggable'] = FALSE;
 			$marker['clickable'] = TRUE;
@@ -40,6 +41,7 @@ class incidentsManager extends CI_Controller {
 			$htmlstring =  $this->setInfowindow_inc($a1, $a2, $a3, $a4, $a5, $a6, $a7, $a8, $a9);
 			$marker['infowindow_content'] = $htmlstring;
 
+
 			$marker['title'] = $coordinate[0]->inc_id.','.$coordinate[0]->inc_type.' at '.$coordinate[0]->barangay;
 			if ($coordinate[0]->inc_type == 'Accident'){
 				$marker['icon'] = base_url().'styles/img/markers/inc/accident.png';
@@ -53,10 +55,11 @@ class incidentsManager extends CI_Controller {
 				$marker['icon'] = base_url().'styles/img/markers/inc/strike.png';
 			}else if ($coordinate[0]->inc_type == 'Funeral'){
 				$marker['icon'] = base_url().'styles/img/markers/inc/funeral.png';
+			}
+
 			
 			$marker['position'] = $coordinate[0]->latitude.','.$coordinate[0]->longitude;
 			$this->googlemaps->add_marker($marker);
-			}
 		}
 
 		$polygon = array();

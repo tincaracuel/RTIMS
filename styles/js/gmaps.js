@@ -1,19 +1,18 @@
 var map;
 
-function initialize() {
-  var latlng = new google.maps.LatLng(14.1876, 121.12508); //CALAMBA CITY
-  var mapOptions = {
-    zoom: 13,
-    center: latlng,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  }
+function initialize(){
+    var latlng = new google.maps.LatLng(14.1876, 121.12508); //CALAMBA CITY
+    var mapOptions = {
+        zoom: 13,
+        center: latlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
 
-  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-    var map = new google.maps.Map(document.getElementById('map-canvas'),
-        mapOptions);
+    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-    var calambaCoords = [
+    /*var calambaCoords = [
         new google.maps.LatLng(14.232854,121.189964),
         new google.maps.LatLng(14.232854,121.189921),
         new google.maps.LatLng(14.237887,121.175673),
@@ -128,7 +127,7 @@ function initialize() {
       fillOpacity: 0.1
     });
 
-    calamba_border.setMap(map);
+    calamba_border.setMap(map);*/
 
 }
 

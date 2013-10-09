@@ -103,13 +103,13 @@
                     <option value="Banadero" >Bańadero </option>
                     <option value="Banlic" >Banlic </option>
                     <option value="Barandal" >Barandal </option>
-                    <option value="Brgy 1" >Barangay 1 </option>
-                    <option value="Brgy 2">Barangay 2 </option>
-                    <option value="Brgy 3" >Barangay 3 </option>
-                    <option value="Brgy 4" >Barangay 4 </option>
-                    <option value="Brgy 5" >Barangay 5 </option>
-                    <option value="Brgy 6" >Barangay 6 </option>
-                    <option value="Brgy 7" >Barangay 7 </option>
+                    <option value="Barangay 1" >Barangay 1 </option>
+                    <option value="Barangay 2">Barangay 2 </option>
+                    <option value="Barangay 3" >Barangay 3 </option>
+                    <option value="Barangay 4" >Barangay 4 </option>
+                    <option value="Barangay 5" >Barangay 5 </option>
+                    <option value="Barangay 6" >Barangay 6 </option>
+                    <option value="Barangay 7" >Barangay 7 </option>
                     <option value="Batino" >Batino </option>
                     <option value="Bubuyan" >Bubuyan </option>
                     <option value="Bucal" >Bucal </option>
@@ -160,7 +160,7 @@
                 <input type="text" name="rwork_long" id="rwork_long" style="width: 80px; height: 20px; font-size: 10px;" autofocus required /> )
                 <br /><br />
 
-                 Progress / Status: &nbsp;<input type="number" name="rwork_status" min="0" max="100" autofocus required /><br /><br /><br />
+                 Progress / Status: &nbsp;<input type="number" name="rwork_status" min="0" max="100" autofocus /><br /><br /><br />
 
                 <input type="submit" value="Add Roadwork" id="addRoadworkBtn" onclick='javascript:addRoadwork();'/><br /><br />
                 <a  href='<?php echo base_url() ?>index.php/roadworksManager' /><img src='<?php echo base_url() ?>styles/img/bg/roadwork_back.png' id="menu_back1_btn" /></a><br />

@@ -20,7 +20,7 @@
 		speed: 300,
 		fadeOut: 300,
 		width: false,
-		initialWidth: "600",
+		initialWidth: "670",
 		innerWidth: false,
 		maxWidth: false,
 		height: false,

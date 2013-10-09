@@ -12,31 +12,32 @@
     <link href="<?php echo base_url() ?>styles/css/jquery-ui.css"  rel="stylesheet"></link>
     <link href="<?php echo base_url() ?>styles/css/style.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>styles/css/colorbox.css" rel="stylesheet">
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
-
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script src="<?php echo base_url() ?>styles/js/gmaps.js"></script>
     <script src="<?php echo base_url() ?>styles/js/jquery-1.8.3.js"></script>
     <script src="<?php echo base_url() ?>styles/js/jquery.min.js"></script>
     <script src="<?php echo base_url() ?>styles/js/jquery-ui.js"></script>
     <script src="<?php echo base_url() ?>styles/js/subFunctions.js"></script>
     <script src="<?php echo base_url() ?>styles/js/mainFunctions.js"></script>
-    <script src="<?php echo base_url() ?>styles/js/gmaps.js"></script>
+    
     <script src="<?php echo base_url() ?>styles/js/jquery.autosize.js"></script>
     <script src="<?php echo base_url() ?>styles/js/jquery.colorbox.js"></script>
 
     <script>
-
-        $(function(){   $( "#rwork_start" ).datepicker();    });
-        $(function(){   $( "#rwork_end" ).datepicker();    });
-        $(function(){   $( "#start2" ).datepicker();    });
-        $(function(){   $( "#end2" ).datepicker();    });
         $(document).ready(function(){
-            $("#editrw").colorbox({inline:true, width:"50%"});
+            $("#editrw").colorbox({inline:true, width:"70%"});
+            $("#deleterw").colorbox({inline:true, width:"25%"});
+
+        });
+
+        $(function(){
+            $('textarea').autosize();
         });
 
     </script>
 
 
-    
+
   </head>
   <body>
     <div id="loading-image"><img src="<?php echo base_url() ?>styles/img/floatingCircles.gif" alt="Loading..." /></div>
@@ -50,73 +51,44 @@
      <div id="queryMessage"></div>
 
     <div id="lowerbox">
-        <div id="table_view" style="width: 75%;" ><br /><br />
-            <?php
-                if($query == NULL){
-                    ?> <center><?php echo 'There are no roadworks saved in the database.'; ?></center> <?php
-                }else{ ?>
-                    
-                    <div class="edit_delete">
-                    <a id='editrw' href="#edit_roadwork" onclick='javascript:listEditRoadworks();'>Edit Roadwork</a> <a id='deleterw' href="#delete_roadwork">Delete Roadwork</a>
-                    </div>
+        <div id="table_view" style="width: 100%;" ><br /><br />
 
-                    <table>
-                    <th style="min-width: 100px;">Contract #</th>
-                    <th style="min-width: 150px;">Roadwork</th>
-                    <th style="min-width: 110px;">Classification</th>
-                    <th style="max-width: 400px;">Description</th>
-                    <th style="min-width: 75px;">Start</th>
-                    <th style="min-width: 75px;">End</th>
-                    <th style="min-width: 90px;">Street</th>
-                    <th style="min-width: 75px;">Barangay</th>
-                    <th style="min-width: 50px;">Status</th>
-
-                    
-                    <?php foreach($query as $row){
-
-                        ?><tr>
-                        <td> <?php echo $row['0']->contract_no ?> </td>
-                        <td> <?php echo $row['0']->rwork_name ?> </td>
-                        <td> <?php echo $row['0']->rwork_type ?> </td>
-                        <td> <?php echo $row['0']->description ?> </td>
-                        <td> <?php echo $row['0']->start_date ?> </td>
-                        <td> <?php echo $row['0']->end_date ?> </td>
-                        <td> <?php echo $row['0']->street ?> </td>
-                        <td> <?php echo $row['0']->barangay ?> </td>
-                        <td> <?php if ($row['0']->status == 100) echo 'Finished';
-                                else echo $row['0']->status.'%'?> </td>
-                        </tr>
-                        <?php
-                        
-                    }
-
-                    
-                }
-                ?></table> <?php 
-            ?>
-
-
-        </div>
-
-        <div id="adminFunctions">
-
-            <div id="admin_roadwork">
-                <a href='<?php echo base_url() ?>index.php/roadworksManager'><img src='<?php echo base_url() ?>styles/img/bg/menu_back.png' id="menu_back_rw_btn" /></a><br /><br /><br />
-               
+            
+        <div class="edit_delete">
+            <a id='rw_all' href="#roadwork_all" onclick='javascript:allRoadworks();' class="table_buttons">All Roadworks</a>
+            <a id='rw_completed' href="#roadwork_completed" onclick='javascript:completedRoadworks();' class="table_buttons">Completed</a>
+            <a id='rw_ongoing' href="#roadwork_ongoing" onclick='javascript:ongoingRoadworks();' class="table_buttons" >Ongoing</a>
+            <a id='rw_planned' href="#roadwork_planned" onclick='javascript:plannedRoadworks();' class="table_buttons">Not Yet Started</a>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+            &nbsp; &nbsp; &nbsp; 
+            <a id='editrw' href="#edit_roadwork" onclick='javascript:listEditRoadworks();' class="table_buttons">Edit Roadwork</a>
+            <a id='deleterw' href="#delete_roadwork" onclick='javascript:listDeleteRoadworks();' class="table_buttons">Delete Roadwork</a>
+            <a href='<?php echo base_url() ?>index.php/roadworksManager' class="table_buttons"?>Back to Roadworks Menu</a>  
             </div>
+
+            <span id="completedRoadworks" style="display:none;"><?php require("rw_completed.php"); ?></span>
+            <span id="allRoadworks" style="display:none;"><?php require("rw_all.php"); ?></span>
+            <span id="ongoingRoadworks" style="display:none;"><?php require("rw_ongoing.php"); ?></span>
+            <span id="plannedRoadworks" style="display:none;"><?php require("rw_planned.php"); ?></span>
+        
+           
             
 
         </div>
 
 
+
+
         <div style="display:none">
-            <div id='edit_roadwork' style='background:#fff;'>
+            <div id='edit_roadwork' class="colorbox_edit_delete" style='background:#fff;'>
                 <form class="editRoadwork"  method='post'>
                     <div name="left">
                         <div id="listOfRoadworks">
                         </div>
                     <br /> 
-                    <input type="button" name="selectRoadwork" class="edit_delete_input_btn" id="editRwBtn1" value="SELECT" onclick='javascript:viewRoadworkDetails();'>
+                    <input type="button" name="selectRoadwork" class="lightboxSubmitBtn" id="editRwBtn1" value="SELECT" onclick='javascript:viewRoadworkDetails();'>
                     </div>
                     
                     <div name="right">
@@ -126,6 +98,23 @@
                 </form>
             </div>
         </div>
+
+        <div style="display:none">
+            <div id='delete_roadwork' class="colorbox_edit_delete" style='background:#fff;'>
+                <form class="deleteRoadwork"  method='post'>
+                    <div name="delete_roadwork">
+                        <div id="listOfRoadworks2">
+                        </div>
+                    <br /> 
+                    <input type="button" name="selectRoadwork" class="lightboxSubmitBtn" id="deleteRwBtn1" value="DELETE" onclick='javascript:deleteSelectedRoadwork();'>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+
 
     </div>
 

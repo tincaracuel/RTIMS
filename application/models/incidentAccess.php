@@ -48,6 +48,93 @@ class incidentAccess extends CI_Model {
 			//PUSH THE ROADWORK INFO INTO THE ARRAY TO BE DISPLAYED IN THE VIEW
 			for ( $i = 0 ; $i < $queryIncident->num_rows(); $i++){			
 				$array_res[0] = $res[$i];
+
+				array_push($return, $array_res);
+			}
+		}
+
+		return $return;
+	}
+
+	function incident_getAllOngoing(){
+		$return = array();
+
+		$this->db->select("*");
+		$this->db->from("map_coordinates");
+		$this->db->join("incident"," incident.inc_id = map_coordinates.inc_id");
+		$queryIncident = $this->db->get();
+
+
+		if ($queryIncident->num_rows() > 0 ){
+			$res = $queryIncident->result();
+
+			//PUSH THE ROADWORK INFO INTO THE ARRAY TO BE DISPLAYED IN THE VIEW
+			for ( $i = 0 ; $i < $queryIncident->num_rows(); $i++){			
+				$array_res[0] = $res[$i];
+
+				//COMPARES THE END DATE WITH THE CURRENT DATE
+				$interval_s = date_diff(date_create($res[$i]->start_date), date_create((date("Y-m-d"))));
+				$interval_e = date_diff(date_create($res[$i]->end_date), date_create((date("Y-m-d"))));
+
+				//IF THE ROADWORK IS NOT YET DUE, THE ROADWORK WILL BE DISPLAYED
+				if (($interval_s->format('%R') == '+' && $interval_s->format('%y') >= 0 && $interval_s->format('%m') >= 0 && $interval_s->format('%d') >= 0) &&
+					(($interval_e->format('%R') == '-' && $interval_e->format('%y') >= 0 && $interval_e->format('%m') >= 0 && $interval_e->format('%d') >= 0)))
+				array_push($return, $array_res);
+			}
+		}
+
+		return $return;
+	}
+
+	function incident_getAllCompleted(){
+		$return = array();
+
+		$this->db->select("*");
+		$this->db->from("map_coordinates");
+		$this->db->join("incident"," incident.inc_id = map_coordinates.inc_id");
+		$queryIncident = $this->db->get();
+
+
+		if ($queryIncident->num_rows() > 0 ){
+			$res = $queryIncident->result();
+
+			//PUSH THE ROADWORK INFO INTO THE ARRAY TO BE DISPLAYED IN THE VIEW
+			for ( $i = 0 ; $i < $queryIncident->num_rows(); $i++){			
+				$array_res[0] = $res[$i];
+
+				//COMPARES THE END DATE WITH THE CURRENT DATE
+				$interval = date_diff(date_create($res[$i]->end_date), date_create((date("Y-m-d"))));
+
+				//IF THE ROADWORK IS NOT YET DUE, THE ROADWORK WILL BE DISPLAYED
+				if ($interval->format('%R') == '+' && $interval->format('%y') >= 0 && $interval->format('%m') >= 0 && $interval->format('%d') >= 0)
+				array_push($return, $array_res);
+			}
+		}
+
+		return $return;
+	}
+
+	function incident_getAllPlanned(){
+		$return = array();
+
+		$this->db->select("*");
+		$this->db->from("map_coordinates");
+		$this->db->join("incident"," incident.inc_id = map_coordinates.inc_id");
+		$queryIncident = $this->db->get();
+
+
+		if ($queryIncident->num_rows() > 0 ){
+			$res = $queryIncident->result();
+
+			//PUSH THE ROADWORK INFO INTO THE ARRAY TO BE DISPLAYED IN THE VIEW
+			for ( $i = 0 ; $i < $queryIncident->num_rows(); $i++){			
+				$array_res[0] = $res[$i];
+
+				//COMPARES THE END DATE WITH THE CURRENT DATE
+				$interval = date_diff(date_create($res[$i]->start_date), date_create((date("Y-m-d"))));
+
+				//IF THE ROADWORK IS NOT YET DUE, THE ROADWORK WILL BE DISPLAYED
+				if ($interval->format('%R') == '-' && $interval->format('%y') >= 0 && $interval->format('%m') >= 0 && $interval->format('%d') >= 0)
 				array_push($return, $array_res);
 			}
 		}
@@ -65,6 +152,31 @@ class incidentAccess extends CI_Model {
 			matches the variable $name */
 		$arr = $this->db->query("SELECT * from incident join map_coordinates where map_coordinates.inc_id=incident.inc_id and incident.inc_id='$in'")->result_array();
 		return $arr;
+	}
+
+	function editExistingIncident($in2, $type2, $start2, $end2, $desc2){
+		//given the name, username and password, this function will update/edit all the details	whose cashier_name matches the variable $name 
+		$status = $this->db->query("UPDATE incident set inc_type='$type2', start_date='$start2', end_date='$end2', description='$desc2' where inc_id='$in2'");
+		if(!$status){
+			$this->error = $this->db->_error_message();
+    		$this->errorno = $this->db->_error_number();
+
+    		return $this->error;
+		}
+		return '';
+	}
+
+	function deleteExistingIncident($in2){
+		//given the name, username and password, this function will update/edit all the details	whose cashier_name matches the variable $name 
+		$status = $this->db->query("DELETE from map_coordinates where inc_id='$in2'");
+		$status = $this->db->query("DELETE from roadwork where inc_id='$in2'");
+		if(!$status){
+			$this->error = $this->db->_error_message();
+    		$this->errorno = $this->db->_error_number();
+
+    		return $this->error;
+		}
+		return '';
 	}
 }
 

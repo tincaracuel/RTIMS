@@ -24,13 +24,9 @@
     <script src="<?php echo base_url() ?>styles/js/jquery.colorbox.js"></script>
 
     <script>
-
-        $(function(){   $( "#inc_start" ).datepicker();    });
-        $(function(){   $( "#inc_end" ).datepicker();    });
-        $(function(){   $( "#start2" ).datepicker();    });
-        $(function(){   $( "#end2" ).datepicker();    });
         $(document).ready(function(){
-            $("#editinc").colorbox({inline:true, width:"50%"});
+            $("#editinc").colorbox({inline:true, width:"70%"});
+            $("#deleteinc").colorbox({inline:true, width:"25%"});
         });
 
     </script>
@@ -50,74 +46,59 @@
      <div id="queryMessage"></div>
 
     <div id="lowerbox">
-        <div id="table_view" style="width: 75%;" ><br /><br />
-            <?php
-                if($query == NULL){
-                    ?> <center><?php echo 'There are no incidents saved in the database.'; ?></center> <?php
-                }else{ ?>
-                    
-                    <div class="edit_delete">
-                    <a id='editinc' href="#edit_incident" onclick='javascript:listEditIncidents();'>Edit Incident</a> <a id='deleteinc' href="#delete_roadwork">Delete Incident</a>
-                    </div>
-
-                    <table>
-                    <th style="min-width: 100px;">Incident #</th>
-                    <th style="min-width: 110px;">Classification</th>
-                    <th style="min-width: 400px;">Description</th>
-                    <th style="min-width: 75px;">Start</th>
-                    <th style="min-width: 75px;">End</th>
-                    <th style="min-width: 150px;">Street</th>
-                    <th style="width: 190px;">Barangay</th>
-
-                    
-                    <?php foreach($query as $row){
-
-                        ?><tr>
-                        <td> <?php echo $row['0']->inc_id ?> </td>
-                        <td> <?php echo $row['0']->inc_type ?> </td>
-                        <td> <?php echo $row['0']->description ?> </td>
-                        <td> <?php echo $row['0']->start_date ?> </td>
-                        <td> <?php echo $row['0']->end_date ?> </td>
-                        <td> <?php echo $row['0']->street ?> </td>
-                        <td> <?php echo $row['0']->barangay ?> </td>
-                        </tr>
-                        <?php
-                        
-                    }
-
-                    
-                }
-                ?></table> <?php 
-            ?>
-
-
-        </div>
-
-
-        <div id="adminFunctions">
-
-            <div id="admin_incident">
-                <a href='<?php echo base_url() ?>index.php/incidentsManager'><img src='<?php echo base_url() ?>styles/img/bg/menu_back.png' id="menu_back_inc_btn" /></a><br /><br /><br />
-               
+        <div id="table_view" style="width: 100%;" ><br /><br />
+        
+        <div class="edit_delete">
+            Listings: <a id='inc_all' href="#incident_all" onclick='javascript:allIncidents();' class="table_buttons">All Activities</a>
+            <a id='inc_completed' href="#incident_completed" onclick='javascript:completedIncidents();' class="table_buttons">Completed</a>
+            <a id='inc_ongoing' href="#incident_ongoing" onclick='javascript:ongoingIncidents();' class="table_buttons">Ongoing</a>
+            <a id='inc_planned' href="#incident_planned" onclick='javascript:plannedIncidents();' class="table_buttons">Planned</a>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <a id='editinc' href="#edit_incident" onclick='javascript:listEditIncidents();' class="table_buttons">Edit Incidents</a>
+            <a id='deleteinc' href="#delete_incident" onclick='javascript:listDeleteIncidents();' class="table_buttons">Delete Incidents</a>
+            <a href='<?php echo base_url() ?>index.php/incidentsManager' class="table_buttons"?>Back to Incidents Menu</a>  
             </div>
-            
+
+            <span id="allIncidents" style="display:none;"><?php require("inc_all.php"); ?></span>
+            <span id="ongoingIncidents" style="display:none;"><?php require("inc_ongoing.php"); ?></span>
+            <span id="plannedIncidents" style="display:none;"><?php require("inc_planned.php"); ?></span>
+            <span id="completedIncidents" style="display:none;"><?php require("inc_completed.php"); ?></span>
+
 
         </div>
+
+
 
 
         <div style="display:none">
-            <div id='edit_incident' style='background:#fff;'>
+            <div id='edit_incident' class="colorbox_edit_delete" style='background:#fff;'>
                 <form class="editIncident"  method='post'>
                     <div name="left">
                         <div id="listOfIncidents">
                         </div>
                     <br /> 
-                    <input type="button" name="selectIncident" class="edit_delete_input_btn" id="editIncBtn1" value="SELECT" onclick='javascript:viewIncidentDetails();'>
+                    <input type="button" name="selectIncident" class="lightboxSubmitBtn" id="editIncBtn1" value="SELECT" onclick='javascript:viewIncidentDetails();'>
                     </div>
                     
                     <div name="right">
                         <div id="incidentDetails">
                         </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div style="display:none">
+            <div id='delete_incident' class="colorbox_edit_delete" style='background:#fff;'>
+                <form class="deleteIncident"  method='post'>
+                    <div name="delete_incident">
+                        <div id="listOfIncidents2">
+                        </div>
+                    <br /> 
+                    <input type="button" name="selectIncident" class="lightboxSubmitBtn" id="deleteIncBtn1" value="DELETE" onclick='javascript:deleteSelectedIncident();'>
                     </div>
                 </form>
             </div>

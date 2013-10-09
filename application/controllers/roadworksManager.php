@@ -8,7 +8,7 @@ class roadworksManager extends CI_Controller {
 		$this->load->model('map_model', '', TRUE);
 		$this->load->model('roadworkAccess', '', TRUE);
 		$config['center'] = '14.1876, 121.12508';
-		$config['zoom'] = '15';
+		$config['zoom'] = '13';
 		$config['map_type'] = 'ROADMAP';
 		$config['maxzoom'] = 0;
 		$config['minzoom'] = 13;
@@ -62,7 +62,7 @@ class roadworksManager extends CI_Controller {
 				$marker['icon'] = base_url().'styles/img/markers/rw/installation.png';
 			}else if ($coordinate[0]->rwork_type == 'Reconstruction'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/reconstruction.png';
-			}else if ($coordinate[0]->rwork_type == 'Concreting'){
+			}else if ($coordinate[0]->rwork_type == 'Concreting/Asphalting'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/concreting.png';
 			}else if ($coordinate[0]->rwork_type == 'Electrification'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/electrification.png';

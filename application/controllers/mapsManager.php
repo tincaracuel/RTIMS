@@ -69,7 +69,7 @@ class mapsManager extends CI_Controller {
 				$marker['icon'] = base_url().'styles/img/markers/rw/installation.png';
 			}else if ($coordinate[0]->rwork_type == 'Reconstruction'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/reconstruction.png';
-			}else if ($coordinate[0]->rwork_type == 'Concreting'){
+			}else if ($coordinate[0]->rwork_type == 'Concreting/Asphalting'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/concreting.png';
 			}else if ($coordinate[0]->rwork_type == 'Electrification'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/electrification.png';
