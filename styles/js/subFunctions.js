@@ -29,6 +29,8 @@ $(document).ready(function(){
 	$("#menu_add_rw_btn").click(function(){ // SHOW ROADWORK FORM FIELDS
 		$("#menu_rw").hide();
 		$("#admin_roadwork").hide();
+		$("#map").css("width", "75%");
+		$("#adminFunctions").css("display", "true");
 		$("#addroadworkDiv").fadeIn(900);
 		});
 	
@@ -137,8 +139,11 @@ $(document).ready(function(){
 	$("#menu_add_inc_btn").click(function(){ // SHOW INCIDENT FORM FIELDS
 		$("#menu_inc").hide();
 		$("#admin_incident").hide();
+		$("#map").css("width", "75%");
+		$("#adminFunctions").css("display", "true");
 		$("#addincidentDiv").fadeIn(900);
 		});
+
 
 	$("#menu_back2_btn").click(function(){ //BACK TO INCIDENT MENU
 		$("#addincidentDiv").hide();

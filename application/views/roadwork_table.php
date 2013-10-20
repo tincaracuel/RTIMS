@@ -37,7 +37,6 @@
     </script>
 
 
-
   </head>
   <body>
     <div id="loading-image"><img src="<?php echo base_url() ?>styles/img/floatingCircles.gif" alt="Loading..." /></div>
@@ -51,6 +50,15 @@
      <div id="queryMessage"></div>
 
     <div id="lowerbox">
+
+        <div id="functions">
+            Roadworks Table Manager: 
+            <a id='editrw' href="#edit_roadwork" onclick='javascript:listEditRoadworks();' >Edit Roadworks</a>
+            <a id='deleterw' href="#delete_roadwork" onclick='javascript:listDeleteRoadworks();' >Delete Roadworks</a>
+            <a href='<?php echo base_url() ?>index.php/roadworksManager' id="menu_back_rw_btn" />Back to Main Menu &rarr;</a>
+            <span style="float:right;"><a href='<?php echo base_url() ?>' >Log Out</a></span>
+        </div>
+
         <div id="table_view" style="width: 100%;" ><br /><br />
 
             
@@ -59,13 +67,7 @@
             <a id='rw_completed' href="#roadwork_completed" onclick='javascript:completedRoadworks();' class="table_buttons">Completed</a>
             <a id='rw_ongoing' href="#roadwork_ongoing" onclick='javascript:ongoingRoadworks();' class="table_buttons" >Ongoing</a>
             <a id='rw_planned' href="#roadwork_planned" onclick='javascript:plannedRoadworks();' class="table_buttons">Not Yet Started</a>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-            &nbsp; &nbsp; &nbsp; 
-            <a id='editrw' href="#edit_roadwork" onclick='javascript:listEditRoadworks();' class="table_buttons">Edit Roadwork</a>
-            <a id='deleterw' href="#delete_roadwork" onclick='javascript:listDeleteRoadworks();' class="table_buttons">Delete Roadwork</a>
-            <a href='<?php echo base_url() ?>index.php/roadworksManager' class="table_buttons"?>Back to Roadworks Menu</a>  
+            
             </div>
 
             <span id="completedRoadworks" style="display:none;"><?php require("rw_completed.php"); ?></span>
@@ -105,7 +107,7 @@
                     <div name="delete_roadwork">
                         <div id="listOfRoadworks2">
                         </div>
-                    <br /> 
+                    <br />
                     <input type="button" name="selectRoadwork" class="lightboxSubmitBtn" id="deleteRwBtn1" value="DELETE" onclick='javascript:deleteSelectedRoadwork();'>
                     </div>
                 </form>

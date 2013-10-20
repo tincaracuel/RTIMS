@@ -8,9 +8,9 @@
 		$("#show_map_div").fadeIn(500);
 	});
 });
-
 </script>
 
+<form class="addRoadwork" action='<?php echo base_url() ?>index.php/roadworksManager/addRoadwork' method='post'>
 Contract number:&nbsp;  &nbsp;
 <input type="text" name="cn2" id='cn2' value='<?php echo $details[0]['contract_no']; ?>' disabled="disabled"><br />
 

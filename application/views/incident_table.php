@@ -46,6 +46,16 @@
      <div id="queryMessage"></div>
 
     <div id="lowerbox">
+
+        <div id="functions">
+            Incidents Table Manager: 
+            <a id='editinc' href="#edit_incident" onclick='javascript:listEditIncidents();' >Edit Incidents</a>
+            <a id='deleteinc' href="#delete_incident" onclick='javascript:listDeleteIncidents();' >Delete Incidents</a>
+            <a href='<?php echo base_url() ?>index.php/incidentsManager' id="menu_back_inc_btn" />Back to Main Menu &rarr;</a>
+            <span style="float:right;"><a href='<?php echo base_url() ?>' >Log Out</a></span>
+        </div>
+
+
         <div id="table_view" style="width: 100%;" ><br /><br />
         
         <div class="edit_delete">
@@ -53,13 +63,7 @@
             <a id='inc_completed' href="#incident_completed" onclick='javascript:completedIncidents();' class="table_buttons">Completed</a>
             <a id='inc_ongoing' href="#incident_ongoing" onclick='javascript:ongoingIncidents();' class="table_buttons">Ongoing</a>
             <a id='inc_planned' href="#incident_planned" onclick='javascript:plannedIncidents();' class="table_buttons">Planned</a>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            <a id='editinc' href="#edit_incident" onclick='javascript:listEditIncidents();' class="table_buttons">Edit Incidents</a>
-            <a id='deleteinc' href="#delete_incident" onclick='javascript:listDeleteIncidents();' class="table_buttons">Delete Incidents</a>
-            <a href='<?php echo base_url() ?>index.php/incidentsManager' class="table_buttons"?>Back to Incidents Menu</a>  
+
             </div>
 
             <span id="allIncidents" style="display:none;"><?php require("inc_all.php"); ?></span>

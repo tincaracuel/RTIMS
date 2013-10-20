@@ -4,17 +4,40 @@ src:
     url('../fonts/OpenSans-Light.ttf');
 }
 
+
 html, body{
         margin: 0;
-        font-family: 'Open Sans';
-        font-weight:  300;
+        font-family: 'Calibri';
         padding: 0;
         height: 100%;
-        background-color: black;
+        background-color: #282929;
 }
 
 #lowerbox{
 	height: 90%;
+}
+
+#functions, #panel{
+	background-color: #3B3B3B;
+	height: auto;
+	padding: 6px 2px 6px 6px;
+	color: white;
+}
+
+#functions a, #panel a{
+	text-shadow: 1px 2px 5px #979797;
+	font-family: 'Open Sans';
+	color: white;
+	padding-right: 20px;
+	padding-left: 20px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	text-decoration: none;
+}
+
+#functions a:hover, #panel a:hover{
+	background-color: grey;
+	color: black;
 }
 
 #map {
@@ -22,7 +45,7 @@ html, body{
 	font-family: 'Open Sans';
 	font-weight:  300;
 	padding: 0;
-	height:99%;
+	height: 98%;
 }
 
 
@@ -183,17 +206,18 @@ html, body{
 
 
 #header{
-	background-color: black;
 	color: white;
 	font-size: 25px;
-	padding: 20px;
-	height: 4.5%;
+	padding: 10px 0;
+	margin-bottom: 3px;
+	height: auto;
 }
 
 #header img{
-	height: 50px;
+	height: 40px;
 	position: absolute;
-	top: 1%;
+	top: 8px;
+	left: 18px;
 }
 
 #header a{
@@ -207,7 +231,7 @@ html, body{
 	height: 50px;
 	position: absolute;
 	font-size: 12px;
-	top: 15px;
+	top: 8px;
 	z-index: 1;
 	right: 0;
 	padding-left: 10px;
@@ -219,9 +243,11 @@ html, body{
 	height: 15px;
 	font-size: 15px; 
 	outline: none;
+	margin-top: -3px;
 	transition: all 0.3s ease-out;
 	border: 0px solid;
 }
+
 
 /*-------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------
@@ -251,7 +277,6 @@ html, body{
 
 
 #adminFunctions{
-	background-color: black;
 	position: relative;
 	top: -100%;
 	float:right;
@@ -264,8 +289,10 @@ html, body{
 }
 
 #adminFunctions form{
+	font-family: 'Open Sans';
+	margin-top: 30px;
+	font-size: 0.8em;
 	position:relative;
-	font-size: 13px;
 	width:290px;
 	max-width:290px;
 	height: 50px;
@@ -479,3 +506,40 @@ div [name="right"] input[type=submit]{ margin-left: auto; margin-right: auto;}
 	overflow-y:auto;
 	overflow-x: hidden;
 }
+
+
+/*--------------------------------------------------------------------------------*/
+#panel {
+	height: 22px;
+	list-style-type: none;
+}
+#panel li {
+	position: relative;
+	float: left;
+	height: 25px;
+	line-height: 25px;
+	list-style-type: none;
+}
+
+.sub-nav {
+	width: 160px;
+	opacity: 0.8;
+	display: none;
+	position: absolute;
+	top: 28px;
+	left: 0;
+	z-index: 999;
+	background-color: black;
+	color: white;
+}
+
+.sub-nav li{
+	top: -5px;
+	display: block;
+	left:-30px;
+	font-size: 12px;
+}
+
+.sub-nav li input{ cursor: pointer;}
+
+#panel li:hover .sub-nav {display: block;}

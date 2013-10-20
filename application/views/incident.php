@@ -11,6 +11,7 @@
 
     <link href="<?php echo base_url() ?>styles/css/jquery-ui.css"  rel="stylesheet"></link>
     <link href="<?php echo base_url() ?>styles/css/style.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>styles/css/colorbox.css" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
 
     <script src="<?php echo base_url() ?>styles/js/jquery-1.8.3.js"></script>
@@ -20,14 +21,17 @@
     <script src="<?php echo base_url() ?>styles/js/mainFunctions.js"></script>
     <script src="<?php echo base_url() ?>styles/js/gmaps.js"></script>
     <script src="<?php echo base_url() ?>styles/js/jquery.autosize.js"></script>
-
+    <script src="<?php echo base_url() ?>styles/js/jquery.colorbox.js"></script>
 
 
     <script>
-        $(function(){ $( "#inc_start" ).datepicker(); });
-        $(function(){ $( "#inc_end" ).datepicker(); });
-        $(function(){ $('textarea').autosize(); }); 
+        $(document).ready(function(){
+            $("#editinc").colorbox({inline:true, width:"70%"});
+            $("#deleteinc").colorbox({inline:true, width:"25%"});
+        });
+
     </script>
+
 
     <?php echo $map['js']; ?>
     
@@ -44,114 +48,61 @@
      <div id="queryMessage"></div>
 
     <div id="lowerbox">
-        <div id="map" style="width: 75%;" ><?php echo $map['html']; ?></div>
+
+        <div id="functions">
+            Incidents Manager:
+            <a href="#add_incident" id="menu_add_inc_btn">Add Incident</a>
+            <a id='editinc' href="#edit_incident" onclick='javascript:listEditIncidents();' >Edit Incidents</a>
+            <a id='deleteinc' href="#delete_incident" onclick='javascript:listDeleteIncidents();' >Delete Incidents</a>
+            <a href='<?php echo base_url() ?>index.php/incidentsTableManager' id="menu_view_inc_btn" /> View Incidents Table</a>
+            <a href='<?php echo base_url() ?>index.php/mapsManager' id="menu_back_inc_btn" />Back to Main Menu &rarr;</a>
+            <span style="float:right;"><a href='<?php echo base_url() ?>' >Log Out</a></span>
+        </div>
+
+
+        <div id="map" ><?php echo $map['html']; ?></div>
        
 
         <div id="adminFunctions">
 
-            <div id="admin_incident">
-                <img src='<?php echo base_url() ?>styles/img/bg/incident_add.png' class="menu_buttons" id="menu_add_inc_btn" /> <br /> <br />
-                <img src='<?php echo base_url() ?>styles/img/bg/incident_edit.png' class="menu_buttons" id="menu_edit_inc_btn" /> <br /> <br />
-                <img src='<?php echo base_url() ?>styles/img/bg/incident_delete.png' class="menu_buttons" id="menu_delete_inc_btn" /> <br /> <br />
-                <a href='<?php echo base_url() ?>index.php/incidentsTableManager'><img src='<?php echo base_url() ?>styles/img/bg/incident_view.png' class="menu_buttons" id="menu_view_inc_btn" /></a><br /><br />
-                <img src='<?php echo base_url() ?>styles/img/bg/incident_back.png' class="menu_buttons" id="menu_back_inc_btn2" /> <br />
-                <a href='<?php echo base_url() ?>index.php/mapsManager'><img src='<?php echo base_url() ?>styles/img/bg/menu_back.png' class="menu_buttons" id="menu_back_inc_btn" /></a><br /><br /><br />
-            </div>
-
-
-           <!-- ---------- ADD INCIDENT ---------- -->
             <div id="addincidentDiv">
-                <form class="addIncident" action='<?php echo base_url() ?>index.php/incidentsManager/addIncident' method='post'>
-
-                <p style="font-size: 20px;">TRAFFIC INCIDENT</p> 
-                Classification: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <select id="inc_classification" name="inc_classification" autofocus required ><br /><br />
-                    <option value="Accident">Accident</option>
-                    <option value="Obstruction">Obstruction</option>
-                    <option value="Public Event">Public Event</option>
-                    <option value="Funeral">Funeral</option>
-                    <option value="Flood">Flood</option>
-                    <option value="Strike">Strike</option>
-                  </select><br /><br />
-
-                Duration: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="text" id="inc_start" name="inc_start" style="width: 80px; font-size: 14px;" autofocus required /> to
-                <input type="text" id="inc_end" name="inc_end" style="width: 80px; font-size: 14px;" /><br /><br />
-
-                Description: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea name="inc_desc" id="inc_desc" autofocus required> </textarea><br /><br />
-
-                Street: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="text" name="inc_street" autofocus required /><br /><br />
-                
-                Barangay: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <select name="inc_barangay" id="inc_barangay" autofocus required ><br /><br />
-                    <option value="Bagong Kalsada" >Bagong Kalsada </option>
-                    <option value="Banadero" >Bańadero </option>
-                    <option value="Banlic" >Banlic </option>
-                    <option value="Barandal" >Barandal </option>
-                    <option value="Barangay 1" >Barangay 1 </option>
-                    <option value="Barangay 2">Barangay 2 </option>
-                    <option value="Barangay 3" >Barangay 3 </option>
-                    <option value="Barangay 4" >Barangay 4 </option>
-                    <option value="Barangay 5" >Barangay 5 </option>
-                    <option value="Barangay 6" >Barangay 6 </option>
-                    <option value="Barangay 7" >Barangay 7 </option>
-                    <option value="Batino" >Batino </option>
-                    <option value="Bubuyan" >Bubuyan </option>
-                    <option value="Bucal" >Bucal </option>
-                    <option value="Bungo" >Bunggo </option>
-                    <option value="Burol" >Burol </option>
-                    <option value="Camaligan" >Camaligan </option>
-                    <option value="Canlubang" >Canlubang </option>
-                    <option value="Halang" >Halang </option>
-                    <option value="Hornalan" >Hornalan </option>
-                    <option value="Kay-Anlog" >Kay-Anlog </option>
-                    <option value="La Mesa" >La Mesa </option>
-                    <option value="Laguerta" >Laguerta </option>
-                    <option value="Lawa" >Lawa </option>
-                    <option value="Lecheria" >Lecheria </option>
-                    <option value="Lingga" >Lingga </option>
-                    <option value="Looc" >Looc </option>
-                    <option value="Mabato" >Mabato </option>
-                    <option value="Majada" >Majada Labas </option>
-                    <option value="Makiling" >Makiling </option>
-                    <option value="Mapagong" >Mapagong </option>
-                    <option value="Masili" >Masili </option>
-                    <option value="Maunong" >Maunong </option>
-                    <option value="mayapa" >Mayapa </option>
-                    <option value="Paciano" >Paciano Rizal </option>
-                    <option value="Palingon" >Palingon </option>
-                    <option value="Palo Alto" >Palo-Alto </option>
-                    <option value="Pansol" >Pansol </option>
-                    <option value="Parian" >Parian </option>
-                    <option value="Prinza" >Prinza </option>
-                    <option value="Punta" >Punta </option>
-                    <option value="Puting Lupa" >Puting Lupa </option>
-                    <option value="Real" >Real </option>
-                    <option value="Saimsim" >Saimsim </option>
-                    <option value="Sampiruhan" >Sampiruhan </option>
-                    <option value="SanCristobal" >San Cristobal </option>
-                    <option value="San Jose" >San Jose </option>
-                    <option value="San Juan" >San Juan </option>
-                    <option value="Sirang Lupa" >Sirang Lupa </option>
-                    <option value="Sucol" >Sucol </option>
-                    <option value="Milagrosa" >Milagrosa (former Tulo) </option>
-                    <option value="Turbina" >Turbina </option>
-                    <option value="Ulango" >Ulango </option>
-                    <option value="Uwisan" >Uwisan </option>
-                  </select><br /><br />
-
-                Map Coordinates: &nbsp;&nbsp;( <input type="text" name="inc_lat" id="inc_lat" style="width: 80px; height: 20px; font-size: 10px;" autofocus required/> , 
-                <input type="text" name="inc_long" id="inc_long" style="width: 80px; height: 20px; font-size: 10px;" autofocus required/> )
-                <br /><br /><br />
-                 
-                <input type="submit" value="Add Incident" id="addIncidentBtn" /><br /><br />
-                <a  href='<?php echo base_url() ?>index.php/incidentsManager' id="menu_back2_btn" /> BACK &rarr; </a><br />
-              </form>
+                <?php require("addIncident.php"); ?>
             </div>
             
-
         </div>
+
+        <div style="display:none">
+            <div id='edit_incident' class="colorbox_edit_delete" style='background:#fff;'>
+                <form class="editIncident"  method='post'>
+                    <div name="left">
+                        <div id="listOfIncidents">
+                        </div>
+                    <br /> 
+                    <input type="button" name="selectIncident" class="lightboxSubmitBtn" id="editIncBtn1" value="SELECT" onclick='javascript:viewIncidentDetails();'>
+                    </div>
+                    
+                    <div name="right">
+                        <div id="incidentDetails">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div style="display:none">
+            <div id='delete_incident' class="colorbox_edit_delete" style='background:#fff;'>
+                <form class="deleteIncident"  method='post'>
+                    <div name="delete_incident">
+                        <div id="listOfIncidents2">
+                        </div>
+                    <br /> 
+                    <input type="button" name="selectIncident" class="lightboxSubmitBtn" id="deleteIncBtn1" value="DELETE" onclick='javascript:deleteSelectedIncident();'>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        
     </div>
 
    
