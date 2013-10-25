@@ -12,32 +12,31 @@
     <link href="<?php echo base_url() ?>styles/css/jquery-ui.css"  rel="stylesheet"></link>
     <link href="<?php echo base_url() ?>styles/css/style.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>styles/css/colorbox.css" rel="stylesheet">
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
-
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script src="<?php echo base_url() ?>styles/js/gmaps.js"></script>
     <script src="<?php echo base_url() ?>styles/js/jquery-1.8.3.js"></script>
     <script src="<?php echo base_url() ?>styles/js/jquery.min.js"></script>
     <script src="<?php echo base_url() ?>styles/js/jquery-ui.js"></script>
     <script src="<?php echo base_url() ?>styles/js/subFunctions.js"></script>
     <script src="<?php echo base_url() ?>styles/js/mainFunctions.js"></script>
-    <script src="<?php echo base_url() ?>styles/js/gmaps.js"></script>
+    
     <script src="<?php echo base_url() ?>styles/js/jquery.autosize.js"></script>
     <script src="<?php echo base_url() ?>styles/js/jquery.colorbox.js"></script>
-
 
     <script>
         $(document).ready(function(){
             $("#editrw").colorbox({inline:true, width:"70%"});
             $("#deleterw").colorbox({inline:true, width:"auto"});
+
         });
 
-        $(function(){   $( "#rwork_start" ).datepicker();    });
-        $(function(){   $( "#rwork_end" ).datepicker();    });
+        $(function(){
+            $('textarea').autosize();
+        });
 
     </script>
 
 
-    <?php echo $map['js']; ?>
-    
   </head>
   <body>
     <div id="loading-image"><img src="<?php echo base_url() ?>styles/img/floatingCircles.gif" alt="Loading..." /></div>
@@ -53,24 +52,33 @@
     <div id="lowerbox">
 
         <div id="functions">
-            Roadworks Manager:
-            <a href="#add_roadwork" id="menu_add_rw_btn"><span class="icon"> + </span>Add Roadwork</a> 
-            <a id='editrw' href="#edit_roadwork" onclick='javascript:listEditRoadworks();' ><span class="icon"> : </span>Edit Roadworks</a> 
-            <a id='deleterw' href="#delete_roadwork" onclick='javascript:listDeleteRoadworks();' ><span class="icon"> - </span>Delete Roadworks</a> 
-            <a href='<?php echo base_url() ?>index.php/roadworksTableManager' id="menu_view_rw_btn" /><span class="icon"> p </span>View Roadworks Table</a>
-            <a href='<?php echo base_url() ?>index.php/mapsManager' id="menu_back_rw_btn" /><span class="icon"> h </span>Back to Main Menu</a>
+            Reports Manager: 
+            <a id='editrw' href="#edit_roadwork" onclick='javascript:listEditRoadworks();' >Edit Roadworks</a>
+            <a id='deleterw' href="#delete_roadwork" onclick='javascript:listDeleteRoadworks();' >Delete Roadworks</a>
+            <a href='<?php echo base_url() ?>index.php/roadworksManager' id="menu_back_rw_btn" />Back to Main Menu &rarr;</a>
             <span style="float:right;"><a href='<?php echo base_url() ?>' >Log Out</a></span>
         </div>
 
-        <div id="map" ><?php echo $map['html']; ?></div>
-        
+        <div id="table_view" style="width: 100%;" ><br />
 
-        <div id="adminFunctions">
-
-            <div id="addroadworkDiv">
-              <?php require("addRoadwork.php"); ?>
+            
+        <div class="edit_delete">
+            <a id='rw_all' href="#roadwork_all" onclick='javascript:allRoadworks();' class="table_buttons">All Roadworks</a>
+            <a id='rw_completed' href="#roadwork_completed" onclick='javascript:completedRoadworks();' class="table_buttons">Completed</a>
+            <a id='rw_ongoing' href="#roadwork_ongoing" onclick='javascript:ongoingRoadworks();' class="table_buttons" >Ongoing</a>
+            <a id='rw_planned' href="#roadwork_planned" onclick='javascript:plannedRoadworks();' class="table_buttons">Not Yet Started</a>
+            
             </div>
+
+            
+        
+           
+            
+
         </div>
+
+
+
 
         <div style="display:none">
             <div id='edit_roadwork' class="colorbox_edit_delete" style='background:#fff;'>
@@ -96,14 +104,18 @@
                     <div name="delete_roadwork">
                         <div id="listOfRoadworks2">
                         </div>
-                    <br /> 
+                    <br />
                     <input type="button" name="selectRoadwork" class="lightboxSubmitBtn" id="deleteRwBtn1" value="DELETE" onclick='javascript:deleteSelectedRoadwork();'>
                     </div>
                 </form>
             </div>
         </div>
-    </div>
 
+
+
+
+
+    </div>
 
    
      

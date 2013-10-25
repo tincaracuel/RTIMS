@@ -125,22 +125,19 @@ class incidentsManager extends CI_Controller {
 
 	public function setInfowindow_inc($inc_id, $inc_type, $street, $barangay, $description, $start_date, $end_date, $latitude, $longitude) {
 		$infowindow_string = 	'<html><body>'.
-								'Incident #: '.$inc_id.'<br />'.
-								'Classification: '.$inc_type.'<br />';
+								'<p style="margin-top: -2px; border-bottom: 1px solid grey;">'.'Incident # '.$inc_id.'<br />'.
+								$inc_type.'</p>';
 		if($description != '')
-			$infowindow_string = $infowindow_string.'Description: '.$description.'<br />';
+			$infowindow_string = $infowindow_string.'<p>'.$description.'</p>';
 
-
-		$infowindow_string = $infowindow_string.'Location: '.$barangay.'<br />'.
-								'Duration: '.$start_date;
+		if($street != '')
+			$infowindow_string = $infowindow_string.'<p style="color:grey;">'.$street.', '.$barangay.'<br />'.$start_date;
+		else $infowindow_string = $infowindow_string.'<p style="color:grey;">'.$barangay.'<br />'.$start_date;
 
 		if($end_date != '0000-00-00')
 			$infowindow_string = $infowindow_string.' to '.$end_date;
 
-		$infowindow_string = $infowindow_string.'<br /></body></html>';
-
-
-
+		$infowindow_string = $infowindow_string.'</p></body></html>';
 								'</body></html>';
 
 		return $infowindow_string;

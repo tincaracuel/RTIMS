@@ -5,27 +5,31 @@
 </script>
 
 <form class="addIncident" action='<?php echo base_url() ?>index.php/incidentsManager/addIncident' method='post'>
-    Classification: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <select id="inc_classification" name="inc_classification" autofocus required ><br /><br />
+    <table style="width:100%;">
+
+    <tr><td width="30%">Classification:</td>
+    <td><select id="inc_classification" name="inc_classification" autofocus required ><br /><br />
         <option value="Accident">Accident</option>
         <option value="Obstruction">Obstruction</option>
         <option value="Public Event">Public Event</option>
         <option value="Funeral">Funeral</option>
         <option value="Flood">Flood</option>
         <option value="Strike">Strike</option>
-      </select><br /><br />
+    </select></td></tr>
 
-    Duration: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input type="text" id="inc_start" name="inc_start" style="width: 80px; font-size: 14px;" autofocus required /> to
-    <input type="text" id="inc_end" name="inc_end" style="width: 80px; font-size: 14px;" /><br /><br />
+    <tr><td width="30%">Duration:</td>
+        <td><input type="text" name="inc_start" id="inc_start" required />&nbsp;to&nbsp;
+        <input type="text" name="inc_end" id="inc_end" /></td></tr>
 
-    Description: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea name="inc_desc" id="inc_desc" autofocus required> </textarea><br /><br />
+    <tr><td width="30%">Description:</td>
+        <td><textarea name="inc_desc" id="inc_desc" required > </textarea></td></tr>
 
-    Street: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="text" name="inc_street" autofocus required /><br /><br />
+    <tr><td width="30%">Street:</td></td>
+        <td><input type="text" name="inc_street" /></td></tr>
     
-    Barangay: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <select name="inc_barangay" id="inc_barangay" autofocus required ><br /><br />
+    <tr><td width="30%">Barangay:</td></td>
+
+    <td><select name="inc_barangay" id="inc_barangay" autofocus required >
         <option value="Bagong Kalsada" >Bagong Kalsada </option>
         <option value="Banadero" >Bańadero </option>
         <option value="Banlic" >Banlic </option>
@@ -80,11 +84,14 @@
         <option value="Turbina" >Turbina </option>
         <option value="Ulango" >Ulango </option>
         <option value="Uwisan" >Uwisan </option>
-      </select><br /><br />
 
-  Map Coordinates: ( <input type="text" name="inc_lat" id="inc_lat" style="width: 80px; height: 20px; font-size: 10px;" autofocus required /> ,
-  <input type="text" name=inc_long" id="inc_long" style="width: 80px; height: 20px; font-size: 10px;" autofocus required /> )<br /><br />
-     
-    <input type="submit" value="Add Incident" id="addIncidentBtn" /><br /><br />
+      </select></td></tr>
+
+      <tr><td width="30%">Map Coordinates:</td>
+        <td style="text-align: center;">( <input type="text" name="inc_lat" id="inc_lat" autofocus required /> , 
+    <input type="text" name="inc_long" id="inc_long" autofocus required /> )</td></tr>
+    </table>
+    <br />   
+    <input type="submit" value="Add Incident" id="addIncidentBtn" onclick='javascript:addIncident();'/><br /><br />
     <a href='' id="menu_back2_btn" />Back to Main Menu &rarr;</a>
 </form>

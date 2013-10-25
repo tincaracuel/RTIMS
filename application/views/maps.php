@@ -36,7 +36,7 @@
     <div id="loading-image"><img src="<?php echo base_url() ?>styles/img/floatingCircles.gif" alt="Loading..." /></div>
 
     <div id="header">
-      <img src="<?php echo base_url() ?>styles/img/calamba_seal.png"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <img src="<?php echo base_url() ?>styles/img/calamba_seal.png"/>&nbsp;&nbsp;&nbsp;
       Calamba City Roadworks and Traffic Incidents Monitoring System    
     </div>
 
@@ -44,9 +44,9 @@
     <div id="lowerbox">
         <div id="functions">
             Manage:
-            <a href='<?php echo base_url() ?>index.php/roadworksManager' id="menu_rw_btn">Roadworks</a>
-            <a href='<?php echo base_url() ?>index.php/incidentsManager' id="menu_inc_btn">Traffic Incidents</a>
-            <a href='<?php echo base_url() ?>index.php/mapsManager#' id="menu_report_btn">Reports</a>
+            <a href='<?php echo base_url() ?>index.php/roadworksManager' id="menu_rw_btn"><span class="icon"> F </span>Roadworks</a> 
+            <a href='<?php echo base_url() ?>index.php/incidentsManager' id="menu_inc_btn"><span class="icon"> F </span>Traffic Incidents</a>
+            <a href='<?php echo base_url() ?>index.php/reportsManager' id="menu_report_btn"><span class="icon"> F </span>Reports</a>
             <span style="float:right;"><a href='<?php echo base_url() ?>' >Log Out</a></span>
         </div>
         <div id="map" ><?php echo $map['html']; ?></div>

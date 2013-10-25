@@ -3,6 +3,13 @@
 
 class incidentsTableManager extends CI_Controller {
 
+	public function __construct() {
+        parent:: __construct();
+        $this->load->helper("url");
+        $this->load->model("roadworkAccess");
+        $this->load->library("pagination");
+    }
+
 	public function index(){
 		$this->load->model('incidentAccess', '', TRUE);
 		$this->load->model('incidentAccess');
@@ -54,5 +61,98 @@ class incidentsTableManager extends CI_Controller {
 	//	calls the editExistingCashier function in cashierAccess.php (in models) to edit the account	and it will return a status which will determine if the account was successfully edited 
 	$status = $this->incidentAccess->deleteExistingIncident($in2);
 	header("Location: ".base_url()."index.php/incidentsTableManager");	
+	}
+
+	/*-------------------------------------------------------------------------------------------------------------------------------*/
+	public function all_incidents(){
+
+		$this->load->model('incidentAccess');
+
+		$config = array();
+		$config["base_url"] = base_url() . "index.php/incidentsTableManager/all_incidents";
+        $config["total_rows"] = $this->incidentAccess->incident_all_count();
+        $config["per_page"] = 10;
+        $config["uri_segment"] = 3;
+        $choice = $config["total_rows"] / $config["per_page"];
+   		$config["num_links"] = round($choice);
+ 
+        $this->pagination->initialize($config);
+ 
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $data["query_all"] = $this->incidentAccess->
+            fetch_all_incident($config["per_page"], $page);
+        $data["links"] = $this->pagination->create_links();
+
+
+		$this->load->view('incidents-table-all.php', $data); 
+	}
+
+	public function completed_incidents(){
+
+		$this->load->model('incidentAccess');
+
+		$config = array();
+		$config["base_url"] = base_url() . "index.php/incidentsTableManager/completed_incidents";
+        $config["total_rows"] = $this->incidentAccess->incident_completed_count();
+        $config["per_page"] = 10;
+        $config["uri_segment"] = 3;
+        $choice = $config["total_rows"] / $config["per_page"];
+   		$config["num_links"] = round($choice);
+ 
+        $this->pagination->initialize($config);
+ 
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $data["query_completed"] = $this->incidentAccess->
+            fetch_completed_incident($config["per_page"], $page);
+        $data["links"] = $this->pagination->create_links();
+
+
+		$this->load->view('incidents-table-completed.php', $data); 
+	}
+
+	public function ongoing_incidents(){
+
+		$this->load->model('incidentAccess');
+
+		$config = array();
+		$config["base_url"] = base_url() . "index.php/incidentsTableManager/ongoing_incidents";
+        $config["total_rows"] = $this->incidentAccess->incident_ongoing_count();
+        $config["per_page"] = 10;
+        $config["uri_segment"] = 3;
+        $choice = $config["total_rows"] / $config["per_page"];
+   		$config["num_links"] = round($choice);
+ 
+        $this->pagination->initialize($config);
+ 
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $data["query_ongoing"] = $this->incidentAccess->
+            fetch_ongoing_incident($config["per_page"], $page);
+        $data["links"] = $this->pagination->create_links();
+
+
+		$this->load->view('incidents-table-ongoing.php', $data); 
+	}
+
+	public function planned_incidents(){
+
+		$this->load->model('incidentAccess');
+
+		$config = array();
+		$config["base_url"] = base_url() . "index.php/incidentsTableManager/planned_incidents";
+        $config["total_rows"] = $this->incidentAccess->incident_planned_count();
+        $config["per_page"] = 10;
+        $config["uri_segment"] = 3;
+        $choice = $config["total_rows"] / $config["per_page"];
+   		$config["num_links"] = round($choice);
+ 
+        $this->pagination->initialize($config);
+ 
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $data["query_planned"] = $this->incidentAccess->
+            fetch_planned_incident($config["per_page"], $page);
+        $data["links"] = $this->pagination->create_links();
+
+
+		$this->load->view('incidents-table-planned.php', $data); 
 	}
 }

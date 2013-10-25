@@ -228,4 +228,10 @@ function deleteSelectedIncident(){
 
     listDeleteIncidents();
   }
+
+/*--------------------------------------------------------------------------------------*/
+
+  function listSelectedReportCategory(){
+
+  }
 }

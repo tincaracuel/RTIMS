@@ -4,6 +4,12 @@ src:
     url('../fonts/OpenSans-Light.ttf');
 }
 
+@font-face {
+    font-family: 'WebSymbolsRegular';
+    src: url('../fonts/websymbols-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 html, body{
         margin: 0;
@@ -13,11 +19,16 @@ html, body{
         background-color: #282929;
 }
 
+h1,h2,h3{
+	font-family: 'Open Sans';
+}
+
 #lowerbox{
 	height: 90%;
 }
 
 #functions, #panel{
+	font-size: 14px;
 	background-color: #3B3B3B;
 	height: auto;
 	padding: 6px 2px 6px 6px;
@@ -25,14 +36,34 @@ html, body{
 }
 
 #functions a, #panel a{
-	text-shadow: 1px 2px 5px #979797;
 	font-family: 'Open Sans';
 	color: white;
+	text-decoration: none;
+}
+
+#functions a{
+	padding-right: 1%;
+	padding-left: 1%;
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
+
+#functions span a{
+	position: relative;
+	top: -40px;
+	margin-right: 50px;
+}
+
+#panel a{
 	padding-right: 20px;
 	padding-left: 20px;
 	padding-top: 6px;
 	padding-bottom: 6px;
-	text-decoration: none;
+}
+
+#panel li{
+	margin-top: -2px;
+	margin-bottom: 2px;
 }
 
 #functions a:hover, #panel a:hover{
@@ -78,23 +109,23 @@ html, body{
 }
 
 #table_view th{
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: 100;
-	padding: 5px 10px;
-	border: 1px solid #D4D7FE;
+	padding: 0 10px;
+	border: 1px solid #6E6E6E;
 	color:white;
-	background-color: #4D90FE;
+	background-color: #6E6E6E;
 }
 
 #table_view td{
 	width: auto;
 	padding: 5px 10px;
-	font-size: 16px;
-	border: 1px solid #D4D7FE;
+	font-size: 15px;
+	border: 1px solid #DBDBDB;
 }
 
 
-#table_view tr:hover{ background-color: #E3E8FA; }
+#table_view tr:hover{ background-color: #E8E8E8; }
 
 
 .table_buttons, .lightboxSubmitBtn{
@@ -119,10 +150,8 @@ html, body{
 }
 
 .edit_delete{
-	width: 98%;
 	position: relative;
-	padding: 10px 12px;
-	margin: auto;
+	padding: 12px 10px;
 	top: 0;
 	right: 0;
 	bottom: 0;
@@ -130,59 +159,16 @@ html, body{
 }
 
 
+
 /*-------------------------------------------------------------------------------------
 ----------------------- T A B L E S   A N D   B U T T O N S ---------------------------
 -------------------------------------------------------------------------------------*/
 
-/*COMPLETED ROADWORKS*/
-#completedRoadworks th, .edit_delete #rw_completed, #completedIncidents th, .edit_delete #inc_completed{
-	background-image: -webkit-linear-gradient(top,#33CC99,#1FC38C);
-    background-image: -moz-linear-gradient(top,#33CC99,#1FC38C);
-    background-image: -ms-linear-gradient(top,#33CC99,#1FC38C);
-    background-image: -o-linear-gradient(top,#33CC99,#1FC38C);
-    background-image: linear-gradient(top,#33CC99,#1FC38C);
-}
-
-.edit_delete #rw_completed:hover, .edit_delete #inc_completed:hover{
-	background-image: -webkit-linear-gradient(top,#33CC99,#0BA270);
-    background-image: -moz-linear-gradient(top,#33CC99,#0BA270);
-    background-image: -ms-linear-gradient(top,#33CC99,#0BA270);
-    background-image: -o-linear-gradient(top,#33CC99,#0BA270);
-    background-image: linear-gradient(top,#33CC99,#0BA270);
-}
-
-/*ONGOING ROADWORKS*/
-#ongoingRoadworks th, .edit_delete #rw_ongoing, #ongoingIncidents th, .edit_delete #inc_ongoing{
-	background-image: -webkit-linear-gradient(top,#F66C6C,#E44E4E);
-    background-image: -moz-linear-gradient(top,#F66C6C,#E44E4E);
-    background-image: -ms-linear-gradient(top,#F66C6C,#E44E4E);
-    background-image: -o-linear-gradient(top,#F66C6C,#E44E4E);
-    background-image: linear-gradient(top,#F66C6C,#E44E4E);
-}
-
-.edit_delete #rw_ongoing:hover, .edit_delete #inc_ongoing:hover{
-	background-image: -webkit-linear-gradient(top,#F66C6C,#D03939);
-    background-image: -moz-linear-gradient(top,#F66C6C,#D03939);
-    background-image: -ms-linear-gradient(top,#F66C6C,#D03939);
-    background-image: -o-linear-gradient(top,#F66C6C,#D03939);
-    background-image: linear-gradient(top,#F66C6C,#D03939);
-}
-
-/*PLANNED ROADWORKS*/
-#plannedRoadworks th, .edit_delete #rw_planned, #plannedIncidents th, .edit_delete #inc_planned{
-	background-image: -webkit-linear-gradient(top,#F6BA53,#E6A83D);
-    background-image: -moz-linear-gradient(top,#F6BA53,#E6A83D);
-    background-image: -ms-linear-gradient(top,#F6BA53,#E6A83D);
-    background-image: -o-linear-gradient(top,#F6BA53,#E6A83D);
-    background-image: linear-gradient(top,#F6BA53,#E6A83D);
-}
-
-.edit_delete #rw_planned:hover, .edit_delete #inc_planned:hover{
-	background-image: -webkit-linear-gradient(top,#F6BA53,#D5972B);
-    background-image: -moz-linear-gradient(top,#F6BA53,#D5972B);
-    background-image: -ms-linear-gradient(top,#F6BA53,#D5972B);
-    background-image: -o-linear-gradient(top,#F6BA53,#D5972B);
-    background-image: linear-gradient(top,#F6BA53,#D5972B);
+.icon{
+	font-family: 'WebSymbolsRegular';
+	position: relative;
+	top: -1px;
+	left: -2px;
 }
 
 /*-------------------------------------------------------------------------------------
@@ -215,7 +201,7 @@ html, body{
 
 #header img{
 	height: 40px;
-	position: absolute;
+	position: relative;
 	top: 8px;
 	left: 18px;
 }
@@ -280,7 +266,7 @@ html, body{
 	position: relative;
 	top: -100%;
 	float:right;
-	width: 25%;
+	width: 30%;
 	height: 100%;
 	outline:none;
 	color: white;
@@ -292,17 +278,39 @@ html, body{
 	font-family: 'Open Sans';
 	margin-top: 30px;
 	font-size: 0.8em;
-	position:relative;
-	width:290px;
-	max-width:290px;
+	width:90%;
 	height: 50px;
-	left:15px;
+	padding: 10px;
     text-decoration: none;
 }
-#adminFunctions input[type=text], select, textarea{
-	width: 170px;
+#adminFunctions input[type=text], #adminFunctions select{
+	width: 100%;
 	height: 30px;
 	border: 0px solid;
+}
+
+textarea[name=rwork_desc], textarea[name=inc_desc] {
+    width: 97%;
+    max-width: 97%;
+    resize: vertical;
+    height: 90px;
+    font-family: 'Open Sans';
+    font-size: 11px;
+    border: 0px solid;
+}
+
+textarea{resize:vertical;}
+
+#adminFunctions #rwork_lat, #adminFunctions #rwork_long,
+#adminFunctions #inc_lat, #adminFunctions #inc_long{
+	width: 40%;
+	font-size: 10px;
+}
+
+#adminFunctions #rwork_start, #adminFunctions #rwork_end,
+#adminFunctions #inc_start, #adminFunctions #inc_end{
+	width: 43%;
+	font-size: 14px;
 }
 
 #adminFunctions input[type=number] {height: 20px; border: 0px solid;}
@@ -316,14 +324,6 @@ html, body{
 	margin-right: auto;
 }
 
-
-textarea[name=rwork_desc], textarea[name=inc_desc] {
-    min-width: 175px;
-    max-width: 175px;
-    height: 50px;
-    font-family: 'Open Sans';
-    font-size: 11px;
-}
 
 .menu_buttons{
 	font-family: 'Open Sans';
@@ -442,13 +442,13 @@ a{
 /*-------------------------------------------------------------------------------------
 ------------L I G H T B O X / C O L O R B O X : E D I T + D E L E T E -----------------
 -------------------------------------------------------------------------------------*/
-.colorbox_edit_delete{
+.colorbox_edit_delete, .colorbox_submit{
 	opacity: 1;
 	padding: 15px 20px 55px;
 	overflow: hidden;
 }
 
-.colorbox_edit_delete *{ font-family: 'Open Sans'; font-size: 16px;}
+.colorbox_edit_delete *, .colorbox_submit *{ font-family: 'Open Sans'; font-size: 16px;}
 
 #edit_roadwork{	height: 480px; }
 
@@ -465,41 +465,51 @@ div [name="delete_roadwork"], div [name="delete_incident"]{
 
 .lightboxSubmitBtn{ width: 175px; }
 
-.colorbox_edit_delete select{border: 1px solid grey; width: 180px;}
-
+.colorbox_edit_delete select {border: 1px solid grey; width: 180px;}
 
 div [name="left"]{
 	height: 110px;
-	width: 190px;
+	width: 23%;
 }
+
+div [name="left"] *{ width: 100%; }
+
 
 div [name="right"]{
 	position: relative;
 	float: right;
-	width: 620px;
-	padding-left: 30px;
-	border-left: 1px solid grey;
+	width: 72%;
 	top: -100px;
-	left: 0px;
 	height: 500px;
 	margin-bottom: -60px;
+	padding: 0px;
+	padding-left: 6px;
+	border-left: 1px solid grey;
 }
-
+div [name="right"] * {font-size: 98%;}
 
 div [name="right"] textarea{
-	max-width: 540px;
 	border: 1px solid grey;
-	width:525px;
 	max-height: 100px;
 	height:70px;
 	margin: 6 6 6 0px;
-	padding: 8px;
+	padding: 4px;
+	width: 90%;
+	max-width: 90%;
 }
 
-div [name="right"] input{ border: 1px solid grey; padding: 8px; width: 380px;}
-div [name="right"] input[type=text]{ width: 380px;	margin: 6px;}
-div [name="right"] select { padding: 7px; height: auto; width: 400px;}
+div [name="right"] input{ border: 1px solid grey; padding: 4px;}
+div [name="right"] input[type=text]{ width: 90%;}
+div [name="right"] select { padding: 4px; height: auto;}
 div [name="right"] input[type=submit]{ margin-left: auto; margin-right: auto;}
+
+
+div [name="right"] input[name='lat2'], div [name="right"] input[name='long2']{
+	width: 45%;
+	border: 0px solid;
+	border-bottom: 1px dashed grey;
+	text-align: center;
+}
 
 
 .colorbox_edit_delete div[name="right"]{
@@ -508,7 +518,83 @@ div [name="right"] input[type=submit]{ margin-left: auto; margin-right: auto;}
 }
 
 
-/*--------------------------------------------------------------------------------*/
+
+
+
+/*-------------------------------------------------------------------------------------
+------------- S E N D   R E P O R T /  C O L O R B O X _ S U B M I T ------------------
+-------------------------------------------------------------------------------------*/
+
+.colorbox_submit div[name="choose_report"]{
+	position: relative;
+	margin-left: 0;
+	margin-right: 0;
+	margin-bottom: -45px;
+	width:auto;
+}
+
+.colorbox_submit input, .colorbox_submit textarea, .colorbox_submit select{
+	border: 1px solid grey;
+	background-color: #E8E8E8;
+	-webkit-border-radius: 4px;
+     -khtml-border-radius: 4px;
+       -moz-border-radius: 4px;
+        -ms-border-radius: 4px;
+         -o-border-radius: 4px;
+            border-radius: 4px;
+}
+
+/*EXISTING RW OR INC*/
+.colorbox_submit select{ 
+	padding: 5px;
+	width: 420px;
+}
+
+/*NAME, EMAIL, SUBJECT*/
+.colorbox_submit input[type=text]{ 
+	padding: 5px;
+	width: 97%;
+}
+
+/*COMMENT OR MESSAGE*/
+.colorbox_submit textarea{ 
+	padding: 5px;
+	width: 409px;
+	max-width: 409px;
+	height: 150px;
+	max-height: 150px;
+}
+
+/*CHOOSE TYPE OF REPORT*/
+.colorbox_submit li {
+	background-color: grey;
+	width: 190px;
+	list-style-type: none;
+	padding: 5px 0px 5px 5px;
+	margin-top: 2px;
+}
+
+.colorbox_submit li:hover{ background-color: #3B3B3B;}
+.colorbox_submit a{ color: white; }
+
+.colorbox_submit input[type=submit]{ margin-left: auto; margin-right: auto;}
+
+#report_header{
+	font-size: 20px;
+	font-weight: bold;
+	border-bottom: 4px double #4787ED;
+	padding-bottom: 5px;
+	color: #4787ED;
+	text-align: center;
+}
+
+.colorbox_submit .lightboxSubmitBtn{ margin-top: 10px; }
+
+
+
+/*-------------------------------------------------------------------------------------
+----------------- P A N E L : P R I M A R Y  N A V I G A T I O N ----------------------
+-------------------------------------------------------------------------------------*/
 #panel {
 	height: 22px;
 	list-style-type: none;

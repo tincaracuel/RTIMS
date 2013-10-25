@@ -26,7 +26,7 @@
     <script>
         $(document).ready(function(){
             $("#editinc").colorbox({inline:true, width:"70%"});
-            $("#deleteinc").colorbox({inline:true, width:"25%"});
+            $("#deleteinc").colorbox({inline:true, width:"auto"});
         });
 
     </script>
@@ -38,7 +38,7 @@
     <div id="loading-image"><img src="<?php echo base_url() ?>styles/img/floatingCircles.gif" alt="Loading..." /></div>
 
     <div id="header">
-      <img src="<?php echo base_url() ?>styles/img/calamba_seal.png"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <img src="<?php echo base_url() ?>styles/img/calamba_seal.png"/>&nbsp;&nbsp;&nbsp;
       Calamba City Roadworks and Traffic Incidents Monitoring System    
     </div>
 
@@ -49,27 +49,26 @@
 
         <div id="functions">
             Incidents Table Manager: 
-            <a id='editinc' href="#edit_incident" onclick='javascript:listEditIncidents();' >Edit Incidents</a>
-            <a id='deleteinc' href="#delete_incident" onclick='javascript:listDeleteIncidents();' >Delete Incidents</a>
-            <a href='<?php echo base_url() ?>index.php/incidentsManager' id="menu_back_inc_btn" />Back to Main Menu &rarr;</a>
-            <span style="float:right;"><a href='<?php echo base_url() ?>' >Log Out</a></span>
+            <a id='editinc' href="#edit_incident" onclick='javascript:listEditIncidents();' ><span class="icon"> : </span>Edit Incidents</a>
+            <a id='deleteinc' href="#delete_incident" onclick='javascript:listDeleteIncidents();' ><span class="icon"> : </span>Delete Incidents</a>
+            <a href='<?php echo base_url() ?>index.php/incidentsManager' id="menu_back_inc_btn" /><span class="icon"> h </span>Back to Main Menu</a>
+            <span style="float:right;"><a href='<?php echo base_url() ?>' ><span class="icon"> X </span>Log Out</a></span>
         </div>
 
 
-        <div id="table_view" style="width: 100%;" ><br /><br />
+        <div id="table_view" style="width: 100%;" >
         
         <div class="edit_delete">
-            Listings: <a id='inc_all' href="#incident_all" onclick='javascript:allIncidents();' class="table_buttons">All Activities</a>
-            <a id='inc_completed' href="#incident_completed" onclick='javascript:completedIncidents();' class="table_buttons">Completed</a>
-            <a id='inc_ongoing' href="#incident_ongoing" onclick='javascript:ongoingIncidents();' class="table_buttons">Ongoing</a>
-            <a id='inc_planned' href="#incident_planned" onclick='javascript:plannedIncidents();' class="table_buttons">Planned</a>
+            <a id='inc_all' href="<?php echo base_url() ?>index.php/incidentsTableManager/all_incidents" class="table_buttons">
+                <span class="icon"> F </span> All Activities</a>
+            <a id='inc_completed' href="<?php echo base_url() ?>index.php/incidentsTableManager/completed_incidents" class="table_buttons">
+                <span class="icon"> / </span> Completed</a>
+            <a id='inc_ongoing' href="<?php echo base_url() ?>index.php/incidentsTableManager/ongoing_incidents" class="table_buttons" >
+                <span class="icon"> J </span> Ongoing</a>
+            <a id='inc_planned' href="<?php echo base_url() ?>index.php/incidentsTableManager/planned_incidents" class="table_buttons">
+                <span class="icon"> P </span> Not Yet Started</a>
 
             </div>
-
-            <span id="allIncidents" style="display:none;"><?php require("inc_all.php"); ?></span>
-            <span id="ongoingIncidents" style="display:none;"><?php require("inc_ongoing.php"); ?></span>
-            <span id="plannedIncidents" style="display:none;"><?php require("inc_planned.php"); ?></span>
-            <span id="completedIncidents" style="display:none;"><?php require("inc_completed.php"); ?></span>
 
 
         </div>

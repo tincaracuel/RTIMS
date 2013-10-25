@@ -60,8 +60,6 @@
         </div>
 
         <div id="table_view" style="width: 100%;" >
-
-        
             <div class="edit_delete">
                 <a id='rw_all' href="<?php echo base_url() ?>index.php/roadworksTableManager/all_roadworks" class="table_buttons">
                     <span class="icon"> F </span> All Roadworks</a>
@@ -118,9 +116,6 @@
 
         </div>
 
-
-
-
         <div style="display:none">
             <div id='edit_roadwork' class="colorbox_edit_delete" style='background:#fff;'>
                 <form class="editRoadwork"  method='post'>
@@ -151,7 +146,6 @@
                 </form>
             </div>
         </div>
-
 
 
 

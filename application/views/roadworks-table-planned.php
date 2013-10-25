@@ -61,7 +61,6 @@
 
         <div id="table_view" style="width: 100%;" >
 
-        
             <div class="edit_delete">
                 <a id='rw_all' href="<?php echo base_url() ?>index.php/roadworksTableManager/all_roadworks" class="table_buttons">
                     <span class="icon"> F </span> All Roadworks</a>
@@ -77,7 +76,7 @@
                 <!--TABLE-->
                 <?php
 
-                    if($query_all == NULL){ ?>
+                    if($query_planned == NULL){ ?>
                             <center><?php echo '<p>There are no roadworks saved in the database.</p>'; ?>
                             </center>
                             <?php
@@ -94,7 +93,7 @@
                         <th style="width: 95px;">Barangay</th>
                         <th style="width: 50px;">Status</th>
                         
-                        <?php foreach($query_all as $row){
+                        <?php foreach($query_planned as $row){
 
                             ?><tr>
                             <td> <?php echo $row->contract_no ?> </td>
@@ -117,41 +116,6 @@
             
 
         </div>
-
-
-
-
-        <div style="display:none">
-            <div id='edit_roadwork' class="colorbox_edit_delete" style='background:#fff;'>
-                <form class="editRoadwork"  method='post'>
-                    <div name="left">
-                        <div id="listOfRoadworks">
-                        </div>
-                    <br /> 
-                    <input type="button" name="selectRoadwork" class="lightboxSubmitBtn" id="editRwBtn1" value="SELECT" onclick='javascript:viewRoadworkDetails();'>
-                    </div>
-                    
-                    <div name="right">
-                        <div id="roadworkDetails">
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div style="display:none">
-            <div id='delete_roadwork' class="colorbox_edit_delete" style='background:#fff;'>
-                <form class="deleteRoadwork"  method='post'>
-                    <div name="delete_roadwork">
-                        <div id="listOfRoadworks2">
-                        </div>
-                    <br />
-                    <input type="button" name="selectRoadwork" class="lightboxSubmitBtn" id="deleteRwBtn1" value="DELETE" onclick='javascript:deleteSelectedRoadwork();'>
-                    </div>
-                </form>
-            </div>
-        </div>
-
 
 
 

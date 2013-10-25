@@ -1,7 +1,7 @@
 <script>
-    $(function(){	$('textarea').autosize();    });
     $(function(){   $( "#start2" ).datepicker();    });
 	$(function(){   $( "#end2" ).datepicker();    });
+	$(function(){   $('textarea').autosize();            }); 
 
 	$(document).ready(function(){
 	$("#show_map_btn").click(function(){ //
@@ -11,45 +11,55 @@
 </script>
 
 <form class="addRoadwork" action='<?php echo base_url() ?>index.php/roadworksManager/addRoadwork' method='post'>
-Contract number:&nbsp;  &nbsp;
-<input type="text" name="cn2" id='cn2' value='<?php echo $details[0]['contract_no']; ?>' disabled="disabled"><br />
 
-Roadwork name: &nbsp;  &nbsp; 
-<input type="text" name="rwork_name2" id='rwork_name2' value='<?php echo $details[0]['rwork_name']; ?>' required ><br />
+<table style="width:100%;">
+	<tr><td width="25%">Contract no.:</td>
+		<td><input type="text" name="cn2" id='cn2' value='<?php echo $details[0]['contract_no']; ?>' disabled="disabled"></td></tr>
 
-Classification: &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;
-	<select name="type2" id="type2" required value='<?php echo $details[0]['rwork_type']; ?>'><br /><br />
-		<option value="Construction"	 		<?php if ( $details[0]['rwork_type'] == "Construction") 		{ ?> selected <?php } ?> >Construction </option>
-		<option value="Rehabilitation"	 		<?php if ( $details[0]['rwork_type'] == "Rehabilitation") 		{ ?> selected <?php } ?> >Rehabilitation </option>
-		<option value="Renovation"		 		<?php if ( $details[0]['rwork_type'] == "Renovation") 			{ ?> selected <?php } ?> >Renovation </option>
-		<option value="Riprapping"		 		<?php if ( $details[0]['rwork_type'] == "Riprapping") 			{ ?> selected <?php } ?> >Riprapping </option>
-		<option value="Application"		 		<?php if ( $details[0]['rwork_type'] == "Application") 			{ ?> selected <?php } ?> >Application </option>
-		<option value="Installation"	 		<?php if ( $details[0]['rwork_type'] == "Installation") 		{ ?> selected <?php } ?> >Installation </option>
-		<option value="Reconstruction"	 		<?php if ( $details[0]['rwork_type'] == "Reconstruction") 		{ ?> selected <?php } ?> >Reconstruction </option>
-		<option value="Concreting/Asphalting" 	<?php if ( $details[0]['rwork_type'] == "Concreting/Asphalting"){ ?> selected <?php } ?> >Concreting/Asphalting </option>
-		<option value="Electrification"	 		<?php if ( $details[0]['rwork_type'] == "Electrification") 		{ ?> selected <?php } ?> >Electrification </option>
-		<option value="Roadway Lighting" 		<?php if ( $details[0]['rwork_type'] == "Roadway Lighting")		{ ?> selected <?php } ?>>Roadway Lighting </option>
-	</select><br /><br />
+	<tr><td width="25%">Roadwork name:</td>
+		<td><input type="text" name="rwork_name2" id='rwork_name2' value='<?php echo $details[0]['rwork_name']; ?>' required ></td></tr>
 
-Description:
-<textarea name="desc2" id="desc2" required><?php echo $details[0]['description']; ?></textarea><br /><br />
+	<tr><td width="25%">Classification:</td>
+		<td><select name="type2" id="type2" required value='<?php echo $details[0]['rwork_type']; ?>'><br /><br />
+			<option value="Construction"	 		<?php if ( $details[0]['rwork_type'] == "Construction") 		{ ?> selected <?php } ?> >Construction </option>
+			<option value="Rehabilitation"	 		<?php if ( $details[0]['rwork_type'] == "Rehabilitation") 		{ ?> selected <?php } ?> >Rehabilitation </option>
+			<option value="Renovation"		 		<?php if ( $details[0]['rwork_type'] == "Renovation") 			{ ?> selected <?php } ?> >Renovation </option>
+			<option value="Riprapping"		 		<?php if ( $details[0]['rwork_type'] == "Riprapping") 			{ ?> selected <?php } ?> >Riprapping </option>
+			<option value="Application"		 		<?php if ( $details[0]['rwork_type'] == "Application") 			{ ?> selected <?php } ?> >Application </option>
+			<option value="Installation"	 		<?php if ( $details[0]['rwork_type'] == "Installation") 		{ ?> selected <?php } ?> >Installation </option>
+			<option value="Reconstruction"	 		<?php if ( $details[0]['rwork_type'] == "Reconstruction") 		{ ?> selected <?php } ?> >Reconstruction </option>
+			<option value="Concreting/Asphalting" 	<?php if ( $details[0]['rwork_type'] == "Concreting/Asphalting"){ ?> selected <?php } ?> >Concreting/Asphalting </option>
+			<option value="Electrification"	 		<?php if ( $details[0]['rwork_type'] == "Electrification") 		{ ?> selected <?php } ?> >Electrification </option>
+			<option value="Roadway Lighting" 		<?php if ( $details[0]['rwork_type'] == "Roadway Lighting")		{ ?> selected <?php } ?>>Roadway Lighting </option>
+		</select></td></tr>
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;Start date &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-End date &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-Progress/Status<br />
-&nbsp; 
-<input type="text" name="start2" id="start2" value='<?php echo $details[0]['start_date']; ?>' style="width:  120px; font-size: 16px; text-align:center;" required /> -
-<input type="text" name="end2" id="end2" value='<?php if ($details[0]['end_date'] != '0000-00-00') echo $details[0]['end_date']; ?>'style="width: 120px; font-size: 16px; text-align:center;" />
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	<tr><td width="25%">Description:</td>
+		<td><textarea name="desc2" id="desc2" required><?php echo $details[0]['description']; ?></textarea></td></tr>
 
-<input type="number" name="status2" id="status2" min="0" max="100" style="width: 100px; font-size: 16px; text-align:center;" value='<?php echo $details[0]['status']; ?>' required /><br /><br />
+	
+</table>
 
+<table style="width:100%;">
+<tr><td width="33%" style="text-align:center;">Start date</td>
+	<td width="33%" style="text-align:center;">End date</td>
+	<td width="33%" style="text-align:center;">Progress/Status</td>
+</tr>
+
+<tr><td width="33%" style="text-align:center;"><input type="text" name="start2" id="start2" value='<?php echo $details[0]['start_date']; ?>' style="width:  120px; font-size: 16px; text-align:center;" required /></td>
+	<td width="33%" style="text-align:center;"><input type="text" name="end2" id="end2" value='<?php if ($details[0]['end_date'] != '0000-00-00') echo $details[0]['end_date']; ?>'style="width: 120px; font-size: 16px; text-align:center;" /></td>
+	<td width="33%" style="text-align:center;"><input type="number" name="status2" id="status2" min="0" max="100" style="width: 100px; font-size: 16px; text-align:center;" value='<?php echo $details[0]['status']; ?>' required /></td>
+</tr>
+</table>
+
+
+<br />
 <center> <b>LOCATION DETAILS</center></b><br />
-Street: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
-<input type="name" name="street2" id="street2"  value='<?php echo $details[0]['street']; ?>' required /> <br />
+<table style="width:100%;">
+<tr><td width="25%">Street:</td>
+	<td><input type="text" name="street2" id="street2"  value='<?php echo $details[0]['street']; ?>' required /></td></tr>
 
-Barangay: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-<select name="brgy2" id="brgy2"  required value='<?php echo $details[0]['barangay']; ?>'>
+<tr><td width="25%">Barangay:</td>
+	<td><select name="brgy2" id="brgy2"  required value='<?php echo $details[0]['barangay']; ?>'>
 		<option value="Bagong Kalsada"	 		<?php if ( $details[0]['barangay'] == "Bagong Kalsada") 		{ ?> selected <?php } ?> >Bagong Kalsada </option>
 		<option value="Banadero"	 			<?php if ( $details[0]['barangay'] == "Bańadero") 				{ ?> selected <?php } ?> >Bańadero </option>
 		<option value="Banlic"		 			<?php if ( $details[0]['barangay'] == "Banlic") 				{ ?> selected <?php } ?> >Banlic </option>
@@ -104,12 +114,14 @@ Barangay: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 		<option value="Turbina"	 				<?php if ( $details[0]['barangay'] == "Turbina") 				{ ?> selected <?php } ?> >Turbina </option>
 		<option value="Ulango"	 				<?php if ( $details[0]['barangay'] == "Ulango") 				{ ?> selected <?php } ?> >Ulango </option>
 		<option value="Uwisan"	 				<?php if ( $details[0]['barangay'] == "Uwisan") 				{ ?> selected <?php } ?> >Uwisan </option>
-</select>
-<br />
+</select></td></tr>
 
-Map Coordinates: &nbsp;  &nbsp; (<input type="text" name="lat2" id='lat2' style="width: 160px; border: 0px solid;" value='<?php echo $details[0]['latitude']; ?>' >, 
-<input type="text" name="long2" id='long2' style="width: 160px; border: 0px solid;" value='<?php echo $details[0]['longitude']; ?>' />)
-<br />
+
+<tr><td width="25%">Coordinates:</td>
+ 	<td>(<input type="text" name="lat2" id='lat2' value='<?php echo $details[0]['latitude']; ?>' >, 
+<input type="text" name="long2" id='long2' value='<?php echo $details[0]['longitude']; ?>' />)</td></tr>
+	
+</table>
 
 
 <br /> <br />

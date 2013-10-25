@@ -29,7 +29,7 @@ $(document).ready(function(){
 	$("#menu_add_rw_btn").click(function(){ // SHOW ROADWORK FORM FIELDS
 		$("#menu_rw").hide();
 		$("#admin_roadwork").hide();
-		$("#map").css("width", "75%");
+		$("#map").css("width", "70%");
 		$("#adminFunctions").css("display", "true");
 		$("#addroadworkDiv").fadeIn(900);
 		});
@@ -125,12 +125,23 @@ $(document).ready(function(){
 	});
 
 
+	/* RESETS THE FORMS */
+	$("#existing_rw").click(function(){
+		$('#reportForm').trigger("reset");
+		$('#rwReportForm').trigger("reset");
+		$('#incReportForm').trigger("reset");
+	});
 
+	$("#existing_inc").click(function(){
+		$('#reportForm').trigger("reset");
+		$('#rwReportForm').trigger("reset");
+		$('#incReportForm').trigger("reset");
+	});
 
-
-	$("#show_map_btn").click(function(){ //
-		alert('assda');
-		$("#show_map").show();
+	$("#new-report").click(function(){
+		$('#reportForm').trigger("reset");
+		$('#rwReportForm').trigger("reset");
+		$('#incReportForm').trigger("reset");
 	});
 
 
@@ -139,7 +150,7 @@ $(document).ready(function(){
 	$("#menu_add_inc_btn").click(function(){ // SHOW INCIDENT FORM FIELDS
 		$("#menu_inc").hide();
 		$("#admin_incident").hide();
-		$("#map").css("width", "75%");
+		$("#map").css("width", "70%");
 		$("#adminFunctions").css("display", "true");
 		$("#addincidentDiv").fadeIn(900);
 		});

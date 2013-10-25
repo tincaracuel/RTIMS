@@ -23,7 +23,6 @@
     <script src="<?php echo base_url() ?>styles/js/jquery.autosize.js"></script>
     <script src="<?php echo base_url() ?>styles/js/jquery.colorbox.js"></script>
 
-
     <script>
         $(document).ready(function(){
             $("#editinc").colorbox({inline:true, width:"70%"});
@@ -33,7 +32,6 @@
     </script>
 
 
-    <?php echo $map['js']; ?>
     
   </head>
   <body>
@@ -50,26 +48,67 @@
     <div id="lowerbox">
 
         <div id="functions">
-            Incidents Manager:
-            <a href="#add_incident" id="menu_add_inc_btn"><span class="icon"> + </span>Add Incident</a> 
+            Incidents Table Manager: 
             <a id='editinc' href="#edit_incident" onclick='javascript:listEditIncidents();' ><span class="icon"> : </span>Edit Incidents</a>
-            <a id='deleteinc' href="#delete_incident" onclick='javascript:listDeleteIncidents();' ><span class="icon"> - </span>Delete Incidents</a>
-            <a href='<?php echo base_url() ?>index.php/incidentsTableManager' id="menu_view_inc_btn" /><span class="icon"> p </span>View Incidents Table</a>
-            <a href='<?php echo base_url() ?>index.php/mapsManager' id="menu_back_inc_btn" /><span class="icon"> h </span>Back to Main Menu</a>
-            <span style="float:right;"><a href='<?php echo base_url() ?>' >Log Out</a></span>
+            <a id='deleteinc' href="#delete_incident" onclick='javascript:listDeleteIncidents();' ><span class="icon"> : </span>Delete Incidents</a>
+            <a href='<?php echo base_url() ?>index.php/incidentsManager' id="menu_back_inc_btn" /><span class="icon"> h </span>Back to Main Menu</a>
+            <span style="float:right;"><a href='<?php echo base_url() ?>' ><span class="icon"> X </span>Log Out</a></span>
         </div>
 
 
-        <div id="map" ><?php echo $map['html']; ?></div>
-       
+        <div id="table_view" style="width: 100%;" >
+        
+        <div class="edit_delete">
+            <a id='inc_all' href="<?php echo base_url() ?>index.php/incidentsTableManager/all_incidents" class="table_buttons">
+                <span class="icon"> F </span> All Activities</a>
+            <a id='inc_completed' href="<?php echo base_url() ?>index.php/incidentsTableManager/completed_incidents" class="table_buttons">
+                <span class="icon"> / </span> Completed</a>
+            <a id='inc_ongoing' href="<?php echo base_url() ?>index.php/incidentsTableManager/ongoing_incidents" class="table_buttons" >
+                <span class="icon"> J </span> Ongoing</a>
+            <a id='inc_planned' href="<?php echo base_url() ?>index.php/incidentsTableManager/planned_incidents" class="table_buttons">
+                <span class="icon"> P </span> Not Yet Started</a>
 
-        <div id="adminFunctions">
-
-            <div id="addincidentDiv">
-                <?php require("addIncident.php"); ?>
             </div>
-            
+
+
+        
+
+        <?php
+
+            if($query_planned == NULL){ ?>
+                    <center><?php echo '<br /><br /><br /><br /><br />There are no incidents saved in the database.<br /><br />'; ?>
+                    </center>
+                    <?php
+            }else{ ?>
+
+                <table>
+                <th style="width: 100px;">Incident #</th>
+                <th style="width: 90px;">Classification</th>
+                <th style="width: 400px;">Description</th>
+                <th style="width:     80px;">Start</th>
+                <th style="width:     80px;">End</th>
+                <th style="width: 120px;">Street</th>
+                <th style="width: 150px;">Barangay</th>
+
+                
+                <?php foreach($query_planned as $row){
+                    ?><tr>
+                    <td> <?php echo $row->inc_id ?> </td>
+                    <td> <?php echo $row->inc_type ?> </td>
+                    <td> <?php echo $row->description ?> </td>
+                    <td> <?php echo $row->start_date ?> </td>
+                    <td> <?php if($row->end_date!='0000-00-00') echo $row->end_date ?> </td>
+                    <td> <?php echo $row->street ?> </td>
+                    <td> <?php echo $row->barangay ?> </td>
+                    </tr>
+                    <?php 
+                }
+            }
+            ?></table> <p style="text-align: center;"><?php echo $links; ?></p><?php 
+        ?>
+
         </div>
+
 
         <div style="display:none">
             <div id='edit_incident' class="colorbox_edit_delete" style='background:#fff;'>
@@ -102,7 +141,6 @@
             </div>
         </div>
 
-        
     </div>
 
    

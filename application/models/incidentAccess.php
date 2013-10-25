@@ -45,7 +45,7 @@ class incidentAccess extends CI_Model {
 		if ($queryIncident->num_rows() > 0 ){
 			$res = $queryIncident->result();
 
-			//PUSH THE ROADWORK INFO INTO THE ARRAY TO BE DISPLAYED IN THE VIEW
+			//PUSH THE incident INFO INTO THE ARRAY TO BE DISPLAYED IN THE VIEW
 			for ( $i = 0 ; $i < $queryIncident->num_rows(); $i++){			
 				$array_res[0] = $res[$i];
 
@@ -68,7 +68,7 @@ class incidentAccess extends CI_Model {
 		if ($queryIncident->num_rows() > 0 ){
 			$res = $queryIncident->result();
 
-			//PUSH THE ROADWORK INFO INTO THE ARRAY TO BE DISPLAYED IN THE VIEW
+			//PUSH THE incident INFO INTO THE ARRAY TO BE DISPLAYED IN THE VIEW
 			for ( $i = 0 ; $i < $queryIncident->num_rows(); $i++){			
 				$array_res[0] = $res[$i];
 
@@ -76,7 +76,7 @@ class incidentAccess extends CI_Model {
 				$interval_s = date_diff(date_create($res[$i]->start_date), date_create((date("Y-m-d"))));
 				$interval_e = date_diff(date_create($res[$i]->end_date), date_create((date("Y-m-d"))));
 
-				//IF THE ROADWORK IS NOT YET DUE, THE ROADWORK WILL BE DISPLAYED
+				//IF THE incident IS NOT YET DUE, THE incident WILL BE DISPLAYED
 				if (($interval_s->format('%R') == '+' && $interval_s->format('%y') >= 0 && $interval_s->format('%m') >= 0 && $interval_s->format('%d') >= 0) &&
 					(($interval_e->format('%R') == '-' && $interval_e->format('%y') >= 0 && $interval_e->format('%m') >= 0 && $interval_e->format('%d') >= 0)))
 				array_push($return, $array_res);
@@ -98,14 +98,14 @@ class incidentAccess extends CI_Model {
 		if ($queryIncident->num_rows() > 0 ){
 			$res = $queryIncident->result();
 
-			//PUSH THE ROADWORK INFO INTO THE ARRAY TO BE DISPLAYED IN THE VIEW
+			//PUSH THE incident INFO INTO THE ARRAY TO BE DISPLAYED IN THE VIEW
 			for ( $i = 0 ; $i < $queryIncident->num_rows(); $i++){			
 				$array_res[0] = $res[$i];
 
 				//COMPARES THE END DATE WITH THE CURRENT DATE
 				$interval = date_diff(date_create($res[$i]->end_date), date_create((date("Y-m-d"))));
 
-				//IF THE ROADWORK IS NOT YET DUE, THE ROADWORK WILL BE DISPLAYED
+				//IF THE incident IS NOT YET DUE, THE incident WILL BE DISPLAYED
 				if ($interval->format('%R') == '+' && $interval->format('%y') >= 0 && $interval->format('%m') >= 0 && $interval->format('%d') >= 0)
 				array_push($return, $array_res);
 			}
@@ -126,14 +126,14 @@ class incidentAccess extends CI_Model {
 		if ($queryIncident->num_rows() > 0 ){
 			$res = $queryIncident->result();
 
-			//PUSH THE ROADWORK INFO INTO THE ARRAY TO BE DISPLAYED IN THE VIEW
+			//PUSH THE incident INFO INTO THE ARRAY TO BE DISPLAYED IN THE VIEW
 			for ( $i = 0 ; $i < $queryIncident->num_rows(); $i++){			
 				$array_res[0] = $res[$i];
 
 				//COMPARES THE END DATE WITH THE CURRENT DATE
 				$interval = date_diff(date_create($res[$i]->start_date), date_create((date("Y-m-d"))));
 
-				//IF THE ROADWORK IS NOT YET DUE, THE ROADWORK WILL BE DISPLAYED
+				//IF THE incident IS NOT YET DUE, THE incident WILL BE DISPLAYED
 				if ($interval->format('%R') == '-' && $interval->format('%y') >= 0 && $interval->format('%m') >= 0 && $interval->format('%d') >= 0)
 				array_push($return, $array_res);
 			}
@@ -169,7 +169,7 @@ class incidentAccess extends CI_Model {
 	function deleteExistingIncident($in2){
 		//given the name, username and password, this function will update/edit all the details	whose cashier_name matches the variable $name 
 		$status = $this->db->query("DELETE from map_coordinates where inc_id='$in2'");
-		$status = $this->db->query("DELETE from roadwork where inc_id='$in2'");
+		$status = $this->db->query("DELETE from incident where inc_id='$in2'");
 		if(!$status){
 			$this->error = $this->db->_error_message();
     		$this->errorno = $this->db->_error_number();
@@ -178,6 +178,146 @@ class incidentAccess extends CI_Model {
 		}
 		return '';
 	}
+
+	/*-------------COUNTS AND DISPLAYS ALL INCIDENTS -----------------------------------------------------------------------------------------------*/
+
+    function incident_all_count() {
+        return $this->db->count_all("incident");
+    }
+
+    function fetch_all_incident($limit, $start) {
+        $this->db->limit($limit, $start);
+
+
+        $this->db->select("*");
+		$this->db->from("incident");
+		$this->db->join("map_coordinates"," incident.inc_id = map_coordinates.inc_id");
+		$queryincident = $this->db->get();
+ 
+        if ($queryincident->num_rows() > 0 ){
+             foreach ($queryincident->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+   	}
+
+   	/*-------------COUNTS AND DISPLAYS ALL COMPLETED INCIDENTS -----------------------------------------------------------------------------------------------*/
+
+    function incident_completed_count() {
+        $today = date('Y-m-d');
+        $no_end = '0000-00-00';
+
+
+        $this->db->select("*");
+		$this->db->from("incident");
+		$this->db->join("map_coordinates"," incident.inc_id = map_coordinates.inc_id");
+		$q1= "DATE_FORMAT(end_date, '%Y-%m-%d') < '$today' AND DATE_FORMAT(end_date, '%Y-%m-%d') != DATE_FORMAT($no_end, '%Y-%m-%d')";
+		$this->db->where($q1);
+		$queryIncident = $this->db->get();
+
+		return $queryIncident->num_rows();
+    }
+
+    function fetch_completed_incident($limit, $start) {
+        $this->db->limit($limit, $start);
+        $today = date('Y-m-d');
+        $no_end = '0000-00-00';
+
+
+        $this->db->select("*");
+		$this->db->from("incident");
+		$this->db->join("map_coordinates"," incident.inc_id = map_coordinates.inc_id");
+		$q1= "DATE_FORMAT(end_date, '%Y-%m-%d') < '$today' AND DATE_FORMAT(end_date, '%Y-%m-%d') != DATE_FORMAT($no_end, '%Y-%m-%d')";
+		$this->db->where($q1);
+		$queryIncident = $this->db->get();
+ 
+        if ($queryIncident->num_rows() > 0 ){
+             foreach ($queryIncident->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+   	}
+
+   	/*-------------COUNTS AND DISPLAYS ALL ONGOING INCIDENTS -----------------------------------------------------------------------------------------------*/
+
+    function incident_ongoing_count() {
+    	$today = date('Y-m-d');
+        $no_end = '0000-00-00';
+
+
+        $this->db->select("*");
+		$this->db->from("incident");
+		$this->db->join("map_coordinates"," incident.inc_id = map_coordinates.inc_id");
+		$q1= "DATE_FORMAT(start_date, '%Y-%m-%d') <= '$today' AND (DATE_FORMAT(end_date, '%Y-%m-%d') >= '$today' OR DATE_FORMAT(end_date, '%Y-%m-%d') = '$no_end')";
+		$this->db->where($q1);
+		$queryIncident = $this->db->get();
+        return $queryIncident->num_rows();
+    }
+
+    function fetch_ongoing_incident($limit, $start) {
+        $this->db->limit($limit, $start);
+        $today = date('Y-m-d');
+        $no_end = '0000-00-00';
+
+
+        $this->db->select("*");
+		$this->db->from("incident");
+		$this->db->join("map_coordinates"," incident.inc_id = map_coordinates.inc_id");
+		$q1= "DATE_FORMAT(start_date, '%Y-%m-%d') <= '$today' AND (DATE_FORMAT(end_date, '%Y-%m-%d') >= '$today' OR DATE_FORMAT(end_date, '%Y-%m-%d') = '$no_end')";
+		$this->db->where($q1);
+		$queryIncident = $this->db->get();
+ 
+        if ($queryIncident->num_rows() > 0 ){
+             foreach ($queryIncident->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+   	}
+
+   	/*-------------COUNTS AND DISPLAYS ALL PLANNED INCIDENTS -----------------------------------------------------------------------------------------------*/
+
+    function incident_planned_count() {
+    	$today = date('Y-m-d');
+        $no_end = '0000-00-00';
+
+
+        $this->db->select("*");
+		$this->db->from("incident");
+		$this->db->join("map_coordinates"," incident.inc_id = map_coordinates.inc_id");
+   		$q1= "DATE_FORMAT(start_date, '%Y-%m-%d') > '$today'";
+		$this->db->where($q1);
+		$queryIncident = $this->db->get();
+
+        return $queryIncident->num_rows();
+    }
+
+    function fetch_planned_incident($limit, $start) {
+        $this->db->limit($limit, $start);
+        $today = date('Y-m-d');
+        $no_end = '0000-00-00';
+
+
+        $this->db->select("*");
+		$this->db->from("incident");
+		$this->db->join("map_coordinates"," incident.inc_id = map_coordinates.inc_id");
+   		$q1= "DATE_FORMAT(start_date, '%Y-%m-%d') > '$today'";
+		$this->db->where($q1);
+		$queryIncident = $this->db->get();
+ 
+        if ($queryIncident->num_rows() > 0 ){
+             foreach ($queryIncident->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+   	}
 }
 
 ?>

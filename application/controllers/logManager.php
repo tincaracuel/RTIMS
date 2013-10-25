@@ -35,29 +35,40 @@ class logManager extends CI_Controller {
 
 			$htmlstring =  $this->setInfowindow_rw($a1, $a2, $a3, $a4, $a5, $a6, $a7, $a8, $a9, $a10, $a11);
 			$marker['infowindow_content'] = $htmlstring;
-			$marker['title'] = $coordinate[0]->map_id.','.$coordinate[0]->rwork_name.' at '.$coordinate[0]->barangay.'end date: '.$coordinate[0]->end_date;
 			if ($coordinate[0]->rwork_type == 'Construction'){
 				$marker['icon'] = 'styles/img/markers/rw/construction.png';
+				$marker['id'] = 'rwMarker_construction';
 			}else if ($coordinate[0]->rwork_type == 'Rehabilitation'){
 				$marker['icon'] = 'styles/img/markers/rw/rehabilitation.png';
+				$marker['id'] = 'rwMarker_rehabilitation';
 			}else if ($coordinate[0]->rwork_type == 'Renovation'){
 				$marker['icon'] = 'styles/img/markers/rw/renovation.png';
+				$marker['id'] = 'rwMarker_renovation';
 			}else if ($coordinate[0]->rwork_type == 'Riprapping'){
 				$marker['icon'] = 'styles/img/markers/rw/riprapping.png';
+				$marker['id'] = 'rwMarker_riprapping';
 			}else if ($coordinate[0]->rwork_type == 'Application'){
 				$marker['icon'] = 'styles/img/markers/rw/application.png';
+				$marker['id'] = 'rwMarker_application';
 			}else if ($coordinate[0]->rwork_type == 'Installation'){
 				$marker['icon'] = 'styles/img/markers/rw/installation.png';
+				$marker['id'] = 'rwMarker_installation';
 			}else if ($coordinate[0]->rwork_type == 'Reconstruction'){
 				$marker['icon'] = 'styles/img/markers/rw/reconstruction.png';
+				$marker['id'] = 'rwMarker_reconstruction';
 			}else if ($coordinate[0]->rwork_type == 'Concreting/Asphalting'){
 				$marker['icon'] = 'styles/img/markers/rw/concreting.png';
+				$marker['id'] = 'rwMarker_concreting';
 			}else if ($coordinate[0]->rwork_type == 'Electrification'){
 				$marker['icon'] = 'styles/img/markers/rw/electrification.png';
+				$marker['id'] = 'rwMarker_electrification';
 			}else if ($coordinate[0]->rwork_type == 'Roadway Lighting'){
 				$marker['icon'] = 'styles/img/markers/rw/lighting.png';
+				$marker['id'] = 'rwMarker_lighting';
 			}
-			
+
+			$marker['title'] = $coordinate[0]->map_id.','.$coordinate[0]->rwork_name.' at '.$coordinate[0]->barangay.'end date: '.$coordinate[0]->end_date;
+
 			$marker['position'] = $coordinate[0]->latitude.','.$coordinate[0]->longitude;
 			$this->googlemaps->add_marker($marker);
 		}
@@ -139,14 +150,18 @@ class logManager extends CI_Controller {
 
 		$this->googlemaps->initialize($config);
 		$data['map'] = $this->googlemaps->create_map();
+		$data['ongoing_rw'] = $this->roadworkAccess->roadwork_getAllOngoing();
+		$data['ongoing_inc'] = $this->incidentAccess->incident_getAllOngoing();
 		$this->load->view('rtims', $data);						//this function directly go to log in page
 	}
 
+	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 	public function logout(){								//destroy all the sessions when the user logged out
 		$this->session->sess_destroy();
 		redirect(base_url());
 	}
 
+	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 	public function checkUser(){
 		$name = $_POST['username'];
 		$password = $_POST['password'];
@@ -159,63 +174,107 @@ class logManager extends CI_Controller {
 			$this->session->set_userdata($newdata);
 			header("Location: ".base_url()."index.php/mapsManager");
 		}
-		/*else{
+		
+		if ($newdata['logged_in'] == TRUE) {
+			echo "TRUE";
+		}else{
 			$this->session->set_flashdata('logInError', 'No match found for administrator!');
-			redirect(base_url());*/
-
-			if ($newdata['logged_in'] == TRUE) {
-				echo "TRUE";
-			}else echo "FALSE";
-		
-		
+		redirect(base_url());
+		}
 	}
 
+	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 	public function setInfowindow_inc($inc_id, $inc_type, $street, $barangay, $description, $start_date, $end_date, $latitude, $longitude) {
 		$infowindow_string = 	'<html><body>'.
-								'Incident #: '.$inc_id.'<br />'.
-								'Classification: '.$inc_type.'<br />';
+								'<p style="margin-top: -2px; border-bottom: 1px solid grey;">'.'Incident # '.$inc_id.'<br />'.
+								$inc_type.'</p>';
 		if($description != '')
-			$infowindow_string = $infowindow_string.'Description: '.$description.'<br />';
+			$infowindow_string = $infowindow_string.'<p>'.$description.'</p>';
 
 
-		$infowindow_string = $infowindow_string.'Location: '.$barangay.'<br />'.
-								'Duration: '.$start_date;
+		if($street != '')
+			$infowindow_string = $infowindow_string.'<p style="color:grey;">'.$street.', '.$barangay.'<br />'.$start_date;
+		else $infowindow_string = $infowindow_string.'<p style="color:grey;">'.$barangay.'<br />'.$start_date;
 
 		if($end_date != '0000-00-00')
 			$infowindow_string = $infowindow_string.' to '.$end_date;
 
-		$infowindow_string = $infowindow_string.'<br /></body></html>';
-
-
-
+		$infowindow_string = $infowindow_string.'</p></body></html>';
 								'</body></html>';
 
 		return $infowindow_string;
 
 	}
 
+	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 	public function setInfowindow_rw($contract_no, $rwork_name, $street, $barangay, $start_date, $end_date, $status, $lat, $long, $type, $desc) {
 		$infowindow_string = 	'<html><body>'.
-								'Contract # '.$contract_no.'<br />'.
-								'Roadwork name: '.$rwork_name.'<br />'.
-								'Classification: '.$type.'<br />';
+								'<p style="margin-top: -2px; border-bottom: 1px solid grey;">'.'Contract # '.$contract_no.'<br />'.
+								'<b>'.$rwork_name.'</b><br />'.
+								$type.'</p>';
 
 		if($desc != '')
-			$infowindow_string = $infowindow_string.'Description: '.$desc.'<br />';
+			$infowindow_string = $infowindow_string.'<p>'.$desc.'</p>';
 
-		$infowindow_string = $infowindow_string.'Location: '.$barangay.'<br />'.
-								'Duration: '.$start_date;
+		if($street != '')
+			$infowindow_string = $infowindow_string.'<p style="color:grey;">'.$street.', '.$barangay.'<br />'.$start_date;
+		else $infowindow_string = $infowindow_string.'<p style="color:grey;">'.$barangay.'<br />'.$start_date;
 
 		if($end_date != '0000-00-00')
 			$infowindow_string = $infowindow_string.' to '.$end_date;
 
-		$infowindow_string = $infowindow_string.'<br /></body></html>';
-
-
-
+		$infowindow_string = $infowindow_string.'</p></body></html>';
 								'</body></html>';
 
 		return $infowindow_string;
-
 	}
+
+	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+	public function submitRoadworkReport(){
+		/*gets the necessary information from the submitted form*/
+		$name = $_POST['sender_name'];
+		$email = $_POST['sender_email'];
+		$contract_number = $_POST['rwork_cn'];
+		$report = $_POST['rw_report'];
+		
+		$status = $this->reportAccess->addNewRoadworkReport($name, $email, $contract_number, $report);
+		if($status == ''){
+			header("Location: ".base_url()."");
+		}else{
+			$this->load->view("message", array('message'=> 'Error.'));
+		}
+	}
+
+	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+	public function submitIncidentReport(){
+		/*gets the necessary information from the submitted form*/
+		$name = $_POST['sender_name'];
+		$email = $_POST['sender_email'];
+		$inc_id = $_POST['inc_id'];
+		$report = $_POST['inc_report'];
+		
+		$status = $this->reportAccess->addNewIncidentReport($name, $email, $inc_id, $report);
+		if($status == ''){
+			header("Location: ".base_url()."");
+		}else{
+			$this->load->view("message", array('message'=> 'Error.'));
+		}
+	}
+
+	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+	public function submitNewReport(){
+		/*gets the necessary information from the submitted form*/
+		$name = $_POST['sender_name'];
+		$email = $_POST['sender_email'];
+		$subject = $_POST['subject'];
+		$report = $_POST['report'];
+		
+		$status = $this->reportAccess->addNewReport($name, $email, $subject, $report);
+		if($status == ''){
+			header("Location: ".base_url()."");
+		}else{
+			$this->load->view("message", array('message'=> 'Error.'));
+		}
+	}
+
 }

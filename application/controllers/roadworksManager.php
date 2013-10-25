@@ -158,23 +158,21 @@ class roadworksManager extends CI_Controller {
 	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 	public function setInfowindow_rw($contract_no, $rwork_name, $street, $barangay, $start_date, $end_date, $status, $lat, $long, $type, $desc) {
 		$infowindow_string = 	'<html><body>'.
-								'Contract # '.$contract_no.'<br />'.
-								'Roadwork name: '.$rwork_name.'<br />'.
-								'Classification: '.$type.'<br />';
+								'<p style="margin-top: -2px; border-bottom: 1px solid grey;">'.'Contract # '.$contract_no.'<br />'.
+								'<b>'.$rwork_name.'</b><br />'.
+								$type.'</p>';
 
 		if($desc != '')
-			$infowindow_string = $infowindow_string.'Description: '.$desc.'<br />';
+			$infowindow_string = $infowindow_string.'<p>'.$desc.'</p>';
 
-		$infowindow_string = $infowindow_string.'Location: '.$barangay.'<br />'.
-								'Duration: '.$start_date;
+		if($street != '')
+			$infowindow_string = $infowindow_string.'<p style="color:grey;">'.$street.', '.$barangay.'<br />'.$start_date;
+		else $infowindow_string = $infowindow_string.'<p style="color:grey;">'.$barangay.'<br />'.$start_date;
 
 		if($end_date != '0000-00-00')
 			$infowindow_string = $infowindow_string.' to '.$end_date;
 
-		$infowindow_string = $infowindow_string.'<br /></body></html>';
-
-
-
+		$infowindow_string = $infowindow_string.'</p></body></html>';
 								'</body></html>';
 
 		return $infowindow_string;
