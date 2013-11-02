@@ -28,37 +28,37 @@ class incidentsManager extends CI_Controller {
 			$marker['draggable'] = FALSE;
 			$marker['clickable'] = TRUE;
 
-			$a1 = $coordinate[0]->inc_id;
-			$a2 = $coordinate[0]->inc_type;
-			$a3 = $coordinate[0]->street;
-			$a4 = $coordinate[0]->barangay;
-			$a5 = $coordinate[0]->description;
-			$a6 = $coordinate[0]->start_date;
-			$a7 = $coordinate[0]->end_date;
-			$a8 = $coordinate[0]->latitude;
-			$a9 = $coordinate[0]->longitude;
+			$a1 = $coordinate->inc_id;
+			$a2 = $coordinate->inc_type;
+			$a3 = $coordinate->street;
+			$a4 = $coordinate->barangay;
+			$a5 = $coordinate->description;
+			$a6 = $coordinate->start_date;
+			$a7 = $coordinate->end_date;
+			$a8 = $coordinate->latitude;
+			$a9 = $coordinate->longitude;
 
 			$htmlstring =  $this->setInfowindow_inc($a1, $a2, $a3, $a4, $a5, $a6, $a7, $a8, $a9);
 			$marker['infowindow_content'] = $htmlstring;
 
 
-			$marker['title'] = $coordinate[0]->inc_id.','.$coordinate[0]->inc_type.' at '.$coordinate[0]->barangay;
-			if ($coordinate[0]->inc_type == 'Accident'){
+			$marker['title'] = $coordinate->inc_id.','.$coordinate->inc_type.' at '.$coordinate->barangay;
+			if ($coordinate->inc_type == 'Accident'){
 				$marker['icon'] = base_url().'styles/img/markers/inc/accident.png';
-			}else if ($coordinate[0]->inc_type == 'Obstruction'){
+			}else if ($coordinate->inc_type == 'Obstruction'){
 				$marker['icon'] = base_url().'styles/img/markers/inc/obstruction.png';
-			}else if ($coordinate[0]->inc_type == 'Public Event'){
+			}else if ($coordinate->inc_type == 'Public Event'){
 				$marker['icon'] = base_url().'styles/img/markers/inc/event.png';
-			}else if ($coordinate[0]->inc_type == 'Flood'){
+			}else if ($coordinate->inc_type == 'Flood'){
 				$marker['icon'] = base_url().'styles/img/markers/inc/flood.png';
-			}else if ($coordinate[0]->inc_type == 'Strike'){
+			}else if ($coordinate->inc_type == 'Strike'){
 				$marker['icon'] = base_url().'styles/img/markers/inc/strike.png';
-			}else if ($coordinate[0]->inc_type == 'Funeral'){
+			}else if ($coordinate->inc_type == 'Funeral'){
 				$marker['icon'] = base_url().'styles/img/markers/inc/funeral.png';
 			}
 
 			
-			$marker['position'] = $coordinate[0]->latitude.','.$coordinate[0]->longitude;
+			$marker['position'] = $coordinate->latitude.','.$coordinate->longitude;
 			$this->googlemaps->add_marker($marker);
 		}
 

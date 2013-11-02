@@ -22,10 +22,10 @@
         <input type="text" name="inc_end" id="inc_end" /></td></tr>
 
     <tr><td width="30%">Description:</td>
-        <td><textarea name="inc_desc" id="inc_desc" required > </textarea></td></tr>
+        <td><textarea name="inc_desc" id="inc_desc" maxlength="100" required > </textarea></td></tr>
 
     <tr><td width="30%">Street:</td></td>
-        <td><input type="text" name="inc_street" /></td></tr>
+        <td><input type="text" name="inc_street" maxlength="50" /></td></tr>
     
     <tr><td width="30%">Barangay:</td></td>
 
@@ -88,8 +88,8 @@
       </select></td></tr>
 
       <tr><td width="30%">Map Coordinates:</td>
-        <td style="text-align: center;">( <input type="text" name="inc_lat" id="inc_lat" autofocus required /> , 
-    <input type="text" name="inc_long" id="inc_long" autofocus required /> )</td></tr>
+        <td style="text-align: center;">( <input type="text" name="inc_lat" id="inc_lat" maxlength="20" autofocus required /> , 
+    <input type="text" name="inc_long" id="inc_long" maxlength="20" autofocus required /> )</td></tr>
     </table>
     <br />   
     <input type="submit" value="Add Incident" id="addIncidentBtn" onclick='javascript:addIncident();'/><br /><br />

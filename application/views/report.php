@@ -6,7 +6,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>Roadworks and Traffic Incidents Monitoring System in Calamba City</title>
-    <link rel="shortcut icon" href="styles/img/calamba_seal.png" />
+    <link rel="shortcut icon" href="<?php echo base_url() ?>styles/img/calamba_seal.png" />
     <link href="/maps/documentation/javascript/examples/default.css" rel="stylesheet">
 
     <link href="<?php echo base_url() ?>styles/css/jquery-ui.css"  rel="stylesheet"></link>
@@ -20,7 +20,6 @@
     <script src="<?php echo base_url() ?>styles/js/subFunctions.js"></script>
     <script src="<?php echo base_url() ?>styles/js/mainFunctions.js"></script>
     
-    <script src="<?php echo base_url() ?>styles/js/jquery.autosize.js"></script>
     <script src="<?php echo base_url() ?>styles/js/jquery.colorbox.js"></script>
 
     <script>
@@ -30,10 +29,7 @@
 
         });
 
-        $(function(){
-            $('textarea').autosize();
-        });
-
+        $(function(){ $('textarea').autosize(); });
     </script>
 
 
@@ -43,7 +39,11 @@
 
     <div id="header">
       <img src="<?php echo base_url() ?>styles/img/calamba_seal.png"/>&nbsp;&nbsp;&nbsp;
-      Calamba City Roadworks and Traffic Incidents Monitoring System    
+      Calamba City Roadworks and Traffic Incidents Monitoring System
+
+      <div id="loginDiv">
+      <span><a href='<?php echo base_url() ?>' ><span class="icon"> X </span>Log Out</a></span>
+      </div> 
     </div>
 
 
@@ -52,27 +52,68 @@
     <div id="lowerbox">
 
         <div id="functions">
-            Reports Manager: 
-            <a id='editrw' href="#edit_roadwork" onclick='javascript:listEditRoadworks();' >Edit Roadworks</a>
-            <a id='deleterw' href="#delete_roadwork" onclick='javascript:listDeleteRoadworks();' >Delete Roadworks</a>
-            <a href='<?php echo base_url() ?>index.php/roadworksManager' id="menu_back_rw_btn" />Back to Main Menu &rarr;</a>
-            <span style="float:right;"><a href='<?php echo base_url() ?>' >Log Out</a></span>
+            Reports / Problem Manager:
+            <a href='<?php echo base_url() ?>index.php/reportsManager/markAllAsRead' />
+                <span class="icon"> / </span> Mark all reports as read</a>
+            <a href='<?php echo base_url() ?>index.php/reportsManager/markAllAsUnread' />
+                <span class="icon"> / </span> Mark all reports as unread</a>
+            <a href='<?php echo base_url() ?>index.php/mapsManager' id="menu_back_rw_btn" />
+                <span class="icon"> h </span> Back to Main Menu</a>
         </div>
 
         <div id="table_view" style="width: 100%;" ><br />
 
             
-        <div class="edit_delete">
-            <a id='rw_all' href="#roadwork_all" onclick='javascript:allRoadworks();' class="table_buttons">All Roadworks</a>
-            <a id='rw_completed' href="#roadwork_completed" onclick='javascript:completedRoadworks();' class="table_buttons">Completed</a>
-            <a id='rw_ongoing' href="#roadwork_ongoing" onclick='javascript:ongoingRoadworks();' class="table_buttons" >Ongoing</a>
-            <a id='rw_planned' href="#roadwork_planned" onclick='javascript:plannedRoadworks();' class="table_buttons">Not Yet Started</a>
-            
-            </div>
+            <!--TABLE-->
+            <?php
 
+                if($query_report == NULL){ ?>
+                    <center><?php echo '<p>There are no roadworks saved in the database.</p>'; ?>
+                    </center>
+                    <?php
+                }else{ ?>
             
-        
-           
+                    <table style="width: 95%">
+                        <th style="min-width: 60px; width: 60px; max-width: 60px;">#</th>
+                        <th>Subject</th>
+                        <th style="min-width: 160px; width: 160px; max-width: 160px;">Sender</th>
+                        <th style="min-width: 210px; width: 210px; max-width: 210px;">Email Address</th>
+                        <th style="min-width: 130px; width: 130px; max-width: 130px;">Date Received</th>
+                        <th style="min-width: 50px; width: 50px; max-width: 50px; font-size: 14px">Action</th>
+
+                        
+                        <?php foreach($query_report as $row){
+                            ?><form name="<?php echo $row->report_id?> " action="<?php echo base_url() ?>index.php/reportsManager/report" method="post">
+                                
+                                <!-- ROW IS IN BOLD FACE IF THE REPORT IS NOT YET READ-->
+                                <?php if ($row->status == "unread") { ?>
+                                <tr style="font-weight: bold; background-color: #EEEEEE;">
+                                <?php } else { ?> <tr> <?php } ?>
+
+                                    <td> <?php echo $row->report_id ?> </td>
+
+                                    <td style='text-align: justify;'>
+                                        <?php if ($row->subject != NULL) echo $row->subject;
+                                        else if ($row->rw_id != NULL) echo 'Re: Roadwork # '.$row->rw_id;
+                                        else if ($row->inc_id != NULL) echo 'Re: Incident # '.$row->inc_id; ?> </td>
+
+
+                                    <td> <?php echo $row->sender_name ?> </td>
+                                    <td> <?php echo $row->sender_email ?> </td>
+                                    <td> <?php echo $row->date_received ?> </td>
+                                    <td> <input type="hidden" name="report_id" id="report_id" value="<?php echo $row->report_id ?>" />
+                                    <input type="submit" id="selectReportToDisplayBtn" value="View" /> </td>
+
+                                </tr>
+                                
+                            </form> <?php  
+                        } /* END LOOP */ ?>
+                    </table>
+                    <?php
+                } /* END ELSE */?>
+                    
+                <p style="text-align: center;"><?php echo $links; ?></p><?php 
+            ?>
             
 
         </div>
@@ -80,7 +121,7 @@
 
 
 
-        <div style="display:none">
+        <!--<div style="display:none">
             <div id='edit_roadwork' class="colorbox_edit_delete" style='background:#fff;'>
                 <form class="editRoadwork"  method='post'>
                     <div name="left">
@@ -109,7 +150,7 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div>-->
 
 
 

@@ -8,10 +8,10 @@
 
 <table style="width:100%;">
 <tr><td width="30%">Contract number:</td>
-    <td><input type="text" name="contract_number" onkeyup='javascript:checkRWcontractNumberDuplicate(this.value);' autofocus required /></td></tr>
+    <td><input type="text" name="contract_number" maxlength="20" onkeyup='javascript:checkRWcontractNumberDuplicate(this.value);' autofocus required /></td></tr>
 
 <tr><td width="30%">Roadwork name:</td>
-    <td><input type="text" name="rwork_name" /></td></tr>
+    <td><input type="text" name="rwork_name" maxlength="50" /></td></tr>
 
 <tr><td width="30%">&nbsp;</td>
     <td>&nbsp;</td></tr>
@@ -35,13 +35,13 @@
     <input type="text" name="rwork_end" id="rwork_end" /></td></tr>
 
 <tr><td width="30%">Description:</td>
-    <td><textarea name="rwork_desc" id="rwork_desc" required > </textarea></td></tr>
+    <td><textarea name="rwork_desc" id="rwork_desc" maxlength="250" required > </textarea></td></tr>
 
 <tr><td width="30%">&nbsp;</td>
     <td>&nbsp;</td></tr>
 
 <tr><td width="30%">Street:</td></td>
-    <td><input type="text" name="rwork_street" /></td></tr>
+    <td><input type="text" name="rwork_street" maxlength="50" /></td></tr>
 
 <tr><td width="30%">Barangay:</td></td>
 
@@ -104,8 +104,8 @@
       </select></td></tr>
 
 <tr><td width="30%">Map Coordinates:</td>
-    <td style="text-align: center;">( <input type="text" name="rwork_lat" id="rwork_lat" autofocus required /> , 
-<input type="text" name="rwork_long" id="rwork_long" autofocus required /> )</td></tr>
+    <td style="text-align: center;">( <input type="text" name="rwork_lat" id="rwork_lat" maxlength="20" autofocus required /> , 
+<input type="text" name="rwork_long" id="rwork_long" maxlength="20" autofocus required /> )</td></tr>
 
 <tr><td width="30%">Progress / Status:</td>
     <td><input type="number" name="rwork_status" min="0" max="100" autofocus /></td></tr>

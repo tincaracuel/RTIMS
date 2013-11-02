@@ -51,6 +51,79 @@ class reportAccess extends CI_Model {
 		
 	}
 
+	function report_all_count() {
+        return $this->db->count_all("report");
+    }
+
+    function fetch_all_report($limit, $start) {
+        $this->db->limit($limit, $start);
+
+
+        $this->db->select("*");
+		$this->db->from("report");
+		$queryReport = $this->db->get();
+ 
+        if ($queryReport->num_rows() > 0 ){
+             foreach ($queryReport->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+   	}
+
+   	function getReportDetails($report_id) {
+
+        $this->db->select("*");
+        $this->db->from("report");
+        $this->db->where("report_id", $report_id);
+        $queryReport = $this->db->get();
+ 
+		$this->db->query("UPDATE report set status='read' where report_id='$report_id'");
+
+        if ($queryReport->num_rows() > 0 ){
+             foreach ($queryReport->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+    }
+
+	function markAllReportsRead() {
+
+		$this->db->query("UPDATE report set status='read' where report_id !=''");
+
+    }
+
+
+
+    function markReportUnread($report_id) {
+ 
+		$this->db->query("UPDATE report set status='unread' where report_id='$report_id'");
+
+    }
+    
+
+    function countUnreadReport() {
+   		$q1= "status = 'unread'";
+
+   		$this->db->select("*");
+		$this->db->from("report");
+		$this->db->where($q1);
+
+		$queryRoadwork = $this->db->get();
+		return $queryRoadwork->num_rows;
+    }
+
+
+
+    function markAllReportsUnread() {
+ 
+		$this->db->query("UPDATE report set status='unread' where report_id !=''");
+
+    }
+
 	
 
 

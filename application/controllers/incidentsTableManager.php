@@ -11,13 +11,25 @@ class incidentsTableManager extends CI_Controller {
     }
 
 	public function index(){
-		$this->load->model('incidentAccess', '', TRUE);
 		$this->load->model('incidentAccess');
-		$data['query_all'] = $this->incidentAccess->incident_getAll();
-		$data['query_ongoing'] = $this->incidentAccess->incident_getAllOngoing();
-		$data['query_completed'] = $this->incidentAccess->incident_getAllCompleted();
-		$data['query_planned'] = $this->incidentAccess->incident_getAllPlanned();
-		$this->load->view('incident_table', $data);
+
+		$config = array();
+		$config["base_url"] = base_url() . "index.php/incidentsTableManager/all_incidents";
+        $config["total_rows"] = $this->incidentAccess->incident_all_count();
+        $config["per_page"] = 10;
+        $config["uri_segment"] = 3;
+        $choice = $config["total_rows"] / $config["per_page"];
+   		$config["num_links"] = round($choice);
+ 
+        $this->pagination->initialize($config);
+ 
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $data["query_all"] = $this->incidentAccess->
+            fetch_all_incident($config["per_page"], $page);
+        $data["links"] = $this->pagination->create_links();
+
+
+		$this->load->view('incidents-table-all.php', $data); 
 	}
 
 

@@ -17,7 +17,7 @@
 		<td><input type="text" name="cn2" id='cn2' value='<?php echo $details[0]['contract_no']; ?>' disabled="disabled"></td></tr>
 
 	<tr><td width="25%">Roadwork name:</td>
-		<td><input type="text" name="rwork_name2" id='rwork_name2' value='<?php echo $details[0]['rwork_name']; ?>' required ></td></tr>
+		<td><input type="text" name="rwork_name2" id='rwork_name2' value='<?php echo $details[0]['rwork_name']; ?>' maxlength='50' required ></td></tr>
 
 	<tr><td width="25%">Classification:</td>
 		<td><select name="type2" id="type2" required value='<?php echo $details[0]['rwork_type']; ?>'><br /><br />
@@ -34,7 +34,7 @@
 		</select></td></tr>
 
 	<tr><td width="25%">Description:</td>
-		<td><textarea name="desc2" id="desc2" required><?php echo $details[0]['description']; ?></textarea></td></tr>
+		<td><textarea name="desc2" id="desc2" maxlength='250' required><?php echo $details[0]['description']; ?></textarea></td></tr>
 
 	
 </table>
@@ -56,7 +56,7 @@
 <center> <b>LOCATION DETAILS</center></b><br />
 <table style="width:100%;">
 <tr><td width="25%">Street:</td>
-	<td><input type="text" name="street2" id="street2"  value='<?php echo $details[0]['street']; ?>' required /></td></tr>
+	<td><input type="text" name="street2" id="street2"  value='<?php echo $details[0]['street']; ?>' maxlength='50' required /></td></tr>
 
 <tr><td width="25%">Barangay:</td>
 	<td><select name="brgy2" id="brgy2"  required value='<?php echo $details[0]['barangay']; ?>'>
@@ -118,8 +118,8 @@
 
 
 <tr><td width="25%">Coordinates:</td>
- 	<td>(<input type="text" name="lat2" id='lat2' value='<?php echo $details[0]['latitude']; ?>' >, 
-<input type="text" name="long2" id='long2' value='<?php echo $details[0]['longitude']; ?>' />)</td></tr>
+ 	<td>(<input type="text" name="lat2" id='lat2' value='<?php echo $details[0]['latitude']; ?>' maxlength='20' />, 
+<input type="text" name="long2" id='long2' value='<?php echo $details[0]['longitude']; ?>' maxlength='20' />)</td></tr>
 	
 </table>
 

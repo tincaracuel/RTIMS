@@ -6,7 +6,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>Roadworks and Traffic Incidents Monitoring System in Calamba City</title>
-    <link rel="shortcut icon" href="styles/img/calamba_seal.png" />
+    <link rel="shortcut icon" href="<?php echo base_url() ?>styles/img/calamba_seal.png" />
     <link href="/maps/documentation/javascript/examples/default.css" rel="stylesheet">
 
     <link href="<?php echo base_url() ?>styles/css/jquery-ui.css"  rel="stylesheet"></link>
@@ -44,7 +44,11 @@
 
     <div id="header">
       <img src="<?php echo base_url() ?>styles/img/calamba_seal.png"/>&nbsp;&nbsp;&nbsp;
-      Calamba City Roadworks and Traffic Incidents Monitoring System    
+      Calamba City Roadworks and Traffic Incidents Monitoring System
+
+      <div id="loginDiv">
+      <span><a href='<?php echo base_url() ?>' ><span class="icon"> X </span>Log Out</a></span>
+      </div>  
     </div>
 
 
@@ -57,9 +61,8 @@
             <a href="#add_roadwork" id="menu_add_rw_btn"><span class="icon"> + </span>Add Roadwork</a> 
             <a id='editrw' href="#edit_roadwork" onclick='javascript:listEditRoadworks();' ><span class="icon"> : </span>Edit Roadworks</a> 
             <a id='deleterw' href="#delete_roadwork" onclick='javascript:listDeleteRoadworks();' ><span class="icon"> - </span>Delete Roadworks</a> 
-            <a href='<?php echo base_url() ?>index.php/roadworksTableManager' id="menu_view_rw_btn" /><span class="icon"> p </span>View Roadworks Table</a>
+            <a href='<?php echo base_url() ?>index.php/roadworksTableManager/all_roadworks' id="menu_view_rw_btn" /><span class="icon"> p </span>View Roadworks Table</a>
             <a href='<?php echo base_url() ?>index.php/mapsManager' id="menu_back_rw_btn" /><span class="icon"> h </span>Back to Main Menu</a>
-            <span style="float:right;"><a href='<?php echo base_url() ?>' >Log Out</a></span>
         </div>
 
         <div id="map" ><?php echo $map['html']; ?></div>

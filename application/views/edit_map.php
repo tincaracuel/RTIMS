@@ -3,7 +3,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>Roadworks and Traffic Incidents Monitoring System in Calamba City</title>
-    <link rel="shortcut icon" href="styles/img/calamba_seal.png" />
+    <link rel="shortcut icon" href="<?php echo base_url() ?>styles/img/calamba_seal.png" />
     <link href="/maps/documentation/javascript/examples/default.css" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script src="styles/js/gmaps.js"></script>

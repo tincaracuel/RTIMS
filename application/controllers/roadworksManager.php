@@ -28,49 +28,49 @@ class roadworksManager extends CI_Controller {
 			$marker['draggable'] = FALSE;
 			$marker['clickable'] = TRUE;
 
-			$a1 = $coordinate[0]->contract_no;
-			$a2 = $coordinate[0]->rwork_name;
-			$a3 = $coordinate[0]->street;
-			$a4 = $coordinate[0]->barangay;
-			$a5 = $coordinate[0]->start_date;
-			$a6 = $coordinate[0]->end_date;
-			$a7 = $coordinate[0]->status;
-			$a8 = $coordinate[0]->latitude;
-			$a9 = $coordinate[0]->longitude;
-			$a10 = $coordinate[0]->rwork_type;
-			$a11 = $coordinate[0]->description;
+			$a1 = $coordinate->contract_no;
+			$a2 = $coordinate->rwork_name;
+			$a3 = $coordinate->street;
+			$a4 = $coordinate->barangay;
+			$a5 = $coordinate->start_date;
+			$a6 = $coordinate->end_date;
+			$a7 = $coordinate->status;
+			$a8 = $coordinate->latitude;
+			$a9 = $coordinate->longitude;
+			$a10 = $coordinate->rwork_type;
+			$a11 = $coordinate->description;
 
 			$htmlstring =  $this->setInfowindow_rw($a1, $a2, $a3, $a4, $a5, $a6, $a7, $a8, $a9, $a10, $a11);
 			$marker['infowindow_content'] = $htmlstring;
 
 
-			$interval = date_diff(date_create($coordinate[0]->end_date), date_create((date("Y-m-d"))));
+			$interval = date_diff(date_create($coordinate->end_date), date_create((date("Y-m-d"))));
 
 
-			$marker['title'] = $coordinate[0]->map_id.','.$coordinate[0]->rwork_name.' at '.$coordinate[0]->barangay.'end date: '.$coordinate[0]->end_date;
-			if ($coordinate[0]->rwork_type == 'Construction'){
+			$marker['title'] = $coordinate->map_id.','.$coordinate->rwork_name.' at '.$coordinate->barangay.'end date: '.$coordinate->end_date;
+			if ($coordinate->rwork_type == 'Construction'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/construction.png';
-			}else if ($coordinate[0]->rwork_type == 'Rehabilitation'){
+			}else if ($coordinate->rwork_type == 'Rehabilitation'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/rehabilitation.png';
-			}else if ($coordinate[0]->rwork_type == 'Renovation'){
+			}else if ($coordinate->rwork_type == 'Renovation'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/renovation.png';
-			}else if ($coordinate[0]->rwork_type == 'Riprapping'){
+			}else if ($coordinate->rwork_type == 'Riprapping'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/riprapping.png';
-			}else if ($coordinate[0]->rwork_type == 'Application'){
+			}else if ($coordinate->rwork_type == 'Application'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/application.png';
-			}else if ($coordinate[0]->rwork_type == 'Installation'){
+			}else if ($coordinate->rwork_type == 'Installation'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/installation.png';
-			}else if ($coordinate[0]->rwork_type == 'Reconstruction'){
+			}else if ($coordinate->rwork_type == 'Reconstruction'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/reconstruction.png';
-			}else if ($coordinate[0]->rwork_type == 'Concreting/Asphalting'){
+			}else if ($coordinate->rwork_type == 'Concreting/Asphalting'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/concreting.png';
-			}else if ($coordinate[0]->rwork_type == 'Electrification'){
+			}else if ($coordinate->rwork_type == 'Electrification'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/electrification.png';
-			}else if ($coordinate[0]->rwork_type == 'Roadway Lighting'){
+			}else if ($coordinate->rwork_type == 'Roadway Lighting'){
 				$marker['icon'] = base_url().'styles/img/markers/rw/lighting.png';
 			}
 
-			$marker['position'] = $coordinate[0]->latitude.','.$coordinate[0]->longitude;
+			$marker['position'] = $coordinate->latitude.','.$coordinate->longitude;
 			$this->googlemaps->add_marker($marker);
 		}
 

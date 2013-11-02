@@ -6,7 +6,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>Roadworks and Traffic Incidents Monitoring System in Calamba City</title>
-    <link rel="shortcut icon" href="styles/img/calamba_seal.png" />
+    <link rel="shortcut icon" href="<?php echo base_url() ?>styles/img/calamba_seal.png" />
     <link href="/maps/documentation/javascript/examples/default.css" rel="stylesheet">
 
     <link href="<?php echo base_url() ?>styles/css/jquery-ui.css"  rel="stylesheet"></link>
@@ -37,17 +37,23 @@
 
     <div id="header">
       <img src="<?php echo base_url() ?>styles/img/calamba_seal.png"/>&nbsp;&nbsp;&nbsp;
-      Calamba City Roadworks and Traffic Incidents Monitoring System    
+      Calamba City Roadworks and Traffic Incidents Monitoring System
+
+      <div id="loginDiv">
+      <span><a href='<?php echo base_url() ?>' ><span class="icon"> X </span>Log Out</a></span>
+      </div>    
     </div>
 
 
     <div id="lowerbox">
         <div id="functions">
-            Manage:
+            Maps Manager:
             <a href='<?php echo base_url() ?>index.php/roadworksManager' id="menu_rw_btn"><span class="icon"> F </span>Roadworks</a> 
             <a href='<?php echo base_url() ?>index.php/incidentsManager' id="menu_inc_btn"><span class="icon"> F </span>Traffic Incidents</a>
-            <a href='<?php echo base_url() ?>index.php/reportsManager' id="menu_report_btn"><span class="icon"> F </span>Reports</a>
-            <span style="float:right;"><a href='<?php echo base_url() ?>' >Log Out</a></span>
+            <a href='<?php echo base_url() ?>index.php/reportsManager' id="menu_report_btn"><span class="icon"> F </span>Reports
+            <span class="notif"><?php if ($total_unread != '0') echo $total_unread ?></span>
+            </a>
+            
         </div>
         <div id="map" ><?php echo $map['html']; ?></div>
 

@@ -20,6 +20,7 @@
     <script src="styles/js/subFunctions.js"></script>
     <script src="styles/js/mainFunctions.js"></script>
     <script src="styles/js/gmaps.js"></script>
+    <script src="styles/js/jquery.autosize.js"></script>
     <script src="styles/js/jquery.colorbox.js"></script>
     <?php echo $map['js']; ?>
 

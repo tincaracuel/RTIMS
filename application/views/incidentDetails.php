@@ -19,7 +19,7 @@
 		</select></td></tr>
 
 	<tr><td width="25%">Description:</td>
-		<td><textarea name="desc2" id="desc2" required><?php echo $details[0]['description']; ?></textarea></td></tr>
+		<td><textarea name="desc2" id="desc2" maxlength="100" required><?php echo $details[0]['description']; ?></textarea></td></tr>
 
 	</table>
 
@@ -40,7 +40,7 @@
 	<center> <b>LOCATION DETAILS</center></b><br />
 	<table style="width:100%;">
 		<tr><td width="25%">Street:</td>
-			<td><input type="text" name="street2" id="street2"  value='<?php echo $details[0]['street']; ?>' required /></td></tr>
+			<td><input type="text" name="street2" id="street2"  maxlength="50" value='<?php echo $details[0]['street']; ?>' required /></td></tr>
 
 	<tr><td width="25%">Barangay:</td>
 		<td><select name="brgy2" id="brgy2"  required value='<?php echo $details[0]['barangay']; ?>'>
@@ -102,8 +102,8 @@
 	</td></tr>
 
 	<tr><td width="25%">Coordinates:</td>
-	 	<td>(<input type="text" name="lat2" id='lat2' value='<?php echo $details[0]['latitude']; ?>' >, 
-	<input type="text" name="long2" id='long2' value='<?php echo $details[0]['longitude']; ?>' />)</td></tr>
+	 	<td>(<input type="text" name="lat2" id='lat2' maxlength='20' value='<?php echo $details[0]['latitude']; ?>' >, 
+	<input type="text" name="long2" id='long2' maxlength='20' value='<?php echo $details[0]['longitude']; ?>' />)</td></tr>
 		
 	</table>
 

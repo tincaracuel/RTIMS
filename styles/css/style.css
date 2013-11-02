@@ -23,6 +23,68 @@ h1,h2,h3{
 	font-family: 'Open Sans';
 }
 
+/*-------------------------------------------------------------------------------------
+------------------------------ L O G I N + H E A D E  R -------------------------------
+-------------------------------------------------------------------------------------*/
+
+
+#header{
+	color: white;
+	font-size: 25px;
+	padding: 8px 0;
+	margin-bottom: 3px;
+	height: auto;
+}
+
+#header img{
+	height: 30px;
+	position: relative;
+	top: 6px;
+	left: 18px;
+}
+
+#header a{
+	color:white;
+	font-size: 18px;
+	float:right;
+}
+
+#loginDiv{
+	width: 350px;
+	height: 50px;
+	position: absolute;
+	font-size: 12px;
+	top: 8px;
+	z-index: 1;
+	right: 0;
+	padding-left: 10px;
+	color: white;
+}
+
+#loginDiv a{
+	font-family: 'Open Sans';
+	color: white;
+	text-decoration: none;
+	font-size: 14px;
+	position: relative;
+	padding: 10px 20px;
+	left: -10px;
+}
+
+#loginDiv input{
+	width: 100px;
+	height: 15px;
+	font-size: 15px; 
+	outline: none;
+	margin-top: -3px;
+	transition: all 0.3s ease-out;
+	border: 0px solid;
+}
+
+/*-------------------------------------------------------------------------------------
+---------------------------------- L O W E R  B O X -----------------------------------
+-------------------------------------------------------------------------------------*/
+
 #lowerbox{
 	height: 90%;
 }
@@ -36,6 +98,7 @@ h1,h2,h3{
 }
 
 #functions a, #panel a{
+	background-color: #404040;
 	font-family: 'Open Sans';
 	color: white;
 	text-decoration: none;
@@ -48,10 +111,31 @@ h1,h2,h3{
 	padding-bottom: 6px;
 }
 
+#functions input[type=submit]{
+	background-image: -webkit-linear-gradient(top,#404040,#404040);
+    background-image: -moz-linear-gradient(top,#404040,#404040);
+	font-family: 'Open Sans';
+	color: white;
+	text-decoration: none;
+	padding-right: 1%;
+	padding-left: 1%;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	outline: none;
+	border: 0px solid;
+}
+
+#functions input[type=submit]:hover{
+	background-image: -webkit-linear-gradient(top,grey,grey);
+    background-image: -moz-linear-gradient(top,grey,grey);
+	color: black;
+}
+
 #functions span a{
+	background-color: #282929;
 	position: relative;
 	top: -40px;
-	margin-right: 50px;
+	margin-right: 80px;
 }
 
 #panel a{
@@ -66,7 +150,7 @@ h1,h2,h3{
 	margin-bottom: 2px;
 }
 
-#functions a:hover, #panel a:hover{
+#functions a:hover, #panel a:hover, #functions #selected{
 	background-color: grey;
 	color: black;
 }
@@ -109,9 +193,9 @@ h1,h2,h3{
 }
 
 #table_view th{
-	font-size: 18px;
+	font-size: 16px;
 	font-weight: 100;
-	padding: 0 10px;
+	padding: 4px 8px;
 	border: 1px solid #6E6E6E;
 	color:white;
 	background-color: #6E6E6E;
@@ -119,13 +203,13 @@ h1,h2,h3{
 
 #table_view td{
 	width: auto;
-	padding: 5px 10px;
+	padding: 5px 8px;
 	font-size: 15px;
 	border: 1px solid #DBDBDB;
 }
 
 
-#table_view tr:hover{ background-color: #E8E8E8; }
+#table_view tr:hover{ background-color: #E8E8E8;}
 
 
 .table_buttons, .lightboxSubmitBtn{
@@ -171,6 +255,19 @@ h1,h2,h3{
 	left: -2px;
 }
 
+.notif{
+	padding: 1px 6px;
+	background-color: red;
+	-webkit-border-radius: 10px;
+     -khtml-border-radius: 10px;
+       -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+         -o-border-radius: 10px;
+            border-radius: 10px;
+}
+
+#functions a:hover .notif{ background-color: pink;}
+
 /*-------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------*/
@@ -186,53 +283,6 @@ h1,h2,h3{
 }
 
 
-/*-------------------------------------------------------------------------------------
------------------------------- L O G I N + H E A D E  R -------------------------------
--------------------------------------------------------------------------------------*/
-
-
-#header{
-	color: white;
-	font-size: 25px;
-	padding: 10px 0;
-	margin-bottom: 3px;
-	height: auto;
-}
-
-#header img{
-	height: 40px;
-	position: relative;
-	top: 8px;
-	left: 18px;
-}
-
-#header a{
-	color:white;
-	font-size: 18px;
-	float:right;
-}
-
-#loginDiv{
-	width: 350px;
-	height: 50px;
-	position: absolute;
-	font-size: 12px;
-	top: 8px;
-	z-index: 1;
-	right: 0;
-	padding-left: 10px;
-	color: white;
-}
-
-#loginDiv input{
-	width: 100px;
-	height: 15px;
-	font-size: 15px; 
-	outline: none;
-	margin-top: -3px;
-	transition: all 0.3s ease-out;
-	border: 0px solid;
-}
 
 
 /*-------------------------------------------------------------------------------------
@@ -490,12 +540,13 @@ div [name="right"] * {font-size: 98%;}
 
 div [name="right"] textarea{
 	border: 1px solid grey;
+	height: 20px;
 	max-height: 100px;
-	height:70px;
 	margin: 6 6 6 0px;
 	padding: 4px;
 	width: 90%;
 	max-width: 90%;
+	resize: vertical;
 }
 
 div [name="right"] input{ border: 1px solid grey; padding: 4px;}
@@ -561,8 +612,7 @@ div [name="right"] input[name='lat2'], div [name="right"] input[name='long2']{
 	padding: 5px;
 	width: 409px;
 	max-width: 409px;
-	height: 150px;
-	max-height: 150px;
+	height: 190px;
 }
 
 /*CHOOSE TYPE OF REPORT*/
@@ -629,3 +679,32 @@ div [name="right"] input[name='lat2'], div [name="right"] input[name='long2']{
 .sub-nav li input{ cursor: pointer;}
 
 #panel li:hover .sub-nav {display: block;}
+
+/*-------------------------------------------------------------------------------------
+----------------------------- V I E W  R E P O R T S ----------------------------------
+-------------------------------------------------------------------------------------*/
+
+#selectReportToDisplayBtn{
+	margin-left: auto;
+	margin-right: auto;
+	font-family: 'Open Sans';
+	color: white;
+	cursor: pointer;
+	background-color: #6E6E6E;
+}
+
+#report-content{
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0 50px 100px;
+	height: auto;
+}
+
+#report-content a{
+	padding: 10px;
+	background-color: #404040;
+	pointer: cursor;
+	color: white;
+}
+#report-content a:hover{ background-color: #282929;}

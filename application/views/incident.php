@@ -6,7 +6,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>Roadworks and Traffic Incidents Monitoring System in Calamba City</title>
-    <link rel="shortcut icon" href="styles/img/calamba_seal.png" />
+    <link rel="shortcut icon" href="<?php echo base_url() ?>styles/img/calamba_seal.png" />
     <link href="/maps/documentation/javascript/examples/default.css" rel="stylesheet">
 
     <link href="<?php echo base_url() ?>styles/css/jquery-ui.css"  rel="stylesheet"></link>
@@ -42,6 +42,10 @@
     <div id="header">
       <img src="<?php echo base_url() ?>styles/img/calamba_seal.png"/>&nbsp;&nbsp;&nbsp;
       Calamba City Roadworks and Traffic Incidents Monitoring System    
+
+      <div id="loginDiv">
+      <span><a href='<?php echo base_url() ?>' ><span class="icon"> X </span>Log Out</a></span>
+      </div> 
     </div>
 
 
@@ -54,9 +58,8 @@
             <a href="#add_incident" id="menu_add_inc_btn"><span class="icon"> + </span>Add Incident</a> 
             <a id='editinc' href="#edit_incident" onclick='javascript:listEditIncidents();' ><span class="icon"> : </span>Edit Incidents</a>
             <a id='deleteinc' href="#delete_incident" onclick='javascript:listDeleteIncidents();' ><span class="icon"> - </span>Delete Incidents</a>
-            <a href='<?php echo base_url() ?>index.php/incidentsTableManager' id="menu_view_inc_btn" /><span class="icon"> p </span>View Incidents Table</a>
+            <a href='<?php echo base_url() ?>index.php/incidentsTableManager/all_incidents' id="menu_view_inc_btn" /><span class="icon"> p </span>View Incidents Table</a>
             <a href='<?php echo base_url() ?>index.php/mapsManager' id="menu_back_inc_btn" /><span class="icon"> h </span>Back to Main Menu</a>
-            <span style="float:right;"><a href='<?php echo base_url() ?>' >Log Out</a></span>
         </div>
 
 

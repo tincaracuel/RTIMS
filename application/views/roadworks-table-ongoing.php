@@ -6,7 +6,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>Roadworks and Traffic Incidents Monitoring System in Calamba City</title>
-    <link rel="shortcut icon" href="styles/img/calamba_seal.png" />
+    <link rel="shortcut icon" href="<?php echo base_url() ?>styles/img/calamba_seal.png" />
     <link href="/maps/documentation/javascript/examples/default.css" rel="stylesheet">
 
     <link href="<?php echo base_url() ?>styles/css/jquery-ui.css"  rel="stylesheet"></link>
@@ -43,7 +43,11 @@
 
     <div id="header">
       <img src="<?php echo base_url() ?>styles/img/calamba_seal.png"/>&nbsp;&nbsp;&nbsp;
-      Calamba City Roadworks and Traffic Incidents Monitoring System    
+      Calamba City Roadworks and Traffic Incidents Monitoring System
+
+      <div id="loginDiv">
+      <span><a href='<?php echo base_url() ?>' ><span class="icon"> X </span>Log Out</a></span>
+      </div> 
     </div>
 
 
@@ -51,68 +55,65 @@
 
     <div id="lowerbox">
 
+        <div id="lowerbox">
+
         <div id="functions">
-             Roadworks Table Manager: 
-            <a id='editrw' href="#edit_roadwork" onclick='javascript:listEditRoadworks();' ><span class="icon"> : </span>Edit Roadworks</a>
-            <a id='deleterw' href="#delete_roadwork" onclick='javascript:listDeleteRoadworks();' ><span class="icon"> - </span>Delete Roadworks</a>
-            <a href='<?php echo base_url() ?>index.php/roadworksManager' id="menu_back_rw_btn" /><span class="icon"> h </span> Back to Main Menu</a>
-            <span style="float:right;"><a href='<?php echo base_url() ?>' ><span class="icon"> X </span>Log Out</a></span>
+            Roadworks Table Manager:
+            <a href="<?php echo base_url() ?>index.php/roadworksTableManager/all_roadworks">
+                <span class="icon"> F </span> All Roadworks</a>
+            <a href="<?php echo base_url() ?>index.php/roadworksTableManager/completed_roadworks">
+                <span class="icon"> / </span> Completed</a>
+            <a href="<?php echo base_url() ?>index.php/roadworksTableManager/ongoing_roadworks" id="selected">
+                <span class="icon"> J </span> Ongoing</a>
+            <a href="<?php echo base_url() ?>index.php/roadworksTableManager/planned_roadworks">
+                <span class="icon"> P </span> Not Yet Started</a>
+            <a href='<?php echo base_url() ?>index.php/roadworksManager' id="menu_back_rw_btn" />
+                <span class="icon"> h </span> Back to Main Menu</a>
         </div>
 
         <div id="table_view" style="width: 100%;" >
 
-            <div class="edit_delete">
-                <a id='rw_all' href="<?php echo base_url() ?>index.php/roadworksTableManager/all_roadworks" class="table_buttons">
-                    <span class="icon"> F </span> All Roadworks</a>
-                <a id='rw_completed' href="<?php echo base_url() ?>index.php/roadworksTableManager/completed_roadworks" class="table_buttons">
-                    <span class="icon"> / </span> Completed</a>
-                <a id='rw_ongoing' href="<?php echo base_url() ?>index.php/roadworksTableManager/ongoing_roadworks" class="table_buttons" >
-                    <span class="icon"> J </span> Ongoing</a>
-                <a id='rw_planned' href="<?php echo base_url() ?>index.php/roadworksTableManager/planned_roadworks" class="table_buttons">
-                    <span class="icon"> P </span> Not Yet Started</a>
-            </div>
 
+            <!--TABLE-->
+            <?php
 
-                <!--TABLE-->
-                <?php
+                if($query_ongoing == NULL){ ?>
+                        <center><?php echo '<p>There are no roadworks saved in the database.</p>'; ?>
+                        </center>
+                        <?php
+                }else{ ?>
+            
+                    <table>
+                    <th style="min-width: 100px; max-width:100px;">Contract #</th>
+                    <th style="width: 200px; max-width:200px;">Roadwork</th>
+                    <th style="min-width: 130px; max-width: 130px;">Classification</th>
+                    <th style="min-width: 200px;max-width: 200px;">Description</th>
+                    <th style="width: 70px;">Start</th>
+                    <th style="width: 70px;">End</th>
+                    <th style="width: 120px;">Street</th>
+                    <th style="width: 95px;">Barangay</th>
+                    <th style="width: 50px;">Status</th>
+                    
+                    <?php foreach($query_ongoing as $row){
 
-                    if($query_ongoing == NULL){ ?>
-                            <center><?php echo '<p>There are no roadworks saved in the database.</p>'; ?>
-                            </center>
-                            <?php
-                    }else{ ?>
-                
-                        <table>
-                        <th style="min-width: 100px; max-width:100px;">Contract #</th>
-                        <th style="width: 200px; max-width:200px;">Roadwork</th>
-                        <th style="min-width: 130px; max-width: 130px;">Classification</th>
-                        <th style="min-width: 200px;max-width: 200px;">Description</th>
-                        <th style="width: 70px;">Start</th>
-                        <th style="width: 70px;">End</th>
-                        <th style="width: 120px;">Street</th>
-                        <th style="width: 95px;">Barangay</th>
-                        <th style="width: 50px;">Status</th>
-                        
-                        <?php foreach($query_ongoing as $row){
+                        ?><tr>
+                        <td> <?php echo $row->contract_no ?> </td>
+                        <td> <?php echo $row->rwork_name ?> </td>
+                        <td> <?php echo $row->rwork_type ?> </td>
+                        <td> <?php echo $row->description ?> </td>
+                        <td> <?php echo $row->start_date ?> </td>
+                        <td> <?php if($row->end_date!='0000-00-00') echo $row->end_date ?> </td>
+                        <td> <?php echo $row->street ?> </td>
+                        <td> <?php echo $row->barangay ?> </td>
+                        <td> <?php if ($row->status == 100) echo 'Finished';
+                                else echo $row->status.'%'?> </td>
+                        </tr>
 
-                            ?><tr>
-                            <td> <?php echo $row->contract_no ?> </td>
-                            <td> <?php echo $row->rwork_name ?> </td>
-                            <td> <?php echo $row->rwork_type ?> </td>
-                            <td> <?php echo $row->description ?> </td>
-                            <td> <?php echo $row->start_date ?> </td>
-                            <td> <?php if($row->end_date!='0000-00-00') echo $row->end_date ?> </td>
-                            <td> <?php echo $row->street ?> </td>
-                            <td> <?php echo $row->barangay ?> </td>
-                            <td> <?php if ($row->status == 100) echo 'Finished';
-                                    else echo $row->status.'%'?> </td>
-                            </tr>
-
-                            <?php  
-                        }
-                    } ?></table>
-                    <p style="text-align: center;"><?php echo $links; ?></p><?php 
-                ?>
+                        <?php  
+                    }
+                } ?></table>
+                <p style="text-align: center;"><?php echo $links; ?></p><?php 
+            ?>
             
 
         </div>

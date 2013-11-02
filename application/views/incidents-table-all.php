@@ -6,7 +6,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>Roadworks and Traffic Incidents Monitoring System in Calamba City</title>
-    <link rel="shortcut icon" href="styles/img/calamba_seal.png" />
+    <link rel="shortcut icon" href="<?php echo base_url() ?>styles/img/calamba_seal.png" />
     <link href="/maps/documentation/javascript/examples/default.css" rel="stylesheet">
 
     <link href="<?php echo base_url() ?>styles/css/jquery-ui.css"  rel="stylesheet"></link>
@@ -39,7 +39,11 @@
 
     <div id="header">
       <img src="<?php echo base_url() ?>styles/img/calamba_seal.png"/>&nbsp;&nbsp;&nbsp;
-      Calamba City Roadworks and Traffic Incidents Monitoring System    
+      Calamba City Roadworks and Traffic Incidents Monitoring System
+
+      <div id="loginDiv">
+      <span><a href='<?php echo base_url() ?>' ><span class="icon"> X </span>Log Out</a></span>
+      </div>     
     </div>
 
 
@@ -49,29 +53,21 @@
 
         <div id="functions">
             Incidents Table Manager: 
-            <a id='editinc' href="#edit_incident" onclick='javascript:listEditIncidents();' ><span class="icon"> : </span>Edit Incidents</a>
-            <a id='deleteinc' href="#delete_incident" onclick='javascript:listDeleteIncidents();' ><span class="icon"> : </span>Delete Incidents</a>
-            <a href='<?php echo base_url() ?>index.php/incidentsManager' id="menu_back_inc_btn" /><span class="icon"> h </span>Back to Main Menu</a>
-            <span style="float:right;"><a href='<?php echo base_url() ?>' ><span class="icon"> X </span>Log Out</a></span>
+            <a href="<?php echo base_url() ?>index.php/incidentsTableManager/all_incidents" id="selected">
+                <span class="icon"> F </span> All Activities</a>
+            <a href="<?php echo base_url() ?>index.php/incidentsTableManager/completed_incidents" >
+                <span class="icon"> / </span> Completed</a>
+            <a href="<?php echo base_url() ?>index.php/incidentsTableManager/ongoing_incidents" >
+                <span class="icon"> J </span> Ongoing</a>
+            <a href="<?php echo base_url() ?>index.php/incidentsTableManager/planned_incidents" >
+                <span class="icon"> P </span> Not Yet Started</a>
+            <a href='<?php echo base_url() ?>index.php/incidentsManager' id="menu_back_inc_btn" />
+                <span class="icon"> h </span>Back to Main Menu</a>
         </div>
 
 
         <div id="table_view" style="width: 100%;" >
-        
-        <div class="edit_delete">
-            <a id='inc_all' href="<?php echo base_url() ?>index.php/incidentsTableManager/all_incidents" class="table_buttons">
-                <span class="icon"> F </span> All Activities</a>
-            <a id='inc_completed' href="<?php echo base_url() ?>index.php/incidentsTableManager/completed_incidents" class="table_buttons">
-                <span class="icon"> / </span> Completed</a>
-            <a id='inc_ongoing' href="<?php echo base_url() ?>index.php/incidentsTableManager/ongoing_incidents" class="table_buttons" >
-                <span class="icon"> J </span> Ongoing</a>
-            <a id='inc_planned' href="<?php echo base_url() ?>index.php/incidentsTableManager/planned_incidents" class="table_buttons">
-                <span class="icon"> P </span> Not Yet Started</a>
-
-            </div>
-
-
-        
+            
 
         <?php
 

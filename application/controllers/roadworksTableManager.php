@@ -11,17 +11,15 @@ class roadworksTableManager extends CI_Controller {
     }
 
 	public function index(){
-		$this->load->model('roadworkAccess');
-
-
-
+    $this->load->model("roadworkAccess");
+    
 		$config = array();
-		$config["base_url"] = base_url() . "index.php/roadworksTableManager#roadwork_all";
+    $config["base_url"] = base_url() . "index.php/roadworksTableManager/all_roadworks";
         $config["total_rows"] = $this->roadworkAccess->roadwork_all_count();
         $config["per_page"] = 10;
         $config["uri_segment"] = 3;
         $choice = $config["total_rows"] / $config["per_page"];
-   		$config["num_links"] = round($choice);
+      $config["num_links"] = round($choice);
  
         $this->pagination->initialize($config);
  
@@ -30,7 +28,8 @@ class roadworksTableManager extends CI_Controller {
             fetch_all_roadwork($config["per_page"], $page);
         $data["links"] = $this->pagination->create_links();
 
-		$this->load->view('roadwork_table', $data);
+
+    $this->load->view('roadworks-table-all.php', $data); 
 	}
 
 
