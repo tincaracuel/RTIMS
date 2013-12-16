@@ -163,6 +163,11 @@ $(document).ready(function(){
 		$("#admin_incident").fadeIn(900);
 		});
 
+
+  	/*$("#logout").hover(function(){
+  		$("#logout").animate({'right':'-15px'});
+  	});*/
+
 	
 	
 });

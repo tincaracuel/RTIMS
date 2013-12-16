@@ -38,18 +38,19 @@
     <div id="loading-image"><img src="<?php echo base_url() ?>styles/img/floatingCircles.gif" alt="Loading..." /></div>
 
     <div id="header">
+
       <img src="<?php echo base_url() ?>styles/img/calamba_seal.png"/>&nbsp;&nbsp;&nbsp;
       Calamba City Roadworks and Traffic Incidents Monitoring System
 
-      <div id="loginDiv">
-      <span><a href='<?php echo base_url() ?>' ><span class="icon"> X </span>Log Out</a></span>
-      </div> 
+      <div id="logout">
+      <span><a href='<?php echo base_url() ?>' ><span class="icon"> X </span>&nbsp;Log Out</a></span>
+      </div>    
     </div>
 
 
      <div id="queryMessage"></div>
 
-    <div id="lowerbox">
+    
 
         <div id="functions">
             Reports / Problem Manager:
@@ -61,6 +62,7 @@
                 <span class="icon"> h </span> Back to Main Menu</a>
         </div>
 
+    <div id="lowerbox">
         <div id="table_view" style="width: 100%;" ><br />
 
             

@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -36,16 +36,17 @@
     <div id="loading-image"><img src="<?php echo base_url() ?>styles/img/floatingCircles.gif" alt="Loading..." /></div>
 
     <div id="header">
+
       <img src="<?php echo base_url() ?>styles/img/calamba_seal.png"/>&nbsp;&nbsp;&nbsp;
       Calamba City Roadworks and Traffic Incidents Monitoring System
 
-      <div id="loginDiv">
-      <span><a href='<?php echo base_url() ?>' ><span class="icon"> X </span>Log Out</a></span>
+      <div id="logout">
+      <span><a href='<?php echo base_url() ?>' ><span class="icon"> X </span>&nbsp;Log Out</a></span>
       </div>    
     </div>
 
 
-    <div id="lowerbox">
+    
         <div id="functions">
             Maps Manager:
             <a href='<?php echo base_url() ?>index.php/roadworksManager' id="menu_rw_btn"><span class="icon"> F </span>Roadworks</a> 
@@ -55,6 +56,8 @@
             </a>
             
         </div>
+
+    <div id="lowerbox">
         <div id="map" ><?php echo $map['html']; ?></div>
 
     </div>

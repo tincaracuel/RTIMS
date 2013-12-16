@@ -40,18 +40,19 @@
     <div id="loading-image"><img src="<?php echo base_url() ?>styles/img/floatingCircles.gif" alt="Loading..." /></div>
 
     <div id="header">
-      <img src="<?php echo base_url() ?>styles/img/calamba_seal.png"/>&nbsp;&nbsp;&nbsp;
-      Calamba City Roadworks and Traffic Incidents Monitoring System    
 
-      <div id="loginDiv">
-      <span><a href='<?php echo base_url() ?>' ><span class="icon"> X </span>Log Out</a></span>
-      </div> 
+      <img src="<?php echo base_url() ?>styles/img/calamba_seal.png"/>&nbsp;&nbsp;&nbsp;
+      Calamba City Roadworks and Traffic Incidents Monitoring System
+
+      <div id="logout">
+      <span><a href='<?php echo base_url() ?>' ><span class="icon"> X </span>&nbsp;Log Out</a></span>
+      </div>    
     </div>
 
 
      <div id="queryMessage"></div>
 
-    <div id="lowerbox">
+    
 
         <div id="functions">
             Incidents Manager:
@@ -59,10 +60,10 @@
             <a id='editinc' href="#edit_incident" onclick='javascript:listEditIncidents();' ><span class="icon"> : </span>Edit Incidents</a>
             <a id='deleteinc' href="#delete_incident" onclick='javascript:listDeleteIncidents();' ><span class="icon"> - </span>Delete Incidents</a>
             <a href='<?php echo base_url() ?>index.php/incidentsTableManager/all_incidents' id="menu_view_inc_btn" /><span class="icon"> p </span>View Incidents Table</a>
-            <a href='<?php echo base_url() ?>index.php/mapsManager' id="menu_back_inc_btn" /><span class="icon"> h </span>Back to Main Menu</a>
+            <a href='<?php echo base_url() ?>index.php/mapsManager' id="menu_back_inc_btn" /><span class="icon"> h </span>Back</a>
         </div>
 
-
+    <div id="lowerbox">
         <div id="map" ><?php echo $map['html']; ?></div>
        
 

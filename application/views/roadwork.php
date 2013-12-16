@@ -43,18 +43,19 @@
     <div id="loading-image"><img src="<?php echo base_url() ?>styles/img/floatingCircles.gif" alt="Loading..." /></div>
 
     <div id="header">
+
       <img src="<?php echo base_url() ?>styles/img/calamba_seal.png"/>&nbsp;&nbsp;&nbsp;
       Calamba City Roadworks and Traffic Incidents Monitoring System
 
-      <div id="loginDiv">
-      <span><a href='<?php echo base_url() ?>' ><span class="icon"> X </span>Log Out</a></span>
-      </div>  
+      <div id="logout">
+      <span><a href='<?php echo base_url() ?>' ><span class="icon"> X </span>&nbsp;Log Out</a></span>
+      </div>    
     </div>
 
 
      <div id="queryMessage"></div>
 
-    <div id="lowerbox">
+    
 
         <div id="functions">
             Roadworks Manager:
@@ -62,9 +63,10 @@
             <a id='editrw' href="#edit_roadwork" onclick='javascript:listEditRoadworks();' ><span class="icon"> : </span>Edit Roadworks</a> 
             <a id='deleterw' href="#delete_roadwork" onclick='javascript:listDeleteRoadworks();' ><span class="icon"> - </span>Delete Roadworks</a> 
             <a href='<?php echo base_url() ?>index.php/roadworksTableManager/all_roadworks' id="menu_view_rw_btn" /><span class="icon"> p </span>View Roadworks Table</a>
-            <a href='<?php echo base_url() ?>index.php/mapsManager' id="menu_back_rw_btn" /><span class="icon"> h </span>Back to Main Menu</a>
+            <a href='<?php echo base_url() ?>index.php/mapsManager' id="menu_back_rw_btn" /><span class="icon"> h </span>Back</a>
         </div>
 
+    <div id="lowerbox">
         <div id="map" ><?php echo $map['html']; ?></div>
         
 

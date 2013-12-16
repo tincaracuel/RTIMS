@@ -38,18 +38,19 @@
     <div id="loading-image"><img src="<?php echo base_url() ?>styles/img/floatingCircles.gif" alt="Loading..." /></div>
 
     <div id="header">
+
       <img src="<?php echo base_url() ?>styles/img/calamba_seal.png"/>&nbsp;&nbsp;&nbsp;
       Calamba City Roadworks and Traffic Incidents Monitoring System
 
-      <div id="loginDiv">
-      <span><a href='<?php echo base_url() ?>' ><span class="icon"> X </span>Log Out</a></span>
-      </div>     
+      <div id="logout">
+      <span><a href='<?php echo base_url() ?>' ><span class="icon"> X </span>&nbsp;Log Out</a></span>
+      </div>    
     </div>
 
 
      <div id="queryMessage"></div>
 
-    <div id="lowerbox">
+    
 
         <div id="functions">
             Incidents Table Manager: 
@@ -62,9 +63,10 @@
             <a href="<?php echo base_url() ?>index.php/incidentsTableManager/planned_incidents" >
                 <span class="icon"> P </span> Not Yet Started</a>
             <a href='<?php echo base_url() ?>index.php/incidentsManager' id="menu_back_inc_btn" />
-                <span class="icon"> h </span>Back to Main Menu</a>
+                <span class="icon"> h </span>Back to Incidents</a>
         </div>
 
+    <div id="lowerbox">
 
         <div id="table_view" style="width: 100%;" >
 
@@ -74,7 +76,7 @@
         <?php
 
             if($query_completed == NULL){ ?>
-                    <center><?php echo '<br /><br /><br /><br /><br />There are no incidents saved in the database.<br /><br />'; ?>
+                    <center><?php echo '<br /><br /><br /><br /><br />There are no completed activities saved in the database.<br /><br />'; ?>
                     </center>
                     <?php
             }else{ ?>

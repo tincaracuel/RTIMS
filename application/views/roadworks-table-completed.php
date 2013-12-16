@@ -42,20 +42,17 @@
     <div id="loading-image"><img src="<?php echo base_url() ?>styles/img/floatingCircles.gif" alt="Loading..." /></div>
 
     <div id="header">
-      <img src="<?php echo base_url() ?>styles/img/calamba_seal.png"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+      <img src="<?php echo base_url() ?>styles/img/calamba_seal.png"/>&nbsp;&nbsp;&nbsp;
       Calamba City Roadworks and Traffic Incidents Monitoring System
 
-      <div id="loginDiv">
-      <span><a href='<?php echo base_url() ?>' ><span class="icon"> X </span>Log Out</a></span>
-      </div>   
+      <div id="logout">
+      <span><a href='<?php echo base_url() ?>' ><span class="icon"> X </span>&nbsp;Log Out</a></span>
+      </div>    
     </div>
 
 
      <div id="queryMessage"></div>
-
-    <div id="lowerbox">
-
-        <div id="lowerbox">
 
         <div id="functions">
              Roadworks Table Manager:
@@ -68,9 +65,10 @@
             <a href="<?php echo base_url() ?>index.php/roadworksTableManager/planned_roadworks">
                 <span class="icon"> P </span> Not Yet Started</a>
             <a href='<?php echo base_url() ?>index.php/roadworksManager' id="menu_back_rw_btn" />
-                <span class="icon"> h </span> Back to Main Menu</a>
+                <span class="icon"> h </span> Back to Roadworks</a>
         </div>
 
+    <div id="lowerbox">
         <div id="table_view" style="width: 100%;" >
 
 
@@ -78,9 +76,9 @@
             <?php
 
                 if($query_completed == NULL){ ?>
-                        <center><?php echo '<p>There are no roadworks saved in the database.</p>'; ?>
-                        </center>
-                        <?php
+                    <center><?php echo '<br /><br /><br /><br /><br />There are no completed roadworks saved in the database.<br /><br />'; ?>
+                    </center>
+                    <?php
                 }else{ ?>
             
                     <table>
@@ -116,6 +114,37 @@
             ?>
             
 
+        </div>
+
+        <div style="display:none">
+            <div id='edit_roadwork' class="colorbox_edit_delete" style='background:#fff;'>
+                <form class="editRoadwork"  method='post'>
+                    <div name="left">
+                        <div id="listOfRoadworks">
+                        </div>
+                    <br /> 
+                    <input type="button" name="selectRoadwork" class="lightboxSubmitBtn" id="editRwBtn1" value="SELECT" onclick='javascript:viewRoadworkDetails();'>
+                    </div>
+                    
+                    <div name="right">
+                        <div id="roadworkDetails">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div style="display:none">
+            <div id='delete_roadwork' class="colorbox_edit_delete" style='background:#fff;'>
+                <form class="deleteRoadwork"  method='post'>
+                    <div name="delete_roadwork">
+                        <div id="listOfRoadworks2">
+                        </div>
+                    <br />
+                    <input type="button" name="selectRoadwork" class="lightboxSubmitBtn" id="deleteRwBtn1" value="DELETE" onclick='javascript:deleteSelectedRoadwork();'>
+                    </div>
+                </form>
+            </div>
         </div>
 
 

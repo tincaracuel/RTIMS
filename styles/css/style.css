@@ -16,6 +16,7 @@ html, body{
         font-family: 'Calibri';
         padding: 0;
         height: 100%;
+        overflow: hidden;
         background-color: #282929;
 }
 
@@ -26,7 +27,36 @@ h1,h2,h3{
 /*-------------------------------------------------------------------------------------
 ------------------------------ L O G I N + H E A D E  R -------------------------------
 -------------------------------------------------------------------------------------*/
+#logout{
+	overflow: hidden;
+	width: auto;
+	position: fixed;
+	height: 45px;
+	right: -95px;
+	top: 8px;
+	z-index: 0;
+	padding-left: 5px;
+	color: white;
+	background-color: gray;
+	transition:0.2s;
+	transition-timing-function:linear;
+}
 
+#logout:hover{
+	z-index: 0;
+	right: -15px;
+	transition:0.2s;
+	transition-timing-function:linear;
+}
+
+#logout a{
+	font-family: 'Open Sans';
+	color: white;
+	text-decoration: none;
+	position: relative;
+	padding: 10px 20px;
+	left: -10px;
+}
 
 #header{
 	color: white;
@@ -174,15 +204,16 @@ h1,h2,h3{
 	font-family: 'Open Sans';
 	font-weight:  300;
 	padding: 0;
-	height:99%;
-	overflow: auto;
+	height: 95%;
+	overflow-y: scroll;
+	overflow-x: auto;
 }
 
 #table_view table{
 	font-family: 'Calibri';
 	margin-left: auto;
 	margin-right: auto;
-	width: 98%;
+	width: 90%;
 	margin-top: 1%;
 	padding: 10px;
 	background-color: white;
