@@ -16,6 +16,8 @@ class logManager extends CI_Controller {
 
 		$coords_rw = $this->map_model->get_coordinates_rw();
 		// Loop through the coordinates we obtained above and add them to the map
+
+		$ctr0 = $ctr1 = $ctr2 = $ctr3 = $ctr4 = $ctr5 = $ctr6 = $ctr7 = $ctr8 = 0;
 		foreach ($coords_rw as $coordinate) {
 			$marker = array();
 			$marker['draggable'] = FALSE;
@@ -37,34 +39,44 @@ class logManager extends CI_Controller {
 			$marker['infowindow_content'] = $htmlstring;
 			if ($coordinate->rwork_type == 'Construction'){
 				$marker['icon'] = 'styles/img/markers/rw/construction.png';
-				$marker['id'] = 'rwMarker_construction';
+				$marker['id'] = "rwCat0[".$ctr0."]";
+				$ctr0++;
 			}else if ($coordinate->rwork_type == 'Rehabilitation'){
 				$marker['icon'] = 'styles/img/markers/rw/rehabilitation.png';
-				$marker['id'] = 'rwMarker_rehabilitation';
+				$marker['id'] = "rwCat1[".$ctr1."]";
+				$ctr1++;
 			}else if ($coordinate->rwork_type == 'Renovation'){
 				$marker['icon'] = 'styles/img/markers/rw/renovation.png';
-				$marker['id'] = 'rwMarker_renovation';
+				$marker['id'] = "rwCat2[".$ctr2."]";
+				$ctr2++;
 			}else if ($coordinate->rwork_type == 'Riprapping'){
 				$marker['icon'] = 'styles/img/markers/rw/riprapping.png';
-				$marker['id'] = 'rwMarker_riprapping';
+				$marker['id'] = "rwCat3[".$ctr3."]";
+				$ctr3++;
 			}else if ($coordinate->rwork_type == 'Application'){
 				$marker['icon'] = 'styles/img/markers/rw/application.png';
-				$marker['id'] = 'rwMarker_application';
+				$marker['id'] = "rwCat4[".$ctr4."]";
+				$ctr4++;
 			}else if ($coordinate->rwork_type == 'Installation'){
 				$marker['icon'] = 'styles/img/markers/rw/installation.png';
-				$marker['id'] = 'rwMarker_installation';
+				$marker['id'] = "rwCat5[".$ctr5."]";
+				$ctr5++;
 			}else if ($coordinate->rwork_type == 'Reconstruction'){
 				$marker['icon'] = 'styles/img/markers/rw/reconstruction.png';
-				$marker['id'] = 'rwMarker_reconstruction';
+				$marker['id'] = "rwCat6[".$ctr6."]";
+				$ctr6++;
 			}else if ($coordinate->rwork_type == 'Concreting/Asphalting'){
 				$marker['icon'] = 'styles/img/markers/rw/concreting.png';
-				$marker['id'] = 'rwMarker_concreting';
+				$marker['id'] = "rwCat7[".$ctr7."]";
+				$ctr7++;
 			}else if ($coordinate->rwork_type == 'Electrification'){
 				$marker['icon'] = 'styles/img/markers/rw/electrification.png';
-				$marker['id'] = 'rwMarker_electrification';
+				$marker['id'] = "rwCat8[".$ctr8."]";
+				$ctr8++;
 			}else if ($coordinate->rwork_type == 'Roadway Lighting'){
 				$marker['icon'] = 'styles/img/markers/rw/lighting.png';
-				$marker['id'] = 'rwMarker_lighting';
+				$marker['id'] = "rwCat9[".$ctr9."]";
+				$ctr9++;
 			}
 
 			$marker['title'] = $coordinate->map_id.','.$coordinate->rwork_name.' at '.$coordinate->barangay.'end date: '.$coordinate->end_date;
@@ -75,6 +87,7 @@ class logManager extends CI_Controller {
 
 		$coords_inc = $this->map_model->get_coordinates_inc();
 		// Loop through the coordinates we obtained above and add them to the map
+		$ctr0 = $ctr1 = $ctr2 = $ctr3 = $ctr4 = $ctr5 = 0;
 		foreach ($coords_inc as $coordinate) {
 			$marker = array();
 			$marker['draggable'] = FALSE;
@@ -96,16 +109,28 @@ class logManager extends CI_Controller {
 			$marker['title'] = $coordinate->inc_id.','.$coordinate->inc_type.' at '.$coordinate->barangay;
 			if ($coordinate->inc_type == 'Accident'){
 				$marker['icon'] = 'styles/img/markers/inc/accident.png';
+				$marker['id'] = "incCat0[".$ctr0."]";
+				$ctr0++;
 			}else if ($coordinate->inc_type == 'Obstruction'){
 				$marker['icon'] = 'styles/img/markers/inc/obstruction.png';
+				$marker['id'] = "incCat1[".$ctr1."]";
+				$ctr1++;
 			}else if ($coordinate->inc_type == 'Public Event'){
 				$marker['icon'] = 'styles/img/markers/inc/event.png';
+				$marker['id'] = "incCat2[".$ctr2."]";
+				$ctr2++;
 			}else if ($coordinate->inc_type == 'Flood'){
 				$marker['icon'] = 'styles/img/markers/inc/flood.png';
+				$marker['id'] = "incCat3[".$ctr3."]";
+				$ctr3++;
 			}else if ($coordinate->inc_type == 'Strike'){
 				$marker['icon'] = 'styles/img/markers/inc/strike.png';
+				$marker['id'] = "incCat4[".$ctr4."]";
+				$ctr4++;
 			}else if ($coordinate->inc_type == 'Funeral'){
 				$marker['icon'] = 'styles/img/markers/inc/funeral.png';
+				$marker['id'] = "incCat5[".$ctr5."]";
+				$ctr5++;
 			}
 			
 			$marker['position'] = $coordinate->latitude.','.$coordinate->longitude;

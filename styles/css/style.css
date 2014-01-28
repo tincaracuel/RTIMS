@@ -13,11 +13,12 @@ src:
 
 html, body{
         margin: 0;
-        font-family: 'Calibri';
+        /*font-family: 'Calibri';*/
         padding: 0;
         height: 100%;
         overflow: hidden;
         background-color: #282929;
+        font-family: 'Open Sans';
 }
 
 h1,h2,h3{
@@ -92,7 +93,6 @@ h1,h2,h3{
 }
 
 #loginDiv a{
-	font-family: 'Open Sans';
 	color: white;
 	text-decoration: none;
 	font-size: 14px;
@@ -101,14 +101,17 @@ h1,h2,h3{
 	left: -10px;
 }
 
-#loginDiv input{
-	width: 100px;
-	height: 15px;
-	font-size: 15px; 
+.loginasadmin input{
+	margin: 5px auto;
+	width: 100%;
+	font-size: 14px; 
 	outline: none;
-	margin-top: -3px;
-	transition: all 0.3s ease-out;
-	border: 0px solid;
+	font-family: 'Open Sans';
+}
+
+.loginasadmin li{
+	margin: 0 auto;
+	width: 90%;
 }
 
 /*-------------------------------------------------------------------------------------
@@ -116,10 +119,24 @@ h1,h2,h3{
 -------------------------------------------------------------------------------------*/
 
 #lowerbox{
-	height: 90%;
+	margin-top: -20px;
+	height: 100%;
 }
 
-#functions, #panel{
+#functions{
+}
+
+#functions li{
+	height: 40px;
+	margin-top: -10px;
+}
+
+#functions a{
+	height: 40px;
+}
+
+
+/*#functions, #panel{
 	font-size: 14px;
 	background-color: #3B3B3B;
 	height: auto;
@@ -153,7 +170,7 @@ h1,h2,h3{
 	padding-bottom: 6px;
 	outline: none;
 	border: 0px solid;
-}
+}*/
 
 #functions input[type=submit]:hover{
 	background-image: -webkit-linear-gradient(top,grey,grey);
@@ -181,8 +198,8 @@ h1,h2,h3{
 }
 
 #functions a:hover, #panel a:hover, #functions #selected{
-	background-color: grey;
-	color: black;
+	/*background-color: grey;*/
+	color: white;
 }
 
 #map {
@@ -288,7 +305,7 @@ h1,h2,h3{
 
 .notif{
 	padding: 1px 6px;
-	background-color: red;
+	background-color: pink;
 	-webkit-border-radius: 10px;
      -khtml-border-radius: 10px;
        -moz-border-radius: 10px;
@@ -297,7 +314,7 @@ h1,h2,h3{
             border-radius: 10px;
 }
 
-#functions a:hover .notif{ background-color: pink;}
+#functions a:hover .notif{ background-color: red;}
 
 /*-------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------
@@ -535,7 +552,7 @@ a{
 
 #edit_incident{ height: 490px; }
 
-#delete_roadwork, #delete_incident{	height: 100px; }
+#delete_roadwork, #delete_incident{	height: 180px; }
 
 div [name="delete_roadwork"], div [name="delete_incident"]{
 	width: 180px;
@@ -739,3 +756,16 @@ div [name="right"] input[name='lat2'], div [name="right"] input[name='long2']{
 	color: white;
 }
 #report-content a:hover{ background-color: #282929;}
+
+#markUnread input[type=submit]{
+	border: none;
+	background-color: transparent;
+	color: grey;
+	margin: auto;
+}
+
+#markUnread input[type=submit]:hover{
+	border: none;
+	background-color: transparent;
+	color: white;
+}

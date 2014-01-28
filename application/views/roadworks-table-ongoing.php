@@ -10,65 +10,70 @@
     <link href="/maps/documentation/javascript/examples/default.css" rel="stylesheet">
 
     <link href="<?php echo base_url() ?>styles/css/jquery-ui.css"  rel="stylesheet"></link>
+    <link href="<?php echo base_url() ?>styles/css/bootstrap.css"  rel="stylesheet"></link>
     <link href="<?php echo base_url() ?>styles/css/style.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>styles/css/colorbox.css" rel="stylesheet">
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-    <script src="<?php echo base_url() ?>styles/js/gmaps.js"></script>
-    <script src="<?php echo base_url() ?>styles/js/jquery-1.8.3.js"></script>
-    <script src="<?php echo base_url() ?>styles/js/jquery.min.js"></script>
-    <script src="<?php echo base_url() ?>styles/js/jquery-ui.js"></script>
-    <script src="<?php echo base_url() ?>styles/js/subFunctions.js"></script>
-    <script src="<?php echo base_url() ?>styles/js/mainFunctions.js"></script>
     
-    <script src="<?php echo base_url() ?>styles/js/jquery.autosize.js"></script>
-    <script src="<?php echo base_url() ?>styles/js/jquery.colorbox.js"></script>
-
-    <script>
-        $(document).ready(function(){
-            $("#editrw").colorbox({inline:true, width:"70%"});
-            $("#deleterw").colorbox({inline:true, width:"auto"});
-
-        });
-
-        $(function(){
-            $('textarea').autosize();
-        });
-
-    </script>
-
 
   </head>
   <body>
-    <div id="loading-image"><img src="<?php echo base_url() ?>styles/img/floatingCircles.gif" alt="Loading..." /></div>
+    <div class="navbar navbar-default navbar-inverse navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#" style="color: white">Calamba City Roadworks and Traffic Incidents Monitoring System</a>
+        </div>
 
-    <div id="header">
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href='<?php echo base_url() ?>' ><span class="icon"> X </span> Log Out</a>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
 
-      <img src="<?php echo base_url() ?>styles/img/calamba_seal.png"/>&nbsp;&nbsp;&nbsp;
-      Calamba City Roadworks and Traffic Incidents Monitoring System
 
-      <div id="logout">
-      <span><a href='<?php echo base_url() ?>' ><span class="icon"> X </span>&nbsp;Log Out</a></span>
-      </div>    
+        <div class="navbar-collapse" id="functions">
+          <ul class="nav navbar-nav">
+            
+            <li>
+              <a href="<?php echo base_url() ?>index.php/roadworksTableManager/all_roadworks">
+                <span class="icon"> F </span> All Roadworks</a>    
+            </li>
+
+            <li>
+              <a href="<?php echo base_url() ?>index.php/roadworksTableManager/completed_roadworks">
+                <span class="icon"> / </span> Completed</a>
+            </li>
+
+            <li>
+                <a href="<?php echo base_url() ?>index.php/roadworksTableManager/ongoing_roadworks" id="selected">
+                <span class="icon"> J </span> Ongoing</a>
+            </li>
+
+            <li>
+                <a href="<?php echo base_url() ?>index.php/roadworksTableManager/planned_roadworks">
+                <span class="icon"> P </span> Not Yet Started</a>
+            </li>
+
+            <li>
+                <a href='<?php echo base_url() ?>index.php/roadworksManager' id="menu_back_rw_btn" />
+                <span class="icon"> h </span> Back to Roadworks</a>
+            </li>
+
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
     </div>
 
 
      <div id="queryMessage"></div>
-
-
-
-        <div id="functions">
-            Roadworks Table Manager:
-            <a href="<?php echo base_url() ?>index.php/roadworksTableManager/all_roadworks">
-                <span class="icon"> F </span> All Roadworks</a>
-            <a href="<?php echo base_url() ?>index.php/roadworksTableManager/completed_roadworks">
-                <span class="icon"> / </span> Completed</a>
-            <a href="<?php echo base_url() ?>index.php/roadworksTableManager/ongoing_roadworks" id="selected">
-                <span class="icon"> J </span> Ongoing</a>
-            <a href="<?php echo base_url() ?>index.php/roadworksTableManager/planned_roadworks">
-                <span class="icon"> P </span> Not Yet Started</a>
-            <a href='<?php echo base_url() ?>index.php/roadworksManager' id="menu_back_rw_btn" />
-                <span class="icon"> h </span> Back to Roadworks</a>
-        </div>
 
     <div id="lowerbox">
         <div id="table_view" style="width: 100%;" >
@@ -129,4 +134,27 @@
 
     
   </body>
+
+    <script src="<?php echo base_url() ?>styles/js/jquery-1.8.3.js"></script>
+    <script src="<?php echo base_url() ?>styles/js/jquery.min.js"></script>
+    <script src="<?php echo base_url() ?>styles/js/jquery-ui.js"></script>
+    <script src="<?php echo base_url() ?>styles/js/subFunctions.js"></script>
+    <script src="<?php echo base_url() ?>styles/js/mainFunctions.js"></script>
+    <script src="<?php echo base_url() ?>styles/js/gmaps.js"></script>
+    <script src="<?php echo base_url() ?>styles/js/jquery.autosize.js"></script>
+    <script src="<?php echo base_url() ?>styles/js/jquery.colorbox.js"></script>
+    <script src="<?php echo base_url() ?>styles/js/bootstrap.min.js"></script>
+
+  <script>
+        $(document).ready(function(){
+            $("#editrw").colorbox({inline:true, width:"70%"});
+            $("#deleterw").colorbox({inline:true, width:"auto"});
+
+        });
+
+        $(function(){
+            $('textarea').autosize();
+        });
+
+    </script>
 </html>

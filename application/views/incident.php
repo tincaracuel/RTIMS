@@ -10,58 +10,64 @@
     <link href="/maps/documentation/javascript/examples/default.css" rel="stylesheet">
 
     <link href="<?php echo base_url() ?>styles/css/jquery-ui.css"  rel="stylesheet"></link>
+    <link href="<?php echo base_url() ?>styles/css/bootstrap.css"  rel="stylesheet"></link>
     <link href="<?php echo base_url() ?>styles/css/style.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>styles/css/colorbox.css" rel="stylesheet">
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
-
-    <script src="<?php echo base_url() ?>styles/js/jquery-1.8.3.js"></script>
-    <script src="<?php echo base_url() ?>styles/js/jquery.min.js"></script>
-    <script src="<?php echo base_url() ?>styles/js/jquery-ui.js"></script>
-    <script src="<?php echo base_url() ?>styles/js/subFunctions.js"></script>
-    <script src="<?php echo base_url() ?>styles/js/mainFunctions.js"></script>
-    <script src="<?php echo base_url() ?>styles/js/gmaps.js"></script>
-    <script src="<?php echo base_url() ?>styles/js/jquery.autosize.js"></script>
-    <script src="<?php echo base_url() ?>styles/js/jquery.colorbox.js"></script>
-
-
-    <script>
-        $(document).ready(function(){
-            $("#editinc").colorbox({inline:true, width:"70%"});
-            $("#deleteinc").colorbox({inline:true, width:"auto"});
-        });
-
-    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
 
     <?php echo $map['js']; ?>
     
   </head>
   <body>
-    <div id="loading-image"><img src="<?php echo base_url() ?>styles/img/floatingCircles.gif" alt="Loading..." /></div>
-
-    <div id="header">
-
-      <img src="<?php echo base_url() ?>styles/img/calamba_seal.png"/>&nbsp;&nbsp;&nbsp;
-      Calamba City Roadworks and Traffic Incidents Monitoring System
-
-      <div id="logout">
-      <span><a href='<?php echo base_url() ?>' ><span class="icon"> X </span>&nbsp;Log Out</a></span>
-      </div>    
-    </div>
-
-
-     <div id="queryMessage"></div>
-
-    
-
-        <div id="functions">
-            Incidents Manager:
-            <a href="#add_incident" id="menu_add_inc_btn"><span class="icon"> + </span>Add Incident</a> 
-            <a id='editinc' href="#edit_incident" onclick='javascript:listEditIncidents();' ><span class="icon"> : </span>Edit Incidents</a>
-            <a id='deleteinc' href="#delete_incident" onclick='javascript:listDeleteIncidents();' ><span class="icon"> - </span>Delete Incidents</a>
-            <a href='<?php echo base_url() ?>index.php/incidentsTableManager/all_incidents' id="menu_view_inc_btn" /><span class="icon"> p </span>View Incidents Table</a>
-            <a href='<?php echo base_url() ?>index.php/mapsManager' id="menu_back_inc_btn" /><span class="icon"> h </span>Back</a>
+    <div class="navbar navbar-default navbar-inverse navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#" style="color: white">Calamba City Roadworks and Traffic Incidents Monitoring System</a>
         </div>
+
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href='<?php echo base_url() ?>' ><span class="icon"> X </span> Log Out</a>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+
+
+        <div class="navbar-collapse" id="functions">
+          <ul class="nav navbar-nav">
+            <li>
+                <a href="#add_incident" id="menu_add_inc_btn"><span class="icon"> + </span>Add Incident</a>    
+            </li>
+
+            <li>
+                <a id='editinc' href="#edit_incident" onclick='javascript:listEditIncidents();' ><span class="icon"> : </span>Edit Incidents</a>
+            </li>
+
+            <li>
+                <a id='deleteinc' href="#delete_incident" onclick='javascript:listDeleteIncidents();' ><span class="icon"> - </span>Delete Incidents</a>
+            </li>
+
+            <li>
+                <a href='<?php echo base_url() ?>index.php/incidentsTableManager/all_incidents' id="menu_view_inc_btn" /><span class="icon"> p </span>View Incidents Table</a>
+            </li>
+
+            <li>
+                <a href='<?php echo base_url() ?>index.php/mapsManager' id="menu_back_inc_btn" /><span class="icon"> h </span>Back</a>
+            </li>
+
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
 
     <div id="lowerbox">
         <div id="map" ><?php echo $map['html']; ?></div>
@@ -115,4 +121,21 @@
 
     
   </body>
+
+    <script src="<?php echo base_url() ?>styles/js/jquery-1.8.3.js"></script>
+    <script src="<?php echo base_url() ?>styles/js/jquery.min.js"></script>
+    <script src="<?php echo base_url() ?>styles/js/jquery-ui.js"></script>
+    <script src="<?php echo base_url() ?>styles/js/subFunctions.js"></script>
+    <script src="<?php echo base_url() ?>styles/js/mainFunctions.js"></script>
+    <script src="<?php echo base_url() ?>styles/js/gmaps.js"></script>
+    <script src="<?php echo base_url() ?>styles/js/jquery.autosize.js"></script>
+    <script src="<?php echo base_url() ?>styles/js/jquery.colorbox.js"></script>
+    <script src="<?php echo base_url() ?>styles/js/bootstrap.min.js"></script>
+
+  <script>
+        $(document).ready(function(){
+            $("#editinc").colorbox({inline:true, width:"70%"});
+            $("#deleteinc").colorbox({inline:true, width:"auto"});
+        });
+    </script>
 </html>
