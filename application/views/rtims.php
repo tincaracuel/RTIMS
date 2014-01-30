@@ -33,7 +33,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#" style="color: white">Calamba City RTIMS</a>
+          <a class="navbar-brand" href="#" style="color: white"><img src="styles/img/calamba_seal.png" style="margin-top: -6px; margin-right: 5px; height: 22px" />Calamba City RTIMS</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -79,7 +79,7 @@
                 <form class="loginasadmin" action='index.php/logManager/checkUser' method="post"> 
                   <li><input type="text" name="username" placeholder="Username" autofocus required></li>
                   <li><input type="password" name="password" class="showpassword" placeholder="Password" required></li>
-                  <li> <input type="submit" value="Log in" id="login"> </li>
+                  <li> <input type="submit" value="Log in" class="btn btn-primary btn-lg" id="login"> </li>
                 </form>
               </ul>
             </li>
@@ -88,7 +88,7 @@
       </div>
     </div>
 
-      <div id="lowerbox">
+      <div id="lowerbox" style="height: 92%">
 
 
 
@@ -146,15 +146,13 @@
     <script src="styles/js/bootstrap.min.js"></script>
     <script src="styles/js/toggleMarkers.js"></script>
 
-    <script type="text/javascript">
-               
+    <script type="text/javascript">   
       
         $(document).ready(function(){       
             $("#chooseReport").colorbox({inline:true, width:"auto"});
             $("#existing_rw").colorbox({inline:true, width:"auto", height: "auto"});
             $("#existing_inc").colorbox({inline:true, width:"auto", height: "auto"});
-            $("#new-report").colorbox({inline:true, width:"auto", height: "auto"});         
-
+            $("#new-report").colorbox({inline:true, width:"auto", height: "auto"});
         });
 
 

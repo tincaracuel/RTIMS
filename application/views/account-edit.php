@@ -13,11 +13,7 @@
     <link href="<?php echo base_url() ?>styles/css/bootstrap.css"  rel="stylesheet"></link>
     <link href="<?php echo base_url() ?>styles/css/style.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>styles/css/colorbox.css" rel="stylesheet">
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
-
-    <?php echo $map['js']; ?>
-    
   </head>
   <body>
     <div class="navbar navbar-default navbar-inverse navbar-static-top" role="navigation">
@@ -51,24 +47,10 @@
 
         <div class="navbar-collapse collapse" id="functions">
           <ul class="nav navbar-nav">
-            <li>
-                <a href='<?php echo base_url() ?>index.php/incidentsManager/add_incident'><span class="icon"> + </span>Add Incident</a>    
-            </li>
 
             <li>
-                <a id='editinc' href="#edit_incident" onclick='javascript:listEditIncidents();' ><span class="icon"> : </span>Edit Incidents</a>
-            </li>
-
-            <li>
-                <a id='deleteinc' href="#delete_incident" onclick='javascript:listDeleteIncidents();' ><span class="icon"> - </span>Delete Incidents</a>
-            </li>
-
-            <li>
-                <a href='<?php echo base_url() ?>index.php/incidentsTableManager/all_incidents' id="menu_view_inc_btn" /><span class="icon"> p </span>View Incidents Table</a>
-            </li>
-
-            <li>
-                <a href='<?php echo base_url() ?>index.php/mapsManager' id="menu_back_inc_btn" /><span class="icon"> h </span>Back</a>
+                <a href='<?php echo base_url() ?>index.php/mapsManager' id="menu_back_rw_btn" />
+                <span class="icon"> h </span> Back to Main Menu</a>
             </li>
 
             
@@ -76,44 +58,54 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
-<div id="queryMessage"></div>  
+
+
+     <div id="queryMessage"></div>
+
     <div id="lowerbox">
-        <div id="map" ><?php echo $map['html']; ?></div>
 
-        <div style="display:none">
-            <div id='edit_incident' class="colorbox_edit_delete" style='background:#fff;'>
-                <form class="editIncident"  method='post'>
-                    <div name="left">
-                        <div id="listOfIncidents">
-                        </div>
-                    <br /> 
-                    <input type="button" name="selectIncident" class="lightboxSubmitBtn" id="editIncBtn1" value="SELECT" onclick='javascript:viewIncidentDetails();'>
-                    </div>
-                    
-                    <div name="right">
-                        <div id="incidentDetails">
-                        </div>
-                    </div>
-                </form>
+        <div id="table_view" style="width: 100%;" ><br />
+
+            <br />
+            <div id="edit-account">
+            <h3 style="text-align: center">Edit User's Account</h3><br />
+
+            <form class="editAccount" action='<?php echo base_url() ?>index.php/logManager/updateAccount' method='post'>
+
+            <table style="width: 100%">
+
+            <tr>
+                <td style="width: 30%">Username:</td>
+                <td><input type="text" name="username" id='username' value='<?php echo $username; ?>' disabled="disabled"></td>
+            </tr>
+
+            <tr>
+                <td style="width: 30%">Old password:</td>
+                <td><input type="password" name="old_password" id='old_password' value='<?php echo $pw; ?>' disabled="disabled"></td>
+            </tr>
+
+            <tr>
+                <td style="width: 30%">New password:</td>
+                <td><input type="password" name="new_password" id='new_password'></td>
+            </tr>
+
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+
+            <tr>
+                <td colspan="2"><input type="submit" name="editAccountBtn" id="saveButton" value="SAVE CHANGES" class="btn btn-primary btn-lg"></td>
+            </tr>
+
+            </table>
+            </form>
             </div>
+            
+
         </div>
 
-        <div style="display:none">
-            <div id='delete_incident' class="colorbox_edit_delete" style='background:#fff;'>
-                <form class="deleteIncident"  method='post'>
-                    <div name="delete_incident">
-                        <div id="listOfIncidents2">
-                        </div>
-                    <br /> 
-                    <input type="button" name="selectIncident" class="lightboxSubmitBtn" id="deleteIncBtn1" value="DELETE" onclick='javascript:deleteSelectedIncident();'>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        
     </div>
-
+    
+        
    
      
 
@@ -127,14 +119,6 @@
     <script src="<?php echo base_url() ?>styles/js/subFunctions.js"></script>
     <script src="<?php echo base_url() ?>styles/js/mainFunctions.js"></script>
     <script src="<?php echo base_url() ?>styles/js/gmaps.js"></script>
-    <script src="<?php echo base_url() ?>styles/js/jquery.autosize.js"></script>
-    <script src="<?php echo base_url() ?>styles/js/jquery.colorbox.js"></script>
     <script src="<?php echo base_url() ?>styles/js/bootstrap.min.js"></script>
 
-  <script>
-        $(document).ready(function(){
-            $("#editinc").colorbox({inline:true, width:"70%"});
-            $("#deleteinc").colorbox({inline:true, width:"auto"});
-        });
-    </script>
 </html>

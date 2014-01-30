@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
+session_start();
 class roadworksTableManager extends CI_Controller {
 
 	public function __construct() {
@@ -11,25 +11,38 @@ class roadworksTableManager extends CI_Controller {
     }
 
 	public function index(){
-    $this->load->model("roadworkAccess");
-    
-		$config = array();
-    $config["base_url"] = base_url() . "index.php/roadworksTableManager/all_roadworks";
-        $config["total_rows"] = $this->roadworkAccess->roadwork_all_count();
-        $config["per_page"] = 10;
-        $config["uri_segment"] = 3;
-        $choice = $config["total_rows"] / $config["per_page"];
-      $config["num_links"] = round($choice);
- 
-        $this->pagination->initialize($config);
- 
-        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $data["query_all"] = $this->roadworkAccess->
-            fetch_all_roadwork($config["per_page"], $page);
-        $data["links"] = $this->pagination->create_links();
+
+    if($this->session->userdata('logged_in')){
+      $session_data = $this->session->userdata('logged_in');
+      $data['username'] = $session_data['username'];
+
+      $this->load->model('incidentAccess');
+
+      $this->load->model("roadworkAccess");
+      
+  		$config = array();
+      $config["base_url"] = base_url() . "index.php/roadworksTableManager/all_roadworks";
+          $config["total_rows"] = $this->roadworkAccess->roadwork_all_count();
+          $config["per_page"] = 10;
+          $config["uri_segment"] = 3;
+          $choice = $config["total_rows"] / $config["per_page"];
+        $config["num_links"] = round($choice);
+   
+          $this->pagination->initialize($config);
+   
+          $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+          $data["query_all"] = $this->roadworkAccess->
+              fetch_all_roadwork($config["per_page"], $page);
+          $data["links"] = $this->pagination->create_links();
 
 
-    $this->load->view('roadworks-table-all.php', $data); 
+      $this->load->view('roadworks-table-all.php', $data); 
+
+    }
+    else{
+      //If no session, redirect to login page
+      redirect(base_url());
+    }
 	}
 
 
@@ -83,95 +96,135 @@ class roadworksTableManager extends CI_Controller {
 	}
 
 	public function all_roadworks(){
+    if($this->session->userdata('logged_in')){
+      $session_data = $this->session->userdata('logged_in');
+      $data['username'] = $session_data['username'];
 
-		$this->load->model('roadworkAccess');
+    	$this->load->model('roadworkAccess');
 
-		$config = array();
-		$config["base_url"] = base_url() . "index.php/roadworksTableManager/all_roadworks";
-        $config["total_rows"] = $this->roadworkAccess->roadwork_all_count();
-        $config["per_page"] = 10;
-        $config["uri_segment"] = 3;
-        $choice = $config["total_rows"] / $config["per_page"];
-   		$config["num_links"] = round($choice);
- 
-        $this->pagination->initialize($config);
- 
-        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $data["query_all"] = $this->roadworkAccess->
-            fetch_all_roadwork($config["per_page"], $page);
-        $data["links"] = $this->pagination->create_links();
+    	$config = array();
+    	$config["base_url"] = base_url() . "index.php/roadworksTableManager/all_roadworks";
+          $config["total_rows"] = $this->roadworkAccess->roadwork_all_count();
+          $config["per_page"] = 10;
+          $config["uri_segment"] = 3;
+          $choice = $config["total_rows"] / $config["per_page"];
+     		$config["num_links"] = round($choice);
+
+          $this->pagination->initialize($config);
+
+          $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+          $data["query_all"] = $this->roadworkAccess->
+              fetch_all_roadwork($config["per_page"], $page);
+          $data["links"] = $this->pagination->create_links();
 
 
-		$this->load->view('roadworks-table-all.php', $data); 
+    	$this->load->view('roadworks-table-all.php', $data);
+
+    }
+    else{
+      //If no session, redirect to login page
+      redirect(base_url());
+    }
+
 	}
 
 	public function completed_roadworks(){
 
-		$this->load->model('roadworkAccess');
+		if($this->session->userdata('logged_in')){
+      $session_data = $this->session->userdata('logged_in');
+      $data['username'] = $session_data['username'];
 
-		$config = array();
-		$config["base_url"] = base_url() . "index.php/roadworksTableManager/completed_roadworks";
-        $config["total_rows"] = $this->roadworkAccess->roadwork_completed_count();
-        $config["per_page"] = 10;
-        $config["uri_segment"] = 3;
-        $choice = $config["total_rows"] / $config["per_page"];
-   		$config["num_links"] = round($choice);
- 
-        $this->pagination->initialize($config);
- 
-        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $data["query_completed"] = $this->roadworkAccess->
-            fetch_completed_roadwork($config["per_page"], $page);
-        $data["links"] = $this->pagination->create_links();
+      $this->load->model('roadworkAccess');
+
+  		$config = array();
+  		$config["base_url"] = base_url() . "index.php/roadworksTableManager/completed_roadworks";
+          $config["total_rows"] = $this->roadworkAccess->roadwork_completed_count();
+          $config["per_page"] = 10;
+          $config["uri_segment"] = 3;
+          $choice = $config["total_rows"] / $config["per_page"];
+     		$config["num_links"] = round($choice);
+   
+          $this->pagination->initialize($config);
+   
+          $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+          $data["query_completed"] = $this->roadworkAccess->
+              fetch_completed_roadwork($config["per_page"], $page);
+          $data["links"] = $this->pagination->create_links();
 
 
-		$this->load->view('roadworks-table-completed.php', $data); 
+  		$this->load->view('roadworks-table-completed.php', $data); 
+    }
+    else{
+      //If no session, redirect to login page
+      redirect(base_url());
+    }
+    
 	}
 
 	public function ongoing_roadworks(){
 
-		$this->load->model('roadworkAccess');
+    if($this->session->userdata('logged_in')){
+      $session_data = $this->session->userdata('logged_in');
+      $data['username'] = $session_data['username'];
 
-		$config = array();
-		$config["base_url"] = base_url() . "index.php/roadworksTableManager/ongoing_roadworks";
-        $config["total_rows"] = $this->roadworkAccess->roadwork_ongoing_count();
-        $config["per_page"] = 10;
-        $config["uri_segment"] = 3;
-        $choice = $config["total_rows"] / $config["per_page"];
-   		$config["num_links"] = round($choice);
- 
-        $this->pagination->initialize($config);
- 
-        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $data["query_ongoing"] = $this->roadworkAccess->
-            fetch_ongoing_roadwork($config["per_page"], $page);
-        $data["links"] = $this->pagination->create_links();
+  		$this->load->model('roadworkAccess');
+
+  		$config = array();
+  		$config["base_url"] = base_url() . "index.php/roadworksTableManager/ongoing_roadworks";
+          $config["total_rows"] = $this->roadworkAccess->roadwork_ongoing_count();
+          $config["per_page"] = 10;
+          $config["uri_segment"] = 3;
+          $choice = $config["total_rows"] / $config["per_page"];
+     		$config["num_links"] = round($choice);
+   
+          $this->pagination->initialize($config);
+   
+          $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+          $data["query_ongoing"] = $this->roadworkAccess->
+              fetch_ongoing_roadwork($config["per_page"], $page);
+          $data["links"] = $this->pagination->create_links();
 
 
-		$this->load->view('roadworks-table-ongoing.php', $data); 
+  		$this->load->view('roadworks-table-ongoing.php', $data); 
+    }
+    else{
+      //If no session, redirect to login page
+      redirect(base_url());
+    }
+    
 	}
 
 	public function planned_roadworks(){
 
-		$this->load->model('roadworkAccess');
+    if($this->session->userdata('logged_in')){
+      $session_data = $this->session->userdata('logged_in');
+      $data['username'] = $session_data['username'];
 
-		$config = array();
-		$config["base_url"] = base_url() . "index.php/roadworksTableManager/planned_roadworks";
-        $config["total_rows"] = $this->roadworkAccess->roadwork_planned_count();
-        $config["per_page"] = 10;
-        $config["uri_segment"] = 3;
-        $choice = $config["total_rows"] / $config["per_page"];
-   		$config["num_links"] = round($choice);
- 
-        $this->pagination->initialize($config);
- 
-        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $data["query_planned"] = $this->roadworkAccess->
-            fetch_planned_roadwork($config["per_page"], $page);
-        $data["links"] = $this->pagination->create_links();
+  		$this->load->model('roadworkAccess');
+
+  		$config = array();
+  		$config["base_url"] = base_url() . "index.php/roadworksTableManager/planned_roadworks";
+          $config["total_rows"] = $this->roadworkAccess->roadwork_planned_count();
+          $config["per_page"] = 10;
+          $config["uri_segment"] = 3;
+          $choice = $config["total_rows"] / $config["per_page"];
+     		$config["num_links"] = round($choice);
+   
+          $this->pagination->initialize($config);
+   
+          $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+          $data["query_planned"] = $this->roadworkAccess->
+              fetch_planned_roadwork($config["per_page"], $page);
+          $data["links"] = $this->pagination->create_links();
 
 
-		$this->load->view('roadworks-table-planned.php', $data); 
+  		$this->load->view('roadworks-table-planned.php', $data); 
+    }
+    else{
+      //If no session, redirect to login page
+      redirect(base_url());
+    }
+    
 	}
 
 	

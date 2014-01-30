@@ -13,8 +13,11 @@
     <link href="<?php echo base_url() ?>styles/css/bootstrap.css"  rel="stylesheet"></link>
     <link href="<?php echo base_url() ?>styles/css/style.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>styles/css/colorbox.css" rel="stylesheet">
-    
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
+
+    <?php echo $map['js']; ?>
+    
   </head>
   <body>
     <div class="navbar navbar-default navbar-inverse navbar-static-top" role="navigation">
@@ -48,30 +51,24 @@
 
         <div class="navbar-collapse collapse" id="functions">
           <ul class="nav navbar-nav">
-            
             <li>
-              <a href="<?php echo base_url() ?>index.php/roadworksTableManager/all_roadworks">
-                <span class="icon"> F </span> All Roadworks</a>    
+                <a href="#add_incident" id="selected"><span class="icon"> + </span>Add Incident</a>    
+            </li>
+
+            <!-- <li>
+                <a id='editinc' href="#edit_incident" onclick='javascript:listEditIncidents();' ><span class="icon"> : </span>Edit Incidents</a>
             </li>
 
             <li>
-              <a href="<?php echo base_url() ?>index.php/roadworksTableManager/completed_roadworks">
-                <span class="icon"> / </span> Completed</a>
+                <a id='deleteinc' href="#delete_incident" onclick='javascript:listDeleteIncidents();' ><span class="icon"> - </span>Delete Incidents</a>
             </li>
 
             <li>
-                <a href="<?php echo base_url() ?>index.php/roadworksTableManager/ongoing_roadworks" id="selected">
-                <span class="icon"> J </span> Ongoing</a>
-            </li>
+                <a href='<?php echo base_url() ?>index.php/incidentsTableManager/all_incidents' id="menu_view_inc_btn" /><span class="icon"> p </span>View Incidents Table</a>
+            </li> -->
 
             <li>
-                <a href="<?php echo base_url() ?>index.php/roadworksTableManager/planned_roadworks">
-                <span class="icon"> P </span> Not Yet Started</a>
-            </li>
-
-            <li>
-                <a href='<?php echo base_url() ?>index.php/roadworksManager' id="menu_back_rw_btn" />
-                <span class="icon"> h </span> Back to Roadworks</a>
+                <a href='<?php echo base_url() ?>index.php/incidentsManager' id="menu_back_inc_btn" /><span class="icon"> h </span>Back</a>
             </li>
 
             
@@ -79,61 +76,18 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
-
-
-     <div id="queryMessage"></div>
-
+<div id="queryMessage"></div>  
     <div id="lowerbox">
-        <div id="table_view" style="width: 100%;" >
+        <div id="map" style="width:70%"><?php echo $map['html']; ?></div>
 
+        <div id="adminFunctions">
 
-            <!--TABLE-->
-            <?php
-
-                if($query_ongoing == NULL){ ?>
-                    <center><?php echo '<br /><br /><br /><br /><br />There are no ongoing roadworks saved in the database.<br /><br />'; ?>
-                    </center>
-                    <?php
-                }else{ ?>
+            <div id="addincidentDiv">
+                <?php require("incident-add.php"); ?>
+            </div>
             
-                    <table>
-                    <th style="min-width: 100px; max-width:100px;">Contract #</th>
-                    <th style="width: 200px; max-width:200px;">Roadwork</th>
-                    <th style="min-width: 130px; max-width: 130px;">Classification</th>
-                    <th style="min-width: 200px;max-width: 200px;">Description</th>
-                    <th style="width: 70px;">Start</th>
-                    <th style="width: 70px;">End</th>
-                    <th style="width: 120px;">Street</th>
-                    <th style="width: 95px;">Barangay</th>
-                    <th style="width: 50px;">Status</th>
-                    
-                    <?php foreach($query_ongoing as $row){
-
-                        ?><tr>
-                        <td> <?php echo $row->contract_no ?> </td>
-                        <td> <?php echo $row->rwork_name ?> </td>
-                        <td> <?php echo $row->rwork_type ?> </td>
-                        <td> <?php echo $row->description ?> </td>
-                        <td> <?php echo $row->start_date ?> </td>
-                        <td> <?php if($row->end_date!='0000-00-00') echo $row->end_date ?> </td>
-                        <td> <?php echo $row->street ?> </td>
-                        <td> <?php echo $row->barangay ?> </td>
-                        <td> <?php if ($row->status == 100) echo 'Finished';
-                                else echo $row->status.'%'?> </td>
-                        </tr>
-
-                        <?php  
-                    }
-                } ?></table>
-                <p style="text-align: center;"><?php echo $links; ?></p><?php 
-            ?>
-            
-
         </div>
-
-
-
-
+        
     </div>
 
    
@@ -150,19 +104,13 @@
     <script src="<?php echo base_url() ?>styles/js/mainFunctions.js"></script>
     <script src="<?php echo base_url() ?>styles/js/gmaps.js"></script>
     <script src="<?php echo base_url() ?>styles/js/jquery.autosize.js"></script>
-    <script src="<?php echo base_url() ?>styles/js/jquery.colorbox.js"></script>
     <script src="<?php echo base_url() ?>styles/js/bootstrap.min.js"></script>
 
-  <script>
-        $(document).ready(function(){
-            $("#editrw").colorbox({inline:true, width:"70%"});
-            $("#deleterw").colorbox({inline:true, width:"auto"});
-
-        });
-
-        $(function(){
-            $('textarea').autosize();
-        });
-
+    <script>
+        $(function(){   $( "#inc_start" ).datepicker();    });
+        $(function(){   $( "#inc_end" ).datepicker();    });
+        $(function(){   $('textarea').autosize();            }); 
     </script>
+
+
 </html>

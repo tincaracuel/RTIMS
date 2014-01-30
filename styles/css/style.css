@@ -16,7 +16,7 @@ html, body{
         /*font-family: 'Calibri';*/
         padding: 0;
         height: 100%;
-        overflow: hidden;
+        /*overflow: hidden;*/
         background-color: #282929;
         font-family: 'Open Sans';
 }
@@ -106,6 +106,8 @@ h1,h2,h3{
 	width: 100%;
 	font-size: 14px; 
 	outline: none;
+	padding: 5px;
+	border: 1px solid grey;
 	font-family: 'Open Sans';
 }
 
@@ -120,7 +122,7 @@ h1,h2,h3{
 
 #lowerbox{
 	margin-top: -20px;
-	height: 100%;
+	height: 87%;
 }
 
 #functions{
@@ -207,7 +209,7 @@ h1,h2,h3{
 	font-family: 'Open Sans';
 	font-weight:  300;
 	padding: 0;
-	height: 98%;
+	height: 100%;
 }
 
 
@@ -768,4 +770,34 @@ div [name="right"] input[name='lat2'], div [name="right"] input[name='long2']{
 	border: none;
 	background-color: transparent;
 	color: white;
+}
+
+/*------------------EDIT ACCOUNT----------------*/
+
+#edit-account{
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0 50px 100px;
+	height: auto;
+}
+
+#edit-account table tr:hover{
+	background-color: transparent;
+}
+
+#edit-account table td{
+	border: none;
+	font-family: 'Open Sans';
+	font-size: 18px;
+}
+
+#edit-account table input{
+	width: 100%;
+	border: 1px solid grey;
+	padding: 10px;
+}
+
+#edit-account table input[type=submit]{
+	width: 50%;
 }

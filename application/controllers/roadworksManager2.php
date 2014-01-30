@@ -1,7 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 session_start();
-class roadworksManager extends CI_Controller {
+class roadworksManager2 extends CI_Controller {
+
+	/* ADD ROADWORK FUNCTION ONLY*/
 
 	public function index(){
 
@@ -10,7 +12,6 @@ class roadworksManager extends CI_Controller {
 			$data['username'] = $session_data['username'];
 
 			$this->load->model('incidentAccess');
-
 			$this->load->library('googlemaps');
 			$this->load->model('map_model', '', TRUE);
 			$this->load->model('roadworkAccess', '', TRUE);
@@ -22,11 +23,11 @@ class roadworksManager extends CI_Controller {
 			$config['mapTypeControlStyle'] = "DROPDOWN_MENU";
 			$config['map_types_available'] = array("HYBRID", "ROADMAP");
 
-			/*$config['onclick'] =   'var rw_lat = document.getElementById("rwork_lat");
+			$config['onclick'] =   'var rw_lat = document.getElementById("rwork_lat");
 									rw_lat.value = event.latLng.lat();
 									var rw_long = document.getElementById("rwork_long");
 									rw_long.value = event.latLng.lng();
-									createMarker({ map: map, position:event.latLng , draggable: true});';*/
+									createMarker({ map: map, position:event.latLng , draggable: true});';
 
 			$coords = $this->map_model->get_coordinates_rw();
 			// Loop through the coordinates we obtained above and add them to the map
@@ -88,7 +89,7 @@ class roadworksManager extends CI_Controller {
 			$data['query'] = $this->roadworkAccess->roadwork_getAll();
 
 
-			$this->load->view('roadwork', $data);
+			$this->load->view('roadwork-new', $data);
 
 		}
 		else{
@@ -96,7 +97,7 @@ class roadworksManager extends CI_Controller {
 		redirect(base_url());
 		}
 	}
-
+	
 	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 	public function addRoadwork(){
 		/*gets the necessary information from the submitted form*/
@@ -134,7 +135,6 @@ class roadworksManager extends CI_Controller {
 		}
 			echo $count;
 	}
-
 
 	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 	public function setInfowindow_rw($contract_no, $rwork_name, $street, $barangay, $start_date, $end_date, $status, $lat, $long, $type, $desc) {

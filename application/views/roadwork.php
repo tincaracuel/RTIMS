@@ -30,23 +30,31 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#" style="color: white">Calamba City Roadworks and Traffic Incidents Monitoring System</a>
+          <a class="navbar-brand" href="#" style="color: white"><img src="<?php echo base_url() ?>styles/img/calamba_seal.png" style="margin-top: -6px; margin-right: 5px; height: 22px" />Calamba City Roadworks and Traffic Incidents Monitoring System</a>
         </div>
 
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li>
-              <a href='<?php echo base_url() ?>' ><span class="icon"> X </span> Log Out</a>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="icon"> U </span><?php echo $username?> <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                  <li>
+                    <a href='<?php echo base_url() ?>index.php/logManager/editAccount' ><span class="icon"> S </span> My Account </a>
+                  </li>
+                  <li>
+                    <a href='<?php echo base_url() ?>index.php/logManager/logout' ><span class="icon"> X </span> Log Out </a>
+                  </li>
+              </ul>
             </li>
           </ul>
         </div><!--/.nav-collapse -->
 
 
-        <div class="navbar-collapse" id="functions">
+        <div class="navbar-collapse collapse" id="functions">
           <ul class="nav navbar-nav">
           
             <li>
-              <a href="#add_roadwork" id="menu_add_rw_btn"><span class="icon"> + </span>Add Roadwork</a>       
+              <a href='<?php echo base_url() ?>index.php/roadworksManager2'><span class="icon"> + </span>Add Roadwork</a>       
             </li>
 
             <li>
@@ -70,15 +78,9 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
-
+<div id="queryMessage"></div>   
     <div id="lowerbox">
         <div id="map" ><?php echo $map['html']; ?></div>
-        <div id="adminFunctions">
-
-            <div id="addroadworkDiv">
-              <?php require("addRoadwork.php"); ?>
-            </div>
-        </div>
 
         <div style="display:none">
             <div id='edit_roadwork' class="colorbox_edit_delete" style='background:#fff;'>

@@ -1,51 +1,29 @@
-<script>
-    $(function(){   $( "#rwork_start" ).datepicker();    });
-    $(function(){   $( "#rwork_end" ).datepicker();    });
-    $(function(){   $('textarea').autosize();            }); 
-</script>
+<form class="addIncident" action='<?php echo base_url() ?>index.php/incidentsManager/addIncident' method='post'>
+    <table style="width:100%;">
 
-<form class="addRoadwork" action='<?php echo base_url() ?>index.php/roadworksManager/addRoadwork' method='post'>
-
-<table style="width:100%;">
-<tr><td width="30%">Contract number:</td>
-    <td><input type="text" name="contract_number" maxlength="20" onkeyup='javascript:checkRWcontractNumberDuplicate(this.value);' autofocus required /></td></tr>
-
-<tr><td width="30%">Roadwork name:</td>
-    <td><input type="text" name="rwork_name" maxlength="50" /></td></tr>
-
-<tr><td width="30%">&nbsp;</td>
-    <td>&nbsp;</td></tr>
-
-<tr><td width="30%">Classification:</td>
-    <td><select name="rwork_classification" id="rwork_classification" autofocus required ><br /><br />
-        <option value="Construction">Construction</option>
-        <option value="Rehabilitation">Rehabilitation</option>
-        <option value="Renovation">Renovation</option>
-        <option value="Riprapping">Riprapping</option>
-        <option value="Application">Application</option>
-        <option value="Installation">Installation</option>
-        <option value="Reconstruction">Reconstruction</option>
-        <option value="Concreting">Concreting/Asphalting</option>
-        <option value="Electrification">Electrification</option>
-        <option value="Roadway Lighting">Roadway Lighting</option>
+    <tr><td width="30%">Classification:</td>
+    <td><select id="inc_classification" name="inc_classification" autofocus required ><br /><br />
+        <option value="Accident">Accident</option>
+        <option value="Obstruction">Obstruction</option>
+        <option value="Public Event">Public Event</option>
+        <option value="Funeral">Funeral</option>
+        <option value="Flood">Flood</option>
+        <option value="Strike">Strike</option>
     </select></td></tr>
 
-<tr><td width="30%">Duration:</td>
-    <td><input type="text" name="rwork_start" id="rwork_start" required />&nbsp;to&nbsp;
-    <input type="text" name="rwork_end" id="rwork_end" /></td></tr>
+    <tr><td width="30%">Duration:</td>
+        <td><input type="text" name="inc_start" id="inc_start" required />&nbsp;to&nbsp;
+        <input type="text" name="inc_end" id="inc_end" /></td></tr>
 
-<tr><td width="30%">Description:</td>
-    <td><textarea name="rwork_desc" id="rwork_desc" maxlength="250" required > </textarea></td></tr>
+    <tr><td width="30%">Description:</td>
+        <td><textarea name="inc_desc" id="inc_desc" maxlength="100" required > </textarea></td></tr>
 
-<tr><td width="30%">&nbsp;</td>
-    <td>&nbsp;</td></tr>
+    <tr><td width="30%">Street:</td>   
+        <td><input type="text" name="inc_street" maxlength="50" /></td></tr>
+    
+    <tr><td width="30%">Barangay:</td> 
 
-<tr><td width="30%">Street:</td></td>
-    <td><input type="text" name="rwork_street" maxlength="50" /></td></tr>
-
-<tr><td width="30%">Barangay:</td></td>
-
-    <td><select name="rwork_barangay" id="rwork_barangay" autofocus required >
+    <td><select name="inc_barangay" id="inc_barangay" autofocus required >
         <option value="Bagong Kalsada" >Bagong Kalsada </option>
         <option value="Banadero" >Bańadero </option>
         <option value="Banlic" >Banlic </option>
@@ -103,14 +81,11 @@
 
       </select></td></tr>
 
-<tr><td width="30%">Map Coordinates:</td>
-    <td style="text-align: center;">( <input type="text" name="rwork_lat" id="rwork_lat" maxlength="20" autofocus required /> , 
-<input type="text" name="rwork_long" id="rwork_long" maxlength="20" autofocus required /> )</td></tr>
-
-<tr><td width="30%">Progress / Status:</td>
-    <td><input type="number" name="rwork_status" min="0" max="100" autofocus /></td></tr>
-</table>
-<br />
-<input type="submit" value="Add Roadwork" id="addRoadworkBtn" onclick='javascript:addRoadwork();'/><br /><br />
-<a href='' id="menu_back1_btn" />Back to Main Menu &rarr;</a>
+      <tr><td width="30%">Map Coordinates:</td>
+        <td style="text-align: center;">( <input type="text" name="inc_lat" id="inc_lat" maxlength="20" autofocus required /> , 
+    <input type="text" name="inc_long" id="inc_long" maxlength="20" autofocus required /> )</td></tr>
+    </table>
+    <br />   
+    <input type="submit" value="Add Incident" id="addIncidentBtn" onclick='javascript:addIncident();'/><br /><br />
+    <a href='' id="menu_reset_btn" />Reset form</a>
 </form>

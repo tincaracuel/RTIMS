@@ -6,8 +6,6 @@ $(window).load(function() {
 $(document).ready(function(){
 //default
 	
-	$("#addroadworkDiv").hide();
-	$("#addincidentDiv").hide();
 	$("#menu_back_rw_btn2").hide();
 	$("#menu_back_inc_btn2").hide();
 	$("#admin_menu").show();
@@ -35,36 +33,10 @@ $(document).ready(function(){
 		});
 	
 
-	$("#menu_back1_btn").click(function(){ //BACK TO ROADWORKS MENU
-		$("#addroadworkDiv").hide();
+	$("#menu_reset_btn").click(function(){
 		$('.addRoadwork').trigger("reset"); //reset the forms
-		$('.addIncident').trigger("reset"); //reset the forms
-		$("#admin_roadwork").fadeIn(900);
+		$('.addIncident').trigger("reset");
 		});
-
-
-	$("#menu_back_rw_btn2").click(function(){ //
-		$("#menu_rw").show(1000);
-		$("#menu_add_rw_btn").show(300);
-		$("#menu_edit_rw_btn").show(300);
-		$("#menu_delete_rw_btn").show(300);
-		$("#menu_back_rw_btn2").hide();
-		$("#menu_back_rw_btn").show();
-		//HIDE TABLE IN RIGHT
-		//SHOW MAP
-		});
-
-	$("#menu_back_inc_btn2").click(function(){ //
-		$("#menu_inc").show(1000);
-		$("#menu_add_inc_btn").show(300);
-		$("#menu_edit_inc_btn").show(300);
-		$("#menu_delete_inc_btn").show(300);
-		$("#menu_back_inc_btn2").hide();
-		$("#menu_back_inc_btn").show();
-		//HIDE TABLE IN RIGHT
-		//SHOW MAP
-		});
-
 
 	/* DISPLAY ROADWORK TABLES */
 	$("#rw_all").click(function(){ //
