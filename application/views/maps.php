@@ -61,7 +61,7 @@
 
             <li>
               <a href='<?php echo base_url() ?>index.php/reportsManager' id="menu_report_btn"><span class="icon"> F </span>Reports
-            <span class="notif"><?php if ($total_unread != '0') echo $total_unread ?></span>
+            <?php if ($total_unread != '0'){ ?> <span class="notif"> <?php echo $total_unread ?> </span> <?php } ?>
             </a>
             </li>
           </ul>

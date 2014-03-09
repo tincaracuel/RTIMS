@@ -59,9 +59,7 @@ class reportAccess extends CI_Model {
         $this->db->limit($limit, $start);
 
 
-        $this->db->select("*");
-		$this->db->from("report");
-		$queryReport = $this->db->get();
+        $queryReport = $this->db->query("SELECT * from REPORT ORDER BY date_received DESC");
  
         if ($queryReport->num_rows() > 0 ){
              foreach ($queryReport->result() as $row) {
