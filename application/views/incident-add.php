@@ -1,8 +1,108 @@
-<form class="addIncident" action='<?php echo base_url() ?>index.php/incidentsManager/addIncident' method='post'>
+<script type="text/javascript">
+    function validateIncidentForm(){
+        var description = document.getElementById('inc_desc').value;
+        var street=document.forms["addIncident"]["inc_street"].value;
+        var start=document.getElementById('inc_start').value;
+        var end=document.getElementById('inc_end').value;
+        var latitude=document.getElementById('inc_lat').value;
+        var longitude=document.getElementById('inc_long').value;
+        var latPattern = /^-?([0-8]?[0-9]|90)\.[0-9]{1,16}$/;
+        var longPattern = /^-?((1?[0-7]?|[0-9]?)[0-9]|180)\.[0-9]{1,16}$/;
+        
+        /*Start date*/
+        if(start==null || start==""){
+          alert("Enter the start date of the incident.");
+          return false;
+        }else if(!checkDate(start)){
+          return false;
+        }
+        /*End date*/
+        else if(end==null || end==""){
+
+        }else if(!checkDate(end)){
+          return false;
+        }else if(start>end){
+            alert("End date is earlier than the start date.")
+            return false;
+        }
+        /*Message*/
+        if(/^\s*$/g.test(description) || description.indexOf('\n') != -1) {
+            alert('Enter the description of the incident.');
+            return false;
+        }else if (description.length<10) {
+            alert('Description must have at least 10 characters.');
+            return false;
+        }else if (description.length>100) {
+            alert('Description can have at most 100 characters.');
+            return false;
+        }
+        /*Street*/
+        if(street==null || street==""){
+          alert("Street address must be filled out.");
+          return false;
+        }else if(street.length<5 || street.length>50){
+          alert("Street address must have 5 - 50 characters.");
+          return false;
+        }
+        /*Coordinates*/
+        if(latitude==null || latitude=="" || longitude==null || longitude==""){
+          alert("Coordinates are required. Please click on the incident location on the map.");
+          return false;
+        }else if(!latitude.match(latPattern)){
+            alert("Invalid latitude.")
+            return false;
+        }else if(!longitude.match(longPattern)){
+            alert("Invalid longitude.")
+            return false;
+        }
+
+    }
+
+
+
+    function checkDate(txtDate){
+        var currVal = txtDate;
+        
+        var rxDatePattern = /^(\d{4})(-)(\d{1,2})(-)(\d{1,2})$/;
+        var dtArray = currVal.match(rxDatePattern);
+        
+        if (dtArray == null){
+            alert("Invalid date format. Please use YYYY-MM-DD.");
+            return false;
+        }
+       
+        dtMonth = dtArray[3];
+        dtDay= dtArray[5];
+        dtYear = dtArray[1];        
+        
+        if (dtMonth < 1 || dtMonth > 12){
+            alert("Month must be from 1 to 12.");
+            return false;
+        }
+        else if (dtDay < 1 || dtDay> 31){
+            alert("Month must be from 1 to 31.");
+            return false;
+        }
+        else if ((dtMonth==4 || dtMonth==6 || dtMonth==9 || dtMonth==11) && dtDay ==31){
+            alert("Month does not have 31 days.");
+            return false;
+        }
+        else if (dtMonth == 2){
+            var isleap = (dtYear % 4 == 0 && (dtYear % 100 != 0 || dtYear % 400 == 0));
+            if (dtDay> 29 || (dtDay ==29 && !isleap)){
+                alert("Month has only 28 days.");
+                return false;
+            }
+        }
+        return true;
+    }
+</script>
+
+<form class="addIncident" name="addIncident" id="addIncident" onclick="return validateIncidentForm()" action='<?php echo base_url() ?>index.php/incidentsManager/addIncident' method='post'>
     <table style="width:100%;">
 
     <tr><td width="30%">Classification:</td>
-    <td><select id="inc_classification" name="inc_classification" autofocus required ><br /><br />
+    <td><select id="inc_classification" name="inc_classification" autofocus><br /><br />
         <option value="Accident">Accident</option>
         <option value="Obstruction">Obstruction</option>
         <option value="Public Event">Public Event</option>
@@ -12,18 +112,18 @@
     </select></td></tr>
 
     <tr><td width="30%">Duration:</td>
-        <td><input type="text" name="inc_start" id="inc_start" required />&nbsp;to&nbsp;
+        <td><input type="text" name="inc_start" id="inc_start" />&nbsp;to&nbsp;
         <input type="text" name="inc_end" id="inc_end" /></td></tr>
 
     <tr><td width="30%">Description:</td>
-        <td><textarea name="inc_desc" id="inc_desc" maxlength="100" required > </textarea></td></tr>
+        <td><textarea name="inc_desc" id="inc_desc" maxlength="100" > </textarea></td></tr>
 
     <tr><td width="30%">Street:</td>   
-        <td><input type="text" name="inc_street" maxlength="50" /></td></tr>
+        <td><input type="text" name="inc_street" id="inc_street" maxlength="50" /></td></tr>
     
     <tr><td width="30%">Barangay:</td> 
 
-    <td><select name="inc_barangay" id="inc_barangay" autofocus required >
+    <td><select name="inc_barangay" id="inc_barangay" autofocus>
         <option value="Bagong Kalsada" >Bagong Kalsada </option>
         <option value="Banadero" >Bańadero </option>
         <option value="Banlic" >Banlic </option>
@@ -82,10 +182,10 @@
       </select></td></tr>
 
       <tr><td width="30%">Map Coordinates:</td>
-        <td style="text-align: center;">( <input type="text" name="inc_lat" id="inc_lat" maxlength="20" autofocus required /> , 
-    <input type="text" name="inc_long" id="inc_long" maxlength="20" autofocus required /> )</td></tr>
+        <td style="text-align: center;">( <input type="text" name="inc_lat" id="inc_lat" maxlength="20" autofocus /> , 
+    <input type="text" name="inc_long" id="inc_long" maxlength="20" autofocus /> )</td></tr>
     </table>
     <br />   
-    <input type="submit" value="Add Incident" id="addIncidentBtn" onclick='javascript:addIncident();'/><br /><br />
+    <input type="submit" value="Add Incident" id="addIncidentBtn" onclick="return validateIncidentForm()"/><br /><br />
     <a href='' id="menu_reset_btn" />Reset form</a>
 </form>

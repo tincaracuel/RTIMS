@@ -249,6 +249,7 @@ h1,h2,h3{
 	border: 1px solid #6E6E6E;
 	color:white;
 	background-color: #6E6E6E;
+	text-align: center;
 }
 
 #table_view td{
@@ -454,12 +455,15 @@ textarea{resize:vertical;}
 }
 #queryMessage, #lower_div{
 	position: fixed;
-	margin-top: auto;
+	right: 25%;
 	z-index: 1;
-	background-color: white;
+	background-color: gray;
+	color: white;
 	-webkit-border-radius:10px;
 	-moz-webkit-border-radius:10px;
-	width:250px;
+	width:20%;
+	text-align: center;
+	line-height: 25px;
 	
 }
 

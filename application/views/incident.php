@@ -82,7 +82,7 @@
 
         <div style="display:none">
             <div id='edit_incident' class="colorbox_edit_delete" style='background:#fff;'>
-                <form class="editIncident"  method='post'>
+                <form class="editIncident" method='post'>
                     <div name="left">
                         <div id="listOfIncidents">
                         </div>
@@ -100,7 +100,7 @@
 
         <div style="display:none">
             <div id='delete_incident' class="colorbox_edit_delete" style='background:#fff;'>
-                <form class="deleteIncident"  method='post'>
+                <form class="deleteIncident" method='post'>
                     <div name="delete_incident">
                         <div id="listOfIncidents2">
                         </div>

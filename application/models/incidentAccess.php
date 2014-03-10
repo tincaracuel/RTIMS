@@ -144,7 +144,7 @@ class incidentAccess extends CI_Model {
 
 	function getAllIncidents(){
 		/* simply displays the names of all cashier for selection (drop down menu) */
-		return $this->db->query("SELECT inc_id from incident order by inc_id asc")->result_array();
+		return $this->db->query("SELECT inc_id, inc_type, description from incident order by inc_id asc")->result_array();
 	}
 
 	function getIncidentDetails($in){
@@ -154,9 +154,10 @@ class incidentAccess extends CI_Model {
 		return $arr;
 	}
 
-	function editExistingIncident($in2, $type2, $start2, $end2, $desc2){
+	function editExistingIncident($in2, $type2, $start2, $end2, $desc2, $street2, $brgy2, $lat2, $long2){
 		//given the name, username and password, this function will update/edit all the details	whose cashier_name matches the variable $name 
 		$status = $this->db->query("UPDATE incident set inc_type='$type2', start_date='$start2', end_date='$end2', description='$desc2' where inc_id='$in2'");
+		$status = $this->db->query("UPDATE map_coordinates set street='$street2', barangay='$brgy2', latitude='$lat2', longitude='$long2' where inc_id='$in2'");
 		if(!$status){
 			$this->error = $this->db->_error_message();
     		$this->errorno = $this->db->_error_number();

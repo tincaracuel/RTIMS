@@ -5,7 +5,7 @@ $count = 0;
 
 foreach ($incident as $entry) {
 	$count += 1;
-	echo "<option value=".$entry['inc_id'].">".$entry['inc_id']."</option>";
+	echo "<option value=".$entry['inc_id'].">".$entry['inc_id'].":".$entry['description']."</option>";
 }
 
 if($count == 0){

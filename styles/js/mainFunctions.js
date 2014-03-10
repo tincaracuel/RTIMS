@@ -133,6 +133,10 @@ function editSelectedIncident(){
   start2        = $("#start2").val();
   end2          = $("#end2").val();
   desc2         = $("#desc2").val();
+  street2     = $("#street2").val();
+  brgy2       = $("#brgy2").val();
+  long2       = $("#long2").val();
+  lat2        = $("#lat2").val();
 
   perform = true;
   valid = true;
@@ -144,7 +148,7 @@ function editSelectedIncident(){
   $.ajax({
         url: "incidentsTableManager/editIncident",
         type: "POST",
-        data: {in2:in2,type2:type2,start2:start2,end2:end2,desc2:desc2},
+        data: {in2:in2,type2:type2,start2:start2,end2:end2,desc2:desc2,street2:street2,brgy2:brgy2,lat2:lat2,long2:long2},
 
         success: function(data) {
         $("#queryMessage").html("Successfully edited.");
