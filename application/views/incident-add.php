@@ -98,7 +98,7 @@
     }
 </script>
 
-<form class="addIncident" name="addIncident" id="addIncident" onclick="return validateIncidentForm()" action='<?php echo base_url() ?>index.php/incidentsManager/addIncident' method='post'>
+<form class="addIncident" name="addIncident" id="addIncident" action='<?php echo base_url() ?>index.php/incidentsManager/addIncident' method='post'>
     <table style="width:100%;">
 
     <tr><td width="30%">Classification:</td>

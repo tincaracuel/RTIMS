@@ -12,7 +12,7 @@ class logManager extends CI_Controller {
 		else{
 			$this->load->library('googlemaps');
 			$this->load->model('map_model', '', TRUE);
-			$config['center'] = '14.1876, 121.12508';
+			$config['center'] = '14.1881, 121.12508';
 			$config['zoom'] = '13';
 			$config['map_type'] = 'ROADMAP';
 			$config['maxzoom'] = 0;
@@ -23,7 +23,7 @@ class logManager extends CI_Controller {
 			$coords_rw = $this->map_model->get_coordinates_rw();
 			// Loop through the coordinates we obtained above and add them to the map
 
-			$ctr0 = $ctr1 = $ctr2 = $ctr3 = $ctr4 = $ctr5 = $ctr6 = $ctr7 = $ctr8 = 0;
+			$ctr0 = $ctr1 = $ctr2 = $ctr3 = $ctr4 = $ctr5 = $ctr6 = $ctr7 = $ctr8 = $ctr9 = 0;
 			foreach ($coords_rw as $coordinate) {
 				$marker = array();
 				$marker['draggable'] = FALSE;
@@ -125,16 +125,16 @@ class logManager extends CI_Controller {
 					$marker['icon'] = 'styles/img/markers/inc/event.png';
 					$marker['id'] = "incCat2[".$ctr2."]";
 					$ctr2++;
-				}else if ($coordinate->inc_type == 'Flood'){
-					$marker['icon'] = 'styles/img/markers/inc/flood.png';
-					$marker['id'] = "incCat3[".$ctr3."]";
-					$ctr3++;
-				}else if ($coordinate->inc_type == 'Strike'){
-					$marker['icon'] = 'styles/img/markers/inc/strike.png';
-					$marker['id'] = "incCat4[".$ctr4."]";
-					$ctr4++;
 				}else if ($coordinate->inc_type == 'Funeral'){
 					$marker['icon'] = 'styles/img/markers/inc/funeral.png';
+					$marker['id'] = "incCat3[".$ctr3."]";
+					$ctr3++;
+				}else if ($coordinate->inc_type == 'Flood'){
+					$marker['icon'] = 'styles/img/markers/inc/flood.png';
+					$marker['id'] = "incCat4[".$ctr4."]";
+					$ctr4++;
+				}else if ($coordinate->inc_type == 'Strike'){
+					$marker['icon'] = 'styles/img/markers/inc/strike.png';
 					$marker['id'] = "incCat5[".$ctr5."]";
 					$ctr5++;
 				}
@@ -146,6 +146,9 @@ class logManager extends CI_Controller {
 
 
 			$polygon = array();
+			$polygon['strokeOpacity'] = '0.3';
+			$polygon['strokeWeight'] = '1.5';
+			$polygon['strokeColor'] = '#080808';
 
 			$polygon['points'] = array(
 				'14.232854,121.189964', '14.232854,121.189921', '14.237887,121.175673', '14.224909,121.134947', 
@@ -174,7 +177,7 @@ class logManager extends CI_Controller {
 		        '14.197202,121.1849', '14.203234,121.183398', '14.207977,121.183784', '14.211804,121.184857', 
 		        '14.213843,121.188462',' 14.215757,121.190007', '14.225907,121.189063', '14.230067,121.18902', 
 	        	'14.232937,121.19005');
-			//$this->googlemaps->add_polygon($polygon);
+			$this->googlemaps->add_polygon($polygon);
 
 			//$this->roadworkAccess->getLatLng();
 

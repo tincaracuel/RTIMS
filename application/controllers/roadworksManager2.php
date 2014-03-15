@@ -15,7 +15,7 @@ class roadworksManager2 extends CI_Controller {
 			$this->load->library('googlemaps');
 			$this->load->model('map_model', '', TRUE);
 			$this->load->model('roadworkAccess', '', TRUE);
-			$config['center'] = '14.1876, 121.12508';
+			$config['center'] = '14.1881, 121.12508';
 			$config['zoom'] = '13';
 			$config['map_type'] = 'ROADMAP';
 			$config['maxzoom'] = 0;
@@ -81,6 +81,10 @@ class roadworksManager2 extends CI_Controller {
 				$marker['position'] = $coordinate->latitude.','.$coordinate->longitude;
 				$this->googlemaps->add_marker($marker);
 			}
+
+
+			require("polygons_barangay.php");
+
 
 			$this->googlemaps->initialize($config);
 			$data['map'] = $this->googlemaps->create_map();
