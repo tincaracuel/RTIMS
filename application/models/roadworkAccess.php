@@ -119,18 +119,18 @@ class roadworkAccess extends CI_Model {
 	}
 	
 	function getAllRoadworks(){
-		/* simply displays the names of all cashier for selection (drop down menu) */
-		return $this->db->query("SELECT contract_no from roadwork order by contract_no asc")->result_array();
+		/* displays all roadworks for selection (drop down menu) */
+		return $this->db->query("SELECT contract_no, rwork_name, rwork_type from roadwork order by contract_no asc")->result_array();
 	}
 
 	function getRoadworkDetails($cn){
-		/* 	given the variable name, this function will select all the details whose cashier_name
-			matches the variable $name */
+		/* 	given the contract number, this function will select all the details of the roadwork that has a contract number that
+			matches the variable $cn */
 		return $this->db->query("SELECT * from roadwork join map_coordinates where contract_no='$cn' and roadwork.contract_no = map_coordinates.rw_id")->result_array();
 	}
 
 	function editExistingRoadwork($cn2, $rwork_name2, $type2, $start2, $end2, $desc2, $status2, $street2, $brgy2, $lat2, $long2){
-		//given the name, username and password, this function will update/edit all the details	whose cashier_name matches the variable $name 
+		//this function will update/edit all the details whose contract number matches the variable $cn2
 
 		$status = $this->db->query("UPDATE roadwork set rwork_name='$rwork_name2', rwork_type='$type2', start_date='$start2', end_date='$end2', description='$desc2', status='$status2' where contract_no='$cn2'");
 		$status = $this->db->query("UPDATE map_coordinates set street='$street2', barangay='$brgy2', latitude='$lat2', longitude='$long2' where rw_id='$cn2'");
@@ -145,7 +145,7 @@ class roadworkAccess extends CI_Model {
 	}
 
 	function deleteExistingRoadwork($cn2){
-		//given the name, username and password, this function will update/edit all the details	whose cashier_name matches the variable $name 
+		//this function will delete all the details whose contract number matches the variable $cn2
 		$status = $this->db->query("DELETE from map_coordinates where rw_id='$cn2'");
 		$status = $this->db->query("DELETE from roadwork where contract_no='$cn2'");
 		if(!$status){

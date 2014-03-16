@@ -89,7 +89,11 @@
                         <div id="listOfRoadworks">
                         </div>
                     <br /> 
-                    <input type="button" name="selectRoadwork" class="lightboxSubmitBtn" id="editRwBtn1" value="SELECT" onclick='javascript:viewRoadworkDetails();'>
+
+                    <?php if($query != NULL){ ?>
+                      <input type="button" name="selectRoadwork" class="lightboxSubmitBtn" id="editRwBtn1" value="SELECT" onclick='javascript:viewRoadworkDetails();'>
+                    <?php }?>
+
                     </div>
                     
                     <div name="right">
@@ -107,7 +111,9 @@
                         <div id="listOfRoadworks2">
                         </div>
                     <br /> 
+                    <?php if($query != NULL){ ?>
                     <input type="button" name="selectRoadwork" class="lightboxSubmitBtn" id="deleteRwBtn1" value="DELETE" onclick='javascript:deleteSelectedRoadwork();'>
+                    <?php }?>
                     </div>
                 </form>
             </div>

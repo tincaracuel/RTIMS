@@ -47,7 +47,7 @@
 
 <?php
     if($ongoing_inc == NULL){ ?>
-            <center><?php echo '<br /><br /><br /><br /><br />There are no ongoing activities.<br /><br />'; ?>
+            <center><?php echo '<br /><br /><br /><br />There are no ongoing activities.<br /><br />'; ?>
             </center>
             <?php
     }else{ ?>
@@ -69,7 +69,7 @@
 					<option selected> </option>
 
 				        <?php foreach($ongoing_inc as $row){
-		            	?><option value="<?php echo $row['0']->inc_id ?>"> <?php echo $row['0']->inc_id.': '.$row['0']->description; ?> </option>
+		            	?><option value="<?php echo $row['0']->inc_id ?>: <?php echo $row['0']->inc_type ?>"> <?php echo $row['0']->inc_id.': '.$row['0']->description; ?> </option>
 		            	<?php } ?>
 
 			        </select></td></tr>

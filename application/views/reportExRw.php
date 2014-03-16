@@ -49,7 +49,7 @@ function validateRwReport()
 
 <?php
     if($ongoing_rw == NULL){ ?>
-            <center><?php echo '<br /><br /><br /><br /><br />There are no existing roadworks.<br /><br />'; ?>
+            <center><?php echo '<br /><br /><br /><br />There are no existing roadworks.<br /><br />'; ?>
             </center>
             <?php
     }else{ ?>

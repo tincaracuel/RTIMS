@@ -3,7 +3,6 @@
         var contractno=document.forms["addRoadwork"]["contract_number"].value;
         var name=document.forms["addRoadwork"]["rwork_name"].value;
         var description = document.getElementById('rwork_desc').value;
-        var street=document.forms["addRoadwork"]["rwork_street"].value;
         var start=document.getElementById('rwork_start').value;
         var end=document.getElementById('rwork_end').value;
         var latitude=document.getElementById('rwork_lat').value;
@@ -23,8 +22,8 @@
         else if(name==null || name==""){
           alert("Roadwork name must be filled out.");
           return false;
-        }else if(name.length<5 || name.length>50){
-          alert("Roadwork name must have 5 - 50 characters.");
+        }else if(name.length<5 || name.length>100){
+          alert("Roadwork name must have 5 - 100 characters.");
           return false;
         }
         /*Start date*/
@@ -53,14 +52,6 @@
         }else if (description.length>250) {
             alert('Description can have at most 250 characters.');
             return false;
-        }
-        /*Street*/
-        if(street==null || street==""){
-          alert("Street address must be filled out.");
-          return false;
-        }else if(street.length<5 || street.length>50){
-          alert("Street address must have 5 - 50 characters.");
-          return false;
         }
         /*Coordinates*/
         if(latitude==null || latitude=="" || longitude==null || longitude==""){
@@ -123,7 +114,7 @@
         <td><input type="text" id="contract_number" name="contract_number" maxlength="20" onkeyup='javascript:checkRWcontractNumberDuplicate(this.value);' autofocus /></td></tr>
 
     <tr><td width="30%">Roadwork name:</td>
-        <td><input type="text" id="rwork_name" name="rwork_name" maxlength="50" /></td></tr>
+        <td><input type="text" id="rwork_name" name="rwork_name" maxlength="100" /></td></tr>
 
     <tr><td width="30%">&nbsp;</td>
         <td>&nbsp;</td></tr>

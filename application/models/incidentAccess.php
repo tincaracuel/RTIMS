@@ -4,14 +4,6 @@ class incidentAccess extends CI_Model {
 	function addNewIncident($classification, $desc, $start, $end, $street, $brgy, $latitude, $longitude){
 		
 		$status = $this->db->query("INSERT into incident (inc_type, description, start_date, end_date) values ('$classification', '$desc', '$start', '$end')");
-		//$this->db->query("INSERT into map_coordinates (map_id, latitude, longitude, street, barangay) values ('$contract_number', '$latitude', '$longitude', '$street', '$brgy')");
-
-		/*$this->db->select("inc_id");
-		$this->db->from("incident");
-		$this->db->TOP;
-		$this->db->where("inc_type='$classification' and description='$desc' and start_date='$start' and end_date='$end'");
-		$this->db->orderby("desc");
-		$inc_id = $this->db->get();*/
 
 		$inc_id = $this->db->query("SELECT * from incident where inc_type='$classification' and description='$desc' and start_date='$start' and end_date='$end' order by inc_id desc");
 		
@@ -24,12 +16,7 @@ class incidentAccess extends CI_Model {
 
 		$status2 = $this->db->query("INSERT into map_coordinates (map_id, latitude, longitude, street, barangay, inc_id) values ('$id', '$latitude', '$longitude', '$street', '$brgy', '$id')");
 
-		/*if(!$status || !$status2){
-			$this->error = $this->db->_error_message();
-    		$this->errorno = $this->db->_error_number();
 
-    		return $this->error;
-		}*/
 		return '';
 	}
 
@@ -143,19 +130,19 @@ class incidentAccess extends CI_Model {
 	}
 
 	function getAllIncidents(){
-		/* simply displays the names of all cashier for selection (drop down menu) */
+		/* displays all incidents for selection (drop down menu) */
 		return $this->db->query("SELECT inc_id, inc_type, description from incident order by inc_id asc")->result_array();
 	}
 
 	function getIncidentDetails($in){
-		/* 	given the variable name, this function will select all the details whose cashier_name
-			matches the variable $name */
+		/* 	given the incident id, this function will select all the details of the incident that has an inc_id that
+			matches the variable $in */
 		$arr = $this->db->query("SELECT * from incident join map_coordinates where map_coordinates.inc_id=incident.inc_id and incident.inc_id='$in'")->result_array();
 		return $arr;
 	}
 
 	function editExistingIncident($in2, $type2, $start2, $end2, $desc2, $street2, $brgy2, $lat2, $long2){
-		//given the name, username and password, this function will update/edit all the details	whose cashier_name matches the variable $name 
+		//this function will update/edit all the details whose inc_id matches the variable $in2
 		$status = $this->db->query("UPDATE incident set inc_type='$type2', start_date='$start2', end_date='$end2', description='$desc2' where inc_id='$in2'");
 		$status = $this->db->query("UPDATE map_coordinates set street='$street2', barangay='$brgy2', latitude='$lat2', longitude='$long2' where inc_id='$in2'");
 		if(!$status){
@@ -168,7 +155,7 @@ class incidentAccess extends CI_Model {
 	}
 
 	function deleteExistingIncident($in2){
-		//given the name, username and password, this function will update/edit all the details	whose cashier_name matches the variable $name 
+		//this function will delete all the details whose inc_id matches the variable $in2
 		$status = $this->db->query("DELETE from map_coordinates where inc_id='$in2'");
 		$status = $this->db->query("DELETE from incident where inc_id='$in2'");
 		if(!$status){
@@ -193,6 +180,8 @@ class incidentAccess extends CI_Model {
         $this->db->select("*");
 		$this->db->from("incident");
 		$this->db->join("map_coordinates"," incident.inc_id = map_coordinates.inc_id");
+		$this->db->order_by("incident.inc_id","asc");
+
 		$queryincident = $this->db->get();
  
         if ($queryincident->num_rows() > 0 ){
@@ -232,6 +221,7 @@ class incidentAccess extends CI_Model {
 		$this->db->join("map_coordinates"," incident.inc_id = map_coordinates.inc_id");
 		$q1= "DATE_FORMAT(end_date, '%Y-%m-%d') < '$today' AND DATE_FORMAT(end_date, '%Y-%m-%d') != DATE_FORMAT($no_end, '%Y-%m-%d')";
 		$this->db->where($q1);
+		$this->db->order_by("incident.inc_id","asc");
 		$queryIncident = $this->db->get();
  
         if ($queryIncident->num_rows() > 0 ){
@@ -270,6 +260,7 @@ class incidentAccess extends CI_Model {
 		$this->db->join("map_coordinates"," incident.inc_id = map_coordinates.inc_id");
 		$q1= "DATE_FORMAT(start_date, '%Y-%m-%d') <= '$today' AND (DATE_FORMAT(end_date, '%Y-%m-%d') >= '$today' OR DATE_FORMAT(end_date, '%Y-%m-%d') = '$no_end')";
 		$this->db->where($q1);
+		$this->db->order_by("incident.inc_id","asc");
 		$queryIncident = $this->db->get();
  
         if ($queryIncident->num_rows() > 0 ){
@@ -309,6 +300,7 @@ class incidentAccess extends CI_Model {
 		$this->db->join("map_coordinates"," incident.inc_id = map_coordinates.inc_id");
    		$q1= "DATE_FORMAT(start_date, '%Y-%m-%d') > '$today'";
 		$this->db->where($q1);
+		$this->db->order_by("incident.inc_id","asc");
 		$queryIncident = $this->db->get();
  
         if ($queryIncident->num_rows() > 0 ){

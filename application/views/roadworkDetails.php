@@ -16,7 +16,6 @@
 		var description=document.getElementById('desc2').value
 		var start=document.getElementById('start2').value;
 	    var end=document.getElementById('end2').value;
-		var street=document.getElementById('street2').value;
 		var latitude=document.getElementById('lat2').value;
         var longitude=document.getElementById('long2').value;
         var latPattern = /^-?([0-8]?[0-9]|90)\.[0-9]{1,16}$/;
@@ -26,8 +25,8 @@
         if(name==null || name==""){
           alert("Roadwork name must be filled out.");
           return false;
-        }else if(name.length<5 || name.length>50){
-          alert("Roadwork name must have 5 - 50 characters.");
+        }else if(name.length<5 || name.length>100){
+          alert("Roadwork name must have 5 - 100 characters.");
           return false;
         }
         /*Start date*/
@@ -56,14 +55,6 @@
         }else if (description.length>250) {
             alert('Description can have at most 250 characters.');
             return false;
-        }
-        /*Street*/
-        if(street==null || street==""){
-          alert("Street address must be filled out.");
-          return false;
-        }else if(street.length<5 || street.length>50){
-          alert("Street address must have 5 - 50 characters.");
-          return false;
         }
         /*Coordinates*/
         if(latitude==null || latitude=="" || longitude==null || longitude==""){
@@ -125,7 +116,7 @@
 		<td><input type="text" name="cn2" id='cn2' value='<?php echo $details[0]['contract_no']; ?>' disabled="disabled"></td></tr>
 
 	<tr><td width="25%">Roadwork name:</td>
-		<td><input type="text" name="rwork_name2" id='rwork_name2' value='<?php echo $details[0]['rwork_name']; ?>' maxlength='50' ></td></tr>
+		<td><input type="text" name="rwork_name2" id='rwork_name2' value='<?php echo $details[0]['rwork_name']; ?>' maxlength='100' ></td></tr>
 
 	<tr><td width="25%">Classification:</td>
 		<td><select name="type2" id="type2" required value='<?php echo $details[0]['rwork_type']; ?>'><br /><br />

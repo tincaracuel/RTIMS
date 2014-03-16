@@ -78,7 +78,7 @@
             <?php
 
                 if($query_report == NULL){ ?>
-                    <center><?php echo '<p>There are no roadworks saved in the database.</p>'; ?>
+                    <center><?php echo '<p><br /><br /><br /><br />There are no reports saved in the database</p>'; ?>
                     </center>
                     <?php
                 }else{ ?>

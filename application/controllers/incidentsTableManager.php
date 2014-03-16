@@ -48,15 +48,15 @@ class incidentsTableManager extends CI_Controller {
 
 	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 	public function obtainIncidents(){
-	/* 	calls the getAllCashiers function in cashierAccess.php (in models) to
-		display the names of all cashier for selection (drop down menu) */
+	/* 	calls the getAllIncidents function in incidentAccess.php (in models) to
+		display the incident id of all incidents for selection (drop down menu) */
 		$res = $this->incidentAccess->getAllIncidents();
 		$this->load->view('listOfIncidents', array('incident'=>$res));
 	}
 
 	public function obtainIncidentDetails(){
-	 	//calls the getCashierDetails function in cashierAccess.php (in models) to
-		//view all the details of the cashierName chosen by the user 
+	 	//calls the getIncidentDetails function in incidentAccess.php (in models) to
+		//view all the details of the incident chosen by the user 
 		$in = $_POST['incidentNumber'];
 		$res = $this->incidentAccess->getIncidentDetails($in);
 		$this->load->view('incidentDetails', array('details'=>$res));
@@ -74,7 +74,7 @@ class incidentsTableManager extends CI_Controller {
   	$lat2     	= $_POST['lat2'];
   	$long2     	= $_POST['long2'];
 
-	//	calls the editExistingCashier function in cashierAccess.php (in models) to edit the account	and it will return a status which will determine if the account was successfully edited 
+	//	calls the editExistingIncident function in incidentAccess.php (in models) for editing
 	$status = $this->incidentAccess->editExistingIncident($in2, $type2, $start2, $end2, $desc2, $street2, $brgy2, $lat2, $long2);
 
 	header("Location: ".base_url()."index.php/incidentsTableManager");
@@ -85,7 +85,7 @@ class incidentsTableManager extends CI_Controller {
 	//gets the necessary information from the submitted form
 	$in2  = $_POST['incidentNumber'];
 
-	//	calls the editExistingCashier function in cashierAccess.php (in models) to edit the account	and it will return a status which will determine if the account was successfully edited 
+	//	calls the deleteExistingIncident function in incidentAccess.php (in models) for deletion
 	$status = $this->incidentAccess->deleteExistingIncident($in2);
 	header("Location: ".base_url()."index.php/incidentsTableManager");	
 	}

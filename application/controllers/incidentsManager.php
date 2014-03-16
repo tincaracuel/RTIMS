@@ -11,7 +11,7 @@ class incidentsManager extends CI_Controller {
 
 			$this->load->library('googlemaps');
 			$this->load->model('map_model', '', TRUE);
-			$config['center'] = '14.1881, 121.12508';
+			$config['center'] = '14.1885, 121.12508';
 			$config['zoom'] = '13';
 			$config['map_type'] = 'ROADMAP';
 			$config['maxzoom'] = 0;
@@ -113,7 +113,7 @@ class incidentsManager extends CI_Controller {
 		
 			$this->load->library('googlemaps');
 			$this->load->model('map_model', '', TRUE);
-			$config['center'] = '14.1881, 121.12508';
+			$config['center'] = '14.1885, 121.12508';
 			$config['zoom'] = '13';
 			$config['map_type'] = 'ROADMAP';
 			$config['maxzoom'] = 0;

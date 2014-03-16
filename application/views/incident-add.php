@@ -1,7 +1,6 @@
 <script type="text/javascript">
     function validateIncidentForm(){
         var description = document.getElementById('inc_desc').value;
-        var street=document.forms["addIncident"]["inc_street"].value;
         var start=document.getElementById('inc_start').value;
         var end=document.getElementById('inc_end').value;
         var latitude=document.getElementById('inc_lat').value;
@@ -35,14 +34,6 @@
         }else if (description.length>100) {
             alert('Description can have at most 100 characters.');
             return false;
-        }
-        /*Street*/
-        if(street==null || street==""){
-          alert("Street address must be filled out.");
-          return false;
-        }else if(street.length<5 || street.length>50){
-          alert("Street address must have 5 - 50 characters.");
-          return false;
         }
         /*Coordinates*/
         if(latitude==null || latitude=="" || longitude==null || longitude==""){

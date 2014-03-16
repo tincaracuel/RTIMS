@@ -54,8 +54,8 @@
                 <input type="hidden" name="report_id" id="report_id" value="<?php echo $query[0]->report_id ?>" >
             </li>
 
-            <li>
-                <input type="submit" value="Mark as unread" />
+            <li><br />
+                <input type="submit" value="Mark as unread" style="margin-top: -6px"/>
             </li>
 
             <li>

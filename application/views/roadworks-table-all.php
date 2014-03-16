@@ -104,11 +104,11 @@
                     <th style="width: 200px; max-width:200px;">Roadwork</th>
                     <th style="min-width: 130px; max-width: 130px;">Classification</th>
                     <th style="min-width: 200px;max-width: 200px;">Description</th>
-                    <th style="width: 70px;">Start</th>
-                    <th style="width: 70px;">End</th>
+                    <th style="width: 90px;">Start</th>
+                    <th style="width: 90px;">End</th>
                     <th style="width: 120px;">Street</th>
                     <th style="width: 95px;">Barangay</th>
-                    <th style="width: 50px;">Status</th>
+                    <th style="width: 40px;">Status</th>
                     
                     <?php foreach($query_all as $row){
 

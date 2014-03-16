@@ -87,7 +87,10 @@
                         <div id="listOfIncidents">
                         </div>
                     <br /> 
+                    <?php if($query != NULL){ ?>
                     <input type="button" name="selectIncident" class="lightboxSubmitBtn" id="editIncBtn1" value="SELECT" onclick='javascript:viewIncidentDetails();'>
+                    <?php }?>
+
                     </div>
                     
                     <div name="right">
@@ -105,7 +108,9 @@
                         <div id="listOfIncidents2">
                         </div>
                     <br /> 
+                    <?php if($query != NULL){ ?>
                     <input type="button" name="selectIncident" class="lightboxSubmitBtn" id="deleteIncBtn1" value="DELETE" onclick='javascript:deleteSelectedIncident();'>
+                    <?php }?>
                     </div>
                 </form>
             </div>

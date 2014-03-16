@@ -9,7 +9,6 @@
     	var description=document.getElementById('desc2').value
         var start=document.getElementById('start2').value;
 	    var end=document.getElementById('end2').value;
-	    var street=document.getElementById('street2').value;
         var latitude=document.getElementById('lat2').value;
         var longitude=document.getElementById('long2').value;
         var latPattern = /^-?([0-8]?[0-9]|90)\.[0-9]{1,16}$/;
@@ -41,14 +40,6 @@
         }else if (description.length>100) {
             alert('Description can have at most 100 characters.');
             return false;
-        }
-        /*Street*/
-        if(street==null || street==""){
-          alert("Street address must be filled out.");
-          return false;
-        }else if(street.length<5 || street.length>50){
-          alert("Street address must have 5 - 50 characters.");
-          return false;
         }
         /*Coordinates*/
         if(latitude==null || latitude=="" || longitude==null || longitude==""){
