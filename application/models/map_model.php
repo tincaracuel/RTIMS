@@ -9,8 +9,7 @@ class map_model extends CI_Model {
 
 		//GET COORDINATES THAT MATCHES A ROADWORK 
 		$today = date('Y-m-d');
-   		$no_end = '0000-00-00';
-   		$q1= "status != 100  AND status !=0 AND ( DATE_FORMAT(start_date, '%Y-%m-%d') <= '$today' AND ( DATE_FORMAT(end_date, '%Y-%m-%d') > '$today' OR DATE_FORMAT(end_date, '%Y-%m-%d') = DATE_FORMAT($no_end, '%Y-%m-%d')) )";
+   		$q1= "((start_date < '$today' OR start_date = '$today') AND (end_date = '0000-00-00' OR end_date > '$today' OR end_date = '$today'))";
 
    		$this->db->select("*");
 		$this->db->from("roadwork");
@@ -22,12 +21,10 @@ class map_model extends CI_Model {
 		if ($queryRoadwork->num_rows() > 0 ){
 			$res = $queryRoadwork->result();
 
-			//PUSH THE ROADWORK INFO INTO THE ARRAY TO BE DISPLAYED IN THE VIEW
 			foreach ($queryRoadwork->result() as $row) {		
 				array_push($return, $row);
 			}
 		}
-
 		return $return;
 	}
 
@@ -36,25 +33,22 @@ class map_model extends CI_Model {
 
 		//GET COORDINATES THAT MATCHES AN INCIDENT
 		$today = date('Y-m-d');
-        $no_end = '0000-00-00';
+   		$q1= "((start_date < '$today' OR start_date = '$today') AND (end_date = '0000-00-00' OR end_date > '$today' OR end_date = '$today'))";
 
         $this->db->select("*");
 		$this->db->from("incident");
 		$this->db->join("map_coordinates"," incident.inc_id = map_coordinates.inc_id");
-		$q1= "DATE_FORMAT(start_date, '%Y-%m-%d') <= '$today' AND (DATE_FORMAT(end_date, '%Y-%m-%d') >= '$today' OR DATE_FORMAT(end_date, '%Y-%m-%d') = '$no_end')";
 		$this->db->where($q1);
-		$queryIncident = $this->db->get();
 
+		$queryIncident = $this->db->get();
 
 		if ($queryIncident->num_rows() > 0 ){
 			$res = $queryIncident->result();
 
-			//PUSH THE INCIDENT INFO INTO THE ARRAY TO BE DISPLAYED IN THE VIEW
 			foreach ($queryIncident->result() as $row) {		
 				array_push($return, $row);
 			}
 		}
-
 		return $return;
 	}
 }

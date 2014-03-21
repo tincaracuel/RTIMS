@@ -35,86 +35,82 @@ class roadworkAccess extends CI_Model {
 		if ($queryRoadwork->num_rows() > 0 ){
 			$res = $queryRoadwork->result();
 
-			//PUSH THE ROADWORK INFO INTO THE ARRAY TO BE DISPLAYED IN THE VIEW
 			for ( $i = 0 ; $i < $queryRoadwork->num_rows(); $i++){			
 				$array_res[0] = $res[$i];
 				array_push($return, $array_res);
 			}
 		}
-
 		return $return;
 	}
 
 	function roadwork_getAllOngoing(){
 		$return = array();
 
-		$this->db->select("*");
+		$today = date('Y-m-d');
+   		$q1= "((start_date < '$today' OR start_date = '$today') AND (end_date = '0000-00-00' OR end_date > '$today' OR end_date = '$today'))";
+
+   		$this->db->select("*");
 		$this->db->from("roadwork");
 		$this->db->join("map_coordinates"," roadwork.contract_no = map_coordinates.rw_id");
+		$this->db->where($q1);
+
 		$queryRoadwork = $this->db->get();
 
 		if ($queryRoadwork->num_rows() > 0 ){
 			$res = $queryRoadwork->result();
 
-			//PUSH THE ROADWORK INFO INTO THE ARRAY TO BE DISPLAYED IN THE VIEW
 			for ( $i = 0 ; $i < $queryRoadwork->num_rows(); $i++){			
 				$array_res[0] = $res[$i];
-
-				//COMPARES THE END DATE WITH THE CURRENT DATE
-				$interval = date_diff(date_create($res[$i]->end_date), date_create((date("Y-m-d"))));
-
-				//IF THE ROADWORK IS NOT YET DUE, THE ROADWORK WILL BE DISPLAYED
-				if ($res[$i]->status != '100' && $res[$i]->status != '0' && (($interval->format('%R') == '-' && $interval->format('%y') >= 0 && $interval->format('%m') >= 0 && $interval->format('%d') >= 0) || ($res[$i]->end_date == '0000-00-00')) )
 				array_push($return, $array_res);
 			}
 		}
-
 		return $return;
 	}
 
 	function roadwork_getAllCompleted(){
 		$return = array();
 
+		$today = date('Y-m-d');
+   		$q1= "(end_date != '0000-00-00' AND end_date < '$today')";
+
 		$this->db->select("*");
 		$this->db->from("roadwork");
 		$this->db->join("map_coordinates","roadwork.contract_no = map_coordinates.rw_id");
+		$this->db->where($q1);
+
 		$queryRoadwork = $this->db->get();
 
 		if ($queryRoadwork->num_rows() > 0 ){
 			$res = $queryRoadwork->result();
 
-			//PUSH THE ROADWORK INFO INTO THE ARRAY TO BE DISPLAYED IN THE VIEW
 			for ( $i = 0 ; $i < $queryRoadwork->num_rows(); $i++){			
 				$array_res[0] = $res[$i];
-
-				if($res[$i]->status == '100')
 				array_push($return, $array_res);
 			}
 		}
-
 		return $return;
 	}
 
 	function roadwork_getAllPlanned(){
 		$return = array();
 
+		$today = date('Y-m-d');
+   		$q1= "(start_date > '$today')";
+
 		$this->db->select("*");
 		$this->db->from("roadwork");
 		$this->db->join("map_coordinates","roadwork.contract_no = map_coordinates.rw_id");
+		$this->db->where($q1);
 		$queryRoadwork = $this->db->get();
 
 		if ($queryRoadwork->num_rows() > 0 ){
 			$res = $queryRoadwork->result();
 
-			//PUSH THE ROADWORK INFO INTO THE ARRAY TO BE DISPLAYED IN THE VIEW
 			for ( $i = 0 ; $i < $queryRoadwork->num_rows(); $i++){			
 				$array_res[0] = $res[$i];
-
-				if($res[$i]->status == '0')
 				array_push($return, $array_res);
 			}
 		}
-
 		return $return;
 	}
 	
@@ -168,7 +164,6 @@ class roadworkAccess extends CI_Model {
     function fetch_all_roadwork($limit, $start) {
         $this->db->limit($limit, $start);
 
-
         $this->db->select("*");
 		$this->db->from("roadwork");
 		$this->db->join("map_coordinates"," roadwork.contract_no = map_coordinates.rw_id");
@@ -188,23 +183,32 @@ class roadworkAccess extends CI_Model {
    	/*-------------COUNTS AND DISPLAYS ALL COMPLETED ROADWORKS --------------------------------------------------------------------------------------*/
 
    	function roadwork_completed_count() {
-        $query = $this->db->where('status', 100)->get('roadwork');
-		return $query->num_rows();
+   		$today = date('Y-m-d');
+   		$q1= "(end_date != '0000-00-00' AND end_date < '$today')";
+
+        $this->db->select("*");
+		$this->db->from("roadwork");
+		$this->db->join("map_coordinates"," roadwork.contract_no = map_coordinates.rw_id");
+		$this->db->where($q1);
+
+		$queryRoadwork = $this->db->get();
+		return $queryRoadwork->num_rows();
     }
 
    	function fetch_completed_roadwork($limit, $start) {
         $this->db->limit($limit, $start);
 
+        $today = date('Y-m-d');
+   		$q1= "(end_date != '0000-00-00' AND end_date < '$today')";
 
         $this->db->select("*");
 		$this->db->from("roadwork");
 		$this->db->join("map_coordinates"," roadwork.contract_no = map_coordinates.rw_id");
-		$this->db->where("status", 100);
+		$this->db->where($q1);
+
 		$queryRoadwork = $this->db->get();
  
         if ($queryRoadwork->num_rows() > 0 ){
-        	$res = $queryRoadwork->result();
-
             foreach ($queryRoadwork->result() as $row) {
                 $data[] = $row;
             }
@@ -217,10 +221,8 @@ class roadworkAccess extends CI_Model {
    	/*-------------COUNTS AND DISPLAYS ALL ONGOING ROADWORKS ----------------------------------------------------------------------------------------*/
 
    	function roadwork_ongoing_count() {
-
    		$today = date('Y-m-d');
-   		$no_end = '0000-00-00';
-   		$q1= "status != 100  AND status !=0 AND ( DATE_FORMAT(start_date, '%Y-%m-%d') <= '$today' AND ( DATE_FORMAT(end_date, '%Y-%m-%d') > '$today' OR DATE_FORMAT(end_date, '%Y-%m-%d') = DATE_FORMAT($no_end, '%Y-%m-%d')) )";
+   		$q1= "((start_date < '$today' OR start_date = '$today') AND (end_date = '0000-00-00' OR end_date > '$today' OR end_date = '$today'))";
 
    		$this->db->select("*");
 		$this->db->from("roadwork");
@@ -235,8 +237,7 @@ class roadworkAccess extends CI_Model {
    		$this->db->limit($limit, $start);
 
    		$today = date('Y-m-d');
-   		$no_end = '0000-00-00';
-   		$q1= "status != 100  AND status !=0 AND ( DATE_FORMAT(start_date, '%Y-%m-%d') <= '$today' AND ( DATE_FORMAT(end_date, '%Y-%m-%d') > '$today' OR DATE_FORMAT(end_date, '%Y-%m-%d') = DATE_FORMAT($no_end, '%Y-%m-%d')) )";
+   		$q1= "((start_date < '$today' OR start_date = '$today') AND (end_date = '0000-00-00' OR end_date > '$today' OR end_date = '$today'))";
 
    		$this->db->select("*");
 		$this->db->from("roadwork");
@@ -246,24 +247,20 @@ class roadworkAccess extends CI_Model {
 		$queryRoadwork = $this->db->get();
 
 		if ($queryRoadwork->num_rows() > 0 ){
-			$res = $queryRoadwork->result();
-
-			//PUSH THE ROADWORK INFO INTO THE ARRAY TO BE DISPLAYED IN THE VIEW
 			foreach ($queryRoadwork->result() as $row) {			
 				$data[] = $row;
             }
-
             return $data;
         }
         return false;
 
    	}
 
-   	function roadwork_planned_count() {
+   	/*-------------COUNTS AND DISPLAYS ALL PLANNED ROADWORKS ----------------------------------------------------------------------------------------*/
 
+   	function roadwork_planned_count() {
    		$today = date('Y-m-d');
-   		$no_end = '0000-00-00';
-   		$q1= "status = 0 OR DATE_FORMAT(start_date, '%Y-%m-%d') > DATE_FORMAT($today, '%Y-%m-%d')";
+   		$q1= "(start_date > '$today')";
 
    		$this->db->select("*");
 		$this->db->from("roadwork");
@@ -278,8 +275,7 @@ class roadworkAccess extends CI_Model {
    		$this->db->limit($limit, $start);
 
    		$today = date('Y-m-d');
-   		$no_end = '0000-00-00';
-   		$q1= "status = 0 OR DATE_FORMAT(start_date, '%Y-%m-%d') > DATE_FORMAT($today, '%Y-%m-%d')";
+   		$q1= "(start_date > '$today')";
 
    		$this->db->select("*");
 		$this->db->from("roadwork");
@@ -289,20 +285,14 @@ class roadworkAccess extends CI_Model {
 		$queryRoadwork = $this->db->get();
 
 		if ($queryRoadwork->num_rows() > 0 ){
-			$res = $queryRoadwork->result();
-
-			//PUSH THE ROADWORK INFO INTO THE ARRAY TO BE DISPLAYED IN THE VIEW
 			foreach ($queryRoadwork->result() as $row) {			
 				$data[] = $row;
             }
-
             return $data;
         }
         return false;
 
    	}
-
-
 
 }
 

@@ -117,8 +117,7 @@
                         <td> <?php if($row->end_date!='0000-00-00') echo $row->end_date ?> </td>
                         <td> <?php echo $row->street ?> </td>
                         <td> <?php echo $row->barangay ?> </td>
-                        <td> <?php if ($row->status == 100) echo 'Finished';
-                                else echo $row->status.'%'?> </td>
+                        <td> <?php echo $row->status.'%'?> </td>
                         </tr>
 
                         <?php  

@@ -39,38 +39,38 @@
           <ul class="nav navbar-nav">
             
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Roadworks <b class="caret"></b></a>
+              <a href="#" id="ddt-home" class="dropdown-toggle" data-toggle="dropdown">Roadworks <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <form style="margin-left: 10px" id="toggleRoadworks">
-                      <li><input type="checkbox" id="rwCat0" checked > Construction </li>
-                      <li><input type="checkbox" id="rwCat1" checked > Rehabilitation </li>
-                      <li><input type="checkbox" id="rwCat2" checked > Renovation </li>
-                      <li><input type="checkbox" id="rwCat3" checked > Riprapping </li>
-                      <li><input type="checkbox" id="rwCat4" checked > Application </li>
-                      <li><input type="checkbox" id="rwCat5" checked > Installation </li>
-                      <li><input type="checkbox" id="rwCat6" checked > Reconstruction </li>
-                      <li><input type="checkbox" id="rwCat7" checked > Concreting</li>
-                      <li><input type="checkbox" id="rwCat8" checked > Electrification </li>
-                      <li><input type="checkbox" id="rwCat9" checked > Roadway Lighting </li>
+                <form style="margin-left: 10px" id="toggleRoadworks" class="toggleRoadworks">
+                      <li><input type="checkbox" id="rwCat0" checked ><img src = "styles/img/markers/rw/construction.png" />Construction </li>
+                      <li><input type="checkbox" id="rwCat1" checked ><img src = "styles/img/markers/rw/rehabilitation.png" />Rehabilitation </li>
+                      <li><input type="checkbox" id="rwCat2" checked ><img src = "styles/img/markers/rw/renovation.png" />Renovation </li>
+                      <li><input type="checkbox" id="rwCat3" checked ><img src = "styles/img/markers/rw/riprapping.png" />Riprapping </li>
+                      <li><input type="checkbox" id="rwCat4" checked ><img src = "styles/img/markers/rw/application.png" />Application </li>
+                      <li><input type="checkbox" id="rwCat5" checked ><img src = "styles/img/markers/rw/installation.png" />Installation </li>
+                      <li><input type="checkbox" id="rwCat6" checked ><img src = "styles/img/markers/rw/reconstruction.png" />Reconstruction </li>
+                      <li><input type="checkbox" id="rwCat7" checked ><img src = "styles/img/markers/rw/concreting.png" />Concreting</li>
+                      <li><input type="checkbox" id="rwCat8" checked ><img src = "styles/img/markers/rw/electrification.png" />Electrification </li>
+                      <li><input type="checkbox" id="rwCat9" checked ><img src = "styles/img/markers/rw/lighting.png" />Roadway Lighting </li>
                   </form>
               </ul>
             </li>
 
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Traffic Incidents <b class="caret"></b></a>
+              <a href="#" id="ddt-home" class="dropdown-toggle" data-toggle="dropdown">Traffic Incidents <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <form style="margin-left: 10px">
-                  <li><input type="checkbox" id="incCat0" checked > Accident </li>
-                  <li><input type="checkbox" id="incCat1" checked > Obstruction </li>
-                  <li><input type="checkbox" id="incCat2" checked > Public Event </li>
-                  <li><input type="checkbox" id="incCat3" checked > Funeral</li>
-                  <li><input type="checkbox" id="incCat4" checked > Flashflood </li>
-                  <li><input type="checkbox" id="incCat5" checked > Strike </li>
+                <form style="margin-left: 10px" class="toggleRoadworks">
+                  <li><input type="checkbox" id="incCat0" checked ><img src = "styles/img/markers/inc/accident.png" />Accident </li>
+                  <li><input type="checkbox" id="incCat1" checked ><img src = "styles/img/markers/inc/obstruction.png" />Obstruction </li>
+                  <li><input type="checkbox" id="incCat2" checked ><img src = "styles/img/markers/inc/event.png" />Public Event </li>
+                  <li><input type="checkbox" id="incCat3" checked ><img src = "styles/img/markers/inc/funeral.png" />Funeral</li>
+                  <li><input type="checkbox" id="incCat4" checked ><img src = "styles/img/markers/inc/flood.png" />Flashflood </li>
+                  <li><input type="checkbox" id="incCat5" checked ><img src = "styles/img/markers/inc/strike.png" />Strike </li>
                 </form>
               </ul>
             </li>
 
-            <li><a href="#choose_report" id="chooseReport">Submit Report</a></li>
+            <li><a href="#choose_report" id="chooseReport" class="ddt-home">Submit Report</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">

@@ -116,6 +116,18 @@ h1,h2,h3{
 	width: 90%;
 }
 
+form.toggleRoadworks img{
+	width: 15px;
+}
+
+a#ddt-home, a.ddt-home{
+	border-bottom: 3px solid transparent;
+}
+
+a#ddt-home:hover, a.ddt-home:hover{
+	border-bottom: 3px solid grey;
+}
+
 /*-------------------------------------------------------------------------------------
 ---------------------------------- L O W E R  B O X -----------------------------------
 -------------------------------------------------------------------------------------*/
@@ -135,6 +147,11 @@ h1,h2,h3{
 
 #functions a{
 	height: 40px;
+	border-bottom: 2px solid transparent;
+}
+
+#functions a:hover{
+	border-bottom: 2px solid white;
 }
 
 

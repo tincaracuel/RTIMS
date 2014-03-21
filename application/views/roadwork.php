@@ -54,7 +54,7 @@
           <ul class="nav navbar-nav">
           
             <li>
-              <a href='<?php echo base_url() ?>index.php/roadworksManager2'><span class="icon"> + </span>Add Roadwork</a>       
+              <a href='<?php echo base_url() ?>index.php/roadworksManager2'><span class="icon"> + </span>Add Roadwork</a>    
             </li>
 
             <li>

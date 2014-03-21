@@ -121,16 +121,16 @@
 
     <tr><td width="30%">Classification:</td>
         <td><select name="rwork_classification" id="rwork_classification" autofocus><br /><br />
-            <option value="Construction">Construction</option>
-            <option value="Rehabilitation">Rehabilitation</option>
-            <option value="Renovation">Renovation</option>
-            <option value="Riprapping">Riprapping</option>
-            <option value="Application">Application</option>
-            <option value="Installation">Installation</option>
-            <option value="Reconstruction">Reconstruction</option>
-            <option value="Concreting">Concreting/Asphalting</option>
-            <option value="Electrification">Electrification</option>
-            <option value="Roadway Lighting">Roadway Lighting</option>
+            <option value="Construction">       Construction            </option>
+            <option value="Rehabilitation">     Rehabilitation          </option>
+            <option value="Renovation">         Renovation              </option>
+            <option value="Riprapping">         Riprapping              </option>
+            <option value="Application">        Application             </option>
+            <option value="Installation">       Installation            </option>
+            <option value="Reconstruction">     Reconstruction          </option>
+            <option value="Concreting">         Concreting/Asphalting   </option>
+            <option value="Electrification">    Electrification         </option>
+            <option value="Roadway Lighting">   Roadway Lighting        </option>
         </select></td></tr>
 
     <tr><td width="30%">Duration:</td>
@@ -182,7 +182,7 @@
             <option value="Mapagong" >Mapagong </option>
             <option value="Masili" >Masili </option>
             <option value="Maunong" >Maunong </option>
-            <option value="mayapa" >Mayapa </option>
+            <option value="Mayapa" >Mayapa </option>
             <option value="Paciano" >Paciano Rizal </option>
             <option value="Palingon" >Palingon </option>
             <option value="Palo Alto" >Palo-Alto </option>

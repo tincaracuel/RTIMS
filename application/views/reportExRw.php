@@ -71,7 +71,7 @@ function validateRwReport()
 					<option selected> </option>
 
 				        <?php foreach($ongoing_rw as $row){
-		            	?><option value="<?php echo $row['0']->contract_no ?>"> <?php echo $row['0']->contract_no.': '.$row['0']->rwork_name; ?> </option>
+		            	?><option value="<?php echo $row['0']->contract_no ?>"> <?php echo $row['0']->rwork_name.' @ '.$row['0']->barangay; ?> </option>
 		            	<?php } ?>
 
 			        </select></td></tr>
