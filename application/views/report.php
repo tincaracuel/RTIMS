@@ -122,8 +122,8 @@
                     <?php
                 } /* END ELSE */?>
                     
-                <p style="text-align: center;"><?php echo $links; ?></p><?php 
-            ?>
+                <!-- <p style="text-align: center;"><?php echo $links; ?></p><?php 
+            ?> -->
             
 
         </div>

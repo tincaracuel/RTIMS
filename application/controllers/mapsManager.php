@@ -59,7 +59,9 @@ class mapsManager extends CI_Controller {
 				$htmlstring =  $this->setInfowindow_rw($a1, $a2, $a3, $a4, $a5, $a6, $a7, $a8, $a9, $a10, $a11);
 				$marker['infowindow_content'] = $htmlstring;
 
-				$marker['title'] = $coordinate->map_id.','.$coordinate->rwork_name.' at '.$coordinate->barangay.'end date: '.$coordinate->end_date;
+				$titleString = 'Roadwork # '.$coordinate->map_id.'\n'.$coordinate->rwork_name.'\n'.$coordinate->barangay.', Calamba City';
+				$marker['title'] = $titleString;
+				
 				if ($coordinate->rwork_type == 'Construction'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/construction.png';
 				}else if ($coordinate->rwork_type == 'Rehabilitation'){
@@ -107,7 +109,7 @@ class mapsManager extends CI_Controller {
 				$marker['infowindow_content'] = $htmlstring;
 
 
-				$marker['title'] = $coordinate->inc_id.','.$coordinate->inc_type.' at '.$coordinate->barangay;
+				$marker['title'] = $coordinate->inc_type.'\n'.$coordinate->barangay.', Calamba City';
 				if ($coordinate->inc_type == 'Accident'){
 					$marker['icon'] = base_url().'styles/img/markers/inc/accident.png';
 				}else if ($coordinate->inc_type == 'Obstruction'){

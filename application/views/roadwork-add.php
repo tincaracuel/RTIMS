@@ -89,7 +89,7 @@
             return false;
         }
         else if (dtDay < 1 || dtDay> 31){
-            alert("Month must be from 1 to 31.");
+            alert("Day must be from 1 to 31.");
             return false;
         }
         else if ((dtMonth==4 || dtMonth==6 || dtMonth==9 || dtMonth==11) && dtDay ==31){

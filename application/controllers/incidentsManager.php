@@ -47,7 +47,7 @@ class incidentsManager extends CI_Controller {
 				$marker['infowindow_content'] = $htmlstring;
 
 
-				$marker['title'] = $coordinate->inc_id.','.$coordinate->inc_type.' at '.$coordinate->barangay;
+				$marker['title'] = $coordinate->inc_type.'\n'.$coordinate->barangay.', Calamba City';
 				if ($coordinate->inc_type == 'Accident'){
 					$marker['icon'] = base_url().'styles/img/markers/inc/accident.png';
 				}else if ($coordinate->inc_type == 'Obstruction'){
@@ -149,7 +149,7 @@ class incidentsManager extends CI_Controller {
 				$marker['infowindow_content'] = $htmlstring;
 
 
-				$marker['title'] = $coordinate->inc_id.','.$coordinate->inc_type.' at '.$coordinate->barangay;
+				$marker['title'] = $coordinate->inc_type.'\n'.$coordinate->barangay.', Calamba City';
 				if ($coordinate->inc_type == 'Accident'){
 					$marker['icon'] = base_url().'styles/img/markers/inc/accident.png';
 				}else if ($coordinate->inc_type == 'Obstruction'){

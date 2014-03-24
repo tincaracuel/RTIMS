@@ -42,17 +42,17 @@
               <a href="#" id="ddt-home" class="dropdown-toggle" data-toggle="dropdown">Roadworks <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <form style="margin-left: 10px" id="toggleRoadworks" class="toggleRoadworks">
-                      <li><input type="checkbox" id="rwCat0" checked ><img src = "styles/img/markers/rw/construction.png" />Construction </li>
-                      <li><input type="checkbox" id="rwCat1" checked ><img src = "styles/img/markers/rw/rehabilitation.png" />Rehabilitation </li>
-                      <li><input type="checkbox" id="rwCat2" checked ><img src = "styles/img/markers/rw/renovation.png" />Renovation </li>
-                      <li><input type="checkbox" id="rwCat3" checked ><img src = "styles/img/markers/rw/riprapping.png" />Riprapping </li>
-                      <li><input type="checkbox" id="rwCat4" checked ><img src = "styles/img/markers/rw/application.png" />Application </li>
-                      <li><input type="checkbox" id="rwCat5" checked ><img src = "styles/img/markers/rw/installation.png" />Installation </li>
-                      <li><input type="checkbox" id="rwCat6" checked ><img src = "styles/img/markers/rw/reconstruction.png" />Reconstruction </li>
-                      <li><input type="checkbox" id="rwCat7" checked ><img src = "styles/img/markers/rw/concreting.png" />Concreting</li>
-                      <li><input type="checkbox" id="rwCat8" checked ><img src = "styles/img/markers/rw/electrification.png" />Electrification </li>
-                      <li><input type="checkbox" id="rwCat9" checked ><img src = "styles/img/markers/rw/lighting.png" />Roadway Lighting </li>
-                  </form>
+                      <li><input type="checkbox" id="rwCat0" <?php if($rctr0 !=0) { ?> checked <?php } else { ?> disabled <?php } ?> ><img src = "styles/img/markers/rw/construction.png" />     Construction      <?php if($rctr0 !=0) { ?> <small> <?php echo ('('.$rctr0.')'); ?> </small> <?php } ?> </li>
+                      <li><input type="checkbox" id="rwCat1" <?php if($rctr1 !=0) { ?> checked <?php } else { ?> disabled <?php } ?> ><img src = "styles/img/markers/rw/rehabilitation.png" />   Rehabilitation    <?php if($rctr1 !=0) { ?> <small> <?php echo ('('.$rctr1.')'); ?> </small> <?php } ?> </li> 
+                      <li><input type="checkbox" id="rwCat2" <?php if($rctr2 !=0) { ?> checked <?php } else { ?> disabled <?php } ?> ><img src = "styles/img/markers/rw/renovation.png" />       Renovation        <?php if($rctr2 !=0) { ?> <small> <?php echo ('('.$rctr2.')'); ?> </small> <?php } ?> </li> 
+                      <li><input type="checkbox" id="rwCat3" <?php if($rctr3 !=0) { ?> checked <?php } else { ?> disabled <?php } ?> ><img src = "styles/img/markers/rw/riprapping.png" />       Riprapping        <?php if($rctr3 !=0) { ?> <small> <?php echo ('('.$rctr3.')'); ?> </small> <?php } ?> </li> 
+                      <li><input type="checkbox" id="rwCat4" <?php if($rctr4 !=0) { ?> checked <?php } else { ?> disabled <?php } ?> ><img src = "styles/img/markers/rw/application.png" />      Application       <?php if($rctr4 !=0) { ?> <small> <?php echo ('('.$rctr4.')'); ?> </small> <?php } ?> </li> 
+                      <li><input type="checkbox" id="rwCat5" <?php if($rctr5 !=0) { ?> checked <?php } else { ?> disabled <?php } ?> ><img src = "styles/img/markers/rw/installation.png" />     Installation      <?php if($rctr5 !=0) { ?> <small> <?php echo ('('.$rctr5.')'); ?> </small> <?php } ?> </li> 
+                      <li><input type="checkbox" id="rwCat6" <?php if($rctr6 !=0) { ?> checked <?php } else { ?> disabled <?php } ?> ><img src = "styles/img/markers/rw/reconstruction.png" />   Reconstruction    <?php if($rctr6 !=0) { ?> <small> <?php echo ('('.$rctr6.')'); ?> </small> <?php } ?> </li> 
+                      <li><input type="checkbox" id="rwCat7" <?php if($rctr7 !=0) { ?> checked <?php } else { ?> disabled <?php } ?> ><img src = "styles/img/markers/rw/concreting.png" />       Concreting        <?php if($rctr7 !=0) { ?> <small> <?php echo ('('.$rctr7.')'); ?> </small> <?php } ?> </li>
+                      <li><input type="checkbox" id="rwCat8" <?php if($rctr8 !=0) { ?> checked <?php } else { ?> disabled <?php } ?> ><img src = "styles/img/markers/rw/electrification.png" />  Electrification   <?php if($rctr8 !=0) { ?> <small> <?php echo ('('.$rctr8.')'); ?> </small> <?php } ?> </li> 
+                      <li><input type="checkbox" id="rwCat9" <?php if($rctr9 !=0) { ?> checked <?php } else { ?> disabled <?php } ?> ><img src = "styles/img/markers/rw/lighting.png" />         Roadway Lighting  <?php if($rctr9 !=0) { ?> <small> <?php echo ('('.$rctr9.')'); ?> </small> <?php } ?> </li> 
+                  </form>                     
               </ul>
             </li>
 
@@ -60,12 +60,12 @@
               <a href="#" id="ddt-home" class="dropdown-toggle" data-toggle="dropdown">Traffic Incidents <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <form style="margin-left: 10px" class="toggleRoadworks">
-                  <li><input type="checkbox" id="incCat0" checked ><img src = "styles/img/markers/inc/accident.png" />Accident </li>
-                  <li><input type="checkbox" id="incCat1" checked ><img src = "styles/img/markers/inc/obstruction.png" />Obstruction </li>
-                  <li><input type="checkbox" id="incCat2" checked ><img src = "styles/img/markers/inc/event.png" />Public Event </li>
-                  <li><input type="checkbox" id="incCat3" checked ><img src = "styles/img/markers/inc/funeral.png" />Funeral</li>
-                  <li><input type="checkbox" id="incCat4" checked ><img src = "styles/img/markers/inc/flood.png" />Flashflood </li>
-                  <li><input type="checkbox" id="incCat5" checked ><img src = "styles/img/markers/inc/strike.png" />Strike </li>
+                  <li><input type="checkbox" id="incCat0" <?php if($ictr0 !=0) { ?> checked <?php } else { ?> disabled <?php } ?> ><img src = "styles/img/markers/inc/accident.png" />     Accident      <?php if($ictr0 !=0) { ?> <small> <?php echo ('('.$ictr0.')'); ?> </small> <?php } ?>  </li>
+                  <li><input type="checkbox" id="incCat1" <?php if($ictr1 !=0) { ?> checked <?php } else { ?> disabled <?php } ?> ><img src = "styles/img/markers/inc/obstruction.png" />  Obstruction   <?php if($ictr1 !=0) { ?> <small> <?php echo ('('.$ictr1.')'); ?> </small> <?php } ?>  </li>
+                  <li><input type="checkbox" id="incCat2" <?php if($ictr2 !=0) { ?> checked <?php } else { ?> disabled <?php } ?> ><img src = "styles/img/markers/inc/event.png" />        Public Event  <?php if($ictr2 !=0) { ?> <small> <?php echo ('('.$ictr2.')'); ?> </small> <?php } ?>  </li>
+                  <li><input type="checkbox" id="incCat3" <?php if($ictr3 !=0) { ?> checked <?php } else { ?> disabled <?php } ?> ><img src = "styles/img/markers/inc/funeral.png" />      Funeral       <?php if($ictr3 !=0) { ?> <small> <?php echo ('('.$ictr3.')'); ?> </small> <?php } ?>  </li>
+                  <li><input type="checkbox" id="incCat4" <?php if($ictr4 !=0) { ?> checked <?php } else { ?> disabled <?php } ?> ><img src = "styles/img/markers/inc/flood.png" />        Flashflood    <?php if($ictr4 !=0) { ?> <small> <?php echo ('('.$ictr4.')'); ?> </small> <?php } ?>  </li>
+                  <li><input type="checkbox" id="incCat5" <?php if($ictr5 !=0) { ?> checked <?php } else { ?> disabled <?php } ?> ><img src = "styles/img/markers/inc/strike.png" />       Strike        <?php if($ictr5 !=0) { ?> <small> <?php echo ('('.$ictr5.')'); ?> </small> <?php } ?>  </li>
                 </form>
               </ul>
             </li>

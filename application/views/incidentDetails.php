@@ -27,7 +27,7 @@
         }else if(!checkDate(end)){
           return false;
         }else if(start>end){
-            alert("End date is earlier than the start date.")
+            alert("End date is earlier than the start date.");
             return false;
         }
         /*Message*/
@@ -41,7 +41,7 @@
             alert('Description can have at most 100 characters.');
             return false;
         }
-        /*Coordinates*/
+        /*Coordinates
         if(latitude==null || latitude=="" || longitude==null || longitude==""){
           alert("Coordinates are required. Please click on the incident location on the map.");
           return false;
@@ -51,7 +51,7 @@
         }else if(!longitude.match(longPattern)){
             alert("Invalid longitude.")
             return false;
-        }
+        }*/
 
     }
 
@@ -77,7 +77,7 @@
             return false;
         }
         else if (dtDay < 1 || dtDay> 31){
-            alert("Month must be from 1 to 31.");
+            alert("Day must be from 1 to 31.");
             return false;
         }
         else if ((dtMonth==4 || dtMonth==6 || dtMonth==9 || dtMonth==11) && dtDay ==31){
@@ -193,8 +193,8 @@
 	</td></tr>
 
 	<tr><td width="25%">Coordinates:</td>
-	 	<td>(<input type="text" name="lat2" id='lat2' maxlength='20' value='<?php echo $details[0]['latitude']; ?>' >, 
-	<input type="text" name="long2" id='long2' maxlength='20' value='<?php echo $details[0]['longitude']; ?>' />)</td></tr>
+	 	<td>(<input type="text" name="lat2" id='lat2' maxlength='20' value='<?php echo $details[0]['latitude'];  ?> ' disabled="disabled" >, 
+	<input type="text" name="long2" id='long2' maxlength='20' value='<?php echo $details[0]['longitude'];  ?>' disabled="disabled" />)</td></tr>
 		
 	</table>
 

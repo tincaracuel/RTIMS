@@ -56,7 +56,7 @@
             alert('Description can have at most 250 characters.');
             return false;
         }
-        /*Coordinates*/
+        /*Coordinates
         if(latitude==null || latitude=="" || longitude==null || longitude==""){
           alert("Coordinates are required. Please click on the roadwork location on the map.");
           return false;
@@ -66,7 +66,7 @@
         }else if(!longitude.match(longPattern)){
             alert("Invalid longitude.")
             return false;
-        }
+        }*/
 
 	}
 
@@ -90,7 +90,7 @@
             return false;
         }
         else if (dtDay < 1 || dtDay> 31){
-            alert("Month must be from 1 to 31.");
+            alert("Day must be from 1 to 31.");
             return false;
         }
         else if ((dtMonth==4 || dtMonth==6 || dtMonth==9 || dtMonth==11) && dtDay ==31){
@@ -217,8 +217,8 @@
 
 
 	<tr><td width="25%">Coordinates:</td>
-	 	<td>(<input type="text" name="lat2" id='lat2' value='<?php echo $details[0]['latitude']; ?>' maxlength='20' />, 
-	<input type="text" name="long2" id='long2' value='<?php echo $details[0]['longitude']; ?>' maxlength='20' />)</td></tr>
+	 	<td>(<input type="text" name="lat2" id='lat2' value='<?php echo $details[0]['latitude']; ?>' maxlength='20' disabled="disabled" />, 
+	<input type="text" name="long2" id='long2' value='<?php echo $details[0]['longitude']; ?>' maxlength='20' disabled="disabled" />)</td></tr>
 		
 	</table>
 

@@ -23,7 +23,7 @@ class logManager extends CI_Controller {
 			$coords_rw = $this->map_model->get_coordinates_rw();
 			// Loop through the coordinates we obtained above and add them to the map
 
-			$ctr0 = $ctr1 = $ctr2 = $ctr3 = $ctr4 = $ctr5 = $ctr6 = $ctr7 = $ctr8 = $ctr9 = 0;
+			$data['rctr0'] = $data['rctr1'] = $data['rctr2'] = $data['rctr3'] = $data['rctr4'] = $data['rctr5'] = $data['rctr6'] = $data['rctr7'] = $data['rctr8'] = $data['rctr9'] = 0;
 			foreach ($coords_rw as $coordinate) {
 				$marker = array();
 				$marker['draggable'] = FALSE;
@@ -45,55 +45,55 @@ class logManager extends CI_Controller {
 				$marker['infowindow_content'] = $htmlstring;
 				if ($coordinate->rwork_type == 'Construction'){
 					$marker['icon'] = 'styles/img/markers/rw/construction.png';
-					$marker['id'] = "rwCat0[".$ctr0."]";
-					$ctr0++;
+					$marker['id'] = "rwCat0[".$data['rctr0']."]";
+					$data['rctr0']++;
 				}else if ($coordinate->rwork_type == 'Rehabilitation'){
 					$marker['icon'] = 'styles/img/markers/rw/rehabilitation.png';
-					$marker['id'] = "rwCat1[".$ctr1."]";
-					$ctr1++;
+					$marker['id'] = "rwCat1[".$data['rctr1']."]";
+					$data['rctr1']++;
 				}else if ($coordinate->rwork_type == 'Renovation'){
 					$marker['icon'] = 'styles/img/markers/rw/renovation.png';
-					$marker['id'] = "rwCat2[".$ctr2."]";
-					$ctr2++;
+					$marker['id'] = "rwCat2[".$data['rctr2']."]";
+					$data['rctr2']++;
 				}else if ($coordinate->rwork_type == 'Riprapping'){
 					$marker['icon'] = 'styles/img/markers/rw/riprapping.png';
-					$marker['id'] = "rwCat3[".$ctr3."]";
-					$ctr3++;
+					$marker['id'] = "rwCat3[".$data['rctr3']."]";
+					$data['rctr3']++;
 				}else if ($coordinate->rwork_type == 'Application'){
 					$marker['icon'] = 'styles/img/markers/rw/application.png';
-					$marker['id'] = "rwCat4[".$ctr4."]";
-					$ctr4++;
+					$marker['id'] = "rwCat4[".$data['rctr4']."]";
+					$data['rctr4']++;
 				}else if ($coordinate->rwork_type == 'Installation'){
 					$marker['icon'] = 'styles/img/markers/rw/installation.png';
-					$marker['id'] = "rwCat5[".$ctr5."]";
-					$ctr5++;
+					$marker['id'] = "rwCat5[".$data['rctr5']."]";
+					$data['rctr5']++;
 				}else if ($coordinate->rwork_type == 'Reconstruction'){
 					$marker['icon'] = 'styles/img/markers/rw/reconstruction.png';
-					$marker['id'] = "rwCat6[".$ctr6."]";
-					$ctr6++;
+					$marker['id'] = "rwCat6[".$data['rctr6']."]";
+					$data['rctr6']++;
 				}else if ($coordinate->rwork_type == 'Concreting/Asphalting'){
 					$marker['icon'] = 'styles/img/markers/rw/concreting.png';
-					$marker['id'] = "rwCat7[".$ctr7."]";
-					$ctr7++;
+					$marker['id'] = "rwCat7[".$data['rctr7']."]";
+					$data['rctr7']++;
 				}else if ($coordinate->rwork_type == 'Electrification'){
 					$marker['icon'] = 'styles/img/markers/rw/electrification.png';
-					$marker['id'] = "rwCat8[".$ctr8."]";
-					$ctr8++;
+					$marker['id'] = "rwCat8[".$data['rctr8']."]";
+					$data['rctr8']++;
 				}else if ($coordinate->rwork_type == 'Roadway Lighting'){
 					$marker['icon'] = 'styles/img/markers/rw/lighting.png';
-					$marker['id'] = "rwCat9[".$ctr9."]";
-					$ctr9++;
+					$marker['id'] = "rwCat9[".$data['rctr9']."]";
+					$data['rctr9']++;
 				}
 
-				$marker['title'] = $coordinate->map_id.','.$coordinate->rwork_name.' at '.$coordinate->barangay.'end date: '.$coordinate->end_date;
-
+				$titleString = 'Roadwork # '.$coordinate->map_id.'\n'.$coordinate->rwork_name.'\n'.$coordinate->barangay.', Calamba City';
+				$marker['title'] = $titleString;
 				$marker['position'] = $coordinate->latitude.','.$coordinate->longitude;
 				$this->googlemaps->add_marker($marker);
 			}
 
 			$coords_inc = $this->map_model->get_coordinates_inc();
 			// Loop through the coordinates we obtained above and add them to the map
-			$ctr0 = $ctr1 = $ctr2 = $ctr3 = $ctr4 = $ctr5 = 0;
+			$data['ictr0'] = $data['ictr1'] = $data['ictr2'] = $data['ictr3'] = $data['ictr4'] = $data['ictr5'] = 0;
 			foreach ($coords_inc as $coordinate) {
 				$marker = array();
 				$marker['draggable'] = FALSE;
@@ -112,31 +112,32 @@ class logManager extends CI_Controller {
 
 				$htmlstring =  $this->setInfowindow_inc($a1, $a2, $a3, $a4, $a5, $a6, $a7, $a8, $a9);
 				$marker['infowindow_content'] = $htmlstring;
-				$marker['title'] = $coordinate->inc_id.','.$coordinate->inc_type.' at '.$coordinate->barangay;
+				
+				$marker['title'] = $coordinate->inc_type.'\n'.$coordinate->barangay.', Calamba City';
 				if ($coordinate->inc_type == 'Accident'){
 					$marker['icon'] = 'styles/img/markers/inc/accident.png';
-					$marker['id'] = "incCat0[".$ctr0."]";
-					$ctr0++;
+					$marker['id'] = "incCat0[".$data['ictr0']."]";
+					$data['ictr0']++;
 				}else if ($coordinate->inc_type == 'Obstruction'){
 					$marker['icon'] = 'styles/img/markers/inc/obstruction.png';
-					$marker['id'] = "incCat1[".$ctr1."]";
-					$ctr1++;
+					$marker['id'] = "incCat1[".$data['ictr1']."]";
+					$data['ictr1']++;
 				}else if ($coordinate->inc_type == 'Public Event'){
 					$marker['icon'] = 'styles/img/markers/inc/event.png';
-					$marker['id'] = "incCat2[".$ctr2."]";
-					$ctr2++;
+					$marker['id'] = "incCat2[".$data['ictr2']."]";
+					$data['ictr2']++;
 				}else if ($coordinate->inc_type == 'Funeral'){
 					$marker['icon'] = 'styles/img/markers/inc/funeral.png';
-					$marker['id'] = "incCat3[".$ctr3."]";
-					$ctr3++;
+					$marker['id'] = "incCat3[".$data['ictr3']."]";
+					$data['ictr3']++;
 				}else if ($coordinate->inc_type == 'Flood'){
 					$marker['icon'] = 'styles/img/markers/inc/flood.png';
-					$marker['id'] = "incCat4[".$ctr4."]";
-					$ctr4++;
+					$marker['id'] = "incCat4[".$data['ictr4']."]";
+					$data['ictr4']++;
 				}else if ($coordinate->inc_type == 'Strike'){
 					$marker['icon'] = 'styles/img/markers/inc/strike.png';
-					$marker['id'] = "incCat5[".$ctr5."]";
-					$ctr5++;
+					$marker['id'] = "incCat5[".$data['ictr5']."]";
+					$data['ictr5']++;
 				}
 				
 				$marker['position'] = $coordinate->latitude.','.$coordinate->longitude;

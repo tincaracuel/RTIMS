@@ -6,7 +6,7 @@ class reportsManager extends CI_Controller {
 	public function __construct() {
         parent:: __construct();
         $this->load->helper("url");
-        $this->load->model("roadworkAccess");
+        $this->load->model("reportAccess");
         $this->load->library("pagination");
     }
 
@@ -20,20 +20,20 @@ class reportsManager extends CI_Controller {
 
     		//$data['report_all'] = $this->reportAccess->report_getAll();
 
-    		$config = array();
-    		$config["base_url"] = base_url() . "index.php/reportsManager/all_reports";
-            $config["total_rows"] = $this->reportAccess->report_all_count();
-            $config["per_page"] = 10;
-            $config["uri_segment"] = 3;
-            $choice = $config["total_rows"] / $config["per_page"];
-       		$config["num_links"] = round($choice);
+    		//$config = array();
+    		//$config["base_url"] = base_url() . "index.php/reportsManager/all_reports";
+            //$config["total_rows"] = $this->reportAccess->report_all_count();
+            //$config["per_page"] = 10;
+            //$config["uri_segment"] = 3;
+            //$choice = $config["total_rows"] / $config["per_page"];
+       		//$config["num_links"] = round($choice);
      
-            $this->pagination->initialize($config);
+            //$this->pagination->initialize($config);
      
-            $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+            //$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
             $data["query_report"] = $this->reportAccess->
-                fetch_all_report($config["per_page"], $page);
-            $data["links"] = $this->pagination->create_links();
+                fetch_all_report(/*$config["per_page"], $page*/);
+            //$data["links"] = $this->pagination->create_links();
 
 
     		$this->load->view('report.php', $data); 
@@ -51,29 +51,30 @@ class reportsManager extends CI_Controller {
             $session_data = $this->session->userdata('logged_in');
             $data['username'] = $session_data['username'];
 
-    		$this->load->model('reportAccess');
+            $this->load->model('reportAccess');
 
-    		$config = array();
-    		$config["base_url"] = base_url() . "index.php/reportsManager/all_reports";
-            $config["total_rows"] = $this->reportAccess->report_all_count();
-            $config["per_page"] = 10;
-            $config["uri_segment"] = 3;
-            $choice = $config["total_rows"] / $config["per_page"];
-       		$config["num_links"] = round($choice);
-     
-            $this->pagination->initialize($config);
-     
-            $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+            //$config = array();
+            //$config["base_url"] = base_url() . "index.php/reportsManager/all_reports";
+            //$config["total_rows"] = $this->reportAccess->report_all_count();
+            //$config["per_page"] = 10;
+            //$config["uri_segment"] = 3;
+            //$choice = $config["total_rows"] / $config["per_page"];
+            //$config["num_links"] = round($choice);
+
+            //$this->pagination->initialize($config);
+
+            //$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
             $data["query_report"] = $this->reportAccess->
-                fetch_all_report($config["per_page"], $page);
-            $data["links"] = $this->pagination->create_links();
+            fetch_all_report(/*$config["per_page"], $page*/);
+            //$data["links"] = $this->pagination->create_links();
 
 
-    		$this->load->view('report.php', $data); 
+            $this->load->view('report.php', $data); 
+
         }
         else{
-        //If no session, redirect to login page
-        redirect(base_url());
+            //If no session, redirect to login page
+            redirect(base_url());
         }
 	}
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/

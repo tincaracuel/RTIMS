@@ -54,7 +54,9 @@ class roadworksManager extends CI_Controller {
 				$interval = date_diff(date_create($coordinate->end_date), date_create((date("Y-m-d"))));
 
 
-				$marker['title'] = $coordinate->map_id.','.$coordinate->rwork_name.' at '.$coordinate->barangay.'end date: '.$coordinate->end_date;
+				$titleString = 'Roadwork # '.$coordinate->map_id.'\n'.$coordinate->rwork_name.'\n'.$coordinate->barangay.', Calamba City';
+				$marker['title'] = $titleString;
+				
 				if ($coordinate->rwork_type == 'Construction'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/construction.png';
 				}else if ($coordinate->rwork_type == 'Rehabilitation'){

@@ -55,8 +55,8 @@ class reportAccess extends CI_Model {
         return $this->db->count_all("report");
     }
 
-    function fetch_all_report($limit, $start) {
-        $this->db->limit($limit, $start);
+   function fetch_all_report(/*$limit, $start*/) {
+        //$this->db->limit($limit, $start);
 
 
         $queryReport = $this->db->query("SELECT * from REPORT ORDER BY date_received DESC");
@@ -69,6 +69,8 @@ class reportAccess extends CI_Model {
         }
         return false;
    	}
+
+
 
    	function getReportDetails($report_id) {
 
