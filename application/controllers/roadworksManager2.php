@@ -23,12 +23,9 @@ class roadworksManager2 extends CI_Controller {
 			$config['mapTypeControlStyle'] = "DROPDOWN_MENU";
 			$config['map_types_available'] = array("HYBRID", "ROADMAP");
 
-			$config['onclick'] =   'var rw_lat = document.getElementById("rwork_lat");
-									rw_lat.value = event.latLng.lat();
-									var rw_long = document.getElementById("rwork_long");
-									rw_long.value = event.latLng.lng();
-									createMarker({ map: map, position:event.latLng , draggable: true});';
+			$config['onclick'] =  $this->getCoordinatesClicked();
 
+		
 			$coords = $this->map_model->get_coordinates_rw();
 			// Loop through the coordinates we obtained above and add them to the map
 			foreach ($coords as $coordinate) {
@@ -173,4 +170,20 @@ class roadworksManager2 extends CI_Controller {
 		$this->load->view('roadwork', $data);
 	}
 
+
+	public function getCoordinatesClicked(){
+
+		$str = 
+			'var rw_lat = document.getElementById("rwork_lat");
+			var rw_long = document.getElementById("rwork_long");
+			rw_lat.value = event.latLng.lat();
+			rw_long.value = event.latLng.lng();
+			createMarker({ map: map, position:event.latLng , draggable: true});';
+
+		return $str;
+	
+	}
+
+
 }
+

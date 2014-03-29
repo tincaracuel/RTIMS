@@ -1,10 +1,36 @@
 <script type="text/javascript">
+
+    function disablefield(){
+        if ( document.getElementById('type_circle').checked == true ){
+            document.getElementById('rwork_radius').value = '';
+            document.getElementById('rwork_radius').disabled = false;
+            document.getElementById('rwork_line1a').disabled = true;
+            document.getElementById('rwork_line1b').disabled = true;
+            document.getElementById('rwork_line2a').disabled = true;
+            document.getElementById('rwork_line2b').disabled = true;
+            
+        }
+        else if (document.getElementById('type_line').checked == true ){
+            document.getElementById('rwork_line1a').value = '';
+            document.getElementById('rwork_line1b').value = '';
+            document.getElementById('rwork_line2a').value = '';
+            document.getElementById('rwork_line2b').value = '';
+            document.getElementById('rwork_radius').disabled = true;
+            document.getElementById('rwork_line1a').disabled = false;
+            document.getElementById('rwork_line1b').disabled = false;
+            document.getElementById('rwork_line2a').disabled = false;
+            document.getElementById('rwork_line2b').disabled = false;
+            }
+    }
+
     function validateRoadworkForm(){
         var contractno=document.forms["addRoadwork"]["contract_number"].value;
         var name=document.forms["addRoadwork"]["rwork_name"].value;
+        var classification=document.forms["addRoadwork"]["rwork_classification"].value;
         var description = document.getElementById('rwork_desc').value;
         var start=document.getElementById('rwork_start').value;
         var end=document.getElementById('rwork_end').value;
+        var barangay=document.getElementById('rwork_barangay').value;
         var latitude=document.getElementById('rwork_lat').value;
         var longitude=document.getElementById('rwork_long').value;
         var latPattern = /^-?([0-8]?[0-9]|90)\.[0-9]{1,16}$/;
@@ -24,6 +50,11 @@
           return false;
         }else if(name.length<5 || name.length>100){
           alert("Roadwork name must have 5 - 100 characters.");
+          return false;
+        }
+        /*Classification*/
+        else if(classification==null || classification==""){
+          alert("Please select a classification of the roadwork.");
           return false;
         }
         /*Start date*/
@@ -52,6 +83,11 @@
         }else if (description.length>250) {
             alert('Description can have at most 250 characters.');
             return false;
+        }
+        /*Barangay*/
+        else if(barangay==null || barangay==""){
+          alert("Please select a barangay.");
+          return false;
         }
         /*Coordinates*/
         if(latitude==null || latitude=="" || longitude==null || longitude==""){
@@ -110,7 +146,7 @@
 <form class="addRoadwork" name="addRoadwork" id="addRoadwork"  action='<?php echo base_url() ?>index.php/roadworksManager/addRoadwork' method='post'>
 
     <table style="width:100%;">
-    <tr><td width="30%">Contract number:</td>
+    <tr><td width="30%">Contract no.:</td>
         <td><input type="text" id="contract_number" name="contract_number" maxlength="20" onkeyup='javascript:checkRWcontractNumberDuplicate(this.value);' autofocus /></td></tr>
 
     <tr><td width="30%">Roadwork name:</td>
@@ -121,6 +157,7 @@
 
     <tr><td width="30%">Classification:</td>
         <td><select name="rwork_classification" id="rwork_classification" autofocus><br /><br />
+            <option></option>
             <option value="Construction">       Construction            </option>
             <option value="Rehabilitation">     Rehabilitation          </option>
             <option value="Renovation">         Renovation              </option>
@@ -134,8 +171,8 @@
         </select></td></tr>
 
     <tr><td width="30%">Duration:</td>
-        <td><input type="text" name="rwork_start" id="rwork_start" />&nbsp;to&nbsp;
-        <input type="text" name="rwork_end" id="rwork_end" /></td></tr>
+        <td><input type="text" name="rwork_start" id="rwork_start" placeholder="start date" />&nbsp;&nbsp;to&nbsp;
+        <input type="text" name="rwork_end" id="rwork_end" placeholder="end date" /></td></tr>
 
     <tr><td width="30%">Description:</td>
         <td><textarea name="rwork_desc" id="rwork_desc" maxlength="250" > </textarea></td></tr>
@@ -149,6 +186,7 @@
     <tr><td width="30%">Barangay:</td>
 
         <td><select name="rwork_barangay" id="rwork_barangay" autofocus >
+            <option></option>
             <option value="Bagong Kalsada" >Bagong Kalsada </option>
             <option value="Banadero" >Bańadero </option>
             <option value="Banlic" >Banlic </option>
@@ -207,11 +245,43 @@
           </select></td></tr>
 
     <tr><td width="30%">Map Coordinates:</td>
-        <td style="text-align: center;">( <input type="text" name="rwork_lat" id="rwork_lat" maxlength="20" autofocus /> , 
-    <input type="text" name="rwork_long" id="rwork_long" maxlength="20" autofocus /> )</td></tr>
+        <td style="text-align: center;"><input type="text" name="rwork_lat" id="rwork_lat" maxlength="20" placeholder="latitude" /> , 
+    <input type="text" name="rwork_long" id="rwork_long" maxlength="20" placeholder="longitude" /></td></tr>
 
-    <tr><td width="30%">Progress / Status:</td>
-        <td><input type="number" name="rwork_status" min="0" max="100" autofocus /></td></tr>
+    <tr><td width="30%">&nbsp;</td>
+        <td>&nbsp;</td></tr>
+
+    <tr>
+        <td>
+        &nbsp;<input type="radio" name="type" id="type_circle" value="circle" onclick="disableField()">&nbsp;&nbsp;&nbsp;Circle
+        </td>
+        <!--<td><input type="number" id="rwork_radius" placeholder="radius" style="padding: 10px 0" min="0" max="100" /></td>-->
+         <td><input type="number" id="rwork_radius" placeholder="radius" min="0" max="100"/></td>
+    </tr>
+
+
+    <tr>
+       <td>
+        &nbsp;<input type="radio" name="type" id="type_line" value="line">&nbsp;&nbsp;&nbsp;Line
+        </td>
+    </tr>
+    <tr>
+        <td width="30%">From:</td>
+        <td style="text-align: center;"><input type="text" id="rwork_line1a" maxlength="20" placeholder="latitude" class="coords_line" /> ,
+            <input type="text" id="rwork_line1b" class="coords_line" maxlength="20" placeholder="longitude" />
+        </td>
+    </tr>
+    <tr>
+        <td width="30%">To:</td>
+        <td style="text-align: center;"><input type="text" id="rwork_line2a" maxlength="20" placeholder="latitude" class="coords_line" /> ,
+            <input type="text" id="rwork_line2b" class="coords_line" maxlength="20" placeholder="longitude" />
+        </td>
+    </tr>
+    
+
+    <!--<tr><td width="30%">Progress / Status:</td>
+        <td><input type="number" name="rwork_status" min="0" max="100" autofocus /></td></tr>-->
+
     </table>
     <br />
     <input type="submit" value="Add Roadwork" id="addRoadworkBtn" onclick="return validateRoadworkForm()" /><br /><br />

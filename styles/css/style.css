@@ -394,12 +394,13 @@ a#ddt-home:hover, a.ddt-home:hover{
 
 #adminFunctions form{
 	font-family: 'Open Sans';
-	margin-top: 30px;
-	font-size: 0.8em;
+	margin-top: 20px;
+	font-size: 0.9em;
 	width:90%;
 	height: 50px;
 	padding: 10px;
     text-decoration: none;
+
 }
 #adminFunctions input[type=text], #adminFunctions select{
 	width: 100%;
@@ -408,8 +409,8 @@ a#ddt-home:hover, a.ddt-home:hover{
 }
 
 textarea[name=rwork_desc], textarea[name=inc_desc] {
-    width: 97%;
-    max-width: 97%;
+    width: 100%;
+    max-width: 100%;
     resize: vertical;
     height: 90px;
     font-family: 'Open Sans';
@@ -420,15 +421,25 @@ textarea[name=rwork_desc], textarea[name=inc_desc] {
 textarea{resize:vertical;}
 
 #adminFunctions #rwork_lat, #adminFunctions #rwork_long,
-#adminFunctions #inc_lat, #adminFunctions #inc_long{
-	width: 40%;
-	font-size: 10px;
+#adminFunctions #inc_lat, #adminFunctions #inc_long,
+#adminFunctions #rwork_line1a, #adminFunctions #rwork_line1b,
+#adminFunctions #rwork_line2a, #adminFunctions #rwork_line2b,
+#adminFunctions #rwork_radius{
+	width: 48%;
+	font-size: 12px;
+	text-align: center;
+	padding: 0 10px;
+}
+
+input[disabled]{
+	opacity: 0.85;
 }
 
 #adminFunctions #rwork_start, #adminFunctions #rwork_end,
-#adminFunctions #inc_start, #adminFunctions #inc_end{
-	width: 43%;
-	font-size: 14px;
+#adminFunctions #inc_start, #adminFunctions #inc_end,{
+	width: 44.7%;
+	font-size: 12px;
+	text-align: center;
 }
 
 #adminFunctions input[type=number] {height: 20px; border: 0px solid;}

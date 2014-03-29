@@ -88,6 +88,8 @@
 
             <b><?php echo $query[0]->sender_name ?></b> < <?php echo $query[0]->sender_email ?> >
             <p style="float: right; margin-top: -0px;"> <?php echo $query[0]->date_received ?> </p>
+            <br />
+            <?php if($query[0]->sender_contact_no != NULL) echo 'Contact number: '.$query[0]->sender_contact_no ?>
             <br /><br />
             <p> <?php echo $query[0]->description ?> </p>
             <br />
