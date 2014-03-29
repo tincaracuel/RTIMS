@@ -4,11 +4,15 @@ class roadworkAccess extends CI_Model {
 	/*	queries for the database involving roadworks 	*/
 
 	/*	adds a new roadwork to the system */
-	function addNewRoadwork($contract_number, $rwork_name, $classification, $desc, $status, $street, $brgy, $latitude, $longitude, $start, $end){
+	function addNewRoadwork($contract_number, $rwork_name, $classification, $desc, $street, $brgy, $latitude, $longitude, $start, $end, $has_line, $start_lat, $start_long, $end_lat, $end_long){
 		
 		//with foreign keys
-		$status1 = $this->db->query("INSERT into roadwork (contract_no, rwork_name, rwork_type, description, status, start_date, end_date) values ('$contract_number', '$rwork_name', '$classification', '$desc', '$status', '$start', '$end')");
-		$status2 = $this->db->query("INSERT into map_coordinates (map_id, latitude, longitude, street, barangay, rw_id) values ('$contract_number', '$latitude', '$longitude', '$street', '$brgy', '$contract_number')");
+		$status1 = $this->db->query("INSERT into roadwork (contract_no, rwork_name, rwork_type, description, start_date, end_date) values ('$contract_number', '$rwork_name', '$classification', '$desc', '$start', '$end')");
+		if($start_lat!=NULL ||  $start_long!=NULL ||  $end_lat!=NULL || $end_long!=NULL){
+			$status2 = $this->db->query("INSERT into map_coordinates (map_id, latitude, longitude, street, barangay, rw_id, line_start_lat, line_start_long, line_end_lat, line_end_long) values ('$contract_number', '$latitude', '$longitude', '$street', '$brgy', '$contract_number',  '$start_lat', '$start_long', '$end_lat', '$end_long')");
+		}else{
+			$status2 = $this->db->query("INSERT into map_coordinates (map_id, latitude, longitude, street, barangay, rw_id) values ('$contract_number', '$latitude', '$longitude', '$street', '$brgy', '$contract_number')");
+		}
 
 		if(!$status1 || !$status2){
 			$this->error = $this->db->_error_message();
@@ -125,10 +129,10 @@ class roadworkAccess extends CI_Model {
 		return $this->db->query("SELECT * from roadwork join map_coordinates where contract_no='$cn' and roadwork.contract_no = map_coordinates.rw_id")->result_array();
 	}
 
-	function editExistingRoadwork($cn2, $rwork_name2, $type2, $start2, $end2, $desc2, $status2, $street2, $brgy2, $lat2, $long2){
+	function editExistingRoadwork($cn2, $rwork_name2, $type2, $start2, $end2, $desc2, $street2, $brgy2, $lat2, $long2){
 		//this function will update/edit all the details whose contract number matches the variable $cn2
 
-		$status = $this->db->query("UPDATE roadwork set rwork_name='$rwork_name2', rwork_type='$type2', start_date='$start2', end_date='$end2', description='$desc2', status='$status2' where contract_no='$cn2'");
+		$status = $this->db->query("UPDATE roadwork set rwork_name='$rwork_name2', rwork_type='$type2', start_date='$start2', end_date='$end2', description='$desc2' where contract_no='$cn2'");
 		$status = $this->db->query("UPDATE map_coordinates set street='$street2', barangay='$brgy2', latitude='$lat2', longitude='$long2' where rw_id='$cn2'");
 
 		if(!$status){

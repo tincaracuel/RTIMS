@@ -1,21 +1,22 @@
 <script type="text/javascript">
 
     function disablefield(){
-        if ( document.getElementById('type_circle').checked == true ){
-            document.getElementById('rwork_radius').value = '';
-            document.getElementById('rwork_radius').disabled = false;
-            document.getElementById('rwork_line1a').disabled = true;
-            document.getElementById('rwork_line1b').disabled = true;
-            document.getElementById('rwork_line2a').disabled = true;
-            document.getElementById('rwork_line2b').disabled = true;
-            
-        }
-        else if (document.getElementById('type_line').checked == true ){
+        if (document.getElementById('type_line').checked == false ){
             document.getElementById('rwork_line1a').value = '';
             document.getElementById('rwork_line1b').value = '';
             document.getElementById('rwork_line2a').value = '';
             document.getElementById('rwork_line2b').value = '';
-            document.getElementById('rwork_radius').disabled = true;
+            document.getElementById('rwork_line1a').disabled = true;
+            document.getElementById('rwork_line1b').disabled = true;
+            document.getElementById('rwork_line2a').disabled = true;
+            document.getElementById('rwork_line2b').disabled = true;
+        }
+        else{
+            alert("Please click twice on the map to specify the start and end points of the roadwork. The map coordinate obtained earlier must be between the two following points.");
+            document.getElementById('rwork_line1a').value = '';
+            document.getElementById('rwork_line1b').value = '';
+            document.getElementById('rwork_line2a').value = '';
+            document.getElementById('rwork_line2b').value = '';
             document.getElementById('rwork_line1a').disabled = false;
             document.getElementById('rwork_line1b').disabled = false;
             document.getElementById('rwork_line2a').disabled = false;
@@ -33,8 +34,15 @@
         var barangay=document.getElementById('rwork_barangay').value;
         var latitude=document.getElementById('rwork_lat').value;
         var longitude=document.getElementById('rwork_long').value;
+
+        var has_line =document.getElementById('type_line');
+        var start_lat=document.getElementById('rwork_line1a').value;
+        var start_long=document.getElementById('rwork_line1b').value;
+        var end_lat=document.getElementById('rwork_line2a').value;
+        var end_long=document.getElementById('rwork_line2b').value;
         var latPattern = /^-?([0-8]?[0-9]|90)\.[0-9]{1,16}$/;
         var longPattern = /^-?((1?[0-7]?|[0-9]?)[0-9]|180)\.[0-9]{1,16}$/;
+        
         
         /*Contract number*/
         if(contractno==null || contractno==""){
@@ -100,6 +108,20 @@
             alert("Invalid longitude.")
             return false;
         }
+        /*Has Line*/
+        if(has_line.checked == true){
+            if(start_lat==null || start_lat=="" || start_long==null || start_long=="" ||
+                end_lat==null || end_lat=="" || end_long==null || end_long==""){
+              alert("Coordinates are required. Please click on the roadwork location on the map.");
+              return false;
+            }else if(!start_lat.match(latPattern) || !end_lat.match(latPattern)){
+                alert("Invalid latitude.")
+                return false;
+            }else if(!start_long.match(longPattern) || !end_long.match(longPattern)){
+                alert("Invalid longitude.")
+                return false;
+            }
+        }
 
     }
 
@@ -143,7 +165,7 @@
     }
 </script>
 
-<form class="addRoadwork" name="addRoadwork" id="addRoadwork"  action='<?php echo base_url() ?>index.php/roadworksManager/addRoadwork' method='post'>
+<form class="addRoadwork" name="addRoadwork" id="addRoadwork"  action='<?php echo base_url() ?>index.php/roadworksManager2/addRoadwork' method='post'>
 
     <table style="width:100%;">
     <tr><td width="30%">Contract no.:</td>
@@ -156,7 +178,7 @@
         <td>&nbsp;</td></tr>
 
     <tr><td width="30%">Classification:</td>
-        <td><select name="rwork_classification" id="rwork_classification" autofocus><br /><br />
+        <td><select name="rwork_classification" id="rwork_classification"><br /><br />
             <option></option>
             <option value="Construction">       Construction            </option>
             <option value="Rehabilitation">     Rehabilitation          </option>
@@ -185,7 +207,7 @@
 
     <tr><td width="30%">Barangay:</td>
 
-        <td><select name="rwork_barangay" id="rwork_barangay" autofocus >
+        <td><select name="rwork_barangay" id="rwork_barangay" >
             <option></option>
             <option value="Bagong Kalsada" >Bagong Kalsada </option>
             <option value="Banadero" >Bańadero </option>
@@ -252,36 +274,24 @@
         <td>&nbsp;</td></tr>
 
     <tr>
-        <td>
-        &nbsp;<input type="radio" name="type" id="type_circle" value="circle" onclick="disableField()">&nbsp;&nbsp;&nbsp;Circle
+       <td colspan="2">
+        Add line for the endpoints &nbsp;<input type="checkbox" name="type_line" id="type_line" value="line">&nbsp;&nbsp;&nbsp;
         </td>
-        <!--<td><input type="number" id="rwork_radius" placeholder="radius" style="padding: 10px 0" min="0" max="100" /></td>-->
-         <td><input type="number" id="rwork_radius" placeholder="radius" min="0" max="100"/></td>
-    </tr>
-
-
-    <tr>
-       <td>
-        &nbsp;<input type="radio" name="type" id="type_line" value="line">&nbsp;&nbsp;&nbsp;Line
-        </td>
+        
     </tr>
     <tr>
         <td width="30%">From:</td>
-        <td style="text-align: center;"><input type="text" id="rwork_line1a" maxlength="20" placeholder="latitude" class="coords_line" /> ,
-            <input type="text" id="rwork_line1b" class="coords_line" maxlength="20" placeholder="longitude" />
+        <td style="text-align: center;"><input type="text" id="rwork_line1a" name="rwork_line1a" maxlength="20" placeholder="latitude" class="coords_line" /> ,
+            <input type="text" name="rwork_line1b" id="rwork_line1b" class="coords_line" maxlength="20" placeholder="longitude" />
         </td>
     </tr>
     <tr>
         <td width="30%">To:</td>
-        <td style="text-align: center;"><input type="text" id="rwork_line2a" maxlength="20" placeholder="latitude" class="coords_line" /> ,
-            <input type="text" id="rwork_line2b" class="coords_line" maxlength="20" placeholder="longitude" />
+        <td style="text-align: center;"><input type="text" id="rwork_line2a" name="rwork_line2a" maxlength="20" placeholder="latitude" class="coords_line" /> ,
+            <input type="text" name="rwork_line2b" id="rwork_line2b" class="coords_line" maxlength="20" placeholder="longitude" />
         </td>
     </tr>
     
-
-    <!--<tr><td width="30%">Progress / Status:</td>
-        <td><input type="number" name="rwork_status" min="0" max="100" autofocus /></td></tr>-->
-
     </table>
     <br />
     <input type="submit" value="Add Roadwork" id="addRoadworkBtn" onclick="return validateRoadworkForm()" /><br /><br />

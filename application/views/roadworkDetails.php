@@ -135,20 +135,10 @@
 	<tr><td width="25%">Description:</td>
 		<td><textarea name="desc2" id="desc2" maxlength='250'><?php echo $details[0]['description']; ?></textarea></td></tr>
 
-	</table>
+	<tr><td width="25%">Duration:</td>
+		<td><input type="text" name="start2" id="start2" value='<?php echo $details[0]['start_date']; ?>' style="width:  120px; font-size: 16px; text-align:center;" />&nbsp;&nbsp;to&nbsp;&nbsp;
+		<input type="text" name="end2" id="end2" value='<?php if ($details[0]['end_date'] != '0000-00-00') echo $details[0]['end_date']; ?>'style="width: 120px; font-size: 16px; text-align:center;" /></td>
 
-	</table>
-
-	<table style="width:100%;">
-	<tr><td width="33%" style="text-align:center;">Start date</td>
-		<td width="33%" style="text-align:center;">End date</td>
-		<td width="33%" style="text-align:center;">Progress/Status</td>
-	</tr>
-
-	<tr><td width="33%" style="text-align:center;"><input type="text" name="start2" id="start2" value='<?php echo $details[0]['start_date']; ?>' style="width:  120px; font-size: 16px; text-align:center;" /></td>
-		<td width="33%" style="text-align:center;"><input type="text" name="end2" id="end2" value='<?php if ($details[0]['end_date'] != '0000-00-00') echo $details[0]['end_date']; ?>'style="width: 120px; font-size: 16px; text-align:center;" /></td>
-		<td width="33%" style="text-align:center;"><input type="number" name="status2" id="status2" min="0" max="100" style="width: 100px; font-size: 16px; text-align:center;" value='<?php echo $details[0]['status']; ?>' /></td>
-	</tr>
 	</table>
 
 	<br />

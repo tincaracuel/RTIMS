@@ -35,13 +35,12 @@ class logManager extends CI_Controller {
 				$a4 = $coordinate->barangay;
 				$a5 = $coordinate->start_date;
 				$a6 = $coordinate->end_date;
-				$a7 = $coordinate->status;
 				$a8 = $coordinate->latitude;
 				$a9 = $coordinate->longitude;
 				$a10 = $coordinate->rwork_type;
 				$a11 = $coordinate->description;
 
-				$htmlstring =  $this->setInfowindow_rw($a1, $a2, $a3, $a4, $a5, $a6, $a7, $a8, $a9, $a10, $a11);
+				$htmlstring =  $this->setInfowindow_rw($a1, $a2, $a3, $a4, $a5, $a6, $a8, $a9, $a10, $a11);
 				$marker['infowindow_content'] = $htmlstring;
 				if ($coordinate->rwork_type == 'Construction'){
 					$marker['icon'] = 'styles/img/markers/rw/construction.png';
@@ -89,6 +88,17 @@ class logManager extends CI_Controller {
 				$marker['title'] = $titleString;
 				$marker['position'] = $coordinate->latitude.','.$coordinate->longitude;
 				$this->googlemaps->add_marker($marker);
+
+				if($coordinate->line_start_lat != NULL && $coordinate->line_start_long != NULL && $coordinate->line_end_lat != NULL && $coordinate->line_end_long != NULL){
+					$polyline = array();
+					$polyline['strokeOpacity'] = '0.7';
+					$polyline['strokeWeight'] = '3';
+					$polyline['strokeColor'] = '#080808';
+					$polyline['points'] = array($coordinate->line_start_lat.','.$coordinate->line_start_long,
+												$coordinate->latitude.','.$coordinate->longitude,
+												$coordinate->line_end_lat.','.$coordinate->line_end_long);
+					$this->googlemaps->add_polyline($polyline);
+				}
 			}
 
 			$coords_inc = $this->map_model->get_coordinates_inc();
@@ -142,6 +152,17 @@ class logManager extends CI_Controller {
 				
 				$marker['position'] = $coordinate->latitude.','.$coordinate->longitude;
 				$this->googlemaps->add_marker($marker);
+
+				if($coordinate->line_start_lat != NULL && $coordinate->line_start_long != NULL && $coordinate->line_end_lat != NULL && $coordinate->line_end_long != NULL){
+					$polyline = array();
+					$polyline['strokeOpacity'] = '0.7';
+					$polyline['strokeWeight'] = '3';
+					$polyline['strokeColor'] = '#080808';
+					$polyline['points'] = array($coordinate->line_start_lat.','.$coordinate->line_start_long,
+												$coordinate->latitude.','.$coordinate->longitude,
+												$coordinate->line_end_lat.','.$coordinate->line_end_long);
+					$this->googlemaps->add_polyline($polyline);
+				}
 			}
 
 
@@ -280,7 +301,7 @@ class logManager extends CI_Controller {
 	}
 
 	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-	public function setInfowindow_rw($contract_no, $rwork_name, $street, $barangay, $start_date, $end_date, $status, $lat, $long, $type, $desc) {
+	public function setInfowindow_rw($contract_no, $rwork_name, $street, $barangay, $start_date, $end_date, $lat, $long, $type, $desc) {
 		$infowindow_string = 	'<html><body>'.
 								'<div style="min-width: 250px; max-width: 300px; width: 300px;"><p style="margin-top: -2px; border-bottom: 1px solid grey;">'.'Contract # '.$contract_no.'<br />'.
 								'<b>'.$rwork_name.'</b><br />'.
@@ -306,10 +327,11 @@ class logManager extends CI_Controller {
 		/*gets the necessary information from the submitted form*/
 		$name = $_POST['sender_name'];
 		$email = $_POST['sender_email'];
+		$contact = $_POST['sender_contact'];
 		$contract_number = $_POST['rwork_cn'];
 		$report = $_POST['rw_report'];
 		
-		$status = $this->reportAccess->addNewRoadworkReport($name, $email, $contract_number, $report);
+		$status = $this->reportAccess->addNewRoadworkReport($name, $email, $contact, $contract_number, $report);
 		if($status == ''){
 			header("Location: ".base_url()."");
 		}else{
@@ -322,10 +344,11 @@ class logManager extends CI_Controller {
 		/*gets the necessary information from the submitted form*/
 		$name = $_POST['sender_name'];
 		$email = $_POST['sender_email'];
+		$contact = $_POST['sender_contact'];
 		$inc_id = $_POST['inc_id'];
 		$report = $_POST['inc_report'];
 		
-		$status = $this->reportAccess->addNewIncidentReport($name, $email, $inc_id, $report);
+		$status = $this->reportAccess->addNewIncidentReport($name, $email, $contact, $inc_id, $report);
 		if($status == ''){
 			header("Location: ".base_url()."");
 		}else{
@@ -338,10 +361,11 @@ class logManager extends CI_Controller {
 		/*gets the necessary information from the submitted form*/
 		$name = $_POST['sender_name'];
 		$email = $_POST['sender_email'];
+		$contact = $_POST['sender_contact'];
 		$subject = $_POST['subject'];
 		$report = $_POST['report'];
 		
-		$status = $this->reportAccess->addNewReport($name, $email, $subject, $report);
+		$status = $this->reportAccess->addNewReport($name, $email, $contact, $subject, $report);
 		if($status == ''){
 			header("Location: ".base_url()."");
 		}else{

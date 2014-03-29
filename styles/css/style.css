@@ -424,7 +424,8 @@ textarea{resize:vertical;}
 #adminFunctions #inc_lat, #adminFunctions #inc_long,
 #adminFunctions #rwork_line1a, #adminFunctions #rwork_line1b,
 #adminFunctions #rwork_line2a, #adminFunctions #rwork_line2b,
-#adminFunctions #rwork_radius{
+#adminFunctions #inc_line1a, #adminFunctions #inc_line1b,
+#adminFunctions #inc_line2a, #adminFunctions #inc_line2b{
 	width: 48%;
 	font-size: 12px;
 	text-align: center;
@@ -436,7 +437,7 @@ input[disabled]{
 }
 
 #adminFunctions #rwork_start, #adminFunctions #rwork_end,
-#adminFunctions #inc_start, #adminFunctions #inc_end,{
+#adminFunctions #inc_start, #adminFunctions #inc_end{
 	width: 44.7%;
 	font-size: 12px;
 	text-align: center;

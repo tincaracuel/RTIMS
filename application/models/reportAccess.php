@@ -4,10 +4,10 @@ class reportAccess extends CI_Model {
 	/*	queries for the database involving reports submitted by the users 	*/
 
 	/*	adds a new (existing) roadwork report to the system */
-	function addNewRoadworkReport($name, $email, $contract_number, $report){
+	function addNewRoadworkReport($name, $email, $contact, $contract_number, $report){
 		
 		//with foreign keys
-		$status1 = $this->db->query("INSERT into report (sender_name, sender_email, rw_id, description) values ('$name', '$email', '$contract_number', '$report')");
+		$status1 = $this->db->query("INSERT into report (sender_name, sender_email, sender_contact_no, rw_id, description) values ('$name', '$email', '$contact', '$contract_number', '$report')");
 
 		if(!$status1){
 			$this->error = $this->db->_error_message();
@@ -18,12 +18,12 @@ class reportAccess extends CI_Model {
 		return '';
 		
 	}
-
+	
 	/*	adds a new (existing) incident report to the system */
-	function addNewIncidentReport($name, $email, $inc_id, $report){
+	function addNewIncidentReport($name, $email, $contact, $inc_id, $report){
 		
 		//with foreign keys
-		$status1 = $this->db->query("INSERT into report (sender_name, sender_email, inc_id, description) values ('$name', '$email', '$inc_id', '$report')");
+		$status1 = $this->db->query("INSERT into report (sender_name, sender_email, sender_contact_no, inc_id, description) values ('$name', '$email', '$contact', '$inc_id', '$report')");
 
 		if(!$status1){
 			$this->error = $this->db->_error_message();
@@ -36,10 +36,10 @@ class reportAccess extends CI_Model {
 	}
 
 	/*	adds a new report to the system */
-	function addNewReport($name, $email, $subject, $report){
+	function addNewReport($name, $email, $contact, $subject, $report){
 		
 		//with foreign keys
-		$status1 = $this->db->query("INSERT into report (sender_name, sender_email, subject, description) values ('$name', '$email', '$subject', '$report')");
+		$status1 = $this->db->query("INSERT into report (sender_name, sender_email, sender_contact_no, subject, description) values ('$name', '$email', '$contact', '$subject', '$report')");
 
 		if(!$status1){
 			$this->error = $this->db->_error_message();

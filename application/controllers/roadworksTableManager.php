@@ -74,14 +74,13 @@ class roadworksTableManager extends CI_Controller {
   	$start2      = $_POST['start2'];
   	$end2        = $_POST['end2'];
   	$desc2        = $_POST['desc2'];
-  	$status2     = $_POST['status2'];
   	$street2     = $_POST['street2'];
   	$brgy2    	 = $_POST['brgy2'];
   	$lat2     	= $_POST['lat2'];
   	$long2     	= $_POST['long2'];
 
 	//	calls the editExistingRoadwork function in roadworkAccess.php (in models) for editing
-	$status = $this->roadworkAccess->editExistingRoadwork($cn2, $rwork_name2, $type2, $start2, $end2, $desc2, $status2, $street2, $brgy2, $lat2, $long2);
+	$status = $this->roadworkAccess->editExistingRoadwork($cn2, $rwork_name2, $type2, $start2, $end2, $desc2, $street2, $brgy2, $lat2, $long2);
 	header("Location: ".base_url()."index.php/roadworksTableManager");
 	}
 

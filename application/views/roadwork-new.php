@@ -109,12 +109,10 @@
         $(function(){   $('textarea').autosize();            }); 
 
         window.onload = function() {
-        document.getElementById('rwork_radius').disabled = true;
         document.getElementById('rwork_line1a').disabled = true;
         document.getElementById('rwork_line1b').disabled = true;
         document.getElementById('rwork_line2a').disabled = true;
         document.getElementById('rwork_line2b').disabled = true;
-        document.getElementById('type_circle').onchange = disablefield;
         document.getElementById('type_line').onchange = disablefield;
        }
 

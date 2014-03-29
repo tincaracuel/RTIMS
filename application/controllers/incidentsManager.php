@@ -24,7 +24,7 @@ class incidentsManager extends CI_Controller {
 									var inc_long = document.getElementById("inc_long");
 									inc_long.value = event.latLng.lng();
 									createMarker({ map: map, position:event.latLng , draggable: true});';*/
-
+			$config['onclick'] =  $this->getCoordinatesClicked();
 
 			$coords_inc = $this->map_model->get_coordinates_inc();
 			// Loop through the coordinates we obtained above and add them to the map
@@ -65,6 +65,17 @@ class incidentsManager extends CI_Controller {
 				
 				$marker['position'] = $coordinate->latitude.','.$coordinate->longitude;
 				$this->googlemaps->add_marker($marker);
+
+				if($coordinate->line_start_lat != NULL && $coordinate->line_start_long != NULL && $coordinate->line_end_lat != NULL && $coordinate->line_end_long != NULL){
+					$polyline = array();
+					$polyline['strokeOpacity'] = '0.7';
+					$polyline['strokeWeight'] = '3';
+					$polyline['strokeColor'] = '#080808';
+					$polyline['points'] = array($coordinate->line_start_lat.','.$coordinate->line_start_long,
+												$coordinate->latitude.','.$coordinate->longitude,
+												$coordinate->line_end_lat.','.$coordinate->line_end_long);
+					$this->googlemaps->add_polyline($polyline);
+				}
 			}
 
 			$polygon = array();
@@ -121,11 +132,7 @@ class incidentsManager extends CI_Controller {
 			$config['mapTypeControlStyle'] = "DROPDOWN_MENU";
 			$config['map_types_available'] = array("HYBRID", "ROADMAP");
 
-			$config['onclick'] =   'var inc_lat = document.getElementById("inc_lat");
-									inc_lat.value = event.latLng.lat();
-									var inc_long = document.getElementById("inc_long");
-									inc_long.value = event.latLng.lng();
-									createMarker({ map: map, position:event.latLng , draggable: true});';
+			$config['onclick'] =   $this->getCoordinatesClicked();
 
 
 			$coords_inc = $this->map_model->get_coordinates_inc();
@@ -196,8 +203,14 @@ class incidentsManager extends CI_Controller {
 		$brgy = $_POST['inc_barangay'];
 		$latitude = $_POST['inc_lat'];
 		$longitude = $_POST['inc_long'];
+
+		$has_line = $_POST['type_line2'];
+		$start_lat = $_POST['inc_line1a'];
+		$start_long = $_POST['inc_line1b'];
+		$end_lat = $_POST['inc_line2a'];
+		$end_long = $_POST['inc_line2b'];
 		
-		$status = $this->incidentAccess->addNewIncident($classification, $desc, $start, $end, $street, $brgy, $latitude, $longitude);
+		$status = $this->incidentAccess->addNewIncident($classification, $desc, $start, $end, $street, $brgy, $latitude, $longitude, $start, $end, $has_line, $start_lat, $start_long, $end_lat, $end_long);
 		if($status == ''){
 			header("Location: ".base_url()."index.php/incidentsManager");
 		}else{
@@ -231,6 +244,39 @@ class incidentsManager extends CI_Controller {
 		$this->load->model('incidentAccess');
 		$data['query_inc'] = $this->incidentAccess->incident_getAll();
 		$this->load->view('incident', $data);
+	}
+
+	public function getCoordinatesClicked(){
+
+		$str = 
+			'var inc_lat = document.getElementById("inc_lat");
+			var inc_long = document.getElementById("inc_long");
+
+			var start_lat = document.getElementById("inc_line1a");
+			var start_long = document.getElementById("inc_line1b");
+
+			var end_lat = document.getElementById("inc_line2a");
+			var end_long = document.getElementById("inc_line2b");
+
+			if(inc_lat.value=="" || inc_long.value==""){
+				inc_lat.value = event.latLng.lat();
+				inc_long.value = event.latLng.lng();
+			}else if(document.getElementById("type_line2").checked == true){
+				if(start_lat.value=="" || start_long.value==""){
+				start_lat.value = event.latLng.lat();
+				start_long.value = event.latLng.lng();
+				}else if(end_lat.value=="" || end_long.value==""){
+				end_lat.value = event.latLng.lat();
+				end_long.value = event.latLng.lng();
+				}
+			}else{
+				inc_lat.value = event.latLng.lat();
+				inc_long.value = event.latLng.lng();
+			}
+			createMarker({ map: map, position:event.latLng , draggable: true });';
+
+		return $str;
+	
 	}
 
 }

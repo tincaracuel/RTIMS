@@ -114,18 +114,11 @@
 	<tr><td width="25%">Description:</td>
 		<td><textarea name="desc2" id="desc2" maxlength="100" ><?php echo $details[0]['description']; ?></textarea></td></tr>
 
+	<tr><td width="25%">Duration:</td>
+		<td><input type="text" name="start2" id="start2" value='<?php echo $details[0]['start_date']; ?>' style="width:  120px; font-size: 16px; text-align:center;" required />&nbsp;&nbsp;to&nbsp;&nbsp;
+		<input type="text" name="end2" id="end2" value='<?php if ($details[0]['end_date'] != '0000-00-00') echo $details[0]['end_date']; ?>'style="width: 120px; font-size: 16px; text-align:center;" /></td>
+
 	</table>
-
-	<table style="width:100%;">
-	<tr><td width="50%" style="text-align:center;">Start date</td>
-		<td width="50%" style="text-align:center;">End date</td>
-	</tr>
-
-	<tr><td width="50%" style="text-align:center;"><input type="text" name="start2" id="start2" value='<?php echo $details[0]['start_date']; ?>' style="width:  120px; font-size: 16px; text-align:center;" required /></td>
-		<td width="50%" style="text-align:center;"><input type="text" name="end2" id="end2" value='<?php if ($details[0]['end_date'] != '0000-00-00') echo $details[0]['end_date']; ?>'style="width: 120px; font-size: 16px; text-align:center;" /></td>
-	</tr>
-	</table>
-
 
 	<br />
 	<center> <b>LOCATION DETAILS</center></b><br />

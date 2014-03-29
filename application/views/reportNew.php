@@ -3,11 +3,13 @@
 	{
 	var name=document.forms["reportForm"]["sender_name"].value;
 	var email=document.forms["reportForm"]["sender_email"].value;
+	var contact=document.forms["reportForm"]["sender_contact"].value;
 	var subject=document.forms["reportForm"]["subject"].value;
 	var message = document.getElementById('report').value;
 	var atpos=email.indexOf("@");
 	var dotpos=email.lastIndexOf(".");
 	var alphaExp=/^[a-zA-Z ]+$/;
+	var numExp=/^[0-9]+$/;
 
 	/*First name*/
 	if (name==null || name==""){
@@ -17,15 +19,25 @@
 	  alert("Name must have at least 3 characters.");
 	  return false;
 	}else if(!name.match(alphaExp)){
-	  alert("Name must be from A-Z");
+	  alert("Name must be from A-Z.");
 	  return false;
 	}
 	/*Email address*/
 	else if (email==null || email==""){
-	  alert("Email address must be filled out");
-	  return false;
-	}else if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length){
+	}
+	else if (email!=null || email!=""){
+	  if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length){
 	  alert("Not a valid e-mail address");
+	  return false;
+	  }
+	}
+	/*Contact Number*/
+	if (contact==null || contact==""){
+	   alert("Contact number must be filled out");
+	  return false;
+	}
+	else if(!contact.match(numExp)){
+	  alert("Contact number must not contain letters.");
 	  return false;
 	}
 	/*Subject*/
@@ -55,6 +67,9 @@
 
 	<tr><td width="25%">Email address:</td> 
 		<td><input type="text" name="sender_email" id="sender_email" maxlength="50" /></td></tr>
+
+	<tr><td width="25%">Contact number:</td> 
+		<td><input type="text" name="sender_contact" id="sender_contact" placeholder="09xxxxxxxxx" maxlength="20" /></td></tr>
 
 	<tr><td>&nbsp;&nbsp;</td> 
 		<td>&nbsp;&nbsp;</td></tr>

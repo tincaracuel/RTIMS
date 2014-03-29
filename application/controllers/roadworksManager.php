@@ -41,13 +41,12 @@ class roadworksManager extends CI_Controller {
 				$a4 = $coordinate->barangay;
 				$a5 = $coordinate->start_date;
 				$a6 = $coordinate->end_date;
-				$a7 = $coordinate->status;
 				$a8 = $coordinate->latitude;
 				$a9 = $coordinate->longitude;
 				$a10 = $coordinate->rwork_type;
 				$a11 = $coordinate->description;
 
-				$htmlstring =  $this->setInfowindow_rw($a1, $a2, $a3, $a4, $a5, $a6, $a7, $a8, $a9, $a10, $a11);
+				$htmlstring =  $this->setInfowindow_rw($a1, $a2, $a3, $a4, $a5, $a6, $a8, $a9, $a10, $a11);
 				$marker['infowindow_content'] = $htmlstring;
 
 
@@ -81,6 +80,17 @@ class roadworksManager extends CI_Controller {
 
 				$marker['position'] = $coordinate->latitude.','.$coordinate->longitude;
 				$this->googlemaps->add_marker($marker);
+
+				if($coordinate->line_start_lat != NULL && $coordinate->line_start_long != NULL && $coordinate->line_end_lat != NULL && $coordinate->line_end_long != NULL){
+					$polyline = array();
+					$polyline['strokeOpacity'] = '0.7';
+					$polyline['strokeWeight'] = '3';
+					$polyline['strokeColor'] = '#080808';
+					$polyline['points'] = array($coordinate->line_start_lat.','.$coordinate->line_start_long,
+												$coordinate->latitude.','.$coordinate->longitude,
+												$coordinate->line_end_lat.','.$coordinate->line_end_long);
+					$this->googlemaps->add_polyline($polyline);
+				}
 			}
 
 			$polygon = array();
@@ -134,10 +144,15 @@ class roadworksManager extends CI_Controller {
 		$brgy = $_POST['rwork_barangay'];
 		$latitude = $_POST['rwork_lat'];
 		$longitude = $_POST['rwork_long'];
-		$status = $_POST['rwork_status'];
+
+		$has_line = $_POST['type_line'];
+		$start_lat = $_POST['rwork_line1a'];
+		$start_long = $_POST['rwork_line1b'];
+		$end_lat = $_POST['rwork_line2a'];
+		$end_long = $_POST['rwork_line2b'];
 
 		
-		$status = $this->roadworkAccess->addNewRoadwork($contract_number, $rwork_name, $classification, $desc, $status, $street, $brgy, $latitude, $longitude, $start, $end);
+		$status = $this->roadworkAccess->addNewRoadwork($contract_number, $rwork_name, $classification, $desc, $street, $brgy, $latitude, $longitude, $start, $end, $has_line, $start_lat, $start_long, $end_lat, $end_long);
 		if($status == ''){
 			header("Location: ".base_url()."index.php/roadworksManager");
 		}else{
@@ -161,7 +176,7 @@ class roadworksManager extends CI_Controller {
 
 
 	/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-	public function setInfowindow_rw($contract_no, $rwork_name, $street, $barangay, $start_date, $end_date, $status, $lat, $long, $type, $desc) {
+	public function setInfowindow_rw($contract_no, $rwork_name, $street, $barangay, $start_date, $end_date, $lat, $long, $type, $desc) {
 		$infowindow_string = 	'<html><body>'.
 								'<div style="min-width: 250px; max-width: 300px; width: 300px;"><p style="margin-top: -2px; border-bottom: 1px solid grey;">'.'Contract # '.$contract_no.'<br />'.
 								'<b>'.$rwork_name.'</b><br />'.
