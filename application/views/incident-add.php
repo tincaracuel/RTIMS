@@ -1,34 +1,19 @@
 <script type="text/javascript">
 
     window.onload = function() {
-        document.getElementById('inc_line1a').disabled = true;
-        document.getElementById('inc_line1b').disabled = true;
-        document.getElementById('inc_line2a').disabled = true;
-        document.getElementById('inc_line2b').disabled = true;
+        document.getElementById('inc_line').disabled = true;
         document.getElementById('type_line2').onchange = disablefield;
     }
 
     function disablefield(){
         if (document.getElementById('type_line2').checked == false ){
-            document.getElementById('inc_line1a').value = '';
-            document.getElementById('inc_line1b').value = '';
-            document.getElementById('inc_line2a').value = '';
-            document.getElementById('inc_line2b').value = '';
-            document.getElementById('inc_line1a').disabled = true;
-            document.getElementById('inc_line1b').disabled = true;
-            document.getElementById('inc_line2a').disabled = true;
-            document.getElementById('inc_line2b').disabled = true;
+            document.getElementById('inc_line').value = '';
+            document.getElementById('inc_line').disabled = true;
         }
         else{
             alert("Please click twice on the map to specify the start and end points of the incident. The map coordinate obtained earlier must be between the two following points.");
-            document.getElementById('inc_line1a').value = '';
-            document.getElementById('inc_line1b').value = '';
-            document.getElementById('inc_line2a').value = '';
-            document.getElementById('inc_line2b').value = '';
-            document.getElementById('inc_line1a').disabled = false;
-            document.getElementById('inc_line1b').disabled = false;
-            document.getElementById('inc_line2a').disabled = false;
-            document.getElementById('inc_line2b').disabled = false;
+            document.getElementById('inc_line').value = '';
+            document.getElementById('inc_line').disabled = false;
             }
     }
 
@@ -42,10 +27,7 @@
         var barangay=document.getElementById('inc_barangay').value;
 
         var has_line =document.getElementById('type_line2');
-        var start_lat=document.getElementById('inc_line1a').value;
-        var start_long=document.getElementById('inc_line1b').value;
-        var end_lat=document.getElementById('inc_line2a').value;
-        var end_long=document.getElementById('inc_line2b').value;
+        var line=document.getElementById('inc_line').value;
 
         var latPattern = /^-?([0-8]?[0-9]|90)\.[0-9]{1,16}$/;
         var longPattern = /^-?((1?[0-7]?|[0-9]?)[0-9]|180)\.[0-9]{1,16}$/;
@@ -100,17 +82,11 @@
         }
         /*Has Line*/
         if(has_line.checked == true){
-            if(start_lat==null || start_lat=="" || start_long==null || start_long=="" ||
-                end_lat==null || end_lat=="" || end_long==null || end_long==""){
-              alert("Coordinates are required. Please click on the incident location on the map.");
-              return false;
-            }else if(!start_lat.match(latPattern) || !end_lat.match(latPattern)){
-                alert("Invalid latitude.")
-                return false;
-            }else if(!start_long.match(longPattern) || !end_long.match(longPattern)){
-                alert("Invalid longitude.")
+            if(/^\s*$/g.test(line) || line.indexOf('\n') != -1) {
+                alert('Click on the map to add coordinates.');
                 return false;
             }
+
         }
 
     }
@@ -253,18 +229,11 @@
         </td>
         
     </tr>
-    <tr>
-        <td width="30%">From:</td>
-        <td style="text-align: center;"><input type="text" id="inc_line1a" name="inc_line1a" maxlength="20" placeholder="latitude" class="coords_line" /> ,
-            <input type="text" name="inc_line1b" id="inc_line1b" class="coords_line" maxlength="20" placeholder="longitude" />
-        </td>
-    </tr>
-    <tr>
-        <td width="30%">To:</td>
-        <td style="text-align: center;"><input type="text" id="inc_line2a" name="inc_line2a" maxlength="20" placeholder="latitude" class="coords_line" /> ,
-            <input type="text" name="inc_line2b" id="inc_line2b" class="coords_line" maxlength="20" placeholder="longitude" />
-        </td>
-    </tr>
+
+    <tr><td width="30%">Coordinates: </td>
+        <td><textarea name="inc_line" id="inc_line" > </textarea></td></tr>
+
+
     </table>
     <br />   
     <input type="submit" value="Add Incident" id="addIncidentBtn" onclick="return validateIncidentForm()"/><br /><br />

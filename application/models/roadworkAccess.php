@@ -4,12 +4,13 @@ class roadworkAccess extends CI_Model {
 	/*	queries for the database involving roadworks 	*/
 
 	/*	adds a new roadwork to the system */
-	function addNewRoadwork($contract_number, $rwork_name, $classification, $desc, $street, $brgy, $latitude, $longitude, $start, $end, $has_line, $start_lat, $start_long, $end_lat, $end_long){
+	function addNewRoadwork($contract_number, $rwork_name, $classification, $desc, $street, $brgy, $latitude, $longitude, $start, $end, $has_line, $line){
 		
 		//with foreign keys
 		$status1 = $this->db->query("INSERT into roadwork (contract_no, rwork_name, rwork_type, description, start_date, end_date) values ('$contract_number', '$rwork_name', '$classification', '$desc', '$start', '$end')");
-		if($start_lat!=NULL ||  $start_long!=NULL ||  $end_lat!=NULL || $end_long!=NULL){
-			$status2 = $this->db->query("INSERT into map_coordinates (map_id, latitude, longitude, street, barangay, rw_id, line_start_lat, line_start_long, line_end_lat, line_end_long) values ('$contract_number', '$latitude', '$longitude', '$street', '$brgy', '$contract_number',  '$start_lat', '$start_long', '$end_lat', '$end_long')");
+
+		if($line!="" || $line!=NULL){
+			$status2 = $this->db->query("INSERT into map_coordinates (map_id, latitude, longitude, street, barangay, rw_id, arraypts) values ('$contract_number', '$latitude', '$longitude', '$street', '$brgy', '$contract_number', '$line')");
 		}else{
 			$status2 = $this->db->query("INSERT into map_coordinates (map_id, latitude, longitude, street, barangay, rw_id) values ('$contract_number', '$latitude', '$longitude', '$street', '$brgy', '$contract_number')");
 		}

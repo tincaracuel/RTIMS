@@ -408,7 +408,8 @@ a#ddt-home:hover, a.ddt-home:hover{
 	border: 0px solid;
 }
 
-textarea[name=rwork_desc], textarea[name=inc_desc] {
+textarea[name=rwork_desc], textarea[name=inc_desc],
+textarea[name=rwork_line], textarea[name=inc_line] {
     width: 100%;
     max-width: 100%;
     resize: vertical;
@@ -432,7 +433,7 @@ textarea{resize:vertical;}
 	padding: 0 10px;
 }
 
-input[disabled]{
+input[disabled], textarea[disabled]{
 	opacity: 0.85;
 }
 

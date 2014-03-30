@@ -86,14 +86,15 @@ class mapsManager extends CI_Controller {
 				$marker['position'] = $coordinate->latitude.','.$coordinate->longitude;
 				$this->googlemaps->add_marker($marker);
 
-				if($coordinate->line_start_lat != NULL && $coordinate->line_start_long != NULL && $coordinate->line_end_lat != NULL && $coordinate->line_end_long != NULL){
+				if($coordinate->arraypts!=""){
 					$polyline = array();
 					$polyline['strokeOpacity'] = '0.7';
 					$polyline['strokeWeight'] = '3';
 					$polyline['strokeColor'] = '#080808';
-					$polyline['points'] = array($coordinate->line_start_lat.','.$coordinate->line_start_long,
-												$coordinate->latitude.','.$coordinate->longitude,
-												$coordinate->line_end_lat.','.$coordinate->line_end_long);
+					$str = $coordinate->arraypts;
+					$arrayz = explode(', ', $str);
+
+					$polyline['points'] = $arrayz;
 					$this->googlemaps->add_polyline($polyline);
 				}
 			}
@@ -138,14 +139,15 @@ class mapsManager extends CI_Controller {
 				$marker['position'] = $coordinate->latitude.','.$coordinate->longitude;
 				$this->googlemaps->add_marker($marker);
 
-				if($coordinate->line_start_lat != NULL && $coordinate->line_start_long != NULL && $coordinate->line_end_lat != NULL && $coordinate->line_end_long != NULL){
+				if($coordinate->arraypts!=""){
 					$polyline = array();
 					$polyline['strokeOpacity'] = '0.7';
 					$polyline['strokeWeight'] = '3';
 					$polyline['strokeColor'] = '#080808';
-					$polyline['points'] = array($coordinate->line_start_lat.','.$coordinate->line_start_long,
-												$coordinate->latitude.','.$coordinate->longitude,
-												$coordinate->line_end_lat.','.$coordinate->line_end_long);
+					$str = $coordinate->arraypts;
+					$arrayz = explode(', ', $str);
+
+					$polyline['points'] = $arrayz;
 					$this->googlemaps->add_polyline($polyline);
 				}
 			}

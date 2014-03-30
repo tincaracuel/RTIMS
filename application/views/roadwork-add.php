@@ -2,25 +2,13 @@
 
     function disablefield(){
         if (document.getElementById('type_line').checked == false ){
-            document.getElementById('rwork_line1a').value = '';
-            document.getElementById('rwork_line1b').value = '';
-            document.getElementById('rwork_line2a').value = '';
-            document.getElementById('rwork_line2b').value = '';
-            document.getElementById('rwork_line1a').disabled = true;
-            document.getElementById('rwork_line1b').disabled = true;
-            document.getElementById('rwork_line2a').disabled = true;
-            document.getElementById('rwork_line2b').disabled = true;
+            document.getElementById('rwork_line').value = '';
+            document.getElementById('rwork_line').disabled = true;
         }
         else{
             alert("Please click twice on the map to specify the start and end points of the roadwork. The map coordinate obtained earlier must be between the two following points.");
-            document.getElementById('rwork_line1a').value = '';
-            document.getElementById('rwork_line1b').value = '';
-            document.getElementById('rwork_line2a').value = '';
-            document.getElementById('rwork_line2b').value = '';
-            document.getElementById('rwork_line1a').disabled = false;
-            document.getElementById('rwork_line1b').disabled = false;
-            document.getElementById('rwork_line2a').disabled = false;
-            document.getElementById('rwork_line2b').disabled = false;
+            document.getElementById('rwork_line').value = '';
+            document.getElementById('rwork_line').disabled = false;
             }
     }
 
@@ -36,10 +24,7 @@
         var longitude=document.getElementById('rwork_long').value;
 
         var has_line =document.getElementById('type_line');
-        var start_lat=document.getElementById('rwork_line1a').value;
-        var start_long=document.getElementById('rwork_line1b').value;
-        var end_lat=document.getElementById('rwork_line2a').value;
-        var end_long=document.getElementById('rwork_line2b').value;
+        var line=document.getElementById('rwork_line').value;
         var latPattern = /^-?([0-8]?[0-9]|90)\.[0-9]{1,16}$/;
         var longPattern = /^-?((1?[0-7]?|[0-9]?)[0-9]|180)\.[0-9]{1,16}$/;
         
@@ -110,17 +95,11 @@
         }
         /*Has Line*/
         if(has_line.checked == true){
-            if(start_lat==null || start_lat=="" || start_long==null || start_long=="" ||
-                end_lat==null || end_lat=="" || end_long==null || end_long==""){
-              alert("Coordinates are required. Please click on the roadwork location on the map.");
-              return false;
-            }else if(!start_lat.match(latPattern) || !end_lat.match(latPattern)){
-                alert("Invalid latitude.")
-                return false;
-            }else if(!start_long.match(longPattern) || !end_long.match(longPattern)){
-                alert("Invalid longitude.")
+            if(/^\s*$/g.test(line) || line.indexOf('\n') != -1) {
+                alert('Click on the map to add coordinates.');
                 return false;
             }
+
         }
 
     }
@@ -279,18 +258,9 @@
         </td>
         
     </tr>
-    <tr>
-        <td width="30%">From:</td>
-        <td style="text-align: center;"><input type="text" id="rwork_line1a" name="rwork_line1a" maxlength="20" placeholder="latitude" class="coords_line" /> ,
-            <input type="text" name="rwork_line1b" id="rwork_line1b" class="coords_line" maxlength="20" placeholder="longitude" />
-        </td>
-    </tr>
-    <tr>
-        <td width="30%">To:</td>
-        <td style="text-align: center;"><input type="text" id="rwork_line2a" name="rwork_line2a" maxlength="20" placeholder="latitude" class="coords_line" /> ,
-            <input type="text" name="rwork_line2b" id="rwork_line2b" class="coords_line" maxlength="20" placeholder="longitude" />
-        </td>
-    </tr>
+
+    <tr><td width="30%">Coordinates: </td>
+        <td><textarea name="rwork_line" id="rwork_line" > </textarea></td></tr>
     
     </table>
     <br />

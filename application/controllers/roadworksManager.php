@@ -22,11 +22,6 @@ class roadworksManager extends CI_Controller {
 			$config['mapTypeControlStyle'] = "DROPDOWN_MENU";
 			$config['map_types_available'] = array("HYBRID", "ROADMAP");
 
-			/*$config['onclick'] =   'var rw_lat = document.getElementById("rwork_lat");
-									rw_lat.value = event.latLng.lat();
-									var rw_long = document.getElementById("rwork_long");
-									rw_long.value = event.latLng.lng();
-									createMarker({ map: map, position:event.latLng , draggable: true});';*/
 
 			$coords = $this->map_model->get_coordinates_rw();
 			// Loop through the coordinates we obtained above and add them to the map
@@ -81,14 +76,15 @@ class roadworksManager extends CI_Controller {
 				$marker['position'] = $coordinate->latitude.','.$coordinate->longitude;
 				$this->googlemaps->add_marker($marker);
 
-				if($coordinate->line_start_lat != NULL && $coordinate->line_start_long != NULL && $coordinate->line_end_lat != NULL && $coordinate->line_end_long != NULL){
+				if($coordinate->arraypts!=""){
 					$polyline = array();
 					$polyline['strokeOpacity'] = '0.7';
 					$polyline['strokeWeight'] = '3';
 					$polyline['strokeColor'] = '#080808';
-					$polyline['points'] = array($coordinate->line_start_lat.','.$coordinate->line_start_long,
-												$coordinate->latitude.','.$coordinate->longitude,
-												$coordinate->line_end_lat.','.$coordinate->line_end_long);
+					$str = $coordinate->arraypts;
+					$arrayz = explode(', ', $str);
+
+					$polyline['points'] = $arrayz;
 					$this->googlemaps->add_polyline($polyline);
 				}
 			}
@@ -146,13 +142,10 @@ class roadworksManager extends CI_Controller {
 		$longitude = $_POST['rwork_long'];
 
 		$has_line = $_POST['type_line'];
-		$start_lat = $_POST['rwork_line1a'];
-		$start_long = $_POST['rwork_line1b'];
-		$end_lat = $_POST['rwork_line2a'];
-		$end_long = $_POST['rwork_line2b'];
+		$line = $_POST['rwork_line'];
 
 		
-		$status = $this->roadworkAccess->addNewRoadwork($contract_number, $rwork_name, $classification, $desc, $street, $brgy, $latitude, $longitude, $start, $end, $has_line, $start_lat, $start_long, $end_lat, $end_long);
+		$status = $this->roadworkAccess->addNewRoadwork($contract_number, $rwork_name, $classification, $desc, $street, $brgy, $latitude, $longitude, $start, $end, $has_line, $line);
 		if($status == ''){
 			header("Location: ".base_url()."index.php/roadworksManager");
 		}else{
