@@ -63,24 +63,34 @@ class mapsManager extends CI_Controller {
 				
 				if ($coordinate->rwork_type == 'Construction'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/construction.png';
+					$color = '#ac84e0';
 				}else if ($coordinate->rwork_type == 'Rehabilitation'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/rehabilitation.png';
+					$color = '#ffa621';
 				}else if ($coordinate->rwork_type == 'Renovation'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/renovation.png';
+					$color = '#55d7d7';
 				}else if ($coordinate->rwork_type == 'Riprapping'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/riprapping.png';
+					$color = '#00e13c';
 				}else if ($coordinate->rwork_type == 'Application'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/application.png';
+					$color = '#646464';
 				}else if ($coordinate->rwork_type == 'Installation'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/installation.png';
+					$color = '#d16d92';
 				}else if ($coordinate->rwork_type == 'Reconstruction'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/reconstruction.png';
+					$color = '#f34648';
 				}else if ($coordinate->rwork_type == 'Concreting/Asphalting'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/concreting.png';
+					$color = '#9e7151';
 				}else if ($coordinate->rwork_type == 'Electrification'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/electrification.png';
+					$color = '#5680fc';
 				}else if ($coordinate->rwork_type == 'Roadway Lighting'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/lighting.png';
+					$color = '#27b062';
 				}
 
 				$marker['position'] = $coordinate->latitude.','.$coordinate->longitude;
@@ -89,8 +99,8 @@ class mapsManager extends CI_Controller {
 				if($coordinate->arraypts!=""){
 					$polyline = array();
 					$polyline['strokeOpacity'] = '0.7';
-					$polyline['strokeWeight'] = '3';
-					$polyline['strokeColor'] = '#080808';
+					$polyline['strokeWeight'] = '2';
+					$polyline['strokeColor'] = $color;
 					$str = $coordinate->arraypts;
 					$arrayz = explode(', ', $str);
 
@@ -123,16 +133,22 @@ class mapsManager extends CI_Controller {
 				$marker['title'] = $coordinate->inc_type.'\n'.$coordinate->barangay.', Calamba City';
 				if ($coordinate->inc_type == 'Accident'){
 					$marker['icon'] = base_url().'styles/img/markers/inc/accident.png';
+					$color = '#ff2424';
 				}else if ($coordinate->inc_type == 'Obstruction'){
 					$marker['icon'] = base_url().'styles/img/markers/inc/obstruction.png';
+					$color = '#9d7050';
 				}else if ($coordinate->inc_type == 'Public Event'){
 					$marker['icon'] = base_url().'styles/img/markers/inc/event.png';
+					$color = '#e14f9e';
 				}else if ($coordinate->inc_type == 'Flood'){
 					$marker['icon'] = base_url().'styles/img/markers/inc/flood.png';
+					$color = '#1142d6';
 				}else if ($coordinate->inc_type == 'Strike'){
 					$marker['icon'] = base_url().'styles/img/markers/inc/strike.png';
+					$color = '#595959';
 				}else if ($coordinate->inc_type == 'Funeral'){
 					$marker['icon'] = base_url().'styles/img/markers/inc/funeral.png';
+					$color = '#00e13c';
 				}
 
 				
@@ -142,8 +158,8 @@ class mapsManager extends CI_Controller {
 				if($coordinate->arraypts!=""){
 					$polyline = array();
 					$polyline['strokeOpacity'] = '0.7';
-					$polyline['strokeWeight'] = '3';
-					$polyline['strokeColor'] = '#080808';
+					$polyline['strokeWeight'] = '2';
+					$polyline['strokeColor'] = $color;
 					$str = $coordinate->arraypts;
 					$arrayz = explode(', ', $str);
 

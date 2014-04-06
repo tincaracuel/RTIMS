@@ -41,20 +41,25 @@ class incidentsManager extends CI_Controller {
 				$htmlstring =  $this->setInfowindow_inc($a1, $a2, $a3, $a4, $a5, $a6, $a7, $a8, $a9);
 				$marker['infowindow_content'] = $htmlstring;
 
-
 				$marker['title'] = $coordinate->inc_type.'\n'.$coordinate->barangay.', Calamba City';
 				if ($coordinate->inc_type == 'Accident'){
 					$marker['icon'] = base_url().'styles/img/markers/inc/accident.png';
+					$color = '#ff2424';
 				}else if ($coordinate->inc_type == 'Obstruction'){
 					$marker['icon'] = base_url().'styles/img/markers/inc/obstruction.png';
+					$color = '#9d7050';
 				}else if ($coordinate->inc_type == 'Public Event'){
 					$marker['icon'] = base_url().'styles/img/markers/inc/event.png';
+					$color = '#e14f9e';
 				}else if ($coordinate->inc_type == 'Flood'){
 					$marker['icon'] = base_url().'styles/img/markers/inc/flood.png';
+					$color = '#1142d6';
 				}else if ($coordinate->inc_type == 'Strike'){
 					$marker['icon'] = base_url().'styles/img/markers/inc/strike.png';
+					$color = '#595959';
 				}else if ($coordinate->inc_type == 'Funeral'){
 					$marker['icon'] = base_url().'styles/img/markers/inc/funeral.png';
+					$color = '#00e13c';
 				}
 
 				
@@ -64,8 +69,8 @@ class incidentsManager extends CI_Controller {
 				if($coordinate->arraypts!=""){
 					$polyline = array();
 					$polyline['strokeOpacity'] = '0.7';
-					$polyline['strokeWeight'] = '3';
-					$polyline['strokeColor'] = '#080808';
+					$polyline['strokeWeight'] = '2';
+					$polyline['strokeColor'] = $color;
 					$str = $coordinate->arraypts;
 					$arrayz = explode(', ', $str);
 
@@ -155,21 +160,39 @@ class incidentsManager extends CI_Controller {
 				$marker['title'] = $coordinate->inc_type.'\n'.$coordinate->barangay.', Calamba City';
 				if ($coordinate->inc_type == 'Accident'){
 					$marker['icon'] = base_url().'styles/img/markers/inc/accident.png';
+					$color = '#ff2424';
 				}else if ($coordinate->inc_type == 'Obstruction'){
 					$marker['icon'] = base_url().'styles/img/markers/inc/obstruction.png';
+					$color = '#9d7050';
 				}else if ($coordinate->inc_type == 'Public Event'){
 					$marker['icon'] = base_url().'styles/img/markers/inc/event.png';
+					$color = '#e14f9e';
 				}else if ($coordinate->inc_type == 'Flood'){
 					$marker['icon'] = base_url().'styles/img/markers/inc/flood.png';
+					$color = '#1142d6';
 				}else if ($coordinate->inc_type == 'Strike'){
 					$marker['icon'] = base_url().'styles/img/markers/inc/strike.png';
+					$color = '#595959';
 				}else if ($coordinate->inc_type == 'Funeral'){
 					$marker['icon'] = base_url().'styles/img/markers/inc/funeral.png';
+					$color = '#00e13c';
 				}
 
 				
 				$marker['position'] = $coordinate->latitude.','.$coordinate->longitude;
 				$this->googlemaps->add_marker($marker);
+
+				if($coordinate->arraypts!=""){
+					$polyline = array();
+					$polyline['strokeOpacity'] = '0.7';
+					$polyline['strokeWeight'] = '2';
+					$polyline['strokeColor'] = $color;
+					$str = $coordinate->arraypts;
+					$arrayz = explode(', ', $str);
+
+					$polyline['points'] = $arrayz;
+					$this->googlemaps->add_polyline($polyline);
+				}
 			}
 
 			require("polygons_barangay.php");
@@ -255,7 +278,6 @@ class incidentsManager extends CI_Controller {
 					arrayPts.value ="";
 					arrayPts.value = event.latLng.lat() + "," + event.latLng.lng();
 				}else{
-					alert(arrayPts.value);
 					arrayPts.value = arrayPts.value +", " + event.latLng.lat() + "," + event.latLng.lng();
 				}
 			}else{

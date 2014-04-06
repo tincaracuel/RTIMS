@@ -46,42 +46,52 @@ class logManager extends CI_Controller {
 					$marker['icon'] = 'styles/img/markers/rw/construction.png';
 					$marker['id'] = "rwCat0[".$data['rctr0']."]";
 					$data['rctr0']++;
+					$color = '#ac84e0';
 				}else if ($coordinate->rwork_type == 'Rehabilitation'){
 					$marker['icon'] = 'styles/img/markers/rw/rehabilitation.png';
 					$marker['id'] = "rwCat1[".$data['rctr1']."]";
 					$data['rctr1']++;
+					$color = '#ffa621';
 				}else if ($coordinate->rwork_type == 'Renovation'){
 					$marker['icon'] = 'styles/img/markers/rw/renovation.png';
 					$marker['id'] = "rwCat2[".$data['rctr2']."]";
 					$data['rctr2']++;
+					$color = '#55d7d7';
 				}else if ($coordinate->rwork_type == 'Riprapping'){
 					$marker['icon'] = 'styles/img/markers/rw/riprapping.png';
 					$marker['id'] = "rwCat3[".$data['rctr3']."]";
 					$data['rctr3']++;
+					$color = '#00e13c';
 				}else if ($coordinate->rwork_type == 'Application'){
 					$marker['icon'] = 'styles/img/markers/rw/application.png';
 					$marker['id'] = "rwCat4[".$data['rctr4']."]";
 					$data['rctr4']++;
+					$color = '#646464';
 				}else if ($coordinate->rwork_type == 'Installation'){
 					$marker['icon'] = 'styles/img/markers/rw/installation.png';
 					$marker['id'] = "rwCat5[".$data['rctr5']."]";
 					$data['rctr5']++;
+					$color = '#d16d92';
 				}else if ($coordinate->rwork_type == 'Reconstruction'){
 					$marker['icon'] = 'styles/img/markers/rw/reconstruction.png';
 					$marker['id'] = "rwCat6[".$data['rctr6']."]";
 					$data['rctr6']++;
+					$color = '#f34648';
 				}else if ($coordinate->rwork_type == 'Concreting/Asphalting'){
 					$marker['icon'] = 'styles/img/markers/rw/concreting.png';
 					$marker['id'] = "rwCat7[".$data['rctr7']."]";
 					$data['rctr7']++;
+					$color = '#9e7151';
 				}else if ($coordinate->rwork_type == 'Electrification'){
 					$marker['icon'] = 'styles/img/markers/rw/electrification.png';
 					$marker['id'] = "rwCat8[".$data['rctr8']."]";
 					$data['rctr8']++;
+					$color = '#5680fc';
 				}else if ($coordinate->rwork_type == 'Roadway Lighting'){
 					$marker['icon'] = 'styles/img/markers/rw/lighting.png';
 					$marker['id'] = "rwCat9[".$data['rctr9']."]";
 					$data['rctr9']++;
+					$color = '#27b062';
 				}
 
 				$titleString = 'Roadwork # '.$coordinate->map_id.'\n'.$coordinate->rwork_name.'\n'.$coordinate->barangay.', Calamba City';
@@ -89,14 +99,15 @@ class logManager extends CI_Controller {
 				$marker['position'] = $coordinate->latitude.','.$coordinate->longitude;
 				$this->googlemaps->add_marker($marker);
 
-				if($coordinate->line_start_lat != NULL && $coordinate->line_start_long != NULL && $coordinate->line_end_lat != NULL && $coordinate->line_end_long != NULL){
+				if($coordinate->arraypts!=""){
 					$polyline = array();
 					$polyline['strokeOpacity'] = '0.7';
-					$polyline['strokeWeight'] = '3';
-					$polyline['strokeColor'] = '#080808';
-					$polyline['points'] = array($coordinate->line_start_lat.','.$coordinate->line_start_long,
-												$coordinate->latitude.','.$coordinate->longitude,
-												$coordinate->line_end_lat.','.$coordinate->line_end_long);
+					$polyline['strokeWeight'] = '2';
+					$polyline['strokeColor'] = $color;
+					$str = $coordinate->arraypts;
+					$arrayz = explode(', ', $str);
+
+					$polyline['points'] = $arrayz;
 					$this->googlemaps->add_polyline($polyline);
 				}
 			}
@@ -128,39 +139,46 @@ class logManager extends CI_Controller {
 					$marker['icon'] = 'styles/img/markers/inc/accident.png';
 					$marker['id'] = "incCat0[".$data['ictr0']."]";
 					$data['ictr0']++;
+					$color = '#ff2424';
 				}else if ($coordinate->inc_type == 'Obstruction'){
 					$marker['icon'] = 'styles/img/markers/inc/obstruction.png';
 					$marker['id'] = "incCat1[".$data['ictr1']."]";
 					$data['ictr1']++;
+					$color = '#9d7050';
 				}else if ($coordinate->inc_type == 'Public Event'){
 					$marker['icon'] = 'styles/img/markers/inc/event.png';
 					$marker['id'] = "incCat2[".$data['ictr2']."]";
 					$data['ictr2']++;
+					$color = '#e14f9e';
 				}else if ($coordinate->inc_type == 'Funeral'){
 					$marker['icon'] = 'styles/img/markers/inc/funeral.png';
 					$marker['id'] = "incCat3[".$data['ictr3']."]";
 					$data['ictr3']++;
+					$color = '#1142d6';
 				}else if ($coordinate->inc_type == 'Flood'){
 					$marker['icon'] = 'styles/img/markers/inc/flood.png';
 					$marker['id'] = "incCat4[".$data['ictr4']."]";
 					$data['ictr4']++;
+					$color = '#595959';
 				}else if ($coordinate->inc_type == 'Strike'){
 					$marker['icon'] = 'styles/img/markers/inc/strike.png';
 					$marker['id'] = "incCat5[".$data['ictr5']."]";
 					$data['ictr5']++;
+					$color = '#00e13c';
 				}
 				
 				$marker['position'] = $coordinate->latitude.','.$coordinate->longitude;
 				$this->googlemaps->add_marker($marker);
 
-				if($coordinate->line_start_lat != NULL && $coordinate->line_start_long != NULL && $coordinate->line_end_lat != NULL && $coordinate->line_end_long != NULL){
+				if($coordinate->arraypts!=""){
 					$polyline = array();
 					$polyline['strokeOpacity'] = '0.7';
-					$polyline['strokeWeight'] = '3';
-					$polyline['strokeColor'] = '#080808';
-					$polyline['points'] = array($coordinate->line_start_lat.','.$coordinate->line_start_long,
-												$coordinate->latitude.','.$coordinate->longitude,
-												$coordinate->line_end_lat.','.$coordinate->line_end_long);
+					$polyline['strokeWeight'] = '2';
+					$polyline['strokeColor'] = $color;
+					$str = $coordinate->arraypts;
+					$arrayz = explode(', ', $str);
+
+					$polyline['points'] = $arrayz;
 					$this->googlemaps->add_polyline($polyline);
 				}
 			}

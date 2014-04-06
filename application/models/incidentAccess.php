@@ -13,7 +13,7 @@ class incidentAccess extends CI_Model {
 			   $id = $row->inc_id;
 		}
 
-		var_dump($inc_id);
+		var_dump($id);
 		if($line!="" || $line!=NULL){
 			$status2 = $this->db->query("INSERT into map_coordinates (map_id, latitude, longitude, street, barangay, inc_id, arraypts) values ('$id', '$latitude', '$longitude', '$street', '$brgy', '$id',  '$line')");
 		}else{

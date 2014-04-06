@@ -22,7 +22,6 @@ class roadworksManager extends CI_Controller {
 			$config['mapTypeControlStyle'] = "DROPDOWN_MENU";
 			$config['map_types_available'] = array("HYBRID", "ROADMAP");
 
-
 			$coords = $this->map_model->get_coordinates_rw();
 			// Loop through the coordinates we obtained above and add them to the map
 			foreach ($coords as $coordinate) {
@@ -44,33 +43,41 @@ class roadworksManager extends CI_Controller {
 				$htmlstring =  $this->setInfowindow_rw($a1, $a2, $a3, $a4, $a5, $a6, $a8, $a9, $a10, $a11);
 				$marker['infowindow_content'] = $htmlstring;
 
-
 				$interval = date_diff(date_create($coordinate->end_date), date_create((date("Y-m-d"))));
-
 
 				$titleString = 'Roadwork # '.$coordinate->map_id.'\n'.$coordinate->rwork_name.'\n'.$coordinate->barangay.', Calamba City';
 				$marker['title'] = $titleString;
 				
 				if ($coordinate->rwork_type == 'Construction'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/construction.png';
+					$color = '#ac84e0';
 				}else if ($coordinate->rwork_type == 'Rehabilitation'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/rehabilitation.png';
+					$color = '#ffa621';
 				}else if ($coordinate->rwork_type == 'Renovation'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/renovation.png';
+					$color = '#55d7d7';
 				}else if ($coordinate->rwork_type == 'Riprapping'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/riprapping.png';
+					$color = '#00e13c';
 				}else if ($coordinate->rwork_type == 'Application'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/application.png';
+					$color = '#646464';
 				}else if ($coordinate->rwork_type == 'Installation'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/installation.png';
+					$color = '#d16d92';
 				}else if ($coordinate->rwork_type == 'Reconstruction'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/reconstruction.png';
+					$color = '#f34648';
 				}else if ($coordinate->rwork_type == 'Concreting/Asphalting'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/concreting.png';
+					$color = '#9e7151';
 				}else if ($coordinate->rwork_type == 'Electrification'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/electrification.png';
+					$color = '#5680fc';
 				}else if ($coordinate->rwork_type == 'Roadway Lighting'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/lighting.png';
+					$color = '#27b062';
 				}
 
 				$marker['position'] = $coordinate->latitude.','.$coordinate->longitude;
@@ -79,8 +86,8 @@ class roadworksManager extends CI_Controller {
 				if($coordinate->arraypts!=""){
 					$polyline = array();
 					$polyline['strokeOpacity'] = '0.7';
-					$polyline['strokeWeight'] = '3';
-					$polyline['strokeColor'] = '#080808';
+					$polyline['strokeWeight'] = '2';
+					$polyline['strokeColor'] = $color;
 					$str = $coordinate->arraypts;
 					$arrayz = explode(', ', $str);
 
@@ -107,7 +114,6 @@ class roadworksManager extends CI_Controller {
 		        '14.18239,121.197603', '14.181766,121.196444', '14.181766,121.194642', '14.183805,121.192925', '14.184678,121.190694', '14.18551,121.189878', '14.1873,121.189278', '14.186925,121.184986', 
 		        '14.186051,121.182754', '14.186883,121.181639', '14.189629,121.180137', '14.191377,121.180051','14.197202,121.1849', '14.203234,121.183398', '14.207977,121.183784', '14.211804,121.184857', 
 		        '14.213843,121.188462',' 14.215757,121.190007', '14.225907,121.189063', '14.230067,121.18902', '14.232937,121.19005');
-
 		
 			$this->googlemaps->add_polygon($polygon);
 
@@ -116,7 +122,6 @@ class roadworksManager extends CI_Controller {
 
 			$this->load->model('roadworkAccess');
 			$data['query'] = $this->roadworkAccess->roadwork_getAll();
-
 
 			$this->load->view('roadwork', $data);
 
@@ -143,7 +148,6 @@ class roadworksManager extends CI_Controller {
 
 		$has_line = $_POST['type_line'];
 		$line = $_POST['rwork_line'];
-
 		
 		$status = $this->roadworkAccess->addNewRoadwork($contract_number, $rwork_name, $classification, $desc, $street, $brgy, $latitude, $longitude, $start, $end, $has_line, $line);
 		if($status == ''){

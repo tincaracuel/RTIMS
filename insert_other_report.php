@@ -7,12 +7,13 @@
 	$email=$_REQUEST['email'];
 	$subj=$_REQUEST['subject'];
 	$desc=$_REQUEST['desc'];
+	$contact=$_REQUEST['contactno'];
 
 	echo $desc;
 
 	$flag['code']=0;
 
-	if($r=mysql_query("INSERT into report (sender_name, sender_email, subject, description) values ('$name', '$email', '$subj', '$desc')",$con))
+	if($r=mysql_query("INSERT into report (sender_name, sender_email, sender_contact_no, subject, description) values ('$name', '$email', '$contact', '$subj', '$desc')",$con))
 	{
 		$flag['code']=1;
 		echo"hi";

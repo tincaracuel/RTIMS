@@ -24,7 +24,6 @@ class roadworksManager2 extends CI_Controller {
 			$config['map_types_available'] = array("HYBRID", "ROADMAP");
 
 			$config['onclick'] =  $this->getCoordinatesClicked();
-
 		
 			$coords = $this->map_model->get_coordinates_rw();
 			// Loop through the coordinates we obtained above and add them to the map
@@ -47,33 +46,41 @@ class roadworksManager2 extends CI_Controller {
 				$htmlstring =  $this->setInfowindow_rw($a1, $a2, $a3, $a4, $a5, $a6, $a8, $a9, $a10, $a11);
 				$marker['infowindow_content'] = $htmlstring;
 
-
 				$interval = date_diff(date_create($coordinate->end_date), date_create((date("Y-m-d"))));
-
 
 				$titleString = 'Roadwork # '.$coordinate->map_id.'\n'.$coordinate->rwork_name.'\n'.$coordinate->barangay.', Calamba City';
 				$marker['title'] = $titleString;
 				
 				if ($coordinate->rwork_type == 'Construction'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/construction.png';
+					$color = '#ac84e0';
 				}else if ($coordinate->rwork_type == 'Rehabilitation'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/rehabilitation.png';
+					$color = '#ffa621';
 				}else if ($coordinate->rwork_type == 'Renovation'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/renovation.png';
+					$color = '#55d7d7';
 				}else if ($coordinate->rwork_type == 'Riprapping'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/riprapping.png';
+					$color = '#00e13c';
 				}else if ($coordinate->rwork_type == 'Application'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/application.png';
+					$color = '#646464';
 				}else if ($coordinate->rwork_type == 'Installation'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/installation.png';
+					$color = '#d16d92';
 				}else if ($coordinate->rwork_type == 'Reconstruction'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/reconstruction.png';
+					$color = '#f34648';
 				}else if ($coordinate->rwork_type == 'Concreting/Asphalting'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/concreting.png';
+					$color = '#9e7151';
 				}else if ($coordinate->rwork_type == 'Electrification'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/electrification.png';
+					$color = '#5680fc';
 				}else if ($coordinate->rwork_type == 'Roadway Lighting'){
 					$marker['icon'] = base_url().'styles/img/markers/rw/lighting.png';
+					$color = '#27b062';
 				}
 
 				$marker['position'] = $coordinate->latitude.','.$coordinate->longitude;
@@ -82,8 +89,8 @@ class roadworksManager2 extends CI_Controller {
 				if($coordinate->arraypts!=""){
 					$polyline = array();
 					$polyline['strokeOpacity'] = '0.7';
-					$polyline['strokeWeight'] = '3';
-					$polyline['strokeColor'] = '#080808';
+					$polyline['strokeWeight'] = '2';
+					$polyline['strokeColor'] = $color;
 					$str = $coordinate->arraypts;
 					$arrayz = explode(', ', $str);
 
@@ -92,9 +99,7 @@ class roadworksManager2 extends CI_Controller {
 				}
 			}
 
-
 			require("polygons_barangay.php");
-
 
 			$this->googlemaps->initialize($config);
 			$data['map'] = $this->googlemaps->create_map();
@@ -129,7 +134,6 @@ class roadworksManager2 extends CI_Controller {
 		$has_line = $_POST['type_line'];
 		$line = $_POST['rwork_line'];
 
-		
 		$status = $this->roadworkAccess->addNewRoadwork($contract_number, $rwork_name, $classification, $desc, $street, $brgy, $latitude, $longitude, $start, $end, $has_line, $line);
 		if($status == ''){
 			header("Location: ".base_url()."index.php/roadworksManager");
@@ -183,7 +187,6 @@ class roadworksManager2 extends CI_Controller {
 		$this->load->view('roadwork', $data);
 	}
 
-
 	public function getCoordinatesClicked(){
 
 		$str = 
@@ -200,7 +203,6 @@ class roadworksManager2 extends CI_Controller {
 					arrayPts.value ="";
 					arrayPts.value = event.latLng.lat() + "," + event.latLng.lng();
 				}else{
-					alert(arrayPts.value);
 					arrayPts.value = arrayPts.value +", " + event.latLng.lat() + "," + event.latLng.lng();
 				}
 			}else{
