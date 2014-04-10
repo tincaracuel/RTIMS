@@ -1,3 +1,4 @@
+<!-- FORM FOR ADDING NEW INCIDENT -->
 <script type="text/javascript">
 
     window.onload = function() {
@@ -86,12 +87,8 @@
                 alert('Click on the map to add coordinates.');
                 return false;
             }
-
         }
-
     }
-
-
 
     function checkDate(txtDate){
         var currVal = txtDate;

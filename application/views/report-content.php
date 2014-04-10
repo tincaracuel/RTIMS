@@ -45,7 +45,6 @@
           </ul>
         </div><!--/.nav-collapse -->
 
-
         <div class="navbar-collapse collapse" id="functions">
         <form name="markUnread" id="markUnread" action="<?php echo base_url() ?>index.php/reportsManager/markAsUnread" method="post">
           <ul class="nav navbar-nav">
@@ -68,9 +67,7 @@
       </div>
     </div>
 
-
      <div id="queryMessage"></div>
-
 
     <div id="lowerbox">
 
@@ -78,8 +75,6 @@
 
             <br />
             <div id="report-content">
-
-
 
             <p style="font-size: 20px;"> <?php if ($query[0]->subject != NULL) echo $query[0]->subject;
                 else if ($query[0]->rw_id != NULL) echo 'Re: Roadwork # '.$query[0]->rw_id;
@@ -96,60 +91,14 @@
             <hr />
             <br /><br />
 
-
-
             <center><a href='<?php echo base_url() ?>index.php/reportsManager' id="menu_back_rw_btn" />
                 <span class="icon"> h </span> Back to Reports</a></center>
             </div>
             
-
         </div>
-
-
-
-
-        <!--<div style="display:none">
-            <div id='edit_roadwork' class="colorbox_edit_delete" style='background:#fff;'>
-                <form class="editRoadwork"  method='post'>
-                    <div name="left">
-                        <div id="listOfRoadworks">
-                        </div>
-                    <br /> 
-                    <input type="button" name="selectRoadwork" class="lightboxSubmitBtn" id="editRwBtn1" value="SELECT" onclick='javascript:viewRoadworkDetails();'>
-                    </div>
-                    
-                    <div name="right">
-                        <div id="roadworkDetails">
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div style="display:none">
-            <div id='delete_roadwork' class="colorbox_edit_delete" style='background:#fff;'>
-                <form class="deleteRoadwork"  method='post'>
-                    <div name="delete_roadwork">
-                        <div id="listOfRoadworks2">
-                        </div>
-                    <br />
-                    <input type="button" name="selectRoadwork" class="lightboxSubmitBtn" id="deleteRwBtn1" value="DELETE" onclick='javascript:deleteSelectedRoadwork();'>
-                    </div>
-                </form>
-            </div>
-        </div>-->
-
-
-
-
 
     </div>
-
-   
-     
-
-
-    
+  
   </body>
 
     <script src="<?php echo base_url() ?>styles/js/jquery-1.8.3.js"></script>

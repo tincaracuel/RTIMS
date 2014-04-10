@@ -14,15 +14,11 @@
     <link href="styles/css/style.css" rel="stylesheet">
     <link href="styles/css/colorbox.css" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
-
     
     <?php echo $map['js']; ?>
-
-        
+   
   </head>
   <body>
-
-
 
   <div class="navbar navbar-default navbar-inverse navbar-static-top" role="navigation">
       <div class="container">
@@ -90,8 +86,6 @@
 
       <div id="lowerbox" style="height: 92%">
 
-
-
           <div style="display:none">
             <div id='choose_report' class="colorbox_submit" style='background:#fff;'>
               <div name="choose_report">
@@ -121,18 +115,9 @@
             </div>
           </div>
 
-      
-
-          
-            
-            
-        
-
-
       <div id="map"><?php echo $map['html']; ?></div>
       </div>
-
-    
+  
   </body>
 
     <script src="styles/js/jquery-1.8.3.js"></script>
@@ -154,7 +139,6 @@
             $("#existing_inc").colorbox({inline:true, width:"auto", height: "auto"});
             $("#new-report").colorbox({inline:true, width:"auto", height: "auto"});
         });
-
 
     </script>
 </html>

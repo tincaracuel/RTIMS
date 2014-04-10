@@ -44,7 +44,6 @@
           </ul>
         </div><!--/.nav-collapse -->
 
-
         <div class="navbar-collapse collapse" id="functions">
           <ul class="nav navbar-nav">
             <li>
@@ -67,13 +66,11 @@
       </div>
     </div>
 
-
      <div id="queryMessage"></div>
 
     <div id="lowerbox">
         <div id="table_view" style="width: 100%;" ><br />
 
-            
             <!--TABLE-->
             <?php
 
@@ -120,51 +117,9 @@
                         } /* END LOOP */ ?>
                     </table>
                     <?php
-                } /* END ELSE */?>
-                    
-                <!-- <p style="text-align: center;"><?php echo $links; ?></p><?php 
-            ?> -->
-            
+                } /* END ELSE */?>       
 
         </div>
-
-
-
-
-        <!--<div style="display:none">
-            <div id='edit_roadwork' class="colorbox_edit_delete" style='background:#fff;'>
-                <form class="editRoadwork"  method='post'>
-                    <div name="left">
-                        <div id="listOfRoadworks">
-                        </div>
-                    <br /> 
-                    <input type="button" name="selectRoadwork" class="lightboxSubmitBtn" id="editRwBtn1" value="SELECT" onclick='javascript:viewRoadworkDetails();'>
-                    </div>
-                    
-                    <div name="right">
-                        <div id="roadworkDetails">
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div style="display:none">
-            <div id='delete_roadwork' class="colorbox_edit_delete" style='background:#fff;'>
-                <form class="deleteRoadwork"  method='post'>
-                    <div name="delete_roadwork">
-                        <div id="listOfRoadworks2">
-                        </div>
-                    <br />
-                    <input type="button" name="selectRoadwork" class="lightboxSubmitBtn" id="deleteRwBtn1" value="DELETE" onclick='javascript:deleteSelectedRoadwork();'>
-                    </div>
-                </form>
-            </div>
-        </div>-->
-
-
-
-
 
     </div>
    

@@ -44,7 +44,6 @@
           </ul>
         </div><!--/.nav-collapse -->
 
-
         <div class="navbar-collapse collapse" id="functions">
           <ul class="nav navbar-nav">
             
@@ -73,7 +72,6 @@
                 <span class="icon"> h </span> Back to Incidents</a>
             </li>
 
-            
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -87,7 +85,6 @@
         <div id="table_view" style="width: 100%;" >
 
         <?php
-
             if($query_ongoing == NULL){ ?>
                     <center><?php echo '<br /><br /><br /><br /><br />There are no ongoing activities saved in the database.<br /><br />'; ?>
                     </center>
@@ -121,7 +118,6 @@
         ?>
 
         </div>
-
 
         <div style="display:none">
             <div id='edit_incident' class="colorbox_edit_delete" style='background:#fff;'>

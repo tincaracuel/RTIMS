@@ -44,7 +44,6 @@
           </ul>
         </div><!--/.nav-collapse -->
 
-
         <div class="navbar-collapse collapse" id="functions">
           <ul class="nav navbar-nav">
 
@@ -53,12 +52,10 @@
                 <span class="icon"> h </span> Back to Main Menu</a>
             </li>
 
-            
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
-
 
      <div id="queryMessage"></div>
 
@@ -99,17 +96,9 @@
             </table>
             </form>
             </div>
-            
-
         </div>
 
     </div>
-    
-        
-   
-     
-
-
     
   </body>
 

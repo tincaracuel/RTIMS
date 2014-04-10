@@ -1,66 +1,61 @@
+<!--FORM FOR SUBMIT REPORT ON EXISTING ROADWORK-->
+
 <script type="text/javascript">
-function validateRwReport()
-	{
-	var name=document.forms["rwReportForm"]["sender_name"].value;
-	var email=document.forms["rwReportForm"]["sender_email"].value;
-	var contact=document.forms["rwReportForm"]["sender_contact"].value;
-	var rwork_cn=document.forms["rwReportForm"]["rwork_cn"].value;
-	var message = document.getElementById('rw_report').value;
-	var atpos=email.indexOf("@");
-	var dotpos=email.lastIndexOf(".");
-	var alphaExp=/^[a-zA-Z ]+$/;
-	var numExp=/^[0-9]+$/;
+	function validateRwReport(){
+		var name=document.forms["rwReportForm"]["sender_name"].value;
+		var email=document.forms["rwReportForm"]["sender_email"].value;
+		var contact=document.forms["rwReportForm"]["sender_contact"].value;
+		var rwork_cn=document.forms["rwReportForm"]["rwork_cn"].value;
+		var message = document.getElementById('rw_report').value;
+		var atpos=email.indexOf("@");
+		var dotpos=email.lastIndexOf(".");
+		var alphaExp=/^[a-zA-Z ]+$/;
+		var numExp=/^[0-9]+$/;
 
-
-	
-
-	/*First name*/
-	if (name==null || name==""){
-	  alert("Name must be filled out");
-	  return false;
-	}else if(name.length<3){
-	  alert("Name must have at least 3 characters.");
-	  return false;
-	}else if(!name.match(alphaExp)){
-	  alert("Name must be from A-Z.");
-	  return false;
+		/*First name*/
+		if (name==null || name==""){
+		  alert("Name must be filled out");
+		  return false;
+		}else if(name.length<3){
+		  alert("Name must have at least 3 characters.");
+		  return false;
+		}else if(!name.match(alphaExp)){
+		  alert("Name must be from A-Z.");
+		  return false;
+		}
+		/*Email address*/
+		else if (email==null || email==""){
+		}
+		else if (email!=null || email!=""){
+		  if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length){
+		  alert("Not a valid e-mail address");
+		  return false;
+		  }
+		}
+		/*Contact Number*/
+		if (contact==null || contact==""){
+		   alert("Contact number must be filled out");
+		  return false;
+		}
+		else if(!contact.match(numExp)){
+		  alert("Contact number must not contain letters.");
+		  return false;
+		}
+		/*Roadwork*/
+		else if (rwork_cn==null || rwork_cn==""){
+		  alert("Choose a roadwork from the list.");
+		  return false;
+		}
+		/*Message*/
+		else if (/^\s*$/g.test(message) || message.indexOf('\n') != -1) {
+	        alert('Enter your comment or message');
+	        return false;
+	    }else if (message.length<10) {
+	        alert('Comment or message must have at least 10 characters.');
+	        return false;
+	    }
 	}
-	/*Email address*/
-	else if (email==null || email==""){
-	}
-	else if (email!=null || email!=""){
-	  if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length){
-	  alert("Not a valid e-mail address");
-	  return false;
-	  }
-	}
-	/*Contact Number*/
-	if (contact==null || contact==""){
-	   alert("Contact number must be filled out");
-	  return false;
-	}
-	else if(!contact.match(numExp)){
-	  alert("Contact number must not contain letters.");
-	  return false;
-	}
-	/*Roadwork*/
-	else if (rwork_cn==null || rwork_cn==""){
-	  alert("Choose a roadwork from the list.");
-	  return false;
-	}
-	/*Message*/
-	else if (/^\s*$/g.test(message) || message.indexOf('\n') != -1) {
-        alert('Enter your comment or message');
-        return false;
-    }else if (message.length<10) {
-        alert('Comment or message must have at least 10 characters.');
-        return false;
-    }
-
-}
 </script>
-
-
 
 <?php
     if($ongoing_rw == NULL){ ?>
@@ -94,7 +89,6 @@ function validateRwReport()
 
 			        </select></td></tr>
 
-
 			<tr><td width="25%">Comments:</td>
 				<td><textarea name='rw_report' id='rw_report' maxlength="350"> </textarea><td></tr>
 
@@ -102,9 +96,5 @@ function validateRwReport()
 
 			<center><input type="submit" class="lightboxSubmitBtn" value="SUBMIT REPORT" style="width:60%" ></center>
 			</form>
-
-	
-
-
        
 <?php }?>

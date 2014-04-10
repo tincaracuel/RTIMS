@@ -1,3 +1,5 @@
+<!--FORM FOR ADDING NEW ROADWORK-->
+
 <script type="text/javascript">
 
     function disablefield(){
@@ -8,7 +10,9 @@
         else{
             alert("Please click twice on the map to specify the start and end points of the roadwork. The map coordinate obtained earlier must be between the two following points.");
             document.getElementById('rwork_line').value = '';
-            document.getElementById('rwork_line').disabled = false;
+            docum<!--FORM FOR SUBMIT REPORT ON EXISTING INCIDENT-->
+
+            ent.getElementById('rwork_line').disabled = false;
             }
     }
 
@@ -26,8 +30,7 @@
         var has_line =document.getElementById('type_line');
         var line=document.getElementById('rwork_line').value;
         var latPattern = /^-?([0-8]?[0-9]|90)\.[0-9]{1,16}$/;
-        var longPattern = /^-?((1?[0-7]?|[0-9]?)[0-9]|180)\.[0-9]{1,16}$/;
-        
+        var longPattern = /^-?((1?[0-7]?|[0-9]?)[0-9]|180)\.[0-9]{1,16}$/;    
         
         /*Contract number*/
         if(contractno==null || contractno==""){
@@ -99,12 +102,8 @@
                 alert('Click on the map to add coordinates.');
                 return false;
             }
-
         }
-
     }
-
-
 
     function checkDate(txtDate){
         var currVal = txtDate;

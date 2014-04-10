@@ -1,9 +1,10 @@
+<!--DROP DOWN LIST FOR THE ROADWORKS (EDIT OR DELETE)-->
+
 <?php if($roadwork == NULL){ ?>
     <center><?php echo '<br /><br /><br />There are no roadworks saved in the database.<br /><br />'; ?>
     </center>
     <?php
 }else{?>
-
 
 CHOOSE A ROADWORK:<br /><br />
 <select name="contractNumber" id="contractNumber">

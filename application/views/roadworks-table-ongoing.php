@@ -14,7 +14,6 @@
     <link href="<?php echo base_url() ?>styles/css/style.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>styles/css/colorbox.css" rel="stylesheet">
     
-
   </head>
   <body>
     <div class="navbar navbar-default navbar-inverse navbar-static-top" role="navigation">
@@ -45,7 +44,6 @@
           </ul>
         </div><!--/.nav-collapse -->
 
-
         <div class="navbar-collapse collapse" id="functions">
           <ul class="nav navbar-nav">
             
@@ -73,7 +71,6 @@
                 <a href='<?php echo base_url() ?>index.php/roadworksManager' id="menu_back_rw_btn" />
                 <span class="icon"> h </span> Back to Roadworks</a>
             </li>
-
             
           </ul>
         </div><!--/.nav-collapse -->
@@ -85,7 +82,6 @@
 
     <div id="lowerbox">
         <div id="table_view" style="width: 100%;" >
-
 
             <!--TABLE-->
             <?php
@@ -125,20 +121,11 @@
                     }
                 } ?></table>
                 <p style="text-align: center;"><?php echo $links; ?></p><?php 
-            ?>
-            
+            ?>            
 
         </div>
 
-
-
-
     </div>
-
-   
-     
-
-
     
   </body>
 

@@ -1,3 +1,5 @@
+<!--DROP DOWN LIST FOR THE INCIDENTS (EDIT OR DELETE)-->
+
 <?php if($incident == NULL){ ?>
     <center><?php echo '<br /><br /><br />There are no incidents saved in the database.<br /><br />'; ?>
     </center>

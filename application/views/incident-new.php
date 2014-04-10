@@ -15,7 +15,6 @@
     <link href="<?php echo base_url() ?>styles/css/colorbox.css" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
-
     <?php echo $map['js']; ?>
     
   </head>
@@ -48,30 +47,16 @@
           </ul>
         </div><!--/.nav-collapse -->
 
-
         <div class="navbar-collapse collapse" id="functions">
           <ul class="nav navbar-nav">
             <li>
                 <a href="#add_incident" id="selected"><span class="icon"> + </span>Add Incident</a>    
             </li>
 
-            <!-- <li>
-                <a id='editinc' href="#edit_incident" onclick='javascript:listEditIncidents();' ><span class="icon"> : </span>Edit Incidents</a>
-            </li>
-
-            <li>
-                <a id='deleteinc' href="#delete_incident" onclick='javascript:listDeleteIncidents();' ><span class="icon"> - </span>Delete Incidents</a>
-            </li>
-
-            <li>
-                <a href='<?php echo base_url() ?>index.php/incidentsTableManager/all_incidents' id="menu_view_inc_btn" /><span class="icon"> p </span>View Incidents Table</a>
-            </li> -->
-
             <li>
                 <a href='<?php echo base_url() ?>index.php/incidentsManager' id="menu_back_inc_btn" /><span class="icon"> h </span>Back</a>
             </li>
 
-            
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -90,11 +75,6 @@
         
     </div>
 
-   
-     
-
-
-    
   </body>
 
     <script src="<?php echo base_url() ?>styles/js/jquery-1.8.3.js"></script>
@@ -111,6 +91,4 @@
         $(function(){   $( "#inc_end" ).datepicker();    });
         $(function(){   $('textarea').autosize();            }); 
     </script>
-
-
 </html>

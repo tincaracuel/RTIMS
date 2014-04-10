@@ -15,7 +15,6 @@
     <link href="<?php echo base_url() ?>styles/css/colorbox.css" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
-
     <?php echo $map['js']; ?>
     
   </head>
@@ -49,7 +48,6 @@
           </ul>
         </div><!--/.nav-collapse -->
 
-
         <div class="navbar-collapse collapse" id="functions">
           <ul class="nav navbar-nav">
           
@@ -57,23 +55,10 @@
               <a href='#' id="selected"><span class="icon"> + </span>Add Roadwork</a>       
             </li>
 
-            <!-- <li>
-              <a id='editrw' href="#edit_roadwork" onclick='javascript:listEditRoadworks();' ><span class="icon"> : </span>Edit Roadworks</a> 
-            </li>
-
-            <li>
-                <a id='deleterw' href="#delete_roadwork" onclick='javascript:listDeleteRoadworks();' ><span class="icon"> - </span>Delete Roadworks</a> 
-            </li>
-
-            <li>
-                <a href='<?php echo base_url() ?>index.php/roadworksTableManager/all_roadworks' id="menu_view_rw_btn" /><span class="icon"> p </span>View Roadworks Table</a>
-            </li> -->
-
             <li>
                 <a href='<?php echo base_url() ?>index.php/roadworksManager' id="menu_back_rw_btn" /><span class="icon"> h </span>Back</a>
             </li>
-
-            
+   
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -89,9 +74,8 @@
         </div>
 
     </div>
-    </div>
-
-    
+</div>
+  
   </body>
 
     <script src="<?php echo base_url() ?>styles/js/jquery-1.8.3.js"></script>
@@ -114,7 +98,5 @@
        }
 
     </script>
-
-
 
 </html>

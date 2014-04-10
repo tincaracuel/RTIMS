@@ -18,23 +18,8 @@ class reportsManager extends CI_Controller {
 
     		$this->load->model('reportAccess');
 
-    		//$data['report_all'] = $this->reportAccess->report_getAll();
-
-    		//$config = array();
-    		//$config["base_url"] = base_url() . "index.php/reportsManager/all_reports";
-            //$config["total_rows"] = $this->reportAccess->report_all_count();
-            //$config["per_page"] = 10;
-            //$config["uri_segment"] = 3;
-            //$choice = $config["total_rows"] / $config["per_page"];
-       		//$config["num_links"] = round($choice);
-     
-            //$this->pagination->initialize($config);
-     
-            //$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
             $data["query_report"] = $this->reportAccess->
-                fetch_all_report(/*$config["per_page"], $page*/);
-            //$data["links"] = $this->pagination->create_links();
-
+                fetch_all_report();
 
     		$this->load->view('report.php', $data); 
 
@@ -53,21 +38,8 @@ class reportsManager extends CI_Controller {
 
             $this->load->model('reportAccess');
 
-            //$config = array();
-            //$config["base_url"] = base_url() . "index.php/reportsManager/all_reports";
-            //$config["total_rows"] = $this->reportAccess->report_all_count();
-            //$config["per_page"] = 10;
-            //$config["uri_segment"] = 3;
-            //$choice = $config["total_rows"] / $config["per_page"];
-            //$config["num_links"] = round($choice);
-
-            //$this->pagination->initialize($config);
-
-            //$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
             $data["query_report"] = $this->reportAccess->
-            fetch_all_report(/*$config["per_page"], $page*/);
-            //$data["links"] = $this->pagination->create_links();
-
+            fetch_all_report();
 
             $this->load->view('report.php', $data); 
 

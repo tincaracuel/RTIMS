@@ -44,7 +44,6 @@
           </ul>
         </div><!--/.nav-collapse -->
 
-
         <div class="navbar-collapse collapse" id="functions">
           <ul class="nav navbar-nav">
             
@@ -72,7 +71,6 @@
                 <a href='<?php echo base_url() ?>index.php/incidentsManager' id="menu_back_inc_btn" />
                 <span class="icon"> h </span> Back to Incidents</a>
             </li>
-
             
           </ul>
         </div><!--/.nav-collapse -->
@@ -84,7 +82,6 @@
     <div id="lowerbox">
 
         <div id="table_view" style="width: 100%;" >
-      
 
         <?php
 
@@ -121,7 +118,6 @@
         ?>
 
         </div>
-
 
         <div style="display:none">
             <div id='edit_incident' class="colorbox_edit_delete" style='background:#fff;'>

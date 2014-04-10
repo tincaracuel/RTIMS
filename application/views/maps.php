@@ -14,8 +14,6 @@
     <link href="<?php echo base_url() ?>styles/css/style.css" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
-    
-
     <?php echo $map['js']; ?>
     
   </head>
@@ -72,9 +70,6 @@
     <div id="lowerbox">
         <div id="map" ><?php echo $map['html']; ?></div>
     </div>
-     
-
-
     
   </body>
 
@@ -85,8 +80,6 @@
     <script src="<?php echo base_url() ?>styles/js/mainFunctions.js"></script>
     <script src="<?php echo base_url() ?>styles/js/gmaps.js"></script>
     <script src="<?php echo base_url() ?>styles/js/bootstrap.min.js"></script>
-
-
 
     <script>
         $(function(){   $( "#rwork_start" ).datepicker();    });

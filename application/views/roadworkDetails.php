@@ -1,3 +1,5 @@
+<!--FORM FOR EDITING THE SELECTED ROADWORK-->
+
 <script>
     $(function(){   $( "#start2" ).datepicker();    });
 	$(function(){   $( "#end2" ).datepicker();    });
@@ -56,17 +58,6 @@
             alert('Description can have at most 250 characters.');
             return false;
         }
-        /*Coordinates
-        if(latitude==null || latitude=="" || longitude==null || longitude==""){
-          alert("Coordinates are required. Please click on the roadwork location on the map.");
-          return false;
-        }else if(!latitude.match(latPattern)){
-            alert("Invalid latitude.")
-            return false;
-        }else if(!longitude.match(longPattern)){
-            alert("Invalid longitude.")
-            return false;
-        }*/
 
 	}
 

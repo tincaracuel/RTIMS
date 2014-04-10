@@ -15,7 +15,6 @@
     <link href="<?php echo base_url() ?>styles/css/colorbox.css" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
-
     <?php echo $map['js']; ?>
     
   </head>
@@ -48,7 +47,6 @@
           </ul>
         </div><!--/.nav-collapse -->
 
-
         <div class="navbar-collapse collapse" id="functions">
           <ul class="nav navbar-nav">
             <li>
@@ -71,7 +69,6 @@
                 <a href='<?php echo base_url() ?>index.php/mapsManager' id="menu_back_inc_btn" /><span class="icon"> h </span>Back</a>
             </li>
 
-            
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -115,15 +112,9 @@
                 </form>
             </div>
         </div>
-
-        
+       
     </div>
-
    
-     
-
-
-    
   </body>
 
     <script src="<?php echo base_url() ?>styles/js/jquery-1.8.3.js"></script>
